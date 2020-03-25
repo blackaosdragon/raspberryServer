@@ -55,14 +55,12 @@ if(error){
  }
  admin.messaging().sendMulticast(mensajeInicio).then( respuesta => {
   console.log(respuesta.successCount+' mensajes envidos satisfactoriamente');
+ }).catch( error => {
+   console.log("Error: ",error);
  })
  //console.log(tokens);
  });
 }
-
-
-
-//const tokens;/**/
 
 const tokensRegistrados =  "coB2bWwL-HbrVSa2ItiJQY:APA91bGuBtz2d6PIbk4YoM-9yf_J4Xue9T9L0XRez4fuCumii5GxTkt5IFesUvmqZegPUnWWa1Dnx9_NSM5XF-Yhg5rL80oyu10ZQGvYUerKdqucN3up3fbqnnmpUxZ3wqo3GY629UEr";
 const registrationToken =  "coB2bWwL-HbrVSa2ItiJQY:APA91bGuBtz2d6PIbk4YoM-9yf_J4Xue9T9L0XRez4fuCumii5GxTkt5IFesUvmqZegPUnWWa1Dnx9_NSM5XF-Yhg5rL80oyu10ZQGvYUerKdqucN3up3fbqnnmpUxZ3wqo3GY629UEr";
@@ -76,9 +74,6 @@ const  tokenChrome = "cus1e2pFuv0wn6LRWrtdcM:APA91bEsJooQguI_XOmiTqhCAaxHIiKYrPZ
 //  const tokenChrome2="cPPE2mG3KVWixAB1TKdrPJ:APA91bHdtJbB9HtAKlrI1wrzFPcYTSSrwrU1xJXzDFBLgKL6DJ8HzJiQqBM41V4hESK01N87YK9Ks-znjy24Fi_ZwpYLd95mG3W95Uv6oh8zThN-sWRtA3pb0y0Y4sdjY3MFjOX8-vyi"
 //const tokenChrome2="cPPE2mG3KVWixAB1TKdrPJ:APA91bHdtJbB9HtAKlrI1wrzFPcYTSSrwrU1xJXzDFBLgKL6DJ8HzJiQqBM41V4hESK01N87YK9Ks-znjy24Fi_ZwpYLd95mG3W95Uv6oh8zThN-sWRtA3pb0y0Y4sdjY3MFjOX8-vyi"
 const tokenChrome2="egAH-2V3aULEWt7CTZ1ujl:APA91bGaGmHA_RUKK6FRXbT8tMROnHb1qKjHcaU-wBHG5N7UpCP_nlZFyI_KJ2-sIcYyPPY-p3KXN-tZaNTB3zFxafsD76mMBum2VWV3u6pfmWKXmJGTiZOyNqgb9hXTAH_UUmRBfTQA"
-
-//                      cPPE2mG3KVWixAB1TKdrPJ:APA91bHdtJbB9HtAKlrI1wrzFPcYTSSrwrU1xJXzDFBLgKL6DJ8HzJiQqBM41V4hESK01N87YK9Ks-znjy24Fi_ZwpYLd95mG3W95Uv6oh8zThN-sWRtA3pb0y0Y4sdjY3MFjOX8-vyi
-
 //const tokenChrome2 = "cus1e2pFuv0wn6LRWrtdcM:APA91bFwnPuLwqv2MqIswTWdBHW3rMrADc8imHKpoQvNhXq3HQDq_jwa2F6ZqZ_FPuyx3hbFUov6LOd6f22oMli4RW3FRMuEySSBo3mqpXaY7j05JrmJFwVD1qletZrrVUz89Or6Erkb";
 const tokenChrome3 = "cus1e2pFuv0wn6LRWrtdcM:APA91bFwnPuLwqv2MqIswTWdBHW3rMrADc8imHKpoQvNhXq3HQDq_jwa2F6ZqZ_FPuyx3hbFUov6LOd6f22oMli4RW3FRMuEySSBo3mqpXaY7j05JrmJFwVD1qletZrrVUz89Or6Erkb";
 let dataGlobal = "";
@@ -122,8 +117,6 @@ let options = {
   priority: "high",
   timeToLive: 60*60*24
   }
-
-
 admin.messaging().sendToDevice(tokenChrome3,payload,options).then( response => {
   console.log('Mensaje satisfactorio: ',response);
 }).catch( err => {
@@ -217,16 +210,6 @@ parser.on('data',(temp)=>{
  //console.log(tempFloat);
  tempString = "";
 })
-
-
-
-//nuevo codigo
-/*
-parser.on('data',temp =>{
- console.log(datoGlobal);
- io.emit('temp',{ temperatura: temp });
- })
-*/
 
 app.use(function(req,res,next){
   res.setHeader('Access-Control-Allow-Origin','*');
@@ -331,12 +314,4 @@ app.get('/sensor',function (req,res){
  }
 
 })
-
-/*
-function takeValor(sValor,dataGlobal){
- for(let i = 15; i <= 19; i++){
-  sValor = sValor + dataGlobal[i];
- }
-}
-*/
 asignarTokens();

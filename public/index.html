@@ -1,0 +1,71 @@
+<html>
+<head>
+        <title>Sensor temperatura</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+    </head>
+<body>
+  <div class="container">
+	  <img src="/src/Logo.jpg" alt="instrumentacion" class="logo"/>
+	  <div class="titulos">
+    <h1 >Monitorización de temperatura</h1>
+    </div>
+
+    <div class="info">
+    <h3 id="sen1tall" class="info"></h3>
+    <h3 id="sen2coci" class="info"></h3>
+    <h3 id="sen3bode" class="info"><h3>
+    <h3 id="sen4otro" class="info"><h3>
+    <h1 id="reloj" class="fecha"><h3>
+    <!--<button id="notifi">Nortificacion</button>-->
+    </div>
+
+  </div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="app.js"></script>
+
+  <script >
+    let socket = io.connect('https://instrumentacionline.ddns.net:443');
+    //let socket = io.connect('http://192.168.1.91:80');    
+
+    socket.on('temp',(data)=>{
+                console.log(data);
+                let sen1tall = document.getElementById('sen1tall');
+		let sen2coci = document.getElementById('sen2coci');
+		let sen3bode = document.getElementById('sen3bode');
+                //sen1tall.innerHTML = `Dato : ${data}`;
+
+		let clock = new Date();
+		//compara si en la posicion del id es 1 o 2
+		if (data[4]==="2"){
+		let temp = "";
+		for (let i = 15; i <= 18; i++){
+		   temp = temp + data[i];
+		}
+		sen2coci.innerHTML = `Cocina ${temp} °C Hora: ${clock.getHours()}:${clock.getMinutes()}:${clock.getSeconds()} `;
+		} else if(data[4]==="1"){
+		  let temp = "";
+		  for (let i = 15; i <= 18; i++){
+		    temp = temp + data[i];
+		  }
+         	sen1tall.innerHTML = `Oficina ${temp} °C Hora: ${clock.getHours()}:${clock.getMinutes()}:${clock.getSeconds()} `;
+		} else if (data[4] ==="3"){
+                 let temp = "";
+                 for (let i = 15; i <= 18; i++){
+                   temp = temp + data[i];
+                 }
+                sen3bode.innerHTML = `Bodega ${temp} °C Hora: ${clock.getHours()}:${clock.getMinutes()}:${clock.getSeconds()} (Manual)`;
+                } else if (data[4]==="4"){
+		  let temp = "";
+                  for (let i = 15; i<= 18; i++){
+                  temp = temp + data[i];
+                  }
+		sen4otro.innerHTML = `Variable ${temp}°C Hora: ${clock.getHours()}:${clock.getMinutes()}:${clock.getSeconds()} (Extensor)`;
+		}
+            })
+  </script>
+
+</body>
+</html>

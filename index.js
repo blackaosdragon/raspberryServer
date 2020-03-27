@@ -53,11 +53,40 @@ if(error){
    },
    tokens: tokens
  }
+ let mensajeAdvertencia = {
+   data: {
+     prioridad: "2",
+     tipo: "Advertencia",
+     titulo: "Advertencia Temperatura",
+     contenido: "Temperatura ligeramente más alta de lo normal",
+   }
+ }
+
+ const payload = {
+   notification: {
+     title: 'Prueba de mensaje inmediato',
+     body: 'Este mensaje tiene la prioridad alta'
+   }
+ }
+ const options = {
+   priority: 'high',
+   timeToLive: 60 * 60 * 5
+ } 
+/*
  admin.messaging().sendMulticast(mensajeInicio).then( respuesta => {
   console.log(respuesta.successCount+' mensajes envidos satisfactoriamente');
  }).catch( error => {
    console.log("Error: ",error);
  })
+ */
+
+ admin.messaging().sendToDevice(tokens, payload, options).then( response => {
+   console.log('Satisfactorio enviado mensaje; ',response);
+ }).catch( error => {
+   console.log('Error enviando mensaje: ',error);
+ })
+
+ 
  //console.log(tokens);
  });
 }

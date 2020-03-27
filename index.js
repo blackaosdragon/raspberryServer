@@ -72,19 +72,20 @@ if(error){
    priority: 'high',
    timeToLive: 60 * 60 * 5
  } 
-/*
+
  admin.messaging().sendMulticast(mensajeInicio).then( respuesta => {
   console.log(respuesta.successCount+' mensajes envidos satisfactoriamente');
  }).catch( error => {
    console.log("Error: ",error);
  })
- */
-
+ 
+/*
  admin.messaging().sendToDevice(tokens, payload, options).then( response => {
    console.log('Satisfactorio enviado mensaje; ',response);
  }).catch( error => {
    console.log('Error enviando mensaje: ',error);
  })
+ */
 
  
  //console.log(tokens);

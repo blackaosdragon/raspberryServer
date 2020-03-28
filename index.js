@@ -198,9 +198,11 @@ parser.on('data',(temp)=>{
     if(error){
       console.log(error);
     }
+    /*
     for( let i = 0; resultados.length > i; i++){
       tokens[i]=resultados[i].token;      
     }
+    */
   })
 
 /*

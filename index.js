@@ -35,7 +35,6 @@ dataBase.connect( error => {
 asignarTokens = () => {
  console.log("asignarTokens");
 
-
 dataBase.query("SELECT * FROM Tokens",(error,resultados,campos) => {
 let tokens = [];
 if(error){
@@ -172,6 +171,20 @@ console.log("Mensaje satisfactorio: ",response);
 })
 */
 
+colocarTokens = () => {
+  let tokensRegistrados = [];
+  dataBase.query("SELECT * FROM Tokens",(error,datos,campos) => {
+    if (error){
+      console.log("Error: ",error);
+    }
+    for(let iContador = 0; datos.length > iContador; iContador++){
+      tokensRegistrados[iContador] = datos[iContador].token;
+    }
+  })
+  return tokensRegistrados
+}
+
+console.log(colocarTokens());
 
 parser.on('data',(temp)=>{
  dataGlobal = temp;
@@ -181,6 +194,15 @@ parser.on('data',(temp)=>{
  }
  tempFloat = parseFloat(tempString);
  if (tempFloat > 25.0 && tempFloat < 27.9){
+  dataBase.query("SELECT * FROM Tokens", (error,resultados,campos) => {
+    if(error){
+      console.log(error);
+    }
+    for( let i = 0; resultados.length > i; i++){
+      tokens[i]=resultados[i].token;      
+    }
+  })
+
 /*
   dataBase.query("SELECT * FROM Tokens",(error,resultados,campos) => {
     let tokens = [];

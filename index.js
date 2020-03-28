@@ -33,7 +33,7 @@ dataBase.connect( error => {
 // dataBase.query("SELECT * FROM Tokens",(error,resultado,campos) => {
 
 asignarTokens = () => {
- console.log("asignarTokens");
+ //console.log("asignarTokens");
 
 dataBase.query("SELECT * FROM Tokens",(error,resultados,campos) => {
 let tokens = [];
@@ -173,6 +173,7 @@ console.log("Mensaje satisfactorio: ",response);
 
 colocarTokens = (data,callback) => {
   let tokensRegistrados = [];
+  callback(
   dataBase.query("SELECT * FROM Tokens",(error,datos,campos) => {
     if (error){
       console.log("Error: ",error);
@@ -181,7 +182,8 @@ colocarTokens = (data,callback) => {
       tokensRegistrados[iContador] = datos[iContador].token;
     }
   })
-  return tokensRegistrados
+  )
+  //return tokensRegistrados
 }
 
 colocarTokens(null,(nuevoValor)=> {

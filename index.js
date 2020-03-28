@@ -171,7 +171,7 @@ console.log("Mensaje satisfactorio: ",response);
 })
 */
 
-colocarTokens = () => {
+colocarTokens = (data,callback) => {
   let tokensRegistrados = [];
   dataBase.query("SELECT * FROM Tokens",(error,datos,campos) => {
     if (error){
@@ -184,7 +184,9 @@ colocarTokens = () => {
   return tokensRegistrados
 }
 
-console.log(colocarTokens());
+colocarTokens(null,(nuevoValor)=> {
+  console.log(nuevoValor);
+})
 
 parser.on('data',(temp)=>{
  dataGlobal = temp;

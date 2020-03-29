@@ -31,7 +31,7 @@ dataBase.connect( error => {
 */
 
 // dataBase.query("SELECT * FROM Tokens",(error,resultado,campos) => {
-  let tokens = [] ;
+  var tokens = [] ;
 
   colocarTokens = (dbTokens) => {
     dataBase.query("SELECT * FROM Tokens",(error,datos,campos) => {

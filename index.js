@@ -54,7 +54,7 @@ dataBase.connect( error => {
     priority: '',
     timeToLive: 60*60*24
   }
-
+  colocarTokens(tokens);
   console.log(tokens);
 
   //admin.messaging().send( )

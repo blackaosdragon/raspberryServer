@@ -38,7 +38,7 @@ dataBase.connect( error => {
       if (error){
         console.log("Error: ",error);
       }
-      asignacion()
+      asignacion(datos)
       /*
       for(let iContador = 0; datos.length > iContador; iContador++){
         tokens[iContador] = datos[iContador].token;
@@ -50,7 +50,7 @@ dataBase.connect( error => {
     return tokens;
   }
 
-  function asignacion(){
+  function asignacion(datos){
     for(let iContador = 0; datos.length > iContador; iContador++){
       tokens[iContador] = datos[iContador].token;
       console.log(tokens[iContador])

@@ -38,14 +38,23 @@ dataBase.connect( error => {
       if (error){
         console.log("Error: ",error);
       }
+      asignacion()
+      /*
       for(let iContador = 0; datos.length > iContador; iContador++){
         tokens[iContador] = datos[iContador].token;
         console.log(tokens[iContador])
       }
+      */
       console.log(tokens);
     })
-    
     return tokens;
+  }
+
+  function asignacion(){
+    for(let iContador = 0; datos.length > iContador; iContador++){
+      tokens[iContador] = datos[iContador].token;
+      console.log(tokens[iContador])
+    }
   }
 
   let payload = {

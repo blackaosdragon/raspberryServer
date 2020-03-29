@@ -31,6 +31,33 @@ dataBase.connect( error => {
 */
 
 // dataBase.query("SELECT * FROM Tokens",(error,resultado,campos) => {
+  let tokens = [] ;
+
+  colocarTokens = (dbTokens) => {
+    dataBase.query("SELECT * FROM Tokens",(error,datos,campos) => {
+      if (error){
+        console.log("Error: ",error);
+      }
+      for(let iContador = 0; datos.length > iContador; iContador++){
+        dbTokens[iContador] = datos[iContador].token;
+      }
+    })
+  }
+
+  let payload = {
+    data: {
+      title: 'Titulo de prueba',
+      body: 'Cuerpo del mensaje '
+    }
+  }
+  let options = {
+    priority: '',
+    timeToLive: 60*60*24
+  }
+
+  console.log(tokens);
+
+  //admin.messaging().send( )
 
 asignarTokens = () => {
  //console.log("asignarTokens");
@@ -90,6 +117,11 @@ if(error){
  //console.log(tokens);
  });
 }
+
+
+
+
+
 
 const tokensRegistrados =  "coB2bWwL-HbrVSa2ItiJQY:APA91bGuBtz2d6PIbk4YoM-9yf_J4Xue9T9L0XRez4fuCumii5GxTkt5IFesUvmqZegPUnWWa1Dnx9_NSM5XF-Yhg5rL80oyu10ZQGvYUerKdqucN3up3fbqnnmpUxZ3wqo3GY629UEr";
 const registrationToken =  "coB2bWwL-HbrVSa2ItiJQY:APA91bGuBtz2d6PIbk4YoM-9yf_J4Xue9T9L0XRez4fuCumii5GxTkt5IFesUvmqZegPUnWWa1Dnx9_NSM5XF-Yhg5rL80oyu10ZQGvYUerKdqucN3up3fbqnnmpUxZ3wqo3GY629UEr";
@@ -171,24 +203,9 @@ console.log("Mensaje satisfactorio: ",response);
 })
 */
 
-colocarTokens = (data,callback) => {
-  let tokensRegistrados = [];
-  callback(
-  dataBase.query("SELECT * FROM Tokens",(error,datos,campos) => {
-    if (error){
-      console.log("Error: ",error);
-    }
-    for(let iContador = 0; datos.length > iContador; iContador++){
-      tokensRegistrados[iContador] = datos[iContador].token;
-    }
-  })
-  )
-  //return tokensRegistrados
-}
 
-colocarTokens(null,(nuevoValor)=> {
-  console.log(nuevoValor);
-})
+
+
 
 parser.on('data',(temp)=>{
  dataGlobal = temp;
@@ -372,4 +389,4 @@ app.get('/sensor',function (req,res){
  }
 
 })
-asignarTokens();
+//asignarTokens();

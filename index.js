@@ -233,6 +233,7 @@ parser.on('data',(temp)=>{
    /*setTimeout((tempFloat)=>{
 
    },)*/
+/*
   dataBase.query("SELECT * FROM Tokens", (error,resultados,campos) => {
     if(error){
       console.log(error);
@@ -241,7 +242,7 @@ parser.on('data',(temp)=>{
     let payload = {
       data: ``
     }
-  })
+  })*/
 
 /* 
    //console.log("Notificacion de precaucion");

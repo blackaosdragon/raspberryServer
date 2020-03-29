@@ -42,8 +42,8 @@ dataBase.connect( error => {
         tokens[iContador] = datos[iContador].token;
       }
     })
-    console.log(dbTokens);
-    return dbTokens;
+    console.log(tokens);
+    return tokens;
   }
 
   let payload = {

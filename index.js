@@ -31,17 +31,19 @@ dataBase.connect( error => {
 */
 
 // dataBase.query("SELECT * FROM Tokens",(error,resultado,campos) => {
-  var tokens = [] ;
+  let tokens = [] ;
 
-  colocarTokens = (dbTokens) => {
+  colocarTokens = () => {
     dataBase.query("SELECT * FROM Tokens",(error,datos,campos) => {
       if (error){
         console.log("Error: ",error);
       }
       for(let iContador = 0; datos.length > iContador; iContador++){
-        dbTokens[iContador] = datos[iContador].token;
+        tokens[iContador] = datos[iContador].token;
       }
     })
+    console.log(dbTokens);
+    return dbTokens;
   }
 
   let payload = {
@@ -53,7 +55,7 @@ dataBase.connect( error => {
   let options = {
     priority: '',
     timeToLive: 60*60*24
-  }
+  } 
   colocarTokens(tokens);
   console.log(tokens);
 

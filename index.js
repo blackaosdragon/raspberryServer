@@ -50,7 +50,7 @@ dataBase.connect( error => {
     return tokens;
   }
 
-  function asignacion(datos){
+  asignarTokensdeEnvio = (datos) => {
     for(let iContador = 0; datos.length > iContador; iContador++){
       tokens[iContador] = datos[iContador].token;
       console.log(tokens[iContador])
@@ -228,74 +228,34 @@ parser.on('data',(temp)=>{
  }
  tempFloat = parseFloat(tempString);
  if (tempFloat > 25.0 && tempFloat < 27.9){
+   let iNotificador = 0;
+
+   /*setTimeout((tempFloat)=>{
+
+   },)*/
   dataBase.query("SELECT * FROM Tokens", (error,resultados,campos) => {
     if(error){
       console.log(error);
     }
-    /*
-    for( let i = 0; resultados.length > i; i++){
-      tokens[i]=resultados[i].token;      
+    asignarTokensdeEnvio(resultados);
+    let payload = {
+      data: ``
     }
-    */
   })
 
-/*
-  dataBase.query("SELECT * FROM Tokens",(error,resultados,campos) => {
-    let tokens = [];
-    if(error){
-      console.log(error)
-    }
-    for(let i = 0; resultados.length>i; i++){
-      tokens[i]=resultados[i].token;
-    }
-   let notiAdv = {
-     data: {
-     
-     }
-  }
-
-       prioridad: "2",
-       tipo: "Advertencia",
-       titulo: "Advertencia",
-       contenido: "Temperatura cerca de limite superior"
-     },
-
-   }
-   admin.messaging().sendMulticast(notiAdv).then( respuesta => {
-
-///////////////
- }
- let mensajeInicio = {
-   data: {
-     prioridad: "3",
-     tipo: "Bienvenida",
-     titulo: "Servidor en línea",
-     contenido: "Monitarizacion de temperatura funcionando",
-   },
-   tokens: tokens
- }
- admin.messaging().sendMulticast(mensajeInicio).then( respuesta => {
-  console.log(respuesta.successCount+' mensajes envidos satisfactoriamente');
- })
- //console.log(tokens);
- });
-}
-
-//////////////////////
-
+/* 
    //console.log("Notificacion de precaucion");
    let notifiOficina = {
      notification: {
       title: "Advertencia",
       body: `La temperatura supera los ${tempFloat}°C revisar el sensor`
      }
- /*
  */
   
  } else if (temp > 28.0){
   console.log("Notificacion de alerta");
 }
- //console.log(tempFloat);
+ console.log(tempFloat);
  tempString = "";
 })
 

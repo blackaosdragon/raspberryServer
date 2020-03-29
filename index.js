@@ -38,7 +38,7 @@ dataBase.connect( error => {
       if (error){
         console.log("Error: ",error);
       }
-      asignacion(datos)
+      asignarTokensdeEnvio(datos)
       /*
       for(let iContador = 0; datos.length > iContador; iContador++){
         tokens[iContador] = datos[iContador].token;

@@ -215,7 +215,7 @@ console.log("Mensaje satisfactorio: ",response);
  console.log("Error mandando mensaje: ",error);
 })
 */
-let notifiConta = 0;
+let notifiConta = 90;
 parser.on('data',(temp)=>{
  dataGlobal = temp;
  io.emit('temp',temp);
@@ -225,6 +225,9 @@ parser.on('data',(temp)=>{
  tempFloat = parseFloat(tempString);
  if (temp > 28.0){
    notifiConta = notifiConta + 1;
+   console.log("Contador: ",notifiConta);
+   console.log("Modulo: ",100%notifiConta);
+
 } else if (temp<=28.0){
   notifiConta = 0
 } 

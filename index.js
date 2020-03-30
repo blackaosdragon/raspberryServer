@@ -215,11 +215,7 @@ console.log("Mensaje satisfactorio: ",response);
  console.log("Error mandando mensaje: ",error);
 })
 */
-
-
-
-
-
+let notifiConta = 0;
 parser.on('data',(temp)=>{
  dataGlobal = temp;
  io.emit('temp',temp);
@@ -227,12 +223,14 @@ parser.on('data',(temp)=>{
    tempString = tempString+dataGlobal[i];
  }
  tempFloat = parseFloat(tempString);
- if (tempFloat > 25.0 && tempFloat < 27.9){
-   let iNotificador = 0;
-
-   /*setTimeout((tempFloat)=>{
-
-   },)*/
+ if (temp > 28.0){
+   notifiConta = notifiConta + 1;
+} else if (temp<=28.0){
+  notifiConta = 0
+} 
+if (100%notifiConta==0){
+  console.log("Notificacion de alerta");
+}
 /*
   dataBase.query("SELECT * FROM Tokens", (error,resultados,campos) => {
     if(error){
@@ -253,10 +251,8 @@ parser.on('data',(temp)=>{
      }
  */
   
- } else if (temp > 28.0){
-  console.log("Notificacion de alerta");
-}
- console.log(tempFloat);
+
+ //console.log(tempFloat);
  tempString = "";
 })
 

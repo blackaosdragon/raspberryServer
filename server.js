@@ -24,26 +24,9 @@ page.listen(pagePort, data => {
 const Readline = SerialPort.parsers.Readline;
 const port = new SerialPort('/dev/ttyUSB0');
 const parser = port.pipe(new Readline({delimiter: '\r\n'}));
-/*
-asignar = (dato) => {
-    for( i=15; i <= 18; i++){
-        sTemperatura = sTemperatura + dato[i]
-    }
-}
-*/
-
 
 wss.on('connection', ws => {
     parser.on('data', temp => {
-        /*
-        if ( temp[4] === '1' ){
-            for( i=15; i <= 18; i++){
-                sTempOficina = sTempOficina+temp[i];
-                console.log(sTempOficina);
-            }
-        } else if( temp[4] === '2'){
-
-        }*/
         console.log(temp);
         ws.send(temp);
     })

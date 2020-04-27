@@ -34,6 +34,7 @@ asignar = (dato) => {
 
 wss.on('connection', ws => {
     parser.on('data', temp => {
+        /*
         if ( temp[4] === '1' ){
             for( i=15; i <= 18; i++){
                 sTempOficina = sTempOficina+temp[i];
@@ -41,7 +42,7 @@ wss.on('connection', ws => {
             }
         } else if( temp[4] === '2'){
 
-        }
+        }*/
         console.log(temp);
         ws.send(temp);
     })

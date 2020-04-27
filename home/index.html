@@ -13,13 +13,14 @@
     <script>
         const puerto = 5001;
         let webSocket = new WebSocket(`ws://192.168.0.11:${puerto}`);
+        //let webSocket = new WebSocket(`ws://localhost:${puerto}`);
         webSocket.onopen = () => {
             console.log('COnexion');
         }
         webSocket.onmessage = function(mensaje){
             let hora = new Date()
             let wsSensor = document.getElementById('wsSensor');
-            wsSensor.innerHTML = `WS       --- Temperatura: ${mensaje.data}°C ${hora.getHours()}:${hora.getSeconds()}`
+            wsSensor.innerHTML = `WS       --- Temperatura: ${mensaje.data}°C ${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
             console.log('WebSocket: ', mensaje.data);
         }
     </script>

@@ -7,6 +7,8 @@ const page = express();
 
 const wsPort = 5001;
 const pagePort = 5000;
+let sTempOficina = "";
+let fTempOficina = 0.0;
 
 
 const wss = new Ws.Server({port: wsPort});
@@ -22,12 +24,19 @@ const Readline = SerialPort.parsers.Readline;
 const port = new SerialPort('/dev/ttyUSB0');
 const parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
-parser.on('data', temp =>{
-    console.log(temp)
-})
+asignar
+
 
 wss.on('connection', ws => {
     parser.on('data', temp => {
+        if ( temp[4] === '1' ){
+            for( i=15; i <= 18; i++){
+                sTempOficina = sTempOficina+temp[i];
+            }
+        } else if( temp[4] === '2'){
+
+        }
+        console.log(sTempOficina);
         ws.send(temp);
     })
     console.log('Cliente conectado');

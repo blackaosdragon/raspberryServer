@@ -37,11 +37,12 @@ wss.on('connection', ws => {
         if ( temp[4] === '1' ){
             for( i=15; i <= 18; i++){
                 sTempOficina = sTempOficina+temp[i];
+                console.log(sTempOficina);
             }
         } else if( temp[4] === '2'){
 
         }
-        console.log(sTempOficina);
+        
         ws.send(temp);
     })
     console.log('Cliente conectado');

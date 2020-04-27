@@ -42,7 +42,7 @@ wss.on('connection', ws => {
         } else if( temp[4] === '2'){
 
         }
-        
+        console.log(temp);
         ws.send(temp);
     })
     console.log('Cliente conectado');

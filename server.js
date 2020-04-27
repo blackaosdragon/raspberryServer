@@ -7,9 +7,6 @@ const page = express();
 
 const wsPort = 5001;
 const pagePort = 5000;
-let sTempOficina = "";
-let fTempOficina = 0.0;
-let sTemperatura;
 
 
 const wss = new Ws.Server({port: wsPort});

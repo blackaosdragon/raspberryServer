@@ -21,7 +21,7 @@ const base_de_datos = mySql.createConnection({
 let tokens = [];
 
 asignar_tokens = (arreglo_de_tokens) => {
-    console.log(arreglo_de_tokens[1]);
+    console.log(arreglo_de_tokens[1].token);
     // for( let contador = 0; contador <= arreglo_de_tokens.length; contador++){
     //     tokens[contador] = arreglo_de_tokens[contador].token;
     // }

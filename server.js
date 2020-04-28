@@ -22,7 +22,7 @@ let tokens = [];
 
 asignar_tokens = (arreglo_de_tokens) => {
     
-     for( let contador = 0; contador <= arreglo_de_tokens.length; contador++){
+     for( let contador = 0; contador < arreglo_de_tokens.length; contador++){
         console.log(arreglo_de_tokens[contador].token);
          tokens[contador] = arreglo_de_tokens[contador].token;
     }

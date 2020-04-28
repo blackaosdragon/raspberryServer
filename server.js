@@ -21,10 +21,11 @@ const base_de_datos = mySql.createConnection({
 let tokens = [];
 
 asignar_tokens = (arreglo_de_tokens) => {
-    console.log(arreglo_de_tokens[1].token);
-    // for( let contador = 0; contador <= arreglo_de_tokens.length; contador++){
-    //     tokens[contador] = arreglo_de_tokens[contador].token;
-    // }
+    
+     for( let contador = 0; contador <= arreglo_de_tokens.length; contador++){
+        console.log(arreglo_de_tokens[contador].token);
+         tokens[contador] = arreglo_de_tokens[contador].token;
+    }
 }
 //
 colocar_Tokens = () => {
@@ -68,7 +69,7 @@ wss.on('connection', ws => {
                         console.log(err);
                     }
                     asignar_tokens(resultados);
-                    console.log(tokens);
+                    //console.log(tokens);
                 })
             }
         } else if (float_ofice_temperature<=24.9){

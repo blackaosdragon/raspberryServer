@@ -69,7 +69,7 @@ wss.on('connection', ws => {
                         console.log(err);
                     }
                     asignar_tokens(resultados);
-                    //console.log(tokens);
+                    console.log(tokens);
                 })
             }
         } else if (float_ofice_temperature<=24.9){

@@ -33,8 +33,7 @@ asignar_tokens = () => {
            //console.log(tokens);
         }
         console.log(tokens)
-        //console.log('Despues de for: ');
-        //console.log(tokens);
+        return tokens;
     })
     console.log(tokens)
     //return tokens;

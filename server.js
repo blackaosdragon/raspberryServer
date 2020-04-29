@@ -28,12 +28,12 @@ asignar_tokens = () => {
         if (err){
             console.log(err);
         }
-        for( let contador = 0; contador < tokens.length; contador++){
-          //console.log(arreglo_de_tokens[contador].token);
+        for( let contador = 0; contador < token.length; contador++){
+           //console.log(arreglo_de_tokens[contador].token);
            tokens[contador] = token[contador].token;
-           console.log(tokens);
+           //console.log(tokens);
         }
-        console.log(tokens);
+        //console.log(tokens);
     })
     console.log(tokens);
 }

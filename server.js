@@ -75,7 +75,7 @@ wss.on('connection', ws => {
                 integer_alertas = 0;
                 //tokens = [];
                 let envios = asignar_tokens();
-                console.log(`tokens : ${envios}`);
+                console.log(envios);
                 
             }
         } else if (float_ofice_temperature<=24.9){

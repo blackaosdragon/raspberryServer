@@ -64,7 +64,7 @@ if(alerta==1){
     mensaje_push = setInterval(()=>{
         console.log("Alerta")
     },60000)
-} else {
+} else if (alerta == 0){
     clearInterval(mensaje_push);
 }
 
@@ -78,6 +78,7 @@ wss.on('connection', ws => {
         if (float_ofice_temperature>24.9){
             integer_alertas++;
             alerta++;
+            console.log(`Alerta: ${alerta} `)
             
             if(integer_alertas%60==0){
                 integer_alertas = 0;

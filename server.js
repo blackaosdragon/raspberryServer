@@ -12,9 +12,9 @@ let float_ofice_temperature = 0.0;
 let integer_alertas = 0;
 
 const base_de_datos = mySql.createConnection({
-    host: '192.168.0.11',
+    host: 'localhost',
     //port: '/var/run/mysqld/mysqld.sock',
-    user: 'root',
+    user: 'infoUpdater',
     password: '107005205',
     database: 'tokens',
 })

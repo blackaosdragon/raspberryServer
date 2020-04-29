@@ -22,7 +22,9 @@ const base_de_datos = mySql.createConnection({
 let tokens = [];
 
 asignar_tokens = () => {
+    let token = []
     base_de_datos.query("SELECT * FROM Tokens", (err, token, campos) => {
+
         if (err){
             console.log(err);
         }
@@ -30,9 +32,9 @@ asignar_tokens = () => {
           //console.log(arreglo_de_tokens[contador].token);
            tokens[contador] = token[contador].token;
         }
-        console.log(tokens);
+        
     })
-   
+    console.log(tokens);
 }
 //
 colocar_Tokens = () => {

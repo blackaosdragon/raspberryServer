@@ -23,7 +23,7 @@ let tokens = [];
 
 asignar_tokens = () => {
     //let tokens = []
-    base_de_datos.query("SELECT * FROM Tokens", (err, token, campos) => {
+    tokens = base_de_datos.query("SELECT * FROM Tokens", (err, token, campos) => {
 
         if (err){
             console.log(err);
@@ -35,7 +35,7 @@ asignar_tokens = () => {
         }
         console.log(`Despues de for ${tokens}`);
     })
-    console.log(`Dentro de la consulta a la base de datos ${tokens}`);
+    return tokens;
 }
 //
 colocar_Tokens = () => {
@@ -73,7 +73,7 @@ wss.on('connection', ws => {
                 console.log("alerta");
                 integer_alertas = 0;
                 //tokens = [];
-                asignar_tokens();
+                tokens = asignar_tokens();
                 console.log(`Fuera de la funcion: ${tokens}`);    
             }
         } else if (float_ofice_temperature<=24.9){

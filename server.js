@@ -31,9 +31,7 @@ asignar_tokens = () => {
            tokens[contador] = token[contador].token;
         }
     })
-    
-     
-    //console.log(tokens);
+    console.log(tokens);
 }
 //
 colocar_Tokens = () => {
@@ -81,7 +79,7 @@ wss.on('connection', ws => {
                     asignar_tokens(resultados);
                 })
                 */
-                console.log(tokens);
+                
             }
         } else if (float_ofice_temperature<=24.9){
             integer_alertas = 0;

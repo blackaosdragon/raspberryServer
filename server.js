@@ -77,9 +77,10 @@ wss.on('connection', ws => {
             if(integer_alertas%60==0){
                 integer_alertas = 0;
                 let envios = asignar_tokens();
-                //console.log(envios);
+                
             }
         } else if (float_ofice_temperature<=24.9){
+            clearInterval(mensaje_push);
             integer_alertas = 0;
             alerta=0;
         }

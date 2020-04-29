@@ -21,12 +21,18 @@ const base_de_datos = mySql.createConnection({
 
 let tokens = [];
 
-asignar_tokens = (arreglo_de_tokens) => {
+asignar_tokens = () => {
+    base_de_datos.query("SELECT * FROM Tokens", (err, token, campos) => {
+        if (err){
+            console.log(err);
+        }
+        for( let contador = 0; contador < tokens.length; contador++){
+          //console.log(arreglo_de_tokens[contador].token);
+           tokens[contador] = token[contador].token;
+        }
+    })
     
-     for( let contador = 0; contador < arreglo_de_tokens.length; contador++){
-        //console.log(arreglo_de_tokens[contador].token);
-         tokens[contador] = arreglo_de_tokens[contador].token;
-    }
+     
     //console.log(tokens);
 }
 //
@@ -65,14 +71,17 @@ wss.on('connection', ws => {
                 
                 console.log("alerta");
                 integer_alertas = 0;
-                tokens = []                
+                tokens = [];
+                asignar_tokens();
+                /*
                 base_de_datos.query("SELECT * FROM Tokens", (err, resultados, campos) => {
                     if (err){
                         console.log(err);
                     }
                     asignar_tokens(resultados);
-                    console.log(tokens);
                 })
+                */
+                console.log(tokens);
             }
         } else if (float_ofice_temperature<=24.9){
             integer_alertas = 0;

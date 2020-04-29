@@ -31,8 +31,9 @@ asignar_tokens = () => {
         for( let contador = 0; contador < tokens.length; contador++){
           //console.log(arreglo_de_tokens[contador].token);
            tokens[contador] = token[contador].token;
+           console.log(tokens);
         }
-        
+        console.log(tokens);
     })
     console.log(tokens);
 }
@@ -58,7 +59,6 @@ const parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
 
 wss.on('connection', ws => {
-    console.log("Cliente conectado")
     parser.on('data', temp => {
         for(let i = 15; i <= 18; i++){
             string_ofice_temperature = string_ofice_temperature+temp[i];

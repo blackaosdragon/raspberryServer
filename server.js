@@ -76,12 +76,14 @@ wss.on('connection', ws => {
             if(alerta==1){
                 console.log("Se activara alerta");
                 mensaje_push = setInterval(()=>{
+                    let envios = asignar_tokens();
+                    console.log(envios);
                     console.log(`La temperatura tiene el valor de ${float_ofice_temperature}`);
                 },60000)
             }            
             if(integer_alertas%60==0){
                 integer_alertas = 0;
-                let envios = asignar_tokens();
+                // let envios = asignar_tokens();
                 
             }
         } else if (float_ofice_temperature<=24.9){
@@ -92,7 +94,7 @@ wss.on('connection', ws => {
             console.log("Se desactivara alerta");;
             clearInterval(mensaje_push);
         }
-        console.log(integer_alertas);
+        //console.log(integer_alertas);
         string_ofice_temperature = "";
     })
     console.log('Cliente conectado'); //metodo para subscribir a un usuario

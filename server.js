@@ -22,7 +22,7 @@ const base_de_datos = mySql.createConnection({
 let tokens = [];
 
 asignar_tokens = () => {
-    let token = []
+    let tokens = []
     base_de_datos.query("SELECT * FROM Tokens", (err, token, campos) => {
 
         if (err){

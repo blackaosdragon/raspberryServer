@@ -10,6 +10,7 @@ const pagePort = 5000;
 let string_ofice_temperature = "";
 let float_ofice_temperature = 0.0;
 let integer_alertas = 0;
+let alerta = 0;
 
 const base_de_datos = mySql.createConnection({
     host: 'localhost',
@@ -28,9 +29,8 @@ asignar_tokens = () => {
             console.log(err);
         }
         for( let contador = 0; contador < token.length; contador++){
-           //console.log(arreglo_de_tokens[contador].token);
            tokens[contador] = token[contador].token;
-           //console.log(tokens);
+           
         }
         //console.log(tokens)
         return tokens;
@@ -68,18 +68,20 @@ wss.on('connection', ws => {
         float_ofice_temperature = parseFloat(string_ofice_temperature);
         if (float_ofice_temperature>24.9){
             integer_alertas++;
-
+            alerta++;
+            if(alerta==1){
+                mensaje_push = setInterval(()=>{
+                    console.log("Alerta")
+                },60000)
+            }
             if(integer_alertas%60==0){
-                
-                console.log("alerta");
                 integer_alertas = 0;
-                //tokens = [];
                 let envios = asignar_tokens();
-                console.log(envios);
-                
+                //console.log(envios);
             }
         } else if (float_ofice_temperature<=24.9){
             integer_alertas = 0;
+            alerta=0;
         }
         console.log(integer_alertas);
         string_ofice_temperature = "";

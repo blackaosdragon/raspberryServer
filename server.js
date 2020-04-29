@@ -22,7 +22,7 @@ const base_de_datos = mySql.createConnection({
 let tokens = [];
 
 asignar_tokens = () => {
-    let tokens = []
+    //let tokens = []
     base_de_datos.query("SELECT * FROM Tokens", (err, token, campos) => {
 
         if (err){
@@ -33,9 +33,9 @@ asignar_tokens = () => {
            tokens[contador] = token[contador].token;
            //console.log(tokens);
         }
-        console.log(tokens);
+        console.log(`Despues de for ${tokens}`);
     })
-    console.log(tokens);
+    console.log(`Dentro de la consulta a la base de datos ${tokens}`);
 }
 //
 colocar_Tokens = () => {
@@ -74,15 +74,7 @@ wss.on('connection', ws => {
                 integer_alertas = 0;
                 tokens = [];
                 asignar_tokens();
-                /*
-                base_de_datos.query("SELECT * FROM Tokens", (err, resultados, campos) => {
-                    if (err){
-                        console.log(err);
-                    }
-                    asignar_tokens(resultados);
-                })
-                */
-                
+                console.log(`Fuera de la funcion: ${tokens}`);    
             }
         } else if (float_ofice_temperature<=24.9){
             integer_alertas = 0;

@@ -12,10 +12,11 @@ let float_ofice_temperature = 0.0;
 let integer_alertas = 0;
 
 const base_de_datos = mySql.createConnection({
-    host: 'localhost',
-    user: 'infoUpdater',
+    host: '192.168.0.11',
+    //port: '/var/run/mysqld/mysqld.sock',
+    user: 'root',
     password: '107005205',
-    database: 'tokens'
+    database: 'tokens',
 })
 
 let tokens = [];
@@ -23,9 +24,10 @@ let tokens = [];
 asignar_tokens = (arreglo_de_tokens) => {
     
      for( let contador = 0; contador < arreglo_de_tokens.length; contador++){
-        console.log(arreglo_de_tokens[contador].token);
+        //console.log(arreglo_de_tokens[contador].token);
          tokens[contador] = arreglo_de_tokens[contador].token;
     }
+    console.log(tokens);
 }
 //
 colocar_Tokens = () => {
@@ -63,7 +65,7 @@ wss.on('connection', ws => {
                 
                 console.log("alerta");
                 integer_alertas = 0;
-                tokens = []
+                tokens = []                
                 base_de_datos.query("SELECT * FROM Tokens", (err, resultados, campos) => {
                     if (err){
                         console.log(err);

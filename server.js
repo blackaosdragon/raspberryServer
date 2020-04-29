@@ -23,7 +23,7 @@ let tokens = [];
 
 asignar_tokens = () => {
     //let tokens = []
-    tokens = base_de_datos.query("SELECT * FROM Tokens", (err, token, campos) => {
+    base_de_datos.query("SELECT * FROM Tokens", (err, token, campos) => {
         if (err){
             console.log(err);
         }
@@ -32,6 +32,7 @@ asignar_tokens = () => {
            tokens[contador] = token[contador].token;
            //console.log(tokens);
         }
+        console.log(tokens)
         //console.log('Despues de for: ');
         //console.log(tokens);
     })

@@ -33,7 +33,7 @@ asignar_tokens = () => {
            tokens[contador] = token[contador].token;
            //console.log(tokens);
         }
-        //console.log(tokens);
+        console.log(tokens);
     })
     console.log(tokens);
 }

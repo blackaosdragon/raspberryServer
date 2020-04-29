@@ -30,8 +30,9 @@ asignar_tokens = () => {
           //console.log(arreglo_de_tokens[contador].token);
            tokens[contador] = token[contador].token;
         }
+        console.log(tokens);
     })
-    console.log(tokens);
+   
 }
 //
 colocar_Tokens = () => {

@@ -61,10 +61,12 @@ const parser = port.pipe(new Readline({delimiter: '\r\n'}));
 let mensaje_push;
 
 if(alerta==1){
+    console.log("Se activara alerta");
     mensaje_push = setInterval(()=>{
-        console.log("Alerta")
+        console.log("Alerta");
     },60000)
 } else if (alerta == 0){
+    console.log("Se desactivara alerta");;
     clearInterval(mensaje_push);
 }
 

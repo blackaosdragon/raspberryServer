@@ -72,7 +72,7 @@ wss.on('connection', ws => {
                 
                 console.log("alerta");
                 integer_alertas = 0;
-                tokens = [];
+                //tokens = [];
                 asignar_tokens();
                 console.log(`Fuera de la funcion: ${tokens}`);    
             }

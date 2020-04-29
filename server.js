@@ -24,7 +24,6 @@ let tokens = [];
 asignar_tokens = () => {
     //let tokens = []
     tokens = base_de_datos.query("SELECT * FROM Tokens", (err, token, campos) => {
-
         if (err){
             console.log(err);
         }

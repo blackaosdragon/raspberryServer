@@ -16,7 +16,7 @@ let float_ofice_temperature = 0.0;
 let integer_alertas = 0;
 let alerta = 1;
 
-setTimeout(console.log("ejecuta solo una vez?"),1000);
+
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -36,10 +36,12 @@ activacion_de_alertas = (float_ofice_temperature,alerta,texto) => {
     console.log(`Dentro de la funcion: ${float_ofice_temperature}`);
     if (alerta == 1){
         console.log(`Se activara notificaciones de ${texto}`);
+        setTimeout(()=>console.log(`Set time out: ${float_ofice_temperature}`),1000);
         mensaje_push = setInterval(()=>{
             let envios = asignar_tokens();
             console.log(envios);
             console.log(` ${texto}! La temperatura tiene el valor de ${float_ofice_temperature}`);
+            
         },intervalo_entre_alertas) 
     }
 }

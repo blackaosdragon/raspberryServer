@@ -55,7 +55,7 @@ activacion_de_alertas = (float_ofice_temperature,alerta,texto,integer_alertas) =
             }
             const options = {
                 priority: 'high',
-                timeToLive: 60 * 1 * 1
+                timeToLive: 60 * 0 * 0
             }
             if (Object.entries(tokens).length === 0){
 

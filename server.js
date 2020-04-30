@@ -31,6 +31,11 @@ const base_de_datos = mySql.createConnection({
     database: 'tokens',
 })
 
+
+const alerta = {
+    data
+}
+
 let tokens = [];
 
 activacion_de_alertas = (float_ofice_temperature,alerta,texto,integer_alertas) => {
@@ -45,6 +50,23 @@ activacion_de_alertas = (float_ofice_temperature,alerta,texto,integer_alertas) =
             let envios = asignar_tokens();
             console.log(envios);
             console.log(` ${texto}! La temperatura tiene el valor de ${float_ofice_temperature}`);
+            const advertencia = {
+                data: {
+                    tipo: "Bienvenida",
+                    titulo: "¡Advertencia temperaruta inusual!",
+                    contenido: `La temperatura se encuentra a ${float_ofice_temperature}°C`
+                }
+            }
+            const options = {
+                priority: 'high',
+                timeToLive: 60 * 1 * 1
+            }
+            admin.messaging().sendToDevice(envios,advertencia,options)
+            .then( response => {
+                console.log('Correcta entrega: ', response);
+            }).catch( error => {
+                console.log('Error sending message: ',error);
+            })
         }
     }
 }

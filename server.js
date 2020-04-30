@@ -84,7 +84,8 @@ wss.on('connection', ws => {
         if (float_ofice_temperature > 24.9 && float_ofice_temperature <= 29.9){
             integer_alertas++;
             alerta++;
-                activacion_de_alertas(float_ofice_temperature,alerta,"advertencia");            
+            console.log(`Temperatura: ${float_ofice_temperature}`);
+            activacion_de_alertas(float_ofice_temperature,alerta,"advertencia");            
             if(integer_alertas%60==0){
                 integer_alertas = 0;
                 // let envios = asignar_tokens();
@@ -93,10 +94,13 @@ wss.on('connection', ws => {
         } else if (float_ofice_temperature<=24.9){
             integer_alertas = 0;
             alerta=0;
+            console.log(`Temperatura: ${float_ofice_temperature}`);
         } else if ( float_ofice_temperature > 29.9 ){
             integer_alertas++;
             alerta++;
+            console.log(`Temperatura: ${float_ofice_temperature}`);
             activacion_de_alertas(float_ofice_temperature,alerta,"alerta");
+
         }
         if (alerta == 0){
             console.log("Se desactivara alerta");;

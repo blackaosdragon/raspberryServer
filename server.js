@@ -36,7 +36,7 @@ activacion_de_alertas = (float_ofice_temperature,alerta,texto) => {
         mensaje_push = setInterval(()=>{
             let envios = asignar_tokens();
             console.log(envios);
-            console.log(`La temperatura tiene el valor de ${float_ofice_temperature}`);
+            console.log(` ${texto}! La temperatura tiene el valor de ${float_ofice_temperature}`);
         },intervalo_entre_alertas) 
     }
 }

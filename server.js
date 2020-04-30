@@ -32,10 +32,6 @@ const base_de_datos = mySql.createConnection({
 })
 
 
-const alerta = {
-    data
-}
-
 let tokens = [];
 
 activacion_de_alertas = (float_ofice_temperature,alerta,texto,integer_alertas) => {

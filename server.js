@@ -85,7 +85,8 @@ wss.on('connection', ws => {
             integer_alertas++;
             alerta++;
             console.log(`Temperatura: ${float_ofice_temperature}`);
-            activacion_de_alertas(float_ofice_temperature,alerta,"advertencia");            
+            activacion_de_alertas(float_ofice_temperature,alerta,"advertencia"); 
+            float_ofice_temperature = 0.0;           
             if(integer_alertas%60==0){
                 integer_alertas = 0;
                 // let envios = asignar_tokens();
@@ -100,7 +101,7 @@ wss.on('connection', ws => {
             alerta++;
             console.log(`Temperatura: ${float_ofice_temperature}`);
             activacion_de_alertas(float_ofice_temperature,alerta,"alerta");
-
+            float_ofice_temperature = 0.0;
         }
         if (alerta == 0){
             console.log("Se desactivara alerta");;

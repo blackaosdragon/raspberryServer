@@ -10,7 +10,7 @@ const pagePort = 5000;
 let string_ofice_temperature = "";
 let float_ofice_temperature = 0.0;
 let integer_alertas = 0;
-let alerta = 0;
+let alerta = 1;
 
 const base_de_datos = mySql.createConnection({
     host: 'localhost',
@@ -38,13 +38,6 @@ asignar_tokens = () => {
     //console.log(tokens)
     return tokens;
 }
-//
-colocar_Tokens = () => {
-    base_de_datos.query("SELECT * FROM Tokens",(error,datos,campos) => {
-
-    })
-}
-//
 const wss = new Ws.Server({port: wsPort});
 
 page.use('/',express.static(__dirname+'/home'))

@@ -34,9 +34,10 @@ const base_de_datos = mySql.createConnection({
 let tokens = [];
 
 activacion_de_alertas = (float_ofice_temperature,alerta,texto,integer_alertas) => {
-    integer_alertas++;
+    //integer_alertas++;
     console.log(`Dentro de la funcion: ${float_ofice_temperature}`);
     if (alerta == 1){
+        console.log(integer_alertas)
         console.log(`Se activara notificaciones de ${texto}`);
         if( integer_alertas % alertas_de_un_minuto == 0 ){
             integer_alertas=0;

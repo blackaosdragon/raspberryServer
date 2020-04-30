@@ -31,6 +31,7 @@ const base_de_datos = mySql.createConnection({
 let tokens = [];
 
 activacion_de_alertas = (float_ofice_temperature,alerta,texto) => {
+    console.log(`Dentro de la funcion: ${float_ofice_temperature}`);
     if (alerta == 1){
         console.log(`Se activara notificaciones de ${texto}`);
         mensaje_push = setInterval(()=>{
@@ -84,7 +85,7 @@ wss.on('connection', ws => {
         if (float_ofice_temperature > 24.9 && float_ofice_temperature <= 29.9){
             integer_alertas++;
             alerta++;
-            console.log(`Temperatura: ${float_ofice_temperature}`);
+            console.log(`Dentro de un if: ${float_ofice_temperature}`);
             activacion_de_alertas(float_ofice_temperature,alerta,"advertencia"); 
             float_ofice_temperature = 0.0;           
             if(integer_alertas%60==0){
@@ -95,11 +96,11 @@ wss.on('connection', ws => {
         } else if (float_ofice_temperature<=24.9){
             integer_alertas = 0;
             alerta=0;
-            console.log(`Temperatura: ${float_ofice_temperature}`);
+            console.log(`Dentro de un if: ${float_ofice_temperature}`);
         } else if ( float_ofice_temperature > 29.9 ){
             integer_alertas++;
             alerta++;
-            console.log(`Temperatura: ${float_ofice_temperature}`);
+            console.log(`Dentro del if: ${float_ofice_temperature}`);
             activacion_de_alertas(float_ofice_temperature,alerta,"alerta");
             float_ofice_temperature = 0.0;
         }

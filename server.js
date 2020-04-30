@@ -14,13 +14,23 @@ let alerta = 1;
 
 const base_de_datos = mySql.createConnection({
     host: 'localhost',
-    //port: '/var/run/mysqld/mysqld.sock',
     user: 'infoUpdater',
     password: '107005205',
     database: 'tokens',
 })
 
 let tokens = [];
+
+activacion_de_alertas = (float_ofice_temperature,alerta) => {
+    if (alerta == 1){
+        console.log("Se activara alerta de advertencia");
+        mensaje_push = setInterval(()=>{
+            let envios = asignar_tokens();
+            console.log(envios);
+            console.log(`La temperatura tiene el valor de ${float_ofice_temperature}`);
+        },60000)        
+    }
+}
 
 asignar_tokens = () => {
     //let tokens = []
@@ -62,12 +72,11 @@ wss.on('connection', ws => {
         ws.send(temp);
         console.log(`Alerta: ${alerta} `)
         float_ofice_temperature = parseFloat(string_ofice_temperature);
-        if (float_ofice_temperature>24.9){
+        if (float_ofice_temperature > 24.9 && float_ofice_temperature <= 29.9){
             integer_alertas++;
             alerta++;
-            
             if(alerta==1){
-                console.log("Se activara alerta");
+                console.log("Se activara alerta de advertencia");
                 mensaje_push = setInterval(()=>{
                     let envios = asignar_tokens();
                     console.log(envios);
@@ -82,6 +91,10 @@ wss.on('connection', ws => {
         } else if (float_ofice_temperature<=24.9){
             integer_alertas = 0;
             alerta=0;
+        } else if ( float_ofice_temperature > 29.9 ){
+            integer_alertas++;
+            alerta++;
+            activacion_de_alertas(float_ofice_temperature,alerta);
         }
         if (alerta == 0){
             console.log("Se desactivara alerta");;

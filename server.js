@@ -16,6 +16,8 @@ let float_ofice_temperature = 0.0;
 let integer_alertas = 0;
 let alerta = 1;
 
+setTimeout(console.log("ejecuta solo una vez?"),1000);
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: url_de_base_de_datos

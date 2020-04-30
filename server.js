@@ -92,8 +92,9 @@ wss.on('connection', ws => {
             console.log(`Dentro de un if: ${float_ofice_temperature}`);
             activacion_de_alertas(float_ofice_temperature,alerta,"advertencia"); 
             float_ofice_temperature = 0.0;           
-            if(integer_alertas%60==0){
+            if(integer_alertas%150==0){
                 integer_alertas = 0;
+                console.log("1 minuto")
                 // let envios = asignar_tokens();
                 
             }

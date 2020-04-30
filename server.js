@@ -57,12 +57,18 @@ activacion_de_alertas = (float_ofice_temperature,alerta,texto,integer_alertas) =
                 priority: 'high',
                 timeToLive: 60 * 1 * 1
             }
-            admin.messaging().sendToDevice(envios,advertencia,options)
-            .then( response => {
-                console.log('Correcta entrega: ', response);
-            }).catch( error => {
-                console.log('Error sending message: ',error);
-            })
+            if (Object.entries(tokens).length === 0){
+
+            } else {
+                
+                admin.messaging().sendToDevice(envios,advertencia,options)
+                .then( response => {
+                    console.log('Correcta entrega: ', response);
+                }).catch( error => {
+                    console.log('Error sending message: ',error);
+                })
+            }
+            
         }
     }
 }

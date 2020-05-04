@@ -112,6 +112,7 @@ wss.on('connection', ws => {
         }
         ws.send(temp);
         //console.log(`Alerta: ${alerta} `)
+        console.log(`Temperatura: ${float_ofice_temperature}`);
         float_ofice_temperature = parseFloat(string_ofice_temperature);
         if (float_ofice_temperature > 24.9 && float_ofice_temperature <= 29.9){
             integer_alertas++;
@@ -143,6 +144,7 @@ wss.on('connection', ws => {
     })
     console.log('Cliente conectado'); //metodo para subscribir a un usuario
     ws.on('close',(cliente)=>{
-        console.log("Cliente desconectado",cliente)
+        console.log("Cliente desconectado",cliente);
+        port.close();
     })
 })

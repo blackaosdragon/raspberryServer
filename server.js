@@ -6,6 +6,8 @@ const admin = require('firebase-admin');
 const serviceAccount = require("/home/ubuntu/home-8bea3-firebase-adminsdk-ilfkz-544a451f7b.json");
 const url_de_base_de_datos = 'https://home-8bea3.firebaseio.com/'
 
+let datos_temperatura = require('./asignacion.js');
+
 const page = express();
 
 const wsPort = 5001;
@@ -99,10 +101,18 @@ page.listen(pagePort, data => {
 });
 
 const Readline = SerialPort.parsers.Readline;
+const puertoSerial = new SerialPort('/dev/ttyUSB0');
 let port = new SerialPort('/dev/ttyUSB0');
+
+const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 let parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
 let mensaje_push;
+
+lector.on('data', temp => {
+    let temperatura = datos_temperatura(temp);
+    console.log(temperatura);
+})
 
 
 wss.on('connection', ws => {

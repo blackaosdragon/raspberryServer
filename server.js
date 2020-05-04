@@ -146,6 +146,11 @@ wss.on('connection', ws => {
     console.log('Cliente conectado'); //metodo para subscribir a un usuario
     ws.on('close',(cliente)=>{
         console.log("Cliente desconectado",cliente);
-        port.close();
+        //port.close();
+        parser.on('close',()=>console.log("Arduino  close"));
+        parser.on('end',()=>console.log("Arduino  end"));
+        parser.on('disconnect',()=>console.log("Arduino  disconnect"));
+        port.on('close',()=>console.log("Puerto cerrado"));
+        port.on('disconnect',()=>console.log("Puerto desconectado"));
     })
 })

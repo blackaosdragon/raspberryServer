@@ -112,7 +112,8 @@ wss.on('connection', ws => {
         }
         ws.send(temp);
         //console.log(`Alerta: ${alerta} `)
-        console.log(`Temperatura: ${float_ofice_temperature}`);
+        console.log(`Temperatura: ${float_ofice_temperature} Alerta a 150: ${integer_alertas}`);
+
         float_ofice_temperature = parseFloat(string_ofice_temperature);
         if (float_ofice_temperature > 24.9 && float_ofice_temperature <= 29.9){
             integer_alertas++;

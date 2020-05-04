@@ -148,6 +148,8 @@ wss.on('connection', ws => {
     ws.on('close',(cliente)=>{
         // console.log("Cliente desconectado",cliente);
         port.close();
+        port = new SerialPort('/dev/ttyUSB0');
+        parser = port.pipe(new Readline({delimiter: '\r\n'}));
         // parser.on('close',()=>console.log("Arduino  close"));
         // parser.on('end',()=>console.log("Arduino  end"));
         // parser.on('disconnect',()=>console.log("Arduino  disconnect"));

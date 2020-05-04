@@ -106,7 +106,7 @@ let mensaje_push;
 
 
 wss.on('connection', ws => {
-    
+    port.on('connect',()=>{console.log("cliente conectado")})    
     parser.on('data', temp => {
         for(let i = 15; i <= 18; i++){
             string_ofice_temperature = string_ofice_temperature+temp[i];

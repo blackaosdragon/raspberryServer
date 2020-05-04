@@ -142,4 +142,7 @@ wss.on('connection', ws => {
         string_ofice_temperature = "";
     })
     console.log('Cliente conectado'); //metodo para subscribir a un usuario
+    ws.on('close',(cliente)=>{
+        console.log("Cliente desconectado",cliente)
+    })
 })

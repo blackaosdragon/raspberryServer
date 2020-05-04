@@ -36,16 +36,16 @@ let tokens = [];
 
 activacion_de_alertas = (float_ofice_temperature,alerta,texto,integer_alertas) => {
     //integer_alertas++;
-    console.log(`Dentro de la funcion: ${float_ofice_temperature}`);
-    console.log(`Alerta en la funcion: ${alerta}`);
+    //console.log(`Dentro de la funcion: ${float_ofice_temperature}`);
+    //console.log(`Alerta en la funcion: ${alerta}`);
     if (alerta > 1){
-        console.log(integer_alertas)
-        console.log(`Se activara notificaciones de ${texto}`);
+        //console.log(integer_alertas)
+        //console.log(`Se activara notificaciones de ${texto}`);
         if( integer_alertas % alertas_de_un_minuto == 0 ){
             integer_alertas=0;
             let envios = asignar_tokens();
-            console.log(envios);
-            console.log(` ${texto}! La temperatura tiene el valor de ${float_ofice_temperature}`);
+            //console.log(envios);
+            //console.log(` ${texto}! La temperatura tiene el valor de ${float_ofice_temperature}`);
             const advertencia = {
                 data: {
                     tipo: "Bienvenida",
@@ -111,7 +111,7 @@ wss.on('connection', ws => {
             string_ofice_temperature = string_ofice_temperature+temp[i];
         }
         ws.send(temp);
-        console.log(`Alerta: ${alerta} `)
+        //console.log(`Alerta: ${alerta} `)
         float_ofice_temperature = parseFloat(string_ofice_temperature);
         if (float_ofice_temperature > 24.9 && float_ofice_temperature <= 29.9){
             integer_alertas++;
@@ -135,7 +135,7 @@ wss.on('connection', ws => {
             activacion_de_alertas(float_ofice_temperature,alerta,"alerta",integer_alertas);
         }
         if (alerta == 0){
-            console.log("Se desactivara alerta");;
+            //console.log("Se desactivara alerta");;
             clearInterval(mensaje_push);
         }
         //console.log(integer_alertas);

@@ -99,8 +99,8 @@ page.listen(pagePort, data => {
 });
 
 const Readline = SerialPort.parsers.Readline;
-const port = new SerialPort('/dev/ttyUSB0');
-const parser = port.pipe(new Readline({delimiter: '\r\n'}));
+let port = new SerialPort('/dev/ttyUSB0');
+let parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
 let mensaje_push;
 

@@ -115,74 +115,46 @@ lector.on('data', temp => {
 
 wss.on('connection', ws => {
     //
-    ///*
+    /*
 
     wss.clients.forEach(function each(client){
         if (client.readyState === Ws.OPEN){
             client.send("data");
         }
     })
-    //*/
-    //
-    console.log("Puerto: ")
-    console.log(port.pipe);
-    console.log("parser");
-    console.log(parser);
-    
-    
+    */
+    //    
     parser.on('data', temp => {
         for(let i = 15; i <= 18; i++){
             string_ofice_temperature = string_ofice_temperature+temp[i];
         }
-        //ws.send(temp);
-        //console.log(`Alerta: ${alerta} `)
+        ws.send(temp);
         console.log(`Temperatura: ${float_ofice_temperature} Alerta a 150: ${integer_alertas}`);
-
         float_ofice_temperature = parseFloat(string_ofice_temperature);
         if (float_ofice_temperature > 24.9 && float_ofice_temperature <= 29.9){
             integer_alertas++;
             alerta++;
-            //console.log(`Dentro de un if: ${float_ofice_temperature}`);
             activacion_de_alertas(float_ofice_temperature,alerta,"advertencia",integer_alertas); 
-            /*
-            if(integer_alertas%150==0){
-                integer_alertas = 0;
-                console.log("1 minuto");
-                // let envios = asignar_tokens();  
-            }*/
         } else if (float_ofice_temperature<=24.9){
             integer_alertas = 0;
             alerta=0;
-            //console.log(`Dentro de un if: ${float_ofice_temperature}`);
         } else if ( float_ofice_temperature > 29.9 ){
             integer_alertas++;
             alerta++;
-            //console.log(`Dentro del if: ${float_ofice_temperature}`);
             activacion_de_alertas(float_ofice_temperature,alerta,"alerta",integer_alertas);
         }
-        if (alerta == 0){
-            //console.log("Se desactivara alerta");;
-            clearInterval(mensaje_push);
-        }
-        //console.log(integer_alertas);
         string_ofice_temperature = "";
     })
-    parser.end(()=>{console.log("lector terminado")})
+    
     parser.on('close', ()=>{console.log('puerto cerrado')});
     parser.on('end',()=>{console.log('Puerto finalizado')});
     console.log('Cliente conectado'); //metodo para subscribir a un usuario
-/*
-    ws.on('close',(cliente)=>{
-        // console.log("Cliente desconectado",cliente);
-        port.close();
-        port = new SerialPort('/dev/ttyUSB0');
-        parser = port.pipe(new Readline({delimiter: '\r\n'}));
-        // parser.on('close',()=>console.log("Arduino  close"));
-        // parser.on('end',()=>console.log("Arduino  end"));
-        // parser.on('disconnect',()=>console.log("Arduino  disconnect"));
-        // port.on('close',()=>console.log("Puerto cerrado"));
-        // port.on('disconnect',()=>console.log("Puerto desconectado"));
-        
 
-    })*/
+
+    ws.on('close',(cliente)=>{
+        //port.close();
+        //port = new SerialPort('/dev/ttyUSB0');
+        //parser = port.pipe(new Readline({delimiter: '\r\n'}));
+        parser.end(()=>{console.log("lector terminado")})
+    })
 })

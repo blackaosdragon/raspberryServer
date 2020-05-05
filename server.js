@@ -129,6 +129,7 @@ wss.on('connection', ws => {
     console.log("parser");
     console.log(parser);
     
+    
     parser.on('data', temp => {
         for(let i = 15; i <= 18; i++){
             string_ofice_temperature = string_ofice_temperature+temp[i];
@@ -166,6 +167,7 @@ wss.on('connection', ws => {
         //console.log(integer_alertas);
         string_ofice_temperature = "";
     })
+    parser.end(()=>{console.log("lector terminado")})
     parser.on('close', ()=>{console.log('puerto cerrado')});
     parser.on('end',()=>{console.log('Puerto finalizado')});
     console.log('Cliente conectado'); //metodo para subscribir a un usuario

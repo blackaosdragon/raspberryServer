@@ -61,14 +61,13 @@ activacion_de_alertas = (float_ofice_temperature,alerta,texto,integer_alertas) =
             }
             if (Object.entries(tokens).length === 0){
 
-            } else {
-                
+            } else {/*
                 admin.messaging().sendToDevice(envios,advertencia,options)
                 .then( response => {
                     console.log('Correcta entrega: ', response);
                 }).catch( error => {
                     console.log('Error sending message: ',error);
-                })
+                })*/
             }
             
         }
@@ -111,6 +110,9 @@ let mensaje_push;
 lector.on('data', temp => {
     let temperatura = datos_temperatura(temp);
     console.log(temperatura);
+    if (temperatura>24.9){
+        
+    }
 })
 
 wss.on('connection', ws => {

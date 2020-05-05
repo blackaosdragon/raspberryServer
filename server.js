@@ -7,6 +7,7 @@ const serviceAccount = require("/home/ubuntu/home-8bea3-firebase-adminsdk-ilfkz-
 const url_de_base_de_datos = 'https://home-8bea3.firebaseio.com/'
 
 let datos_temperatura = require('./asignacion.js');
+let mensajes = require('./fcmessage.js');
 
 const page = express();
 
@@ -111,7 +112,9 @@ lector.on('data', temp => {
     let temperatura = datos_temperatura(temp);
     console.log(temperatura);
     if (temperatura>24.9){
-        
+        alerta++;
+        integer_alertas++;
+        mensajes.sendPushAlert(temperatura,alerta,integer_alertas);
     }
 })
 

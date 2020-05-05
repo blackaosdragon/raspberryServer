@@ -96,7 +96,7 @@ const wss = new Ws.Server({port: wsPort});
 page.use('/',express.static(__dirname+'/home'))
 
 page.listen(pagePort, data => {
-    console.log(data);
+    //console.log(data);
     console.log(`Servidor corriendo en el puerto ${pagePort}`);
 });
 

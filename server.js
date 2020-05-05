@@ -116,7 +116,7 @@ lector.on('data', temp => {
 wss.on('connection', ws => {
     //
     ///*
-    console.log(ws);
+
     wss.clients.forEach(function each(client){
         if (client.readyState === Ws.OPEN){
             client.send("data");
@@ -124,6 +124,8 @@ wss.on('connection', ws => {
     })
     //*/
     //
+    console.log(port);
+    console.log(parser);
     
     parser.on('data', temp => {
         for(let i = 15; i <= 18; i++){

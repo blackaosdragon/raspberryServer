@@ -116,6 +116,7 @@ lector.on('data', temp => {
 wss.on('connection', ws => {
     //
     ///*
+    console.log(ws);
     wss.clients.forEach(function each(client){
         if (client.readyState === Ws.OPEN){
             client.send("data");
@@ -174,6 +175,6 @@ wss.on('connection', ws => {
         // port.on('close',()=>console.log("Puerto cerrado"));
         // port.on('disconnect',()=>console.log("Puerto desconectado"));
         
-        
+
     })*/
 })

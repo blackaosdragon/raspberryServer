@@ -124,7 +124,9 @@ wss.on('connection', ws => {
     })
     //*/
     //
+    console.log("Puerto: ")
     console.log(port);
+    console.log("parser");
     console.log(parser);
     
     parser.on('data', temp => {

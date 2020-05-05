@@ -113,14 +113,22 @@ lector.on('data', temp => {
     console.log(temperatura);
 })
 
-
 wss.on('connection', ws => {
-    port.on('connect',()=>{console.log("cliente conectado")})    
+    //
+    ///*
+    wss.clients.forEach(function each(client){
+        if (client.readyState === Ws.OPEN){
+            client.send("data");
+        }
+    })
+    //*/
+    //
+    
     parser.on('data', temp => {
         for(let i = 15; i <= 18; i++){
             string_ofice_temperature = string_ofice_temperature+temp[i];
         }
-        ws.send(temp);
+        //ws.send(temp);
         //console.log(`Alerta: ${alerta} `)
         console.log(`Temperatura: ${float_ofice_temperature} Alerta a 150: ${integer_alertas}`);
 
@@ -154,6 +162,7 @@ wss.on('connection', ws => {
         string_ofice_temperature = "";
     })
     console.log('Cliente conectado'); //metodo para subscribir a un usuario
+/*
     ws.on('close',(cliente)=>{
         // console.log("Cliente desconectado",cliente);
         port.close();
@@ -164,5 +173,7 @@ wss.on('connection', ws => {
         // parser.on('disconnect',()=>console.log("Arduino  disconnect"));
         // port.on('close',()=>console.log("Puerto cerrado"));
         // port.on('disconnect',()=>console.log("Puerto desconectado"));
-    })
+        
+        
+    })*/
 })

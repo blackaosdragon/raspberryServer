@@ -104,7 +104,7 @@ const Readline = SerialPort.parsers.Readline;
 let port = new SerialPort('/dev/ttyUSB0');
 
 const lector = port.pipe(new Readline({delimiter: '\r\n'}));
-let parser = port.pipe(new Readline({delimiter: '\r\n'}));
+//let parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
 let mensaje_push;
 
@@ -123,8 +123,10 @@ wss.on('connection', ws => {
         }
     })
     */
-    //    
+    //   
+    let parser = port.pipe(new Readline({delimiter: '\r\n'}));
     parser.on('data', temp => {
+        
         for(let i = 15; i <= 18; i++){
             string_ofice_temperature = string_ofice_temperature+temp[i];
         }

@@ -6,7 +6,7 @@ const base_de_datos = mySql.createConnection({
     database: 'tokens'
 })
 module.exports = {
-    asignar_tokens = () => {
+    asignar_tokens: () => {
         let tokens = [];
         base_de_datos.query("SELECT * FROM Tokens", (err, token, campos)=>{
             if(err){

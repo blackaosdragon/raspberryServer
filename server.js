@@ -166,6 +166,8 @@ wss.on('connection', ws => {
         //console.log(integer_alertas);
         string_ofice_temperature = "";
     })
+    parser.on('close', ()=>{console.log('puerto cerrado')});
+    parser.on('end',()=>{console.log('Puerto finalizado')});
     console.log('Cliente conectado'); //metodo para subscribir a un usuario
 /*
     ws.on('close',(cliente)=>{

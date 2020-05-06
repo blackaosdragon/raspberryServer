@@ -10,8 +10,9 @@ body{
 .grid-container{
     display: grid;
     grid-template-areas: 
-    'header'
-    'body';
-    grid-gap: 50px;
+    'header header header'
+    'body body body'
+    'body body body';
+    grid-gap: 10px;
     padding: 10px;
 }

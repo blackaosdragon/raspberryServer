@@ -34,7 +34,6 @@ const base_de_datos = mySql.createConnection({
     database: 'tokens',
 })
 
-
 let tokens = [];
 
 activacion_de_alertas = (float_ofice_temperature,alerta,texto,integer_alertas) => {
@@ -114,11 +113,7 @@ lector.on('data', temp => {
     if (temperatura>24.9){
         alerta++;
         integer_alertas++;
-        mensajes.sendPushAlert(temperatura,alerta,integer_alertas).then(()=>{
-            return tokens;
-        }).then(()=>{
-            console.log(tokens);
-        }).catch((err)=>console.log(err))
+        mensajes.sendPushAlert(temperatura,alerta,integer_alertas);
     }
 })
 

@@ -1,0 +1,17 @@
+body{
+    background-color: #99ccff;
+}
+.title{
+    grid-area: header;
+}
+.main{
+    grid-area: main;
+}
+.grid-container{
+    display: grid;
+    grid-template-areas: 
+    'header'
+    'body';
+    grid-gap: 50px;
+    padding: 10px;
+}

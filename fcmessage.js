@@ -26,7 +26,7 @@ module.exports = {
                     }
                     const options = {
                         priority: 'high',
-                        timeToLive: 10 * 0 * 0
+                        timeToLive: 60 * 60 * 0
                     }
                     admin.messaging().sendToDevice(envios,advertencia,options)
                     .then( response => {

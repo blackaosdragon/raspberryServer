@@ -2,9 +2,9 @@ const Ws = require('ws');
 const express = require('express');
 const SerialPort = require('serialport');
 const mySql = require('mysql');
-const admin = require('firebase-admin');
-const serviceAccount = require("/home/ubuntu/home-8bea3-firebase-adminsdk-ilfkz-544a451f7b.json");
-const url_de_base_de_datos = 'https://home-8bea3.firebaseio.com/'
+//const admin = require('firebase-admin');
+//const serviceAccount = require("/home/ubuntu/home-8bea3-firebase-adminsdk-ilfkz-544a451f7b.json");
+//const url_de_base_de_datos = 'https://home-8bea3.firebaseio.com/'
 
 let datos_temperatura = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
@@ -21,11 +21,12 @@ let alerta = 1;
 let alertas_de_un_minuto = 150;
 
 
-
+/*
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: url_de_base_de_datos
 })
+*/
 
 const base_de_datos = mySql.createConnection({
     host: 'localhost',

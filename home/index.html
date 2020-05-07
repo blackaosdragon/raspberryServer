@@ -11,15 +11,23 @@
         <img src="Logo.jpg" alt="instrumentacion" class="logo"/>
         
         <div class="title">
-            <h1 >Home</h1>
+            <h1>Monitor de temperaturas</h1>
         </div>
     
-    <div class="main">
+    <div class="endpoint">
         <h2>Sensor: </h5>
+    </div>
+    <div class="subtitulo">
         <h3>Web Socket</h3>
+    </div>
+    <div class="temperatura">
         <h5 id="wsSensor"></h5>
+    </div>
+    <div class="tiempo">
         <h5 id="tiempo"></h5>
     </div>
+    <div class="footer"></div>
+
 </div>
     
     
@@ -41,7 +49,7 @@
                 temp = temp + mensaje.data[i];
             }
             wsSensor.innerHTML = `Temperatura: ${temp}°C `
-            tiempo_actual = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
+            tiempo_actual.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
             console.log('WebSocket: ', mensaje.data);
         }
     </script>

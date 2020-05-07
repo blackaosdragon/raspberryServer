@@ -4,16 +4,29 @@ body{
 .title{
     grid-area: header;
     align-content: center;
+    font-size: 300%;
 }
 .logo{
     grid-area: logo;
     align-self: stretch;
     width: 85%;
 }
-.main{
-    grid-area: body;
+.subtitulo{
+    grid-area: subtitulo;
     justify-content: center;
     place-self: center;
+}
+.endpoint{
+    grid-area: endpoint;
+}
+.temperatura{
+    grid-area: temperatura;
+}
+.tiempo{
+    grid-area: tiempo;
+}
+.footer{
+    grid-area: footer;
 }
 .grid-container{
     display: grid;
@@ -21,7 +34,7 @@ body{
     grid-template-rows: auto;
     grid-template-areas: 
     "logo header header"
-    "body body body"
-    "body body body"
-    "body body body";
+    "subtitulo . ."
+    "endpoint temperatura tiempo"
+    "footer footer footer";
 }

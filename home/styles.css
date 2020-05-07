@@ -14,5 +14,6 @@ body{
     grid-template-areas: 
     "header header header"
     "body body body"
+    "body body body"
     "body body body";
 }

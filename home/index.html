@@ -8,13 +8,17 @@
 </head>
 <body>
     <div class="grid-container">
+
         <div class="title">
+            <img src="/src/Logo.jpg" alt="instrumentacion" class="logo"/>
             <h1 >Home</h1>
         </div>
     
     <div class="main">
-        <h3>Sensor: </h5>
+        <h2>Sensor: </h5>
+        <h3>Web Socket</h3>
         <h5 id="wsSensor"></h5>
+        <h5 id="tiempo"></h5>
     </div>
 </div>
     
@@ -31,7 +35,13 @@
         webSocket.onmessage = function(mensaje){
             let hora = new Date()
             let wsSensor = document.getElementById('wsSensor');
-            wsSensor.innerHTML = `WS       --- Temperatura: ${mensaje.data}°C ${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
+            let tiempo_actual = document.getElementById('tiempo');
+            let temp = "";
+            for(let i = 15; i<=18; i++){
+                temp = temp + mensaje.data[i];
+            }
+            wsSensor.innerHTML = `Temperatura: ${temp}°C `
+            tiempo_actual = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
             console.log('WebSocket: ', mensaje.data);
         }
     </script>

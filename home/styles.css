@@ -31,6 +31,14 @@ body{
     grid-area: tiempo;
     font-size: 250%;
 }
+.time{
+    grid-area: tiempo;
+    font-size: 250%;
+}
+.sensor{
+    grid-area: tiempo;
+    font-size: 250%;    
+}
 .footer{
     grid-area: footer;
 }

@@ -4,26 +4,31 @@ body{
 .title{
     grid-area: header;
     align-content: center;
-    font-size: 300%;
+    font-size: 200%;
 }
 .logo{
     grid-area: logo;
     align-self: stretch;
     width: 85%;
+    box-shadow: 0 3px 15px #222;
 }
 .subtitulo{
+    font-size: 200%;
     grid-area: subtitulo;
     justify-content: center;
     place-self: center;
 }
 .endpoint{
     grid-area: endpoint;
+    font-size: 250%;
 }
 .temperatura{
     grid-area: temperatura;
+    font-size: 250%;
 }
 .tiempo{
     grid-area: tiempo;
+    font-size: 250%;
 }
 .footer{
     grid-area: footer;

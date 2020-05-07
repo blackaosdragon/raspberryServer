@@ -5,12 +5,12 @@ body{
     grid-area: header;
 }
 .main{
-    grid-area: main;
+    grid-area: body;
 }
 .grid-container{
     display: grid;
     grid-template-areas: 
-    'header header header'
-    'body body body'
-    'body body body';
+    "header header header"
+    "body body body"
+    "body body body";
 }

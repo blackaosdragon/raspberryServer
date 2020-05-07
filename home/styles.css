@@ -40,7 +40,7 @@ body{
     grid-template-rows: auto;
     grid-template-areas: 
     "logo header header"
-    "subtitulo . ."
+    "subtitulo sensor time"
     "endpoint temperatura tiempo"
     "footer footer footer";
 }

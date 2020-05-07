@@ -15,10 +15,10 @@
         </div>
     
     <div class="subtitulo">
-        <h2>Sensor de temperatura</h2>
+        <h2>Sensor </h2>
     </div>
     <div class="sensor">
-        <h2></h2>
+        <h2>Temperatura</h2>
     </div>
     <div class="time">
         <h2>Última actualización</h2>
@@ -54,7 +54,7 @@
             for(let i = 15; i<=18; i++){
                 temp = temp + mensaje.data[i];
             }
-            wsSensor.innerHTML = `Temperatura: ${temp}°C `
+            wsSensor.innerHTML = `${temp}°C `
             tiempo_actual.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
             console.log('WebSocket: ', mensaje.data);
         }

@@ -6,7 +6,7 @@ body{
 }
 .logo{
     grid-area: logo;
-    place-self: center;
+    align-self: stretch;
     width: 15%;
 }
 .main{

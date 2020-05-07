@@ -4,6 +4,10 @@ body{
 .title{
     grid-area: header;
 }
+.logo{
+    grid-area: logo;
+    place-self: center;
+}
 .main{
     grid-area: body;
     justify-content: center;
@@ -12,7 +16,7 @@ body{
 .grid-container{
     display: grid;
     grid-template-areas: 
-    "header header header"
+    "logo header header"
     "body body body"
     "body body body"
     "body body body";

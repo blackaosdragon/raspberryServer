@@ -7,6 +7,7 @@ body{
 .logo{
     grid-area: logo;
     place-self: center;
+    width: 30%;
 }
 .main{
     grid-area: body;

@@ -6,6 +6,8 @@ body{
 }
 .main{
     grid-area: body;
+    justify-content: center;
+    place-self: center;
 }
 .grid-container{
     display: grid;

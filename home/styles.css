@@ -3,11 +3,12 @@ body{
 }
 .title{
     grid-area: header;
+    align-content: center;
 }
 .logo{
     grid-area: logo;
     align-self: stretch;
-    width: 60%;
+    width: 85%;
 }
 .main{
     grid-area: body;

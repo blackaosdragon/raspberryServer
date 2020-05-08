@@ -24,7 +24,7 @@
         <h2>Última actualización</h2>
     </div>
     <div class="endpoint">
-        <h3>Web Socket</h3>
+        <h3>Manual</h3>
     </div>
     <div class="temperatura">
         <h5 id="wsSensor"></h5>
@@ -33,7 +33,7 @@
         <h5 id="tiempo"></h5>
     </div>
 
-    <div class="wireles"></div>
+    <div class="wireles">Inalambrico</div>
     <div class="ofice"></div>
     <div class="fecha"></div>
 
@@ -64,7 +64,7 @@
                 }
                 sensor_wireless.innerHTML = `${temp_wireless}°C`;
                 wireless_fecha.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
-                console.log('WebSocket: ', mensaje.data);
+                console.log('tempwilres: ', temp_wireless);
             } else if(mensaje.data[0] == '2'){
                 for(let i = 2; i<=5; i++){
                     temp = temp + mensaje.data[i];

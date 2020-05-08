@@ -78,7 +78,7 @@
                     temp_wireless = temp_wireless + mensaje.data[i];
                 }
                 if(parseFloat(temp_wireless)){
-                    let temperature = parseFloat(temp);
+                    let temperature = parseFloat(temp_wireless);
                     if (temperature>0.0 && temperature<19.9){
                         wirelesTitulo.style.background = '#003366'
                         wirelesTitulo.style.color='#ffffff'

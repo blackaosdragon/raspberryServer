@@ -8,8 +8,10 @@ body{
     word-wrap: break-word;
 }
 .logo{
+    border-radius: 5%;
     grid-area: logo;
     align-self: stretch;
+    align-content: center;
     width: 85%;
     box-shadow: 0 3px 15px #222;
 }
@@ -20,22 +22,30 @@ body{
     place-self: center;
 }
 .endpoint{
+    align-content: center;
     grid-area: endpoint;
     font-size: 250%;
+    border-style: solid hidden solid hidden;
 }
 .temperatura{
+    place-self: center;
     grid-area: temperatura;
     font-size: 250%;
+    border-style: solid hidden solid hidden;
 }
 .tiempo{
+    align-content: center;
     grid-area: tiempo;
     font-size: 250%;
+    border-style: solid hidden solid hidden;
 }
 .time{
+    justify-content: center;
     grid-area: time;
     font-size: 200%;
 }
 .sensor{
+    justify-content: center;
     grid-area: sensor;
     font-size: 200%;    
 }

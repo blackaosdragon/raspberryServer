@@ -63,7 +63,7 @@ wss.on('connection', ws => {
 
         } else {
             let wireless_temp = datos_temperatura(temp);
-            consolelog(wireless_temp);
+            console.log(wireless_temp);
             ws.send(wireless_temp);
         }
     })

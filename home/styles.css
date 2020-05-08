@@ -34,6 +34,7 @@ body{
     font-size: 250%;
     border-style: solid hidden solid hidden;
     font-family: 'Znric-Regular';
+    background-color: #0066cc;
 }
 .temperatura{
     align-content: center;
@@ -41,6 +42,7 @@ body{
     font-size: 250%;
     border-style: solid hidden solid hidden;
     font-family: 'Znric-Regular';
+    background-color: #0066cc;
 }
 .tiempo{
     align-content: center;
@@ -49,6 +51,7 @@ body{
     font-size: 250%;
     border-style: solid hidden solid hidden;
     font-family: 'Znric-Regular';
+    background-color: #0066cc;
 }
 .time{
     justify-content: center;

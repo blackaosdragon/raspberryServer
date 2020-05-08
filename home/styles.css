@@ -1,7 +1,7 @@
 body{
     background-color: #99ccff;
 }
-.title{
+.header{
     grid-area: header;
     align-content: center;
     font-size: 200%;
@@ -32,11 +32,11 @@ body{
     font-size: 250%;
 }
 .time{
-    grid-area: tiempo;
+    grid-area: time;
     font-size: 200%;
 }
 .sensor{
-    grid-area: tiempo;
+    grid-area: sensor;
     font-size: 200%;    
 }
 .footer{

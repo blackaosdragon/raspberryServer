@@ -79,6 +79,30 @@
                 }
                 if(parseFloat(temp)){
                     let temperature = parseFloat(temp);
+                    let temperature = parseFloat(temp);
+                    if (temperature>0.0 && temperature<19.9){
+                        wirelesTitulo.style.background = '#003366'
+                        wirelesTitulo.style.color='#ffffff'
+                        wirelesTemp.style.background = '#003366'
+                        wirelesTemp.style.color = '#ffffff'
+                        wirelesTime.style.background = '#003366'
+                        wirelesTime.style.color='#ffffff'
+                    } else if (temperature>19.9 && temperature<24.9){
+                        wirelesTitulo.style.background = '#ffcc00'
+                        wirelesTitulo.style.color='#000000'
+                        wirelesTemp.style.background = '#ffcc00'
+                        wirelesTemp.style.color = '#000000'
+                        wirelesTime.style.background = '#ffcc00'                        
+                        wirelesTime.style.color='#000000'
+                    } else if (temperature>25){
+                        wirelesTitulo.style.background = '#ff0000'
+                        wirelesTitulo.style.color='#000000'
+                        wirelesTemp.style.background = '#ff0000'
+                        wirelesTemp.style.color = '#000000'
+                        wirelesTime.style.background = '#ff0000'                        
+                        wirelesTime.style.color='#000000'
+
+                    }
 
                 }
                 sensor_wireless.innerHTML = `${temp_wireless}°C`;

@@ -47,7 +47,8 @@ lector.on('data', temp => {
 })
 lector_wireless.on('data', temp => {
     let temperatura = datos_temperatura(temp);
-    console.log(`Temperatura Oficina ${temperatura} `);
+    console.log(temp);
+    //console.log(`Temperatura Oficina ${temperatura} `);
 
 })
 
@@ -64,14 +65,14 @@ wss.on('connection', ws => {
         if (float_ofice_temperature > 24.9 && float_ofice_temperature <= 29.9){
             
             alerta++;
-            activacion_de_alertas(float_ofice_temperature,alerta,"advertencia",integer_alertas); 
+            //activacion_de_alertas(float_ofice_temperature,alerta,"advertencia",integer_alertas); 
         } else if (float_ofice_temperature<=24.9){
             integer_alertas = 0;
             alerta=0;
         } else if ( float_ofice_temperature > 29.9 ){
             
             alerta++;
-            activacion_de_alertas(float_ofice_temperature,alerta,"alerta",integer_alertas);
+            //activacion_de_alertas(float_ofice_temperature,alerta,"alerta",integer_alertas);
         }
         string_ofice_temperature = "";
     })

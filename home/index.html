@@ -74,7 +74,7 @@
             let temp_wireless = "";
 
             if (mensaje.data[0] == '1'){
-                for(let i = 2; i<=mensaje.data.length; i++){
+                for(let i = 2; i<=mensaje.data.length-1; i++){
                     temp_wireless = temp_wireless + mensaje.data[i];
                 }
                 if(parseFloat(temp)){
@@ -87,7 +87,7 @@
                 console.log('tempwilres: ', temp_wireless);
                 
             } else if(mensaje.data[0] == '2'){
-                for(let i = 2; i<=mensaje.data.length; i++){
+                for(let i = 2; i<=mensaje.data.length-1; i++){
                     temp = temp + mensaje.data[i];
                 }
                 if(parseFloat(temp)){

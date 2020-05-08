@@ -32,7 +32,10 @@
     <div class="tiempo">
         <h5 id="tiempo"></h5>
     </div>
-    <div class="footer"></div>
+
+    <div class="wireles"></div>
+    <div class="ofice"></div>
+    <div class="fecha"></div>
 
 </div>
     
@@ -55,7 +58,7 @@
                 temp = temp + mensaje.data[i];
             }
             wsSensor.innerHTML = `${temp}°C `
-            tiempo_actual.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
+            tiempo_actual.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}  ${hora.getDay()} / ${hora.getMonth()}`
             console.log('WebSocket: ', mensaje.data);
         }
     </script>

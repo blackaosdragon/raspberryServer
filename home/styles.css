@@ -69,20 +69,20 @@ body{
 .wireles{
     justify-content: center;
     grid-area: wireles;
-    font-size: 200%;    
+    font-size: 250%;    
     font-family: 'Znric-Regular';
 }
 .ofice{
     justify-content: center;
     grid-area: ofice;
-    font-size: 200%;    
+    font-size: 250%;    
     font-family: 'Znric-Regular';
 
 }
 .fecha{
     justify-content: center;
     grid-area: fecha;
-    font-size: 200%;    
+    font-size: 250%;    
     font-family: 'Znric-Regular';
 
 }

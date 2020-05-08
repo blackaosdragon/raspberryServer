@@ -1,14 +1,22 @@
+@font-face{
+    font-family: 'Znric-Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url(./zrnic.woff) format('woff');
+  }
 body{
     background-color: #99ccff;
 }
 .header{
     grid-area: header;
+    font-family: 'Znric-Regular';
     align-content: center;
     font-size: 200%;
     word-wrap: break-word;
 }
 .logo{
-    border-radius: 5%;
+    border-radius: 15px;
+    font-family: 'Znric-Regular';
     grid-area: logo;
     align-self: stretch;
     align-content: center;
@@ -17,21 +25,22 @@ body{
 }
 .subtitulo{
     font-size: 200%;
+    font-family: 'Znric-Regular';
     grid-area: subtitulo;
-    justify-content: center;
-    place-self: center;
 }
 .endpoint{
     align-content: center;
     grid-area: endpoint;
     font-size: 250%;
     border-style: solid hidden solid hidden;
+    font-family: 'Znric-Regular';
 }
 .temperatura{
-    place-self: center;
+    align-content: center;
     grid-area: temperatura;
     font-size: 250%;
     border-style: solid hidden solid hidden;
+    font-family: 'Znric-Regular';
 }
 .tiempo{
     align-content: center;
@@ -39,19 +48,23 @@ body{
     grid-area: tiempo;
     font-size: 250%;
     border-style: solid hidden solid hidden;
+    font-family: 'Znric-Regular';
 }
 .time{
     justify-content: center;
     grid-area: time;
     font-size: 200%;
+    font-family: 'Znric-Regular';
 }
 .sensor{
     justify-content: center;
     grid-area: sensor;
     font-size: 200%;    
+    font-family: 'Znric-Regular';
 }
 .footer{
     grid-area: footer;
+    font-family: 'Znric-Regular';
 }
 .grid-container{
     display: grid;

@@ -23,23 +23,23 @@
     <div class="time">
         <h2>Última actualización</h2>
     </div>
-    <div class="endpoint">
-        <h3>Manual</h3>
+    <div class="endpoint" id="tituloManual">
+        <h3 >Manual</h3>
     </div>
-    <div class="temperatura">
+    <div class="temperatura" id="temperaturaManual">
         <h5 id="wsSensor"></h5>
     </div>
-    <div class="tiempo">
+    <div class="tiempo" id="tiempoManual">
         <h5 id="tiempo"></h5>
     </div>
 
-    <div class="wireles">
+    <div class="wireles" id="titulowireles">
         <h5> Inalambrico</h5>
     </div>
-    <div class="ofice">
+    <div class="ofice" id="temperaturawireles">
         <h5 id="tempOfice"></h5>
     </div>
-    <div class="fecha">
+    <div class="fecha" id="estiloFecha">
         <h5 id="oficeFecha"></h5>
     </div>
 
@@ -61,23 +61,64 @@
             let tiempo_actual = document.getElementById('tiempo');
             let sensor_wireless = document.getElementById('tempOfice');
             let wireless_fecha = document.getElementById('oficeFecha');
+
+            let manualTitulo = document.getElementById('tituloManual');
+            let manualTemp = document.getElementById('temperaturaManual');
+            let manualTime = document.getElementById('tiempoManual');
+
+            let wirelesTitulo = document.getElementById('titulowireles');
+            let wirelesTemp = document.getElementById('temperaturawireles');
+            let wirelesTime = document.getElementById('estiloFecha');
+
             let temp = "";
             let temp_wireless = "";
 
             if (mensaje.data[0] == '1'){
-                for(let i = 2; i<=5; i++){
+                for(let i = 2; i<=mensaje.data.length; i++){
                     temp_wireless = temp_wireless + mensaje.data[i];
+                }
+                if(parseFloat(temp)){
+                    let temperature = parseFloat(temp);
+
                 }
                 sensor_wireless.innerHTML = `${temp_wireless}°C`;
                 wireless_fecha.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
+
                 console.log('tempwilres: ', temp_wireless);
-                console.log(mensaje.data.length);
+                
             } else if(mensaje.data[0] == '2'){
-                for(let i = 2; i<=5; i++){
+                for(let i = 2; i<=mensaje.data.length; i++){
                     temp = temp + mensaje.data[i];
-                } 
+                }
+                if(parseFloat(temp)){
+                    let temperature = parseFloat(temp);
+                    if (temperature>0.0 && temperature<19.9){
+                        manualTitulo.style.background = '#003366'
+                        manualTitulo.style.color='#ffffff'
+                        manualTemp.style.background = '#003366'
+                        manualTemp.style.color = '#ffffff'
+                        manualTime.style.background = '#003366'
+                        manualTime.style.background='#ffffff'
+                    } else if (temperature>19.9 && temperature<24.9){
+                        manualTitulo.style.background = '#ffcc00'
+                        manualTitulo.style.color='#000000'
+                        manualTemp.style.background = '#ffcc00'
+                        manualTemp.style.color = '#000000'
+                        manualTime.style.background = '#ffcc00'                        
+                        manualTime.style.color='#000000'
+                    } else if (temperature>25){
+                        manualTitulo.style.background = '##ff0000'
+                        manualTitulo.style.color='#f000000fffff'
+                        manualTemp.style.background = '##ff0000'
+                        manualTemp.style.color = '#000000'
+                        manualTime.style.background = '##ff0000'                        
+                        manualTime.style.color='#000000'
+
+                    }
+                }
                 wsSensor.innerHTML = `${temp}°C `
                 tiempo_actual.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
+                console.log(mensaje.data.length);
             }
            
             console.log('WebSocket: ', mensaje.data);

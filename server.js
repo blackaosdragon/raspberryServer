@@ -38,7 +38,7 @@ const lector_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}
 
 lector.on('data', temp => {
     let temperatura = datos_temperatura(temp);
-    console.log(`Temperatura Manual${temperatura}`);
+    //console.log(`Temperatura Manual: ${temperatura}`);
     if (temperatura>24.9){
         alerta++;
         integer_alertas++;
@@ -46,16 +46,29 @@ lector.on('data', temp => {
     }
 })
 lector_wireless.on('data', temp => {
-    let temperatura = datos_temperatura(temp);
-    console.log(temp);
-    //console.log(`Temperatura Oficina ${temperatura} `);
+    if (temp === "No se ha recibido datos"){
 
+    } else {
+        let temperatura = datos_temperatura(temp);
+        console.log(temperatura);
+    }
 })
 
 wss.on('connection', ws => { 
     let parser = port.pipe(new Readline({delimiter: '\r\n'}));
+    let parser_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}));
+
+    parser_wireless.on('data', temp => {
+        if (temp === "No se ha recibido datos"){
+
+        } else {
+            let wireless_temp = datos_temperatura(temp);
+            consolelog(wireless_temp);
+            ws.send(wireless_temp);
+        }
+    })
+
     parser.on('data', temp => {
-        
         for(let i = 15; i <= 18; i++){
             string_ofice_temperature = string_ofice_temperature+temp[i];
         }

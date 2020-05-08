@@ -64,6 +64,7 @@
                 }
                 sensor_wireless.innerHTML = `${temp_wireless}°C`;
                 wireless_fecha.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
+                console.log('WebSocket: ', mensaje.data);
             } else if(mensaje.data[0] == '2'){
                 for(let i = 2; i<=5; i++){
                     temp = temp + mensaje.data[i];

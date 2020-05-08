@@ -53,12 +53,25 @@
             let hora = new Date()
             let wsSensor = document.getElementById('wsSensor');
             let tiempo_actual = document.getElementById('tiempo');
+            let sensor_wireless = document.getElementById('ofice');
+            let wireless_fecha = document.getElementById('fecha');
             let temp = "";
-            for(let i = 15; i<=18; i++){
-                temp = temp + mensaje.data[i];
+            let temp_wireless = "";
+
+            if (mensaje.data[0] == '1'){
+                for(let i = 2; i<=5; i++){
+                    temp_wireless = temp_wireless + mensaje.data[i];
+                }
+                sensor_wireless.innerHTML = `${temp_wireless}°C`;
+                wireless_fecha.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
+            } else if(mensaje.data[0] == '2'){
+                for(let i = 2; i<=5; i++){
+                    temp = temp + mensaje.data[i];
+                } 
+                wsSensor.innerHTML = `${temp}°C `
+                tiempo_actual.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
             }
-            wsSensor.innerHTML = `${temp}°C `
-            tiempo_actual.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}  ${hora.getDay()} / ${hora.getMonth()}`
+           
             console.log('WebSocket: ', mensaje.data);
         }
     </script>

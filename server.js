@@ -64,7 +64,7 @@ wss.on('connection', ws => {
         } else {
             let wireless_temp = datos_temperatura(temp);
             console.log(wireless_temp);
-            ws.send(wireless_temp);
+            ws.send(`1 ${wireless_temp}`);
         }
     })
 
@@ -72,7 +72,8 @@ wss.on('connection', ws => {
         for(let i = 15; i <= 18; i++){
             string_ofice_temperature = string_ofice_temperature+temp[i];
         }
-        ws.send(temp);
+        let sensor_manual = datos_temperatura(temp)
+        ws.send(`2 ${sensor_manual}`);
         console.log(`Temperatura: ${float_ofice_temperature} Alerta a 150: ${integer_alertas}`);
         float_ofice_temperature = parseFloat(string_ofice_temperature);
         if (float_ofice_temperature > 24.9 && float_ofice_temperature <= 29.9){

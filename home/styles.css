@@ -35,6 +35,7 @@ body{
 }
 .tiempo{
     align-content: center;
+    justify-content: center;
     grid-area: tiempo;
     font-size: 250%;
     border-style: solid hidden solid hidden;

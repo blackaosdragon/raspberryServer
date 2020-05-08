@@ -66,6 +66,26 @@ body{
     grid-area: footer;
     font-family: 'Znric-Regular';
 }
+.wireles{
+    justify-content: center;
+    grid-area: sensor;
+    font-size: 200%;    
+    font-family: 'Znric-Regular';
+}
+.ofice{
+    justify-content: center;
+    grid-area: sensor;
+    font-size: 200%;    
+    font-family: 'Znric-Regular';
+
+}
+.fecha{
+    justify-content: center;
+    grid-area: sensor;
+    font-size: 200%;    
+    font-family: 'Znric-Regular';
+
+}
 .grid-container{
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;

@@ -85,6 +85,8 @@ wss.on('connection', ws => {
         let id_sensor = parseFloat(string_ofice_ID);
         ws.send(`${id_sensor} ${sensor_manual}`);
         //console.log(`Temperatura: ${float_ofice_temperature} Alerta a 150: ${integer_alertas}`);
+        /*
+
         float_ofice_temperature = parseFloat(string_ofice_temperature);
 
         if (float_ofice_temperature > 24.9 && float_ofice_temperature <= 29.9){
@@ -100,6 +102,7 @@ wss.on('connection', ws => {
             //activacion_de_alertas(float_ofice_temperature,alerta,"alerta",integer_alertas);
         }
         string_ofice_temperature = "";
+        */
     })
     
     parser.on('close', ()=>{console.log('puerto cerrado')});

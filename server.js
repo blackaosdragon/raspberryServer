@@ -37,7 +37,8 @@ const lector_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}
 
 
 lector.on('data', temp => {
-    let temperatura = datos_temperatura(temp);
+    let temperatura = 0//datos_temperatura(temp);
+    console.log(temp);
     //console.log(`Temperatura Manual: ${temperatura}`);
     if (temperatura>24.9){
         alerta++;

@@ -22,30 +22,29 @@ const wss = new Ws.Server({port: wsPort});
 page.use('/',express.static(__dirname+'/home'))
 
 page.listen(pagePort, data => {
-    //console.log(data);
+    console.log(data);
     console.log(`Servidor corriendo en el puerto ${pagePort}`);
 });
 
 const Readline = SerialPort.parsers.Readline;
 let port = new SerialPort('/dev/ttyUSB0');
-let puerto_inalambrico = new SerialPort('/dev/ttyUSB1');
+//let puerto_inalambrico = new SerialPort('/dev/ttyUSB1');
 
 const lector = port.pipe(new Readline({delimiter: '\r\n'}));
-const lector_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}));
+//const lector_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}));
 //let parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
 
 
 lector.on('data', temp => {
     let temperatura = datos_temperatura(temp);
-    //console.log(temp);
-    //console.log(`Temperatura Manual: ${temperatura}`);
     if (temperatura>24.9){
         alerta++;
         integer_alertas++;
         mensajes.sendPushAlert(temperatura,alerta,integer_alertas);
     }
 })
+/*
 lector_wireless.on('data', temp => {
     if (temp === "No se ha recibido datos"){
 
@@ -53,7 +52,7 @@ lector_wireless.on('data', temp => {
         let temperatura = datos_temperatura(temp);
         console.log(temperatura);
     }
-})
+})*/
 
 wss.on('connection', ws => { 
     let parser = port.pipe(new Readline({delimiter: '\r\n'}));
@@ -70,6 +69,8 @@ wss.on('connection', ws => {
     })
 
     parser.on('data', temp => {
+        //for(let i = 0; i<)
+
         for(let i = 15; i <= 18; i++){
             string_ofice_temperature = string_ofice_temperature+temp[i];
         }

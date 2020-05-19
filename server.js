@@ -77,9 +77,6 @@ wss.on('connection', ws => {
         for(let i = 4; i<=8;i++){
             string_ofice_ID = string_ofice_ID+temp[i];
         }
-        for(let i = 15; i <= 18; i++){
-            string_ofice_temperature = string_ofice_temperature+temp[i];
-        }
         let sensor_manual = datos_temperatura(temp);
         let id_sensor = parseFloat(string_ofice_ID);
         ws.send(`${id_sensor} ${sensor_manual}`);

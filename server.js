@@ -12,6 +12,7 @@ const wsPort = 5001;
 const pagePort = 5000;
 let string_ofice_temperature = "";
 let float_ofice_temperature = 0.0;
+let string_ofice_ID = "";
 let integer_alertas = 0;
 let alerta = 1;
 let alertas_de_un_minuto = 150;
@@ -37,12 +38,15 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 
 
 lector.on('data', temp => {
-    console.log(temp);
+    console.log(`Alertas: ${alerta}. Temp: ${temp}`);
     let temperatura = datos_temperatura(temp);
     if (temperatura>24.9){
         alerta++;
         integer_alertas++;
+
         mensajes.sendPushAlert(temperatura,alerta,integer_alertas);
+    } else if (temperatura<24.9){
+        alerta=0;
     }
 })
 /*
@@ -70,15 +74,19 @@ wss.on('connection', ws => {
     })*/
 
     parser.on('data', temp => {
-        //for(let i = 0; i<)
+        for(let i = 4; i<=8;i++){
+            string_ofice_ID = string_ofice_ID+temp[i];
+        }
 
         for(let i = 15; i <= 18; i++){
             string_ofice_temperature = string_ofice_temperature+temp[i];
         }
-        let sensor_manual = datos_temperatura(temp)
-        ws.send(`2 ${sensor_manual}`);
+        let sensor_manual = datos_temperatura(temp);
+        let id_sensor = parseFloat(string_ofice_ID);
+        ws.send(`${id_sensor} ${sensor_manual}`);
         //console.log(`Temperatura: ${float_ofice_temperature} Alerta a 150: ${integer_alertas}`);
         float_ofice_temperature = parseFloat(string_ofice_temperature);
+
         if (float_ofice_temperature > 24.9 && float_ofice_temperature <= 29.9){
             
             alerta++;

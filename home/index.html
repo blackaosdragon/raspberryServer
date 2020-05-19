@@ -53,7 +53,7 @@
         let webSocket = new WebSocket(`ws://${ip}:${puerto}`);
         //let webSocket = new WebSocket(`ws://localhost:${puerto}`);
         webSocket.onopen = () => {
-            console.log('COnexion');
+            console.log('Conexion');
         }
         webSocket.onmessage = function(mensaje){
             let hora = new Date()

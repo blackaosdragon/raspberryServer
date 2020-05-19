@@ -56,9 +56,9 @@ lector_wireless.on('data', temp => {
 
 wss.on('connection', ws => { 
     let parser = port.pipe(new Readline({delimiter: '\r\n'}));
-    let parser_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}));
+    //let parser_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}));
 
-    parser_wireless.on('data', temp => {
+    /*parser_wireless.on('data', temp => {
         if (temp === "No se ha recibido datos"){
 
         } else {
@@ -66,7 +66,7 @@ wss.on('connection', ws => {
             console.log(wireless_temp);
             ws.send(`1 ${wireless_temp}`);
         }
-    })
+    })*/
 
     parser.on('data', temp => {
         //for(let i = 0; i<)

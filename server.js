@@ -22,7 +22,7 @@ const wss = new Ws.Server({port: wsPort});
 page.use('/',express.static(__dirname+'/home'))
 
 page.listen(pagePort, data => {
-    console.log(data);
+    //console.log(data);
     console.log(`Servidor corriendo en el puerto ${pagePort}`);
 });
 
@@ -37,6 +37,7 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 
 
 lector.on('data', temp => {
+    console.log(temp);
     let temperatura = datos_temperatura(temp);
     if (temperatura>24.9){
         alerta++;

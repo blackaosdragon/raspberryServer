@@ -39,16 +39,17 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 
 lector.on('data', temp => {
     console.log(temp);
-    console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
+    //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     let temperatura = datos_temperatura(temp);
     if (temperatura>24.9){
         alerta++;
         integer_alertas++;
-
+        console.log(`${alerta} ${integer_alertas}  Temp: ${temp}°C`);
         mensajes.sendPushAlert(temperatura,alerta,integer_alertas);
     } else if (temperatura<24.9){
         alerta=0;
     }
+    
 })
 /*
 lector_wireless.on('data', temp => {

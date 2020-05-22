@@ -13,7 +13,7 @@ module.exports = function string_to_float(data_reciber){
         string_ofice_temperature = string_ofice_temperature+data_reciber[i];
     }
     //console.log(parseFloat(string_ofice_temperature))
-    if(string_ofice_temperature=="")
+    //if(string_ofice_temperature=="")
     if(parseFloat(string_ofice_temperature)){
         return float_ofice_temperature = parseFloat(string_ofice_temperature);
     } else {

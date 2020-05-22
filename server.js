@@ -38,9 +38,10 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 
 
 lector.on('data', temp => {
-    console.log(temp);
+    //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     let temperatura = datos_temperatura(temp);
+    console.log(`Alertas: ${integer_alertas} Temp: ${temperatura}°C`);
     if (temperatura>24.9){
         alerta++;
         integer_alertas++;

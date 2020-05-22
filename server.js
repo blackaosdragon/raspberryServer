@@ -38,8 +38,8 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 
 
 lector.on('data', temp => {
-    console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     console.log(temp);
+    console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     let temperatura = datos_temperatura(temp);
     if (temperatura>24.9){
         alerta++;
@@ -75,6 +75,7 @@ wss.on('connection', ws => {
     })*/
 
     parser.on('data', temp => {
+        console.log(temp);
         for(let i = 4; i<=8;i++){
             string_ofice_ID = string_ofice_ID+temp[i];
         }

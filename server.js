@@ -43,6 +43,7 @@ lector.on('data', temp => {
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     let temperatura = asignar.string_to_float(temp);
+    asignar.ubicar_dato(temp);
     
     //let lugar = asignar.
     //tokens.insertar_valores(temperatura,lugar);

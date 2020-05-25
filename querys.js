@@ -3,12 +3,12 @@ const base_de_datos = mySql.createConnection({
     host: 'localhost',
     user: 'infoUpdater',
     password: '107005205',
-    database: 'tokens'
+    
 })
 let tokens = [];
 module.exports = {
     asignar_tokens: () => {
-        base_de_datos.query("SELECT * FROM Tokens", (err, token, campos)=>{
+        base_de_datos.query("SELECT * FROM tokens.Tokens", (err, token, campos)=>{
             if(err){
                 consolelog("Base de datos error: ",err);
             }
@@ -18,5 +18,10 @@ module.exports = {
             return tokens;
         })
         return tokens;
+    },
+    insertar_valores: (temperatura, lugar) => {
+        base_de_datos.query(`INSERT INTO Valores (registro, lugar, valor, fecha) VALUES (NULL, ${lugar}, ${temperatura}, CURRENT_TIMESTAMP)`)
+
     }
+    
 }

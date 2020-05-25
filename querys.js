@@ -20,8 +20,7 @@ module.exports = {
         return tokens;
     },
     insertar_valores: (temperatura, lugar) => {
-        base_de_datos.query(`INSERT INTO monitoreo.Registro (registro, ubicacion, valor, fecha) VALUES (NULL, ${lugar}, ${temperatura}, CURRENT_TIMESTAMP)`)
-
+        base_de_datos.query(`INSERT INTO monitoreo.Registro (registro, ubicacion, valor, fecha) VALUES (NULL, '${lugar}', '${temperatura}', CURRENT_TIMESTAMP)`)
     }
     
 }

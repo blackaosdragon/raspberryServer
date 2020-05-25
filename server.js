@@ -2,8 +2,10 @@ const Ws = require('ws');
 const express = require('express');
 const SerialPort = require('serialport');
 const mySql = require('mysql');
+const tokens = require('./querys.js');
 
-let datos_temperatura = require('./asignacion.js');
+let asignar = require('./asignacion.js');
+//let datos_temperatura = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
 
 const page = express();
@@ -40,7 +42,11 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 lector.on('data', temp => {
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
-    let temperatura = datos_temperatura(temp);
+    let temperatura = asignar.string_to_float(temp);
+    
+    //let lugar = asignar.
+    //tokens.insertar_valores(temperatura,lugar);
+
     console.log(`Alertas: ${integer_alertas} Temp: ${temperatura}°C`);
     if (temperatura>24.9){
         alerta++;

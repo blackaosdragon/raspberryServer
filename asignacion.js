@@ -1,4 +1,5 @@
-module.exports = function string_to_float(data_reciber){
+module.exports = {
+    string_to_float: (data_reciber) => {
     if (data_reciber==="No se ha recibido datos"){
 
     }
@@ -22,4 +23,5 @@ module.exports = function string_to_float(data_reciber){
     //float_ofice_temperature = string_ofice_temperature
     //console.log(string_ofice_temperature)
     //return string_ofice_temperature;
+}
 }

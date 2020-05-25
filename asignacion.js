@@ -31,14 +31,20 @@ module.exports = {
       for (let i=0; i<8;i++){
           string_id = string_id + data_reciber[i];
       }
-      if(float_id==1.0){
-
-      } else if (float_id==2.0){
-
-      } else if (float_id == 3.0){
-
+      if(parseFloat(string_id)){
+          console.log("Se puede convertir a float")
+          float_id = parseFloat(string_id);
+      } else {
+          console.log("El dato no puede convertirse a float")
       }
-      console.log(`Tamaño del mensaje: ${length_mensaje} id: ${string_id}`);
+      if(float_id==1.0){
+          console.log(`id: ${float_id} corresponde a la oficina`);
+      } else if (float_id==2.0){
+          console.log(`id: ${float_id} corresponde al taller (temperatura estática) `);
+      } else if (float_id == 3.0){
+          console.log(`id: ${float_id} corresponde al taller(temperatura manual)`);
+      }
+      //console.log(`Tamaño del mensaje: ${length_mensaje} id: ${string_id}`);
   }
 
 }

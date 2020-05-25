@@ -25,8 +25,20 @@ module.exports = {
       //return string_ofice_temperature;
   },
   ubicar_dato: (data_reciber) => {
-      let length_mensaje = data_reciber.length
-      console.log(`Tamaño del mensaje: ${length_mensaje}`);
+      let length_mensaje = data_reciber.length;
+      let string_id = "";
+      let float_id = 0.0;
+      for (let i=0; i<8;i++){
+          string_id = string_id + data_reciber[i];
+      }
+      if(float_id==1.0){
+
+      } else if (float_id==2.0){
+
+      } else if (float_id == 3.0){
+
+      }
+      console.log(`Tamaño del mensaje: ${length_mensaje} id: ${string_id}`);
   }
 
 }

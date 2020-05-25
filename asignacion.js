@@ -28,7 +28,7 @@ module.exports = {
       let length_mensaje = data_reciber.length;
       let string_id = "";
       let float_id = 0.0;
-      for (let i=0; i<8;i++){
+      for (let i=4; i>4 && i<8;i++){
           string_id = string_id + data_reciber[i];
       }
       console.log(`id: ${string_id}`);

@@ -13,7 +13,6 @@ module.exports = {
       for(let i = 15; i <= 18; i++){
           string_ofice_temperature = string_ofice_temperature+data_reciber[i];
       }
-    //console.log(parseFloat(string_ofice_temperature))
     //if(string_ofice_temperature=="")
       if(parseFloat(string_ofice_temperature)){
           return float_ofice_temperature = parseFloat(string_ofice_temperature);
@@ -31,21 +30,17 @@ module.exports = {
       for (let i=4; i<8; i++){
           string_id = string_id + data_reciber[i];
       }
-      console.log(`id: ${string_id}`);
       if(parseFloat(string_id)){
-          console.log("Se puede convertir a float")
           float_id = parseFloat(string_id);
       } else {
           console.log("El dato no puede convertirse a float")
       }
       if(float_id==1.0){
-          console.log(`id: ${float_id} corresponde a la oficina`);
+          return "oficina";
       } else if (float_id==2.0){
-          console.log(`id: ${float_id} corresponde al taller (temperatura estática) `);
+          return "taller";
       } else if (float_id == 3.0){
-          console.log(`id: ${float_id} corresponde al taller(temperatura manual)`);
+          return "manual";
       }
-      //
   }
-
 }

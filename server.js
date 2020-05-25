@@ -43,12 +43,11 @@ lector.on('data', temp => {
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     let temperatura = asignar.string_to_float(temp);
-    asignar.ubicar_dato(temp);
-    
+    let ubicacion = asignar.ubicar_dato(temp);    
     //let lugar = asignar.
     //tokens.insertar_valores(temperatura,lugar);
 
-    console.log(`Alertas: ${integer_alertas} Temp: ${temperatura}°C`);
+    console.log(`Alertas: ${integer_alertas} ubicacion: ${ubicacion} Temp: ${temperatura}°C`);
     if (temperatura>24.9){
         alerta++;
         integer_alertas++;

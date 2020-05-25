@@ -31,6 +31,7 @@ module.exports = {
       for (let i=0; i<8;i++){
           string_id = string_id + data_reciber[i];
       }
+      console.log(`id: ${string_id}`);
       if(parseFloat(string_id)){
           console.log("Se puede convertir a float")
           float_id = parseFloat(string_id);
@@ -44,7 +45,7 @@ module.exports = {
       } else if (float_id == 3.0){
           console.log(`id: ${float_id} corresponde al taller(temperatura manual)`);
       }
-      //console.log(`Tamaño del mensaje: ${length_mensaje} id: ${string_id}`);
+      //
   }
 
 }

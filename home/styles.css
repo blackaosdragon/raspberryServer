@@ -89,6 +89,24 @@ body{
     font-family: 'Znric-Regular';
 
 }
+.variable{
+    justify-content: center;
+    grid-area: variable;
+    font-size: 250%;    
+    font-family: 'Znric-Regular';
+}
+.registro{
+    justify-content: center;
+    grid-area: registro;
+    font-size: 250%;    
+    font-family: 'Znric-Regular';
+}
+.datatime{
+    justify-content: center;
+    grid-area: datatime;
+    font-size: 250%;    
+    font-family: 'Znric-Regular';
+}
 .grid-container{
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
@@ -97,5 +115,7 @@ body{
     "logo header header"
     "subtitulo sensor time"
     "endpoint temperatura tiempo"
-    "wireles ofice fecha";
+    "wireles ofice fecha"
+    "variable registro datatime"
+    "historial vacio vacio";
 }

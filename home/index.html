@@ -24,7 +24,7 @@
         <h2>Última actualización</h2>
     </div>
     <div class="endpoint" id="tituloManual">
-        <h3 >Manual</h3>
+        <h3 >Taller(estatico)</h3>
     </div>
     <div class="temperatura" id="temperaturaManual">
         <h5 id="wsSensor"></h5>
@@ -42,6 +42,16 @@
     <div class="fecha" id="estiloFecha">
         <h5 id="oficeFecha"></h5>
     </div>
+    <div class="variable" id="manualEncabezado">
+        <h5> Manual </h5>
+    </div>
+    <div class="registro" id="manualRegistro">
+        <h5 id="tempManual"></h5> 
+    </div>
+    <div class="datatime" id="datatimeManual">
+        <h5 id="manualDataTime"></h5>
+    </div>
+
 
 </div>
     
@@ -61,6 +71,9 @@
             let tiempo_actual = document.getElementById('tiempo');
             let sensor_wireless = document.getElementById('tempOfice');
             let wireless_fecha = document.getElementById('oficeFecha');
+            let tempManual = document.getElementById('tempManual');
+            let manualDataTime = document.getElementById('manualDataTime');
+            
 
             let manualTitulo = document.getElementById('tituloManual');
             let manualTemp = document.getElementById('temperaturaManual');
@@ -69,6 +82,10 @@
             let wirelesTitulo = document.getElementById('titulowireles');
             let wirelesTemp = document.getElementById('temperaturawireles');
             let wirelesTime = document.getElementById('estiloFecha');
+
+            let manualEncabezado = document.getElementById('manualEncabezado');
+            let manualRegistro = document.getElementById('manualRegistro');
+            let datatimeManual = document.getElementById('datatimeManual');
 
             let temp = "";
             let temp_wireless = "";
@@ -142,6 +159,39 @@
                 wsSensor.innerHTML = `${temp}°C `
                 tiempo_actual.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
                 //console.log(mensaje.data.length);
+            }else if(mensaje.data[0] == '3'){
+                for(let i = 2; i<=mensaje.data.length-1; i++){
+                    temp = temp + mensaje.data[i];
+                }
+                if(parseFloat(temp)){
+                    let temperature = parseFloat(temp);
+                    if (temperature>0.0 && temperature<19.9){
+                        manualEncabezado.style.background = '#003366'
+                        manualEncabezado.style.color='#ffffff'
+                        manualRegistro.style.background = '#003366'
+                        manualRegistro.style.color = '#ffffff'
+                        datatimeManual.style.background = '#003366'
+                        datatimeManual.style.color='#ffffff'
+                    } else if (temperature>19.9 && temperature<24.9){
+                        manualEncabezado.style.background = '#ffcc00'
+                        manualEncabezado.style.color='#000000'
+                        manualRegistro.style.background = '#ffcc00'
+                        manualRegistro.style.color = '#000000'
+                        datatimeManual.style.background = '#ffcc00'                        
+                        datatimeManual.style.color='#000000'
+                    } else if (temperature>25){
+                        manualEncabezado.style.background = '#ff0000'
+                        manualEncabezado.style.color='#000000'
+                        manualRegistro.style.background = '#ff0000'
+                        manualRegistro.style.color = '#000000'
+                        datatimeManual.style.background = '#ff0000'                        
+                        datatimeManual.style.color='#000000'
+
+                    }
+                }
+                tempManual.innerHTML = `${temp}°C `
+                manualDataTime.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
+
             }
            
             console.log('WebSocket: ', mensaje.data);

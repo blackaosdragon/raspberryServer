@@ -108,7 +108,8 @@ wss.on('connection', ws => {
         parser.end(()=>{console.log("lector terminado")})
     })
 })
-
-page.get('/consulta',(res,req)=>{
-    tokens.consultar_base();
+//page.use('')
+page.get('/consulta',(req,res)=>{
+    let data = tokens.consultar_base();
+    res.send(data);
 })

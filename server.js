@@ -53,8 +53,6 @@ lector.on('data', temp => {
     } else {
         tokens.insertar_valores(temperatura,ubicacion);
     }
-    
-
     //console.log(`Alertas: ${integer_alertas} ubicacion: ${ubicacion} Temp: ${temperatura}°C`);
     if (temperatura>24.9){
         alerta++;
@@ -91,7 +89,6 @@ wss.on('connection', ws => {
     })*/
 
     parser.on('data', temp => {
-        console.log(temp);
         for(let i = 4; i<=8;i++){
             string_ofice_ID = string_ofice_ID+temp[i];
         }
@@ -110,4 +107,8 @@ wss.on('connection', ws => {
     ws.on('close',(cliente)=>{
         parser.end(()=>{console.log("lector terminado")})
     })
+})
+
+page.get('/consulta',(res,req)=>{
+    tokens.consultar_base();
 })

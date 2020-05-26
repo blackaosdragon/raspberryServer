@@ -10,7 +10,7 @@ module.exports = {
     asignar_tokens: () => {
         base_de_datos.query("SELECT * FROM tokens.Tokens", (err, token, campos)=>{
             if(err){
-                consolelog("Base de datos error: ",err);
+                console.log(err);
             }
             for (let contador = 0; contador<token.length; contador++){
                 tokens[contador] = token[contador].token;
@@ -20,7 +20,20 @@ module.exports = {
         return tokens;
     },
     insertar_valores: (temperatura, lugar) => {
-        base_de_datos.query(`INSERT INTO monitoreo.Registro (registro, ubicacion, valor, fecha) VALUES (NULL, '${lugar}', '${temperatura}', CURRENT_TIMESTAMP)`)
+        base_de_datos.query(`INSERT INTO monitoreo.Registro (registro, ubicacion, valor, fecha) VALUES (NULL, '${lugar}', '${temperatura}', CURRENT_TIMESTAMP)`,(err,values,data)=>{
+            if(err){
+                console.log(err);
+            }
+        })
+    },
+    consultar_base: () => {
+        base_de_datos.query(`SELECT * FROM  monitoreo.Registro`,(err,datos,campos)=>{
+            if(err){
+                console.log(err);
+            }
+            console.log(datos);
+            console.log(campos);
+        })
     }
     
 }

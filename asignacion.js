@@ -3,7 +3,6 @@ module.exports = {
       if (data_reciber==="No se ha recibido datos"){
 
       }
-    
       let string_ofice_temperature = "";
       let float_ofice_temperature = 0.0;
 
@@ -13,8 +12,9 @@ module.exports = {
       for(let i = 15; i <= 18; i++){
           string_ofice_temperature = string_ofice_temperature+data_reciber[i];
       }
-    //if(string_ofice_temperature=="")
+      
       if(parseFloat(string_ofice_temperature)){
+        console.log(`Antes de devolver: ${string_ofice_temperature}`);
           return float_ofice_temperature = parseFloat(string_ofice_temperature);
       } else {
         

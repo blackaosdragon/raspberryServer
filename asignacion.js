@@ -14,7 +14,7 @@ module.exports = {
       }
       
       if(parseFloat(string_ofice_temperature)){
-        console.log(`Antes de devolver: ${string_ofice_temperature}`);
+        //console.log(`Antes de devolver: ${string_ofice_temperature}`);
           return float_ofice_temperature = parseFloat(string_ofice_temperature);
       } else {
         

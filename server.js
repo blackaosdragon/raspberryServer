@@ -47,6 +47,8 @@ lector.on('data', temp => {
     console.log(`Temperatura en Float: ${temperatura}`);
     //let lugar = asignar.
     if(Number.isNaN(temperatura)){
+        console.log(`El numero que se quiere ingresar es ${temperatura}, es incompatible a la base de datos y no se agregara`);
+    } else if(temperatura==undefined){
         console.log(`El numero que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
     } else {
         tokens.insertar_valores(temperatura,ubicacion);

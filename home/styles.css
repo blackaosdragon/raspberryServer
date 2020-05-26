@@ -107,6 +107,15 @@ body{
     font-size: 250%;    
     font-family: 'Znric-Regular';
 }
+.historial{
+    grid-area: historial;
+    font-family: 'Znric-Regular';
+
+}
+.vacio{
+    grid-area: vacio;
+
+}
 .grid-container{
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;

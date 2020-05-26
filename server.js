@@ -44,6 +44,7 @@ lector.on('data', temp => {
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);    
+    console.log(`Temperatura en Float: ${temperatura}`);
     //let lugar = asignar.
     if(Number.isNaN(temperatura)){
         console.log(`El numero que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
@@ -52,7 +53,7 @@ lector.on('data', temp => {
     }
     
 
-    console.log(`Alertas: ${integer_alertas} ubicacion: ${ubicacion} Temp: ${temperatura}°C`);
+    //console.log(`Alertas: ${integer_alertas} ubicacion: ${ubicacion} Temp: ${temperatura}°C`);
     if (temperatura>24.9){
         alerta++;
         integer_alertas++;

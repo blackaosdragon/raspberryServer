@@ -7,7 +7,7 @@ module.exports = {
       let float_ofice_temperature = 0.0;
 
       let mensaje_tamanio = data_reciber.length
-      console.log(mensaje_tamanio);
+      //console.log(mensaje_tamanio);
 
       for(let i = 15; i <= 18; i++){
           string_ofice_temperature = string_ofice_temperature+data_reciber[i];

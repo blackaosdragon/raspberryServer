@@ -36,7 +36,7 @@ module.exports = {
         })
     },
     extraer_años: () => {
-        base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM Registro`,(err,datos,campos)=>{
+        base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM monitoreo.Registro`,(err,datos,campos)=>{
             if(err){
                 console.log(err)
             } 

@@ -110,6 +110,6 @@ wss.on('connection', ws => {
 })
 //page.use('')
 page.get('/consulta',(req,res)=>{
-    let data = tokens.consultar_base();
+    let data = tokens.extraer_años();
     res.send(data);
 })

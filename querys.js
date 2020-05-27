@@ -34,6 +34,15 @@ module.exports = {
             console.log(datos);
             console.log(campos);
         })
+    },
+    extraer_años: () => {
+        base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM Registro`,(err,datos,campos)=>{
+            if(err){
+                console.log(err)
+            } 
+            console.log(datos);
+            console.log(campos);
+        })
     }
     
 }

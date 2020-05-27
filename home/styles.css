@@ -110,6 +110,19 @@ body{
 .historial{
     grid-area: historial;
     font-family: 'Znric-Regular';
+    margin: 10% 0% 10% 10%;
+
+}
+.clickBoton{
+    font-size: 120%;
+    font-family: 'Znric-Regular';
+    padding: 5% 5% 5% 5%;
+    transition: box-shadow 0.8s;
+}
+.clickBoton:hover{
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    box-shadow: 0 3px 15px #222;
 
 }
 .vacio{

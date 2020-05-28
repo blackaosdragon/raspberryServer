@@ -6,7 +6,7 @@ const base_de_datos = mySql.createConnection({
     
 })
 let tokens = [];
-let elementos = [];
+
 module.exports = {
     asignar_tokens: () => {
         base_de_datos.query("SELECT * FROM tokens.Tokens", (err, token, campos)=>{
@@ -37,15 +37,15 @@ module.exports = {
         })
     },
     extraer_años: () => {
+        let elementos = [];
         base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM monitoreo.Registro`,(err,datos,campos)=>{
             if(err){
                 console.log(err)
             }
             console.log(datos);
             for (let i = 0; i<datos.length;i++){
-                elementos[i] = datos[i];
-                console.log(datos[i].año);
-
+                elementos[i] = datos[i].año;
+                //console.log(datos[i].año);
             }
             return[elementos];
             //console.log(campos);

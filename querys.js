@@ -78,7 +78,6 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             let elementos =[];
             base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM monitoreo.Registro`,(err,data,filas)=>{
-                console.log(filas);
                 if(err){
                     reject (new Error());
                 }
@@ -92,6 +91,24 @@ module.exports = {
                 }
             })
         })
+    },
+    extraer_mes: () => {
+        return new Promise((resolve,reject)=>{
+            let elementos =[];
+            base_de_datos.query(`SELECT DISTINCT (extract(month FROM fecha)) AS mes FROM monitoreo.Registro`,(err,data,filas)=>{
+                if(err){
+                    reject (new Error());
+                }
+                
+                else{
+                    for (let i = 0; i<data.length;i++){
+                        elementos[i] = data[i].año;
+                    }
+                    console.log(elementos);
+                    resolve(elementos);
+                }
+            })
+        })        
     }
     
 }

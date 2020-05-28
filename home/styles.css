@@ -141,3 +141,7 @@ body{
     "variable registro datatime"
     "historial vacio vacio";
 }
+.opciones{
+    visibility: hidden;
+    
+}

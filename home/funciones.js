@@ -1,5 +1,3 @@
-import { request } from "express";
-
 let years_in_data_base = document.createElement('option');
 let id;
 let ip = '192.168.0.101';

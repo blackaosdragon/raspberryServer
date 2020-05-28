@@ -48,7 +48,7 @@ module.exports = {
                     //console.log(datos[i].año);
                 }
   
-                console.log("Esto tarda en salir: "+elementos);
+                console.log("Antes de salir del query: "+elementos);
                 return[elementos];
 
             })

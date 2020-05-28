@@ -121,9 +121,9 @@ page.get('/consulta',(req,res)=>{
     tokens.extraer_años(0,nuevoValor=>{
         console.log(nuevoValor)
     });
-    console.log(data);
+    //console.log(data);
     let respuesta = {
-        años: data
+        años: 5
     }
     res.send(respuesta);
 })

@@ -7,7 +7,7 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
     //console.log(response);
     return response.json();
 }).then((data => {
-    console.log(data.años[0]);
+    console.log(data);
 }))
 years_in_data_base.setAttribute('id',`${id}`);
 //document.getElementById('year').appendChild(option);

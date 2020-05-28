@@ -36,9 +36,26 @@ module.exports = {
             console.log(campos);
         })
     },
-    extraer_años: () => {
+    extraer_años: (nada,callback) => {
         let elementos = [];
+        callback(
             base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM monitoreo.Registro`,(err,datos,campos)=>{
+                if(err){
+                    console.log(err);
+                }
+                for (let i = 0; i<datos.length;i++){
+                    elementos[i] = datos[i].año;
+                    //console.log(datos[i].año);
+                }
+  
+                console.log("Esto tarda en salir: "+elementos);
+                return[elementos];
+
+            })
+            
+        );
+        
+            /*base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM monitoreo.Registro`,(err,datos,campos)=>{
               if(err){
                   console.log(err)
               }
@@ -51,9 +68,9 @@ module.exports = {
               console.log("Esto tarda en salir: "+elementos);
               return[elementos];
               //console.log(campos);
-          })
+          })*/
           
-          return[elementos];
+          //return[elementos];
         
     }
     

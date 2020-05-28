@@ -117,15 +117,23 @@ wss.on('connection', ws => {
 })
 //page.use('')
 page.get('/consulta',(req,res)=>{
-    let data = tokens.extraer_años();
+    //let data = tokens.extraer_años();
+    tokens.extraer_años(0,()=>{
+        let respuesta = {
+            años: data
+        }
+        res.send(respuesta)
+    })
     
     
     //console.log(respuesta);
+    /*
     setTimeout(()=>{
         let respuesta = {
             años: data
         }
         res.send(respuesta)
     },5000)
+    */
     
 })

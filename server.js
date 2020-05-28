@@ -119,7 +119,8 @@ wss.on('connection', ws => {
 page.get('/consulta',(req,res)=>{
     //let data = tokens.extraer_años();
     tokens.extraer_años(0,(valor)=>{
-        console.log("Lo que devuelve la promera "+valor);
+        console.log("Lo que devuelve la promesa ");
+        console.log(valor);
         let respuesta = {
             años: valor
         }

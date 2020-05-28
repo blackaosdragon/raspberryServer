@@ -44,7 +44,7 @@ module.exports = {
             console.log(datos);
             for (let i = 0; i<datos.length;i++){
                 elementos[i] = datos[i];
-                console.log(datos[i]);
+                console.log(datos[i].año);
 
             }
             return[elementos];

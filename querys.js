@@ -36,21 +36,23 @@ module.exports = {
             console.log(campos);
         })
     },
-    extraer_años: () => {
+    extraer_años: (nada,callback) => {
         let elementos = [];
-        base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM monitoreo.Registro`,(err,datos,campos)=>{
-            if(err){
-                console.log(err)
-            }
-            console.log(datos);
-            for (let i = 0; i<datos.length;i++){
-                elementos[i] = datos[i].año;
-                //console.log(datos[i].año);
-            }
-            return[elementos];
-            //console.log(campos);
-        })
-        return[elementos];
+        callback(
+            base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM monitoreo.Registro`,(err,datos,campos)=>{
+              if(err){
+                  console.log(err)
+              }
+              console.log(datos);
+              for (let i = 0; i<datos.length;i++){
+                  elementos[i] = datos[i].año;
+                  //console.log(datos[i].año);
+              }
+              return[elementos];
+              //console.log(campos);
+          })
+          //return[elementos];
+        )
     }
     
 }

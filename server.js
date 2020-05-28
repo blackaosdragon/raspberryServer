@@ -117,13 +117,11 @@ wss.on('connection', ws => {
 })
 //page.use('')
 page.get('/consulta',(req,res)=>{
-    //let data = tokens.extraer_años();
-    tokens.extraer_años(0,nuevoValor=>{
-        console.log(nuevoValor)
-    });
+    let data = tokens.extraer_años();
+    
     //console.log(data);
     let respuesta = {
-        años: 5
+        años: data
     }
     res.send(respuesta);
 })

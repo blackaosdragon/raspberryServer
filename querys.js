@@ -47,11 +47,11 @@ module.exports = {
                   elementos[i] = datos[i].año;
                   //console.log(datos[i].año);
               }
-              
+              console.log(elementos);
               return[elementos];
               //console.log(campos);
           })
-          console.log(elementos);
+          
           return[elementos];
         
     }

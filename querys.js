@@ -87,6 +87,7 @@ module.exports = {
                     for (let i = 0; i<data.length;i++){
                         elementos[i] = data[i].año;
                     }
+                    console.log(elementos);
                     resolve(elementos);
                 }
             })

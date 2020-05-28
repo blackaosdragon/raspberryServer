@@ -118,7 +118,9 @@ wss.on('connection', ws => {
 //page.use('')
 page.get('/consulta',(req,res)=>{
     //let data = tokens.extraer_años();
-    let data = tokens.extraer_datos();
+    tokens.extraer_datos().then((data=>{
+        console.log(data);
+    }))
     console.log(data);
     res.send(data);
     

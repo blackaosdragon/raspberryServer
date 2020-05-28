@@ -122,6 +122,6 @@ page.get('/consulta',(req,res)=>{
     let respuesta = {
         años: data
     }
-    console.log(respuesta);
+    //console.log(respuesta);
     res.send(respuesta);
 })

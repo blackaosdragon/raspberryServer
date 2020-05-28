@@ -47,7 +47,8 @@ module.exports = {
                   elementos[i] = datos[i].año;
                   //console.log(datos[i].año);
               }
-              console.log(elementos);
+
+              console.log("Esto tarda en salir: "+elementos);
               return[elementos];
               //console.log(campos);
           })

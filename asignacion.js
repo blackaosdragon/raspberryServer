@@ -33,7 +33,7 @@ module.exports = {
       if(parseFloat(string_id)){
           float_id = parseFloat(string_id);
       } else {
-          console.log("El dato no puede convertirse a float")
+          //console.log("El dato no puede convertirse a float")
       }
       if(float_id==1.0){
           return "oficina";

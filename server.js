@@ -22,6 +22,11 @@ let alertas_de_un_minuto = 150;
 
 const wss = new Ws.Server({port: wsPort});
 
+page.use((req,res,next)=>{
+    res.setHeader('Access-Control-Allow-Origin','*');
+    
+    next();
+})
 page.use('/',express.static(__dirname+'/home'))
 
 page.listen(pagePort, data => {
@@ -44,7 +49,7 @@ lector.on('data', temp => {
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);    
-    console.log(`Temperatura en Float: ${temperatura}`);
+    //console.log(`Temperatura en Float: ${temperatura}`);
     //let lugar = asignar.
     if(Number.isNaN(temperatura)){
         console.log(`El numero que se quiere ingresar es ${temperatura}, es incompatible a la base de datos y no se agregara`);

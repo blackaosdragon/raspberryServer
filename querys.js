@@ -44,8 +44,7 @@ module.exports = {
             for (let i = 0; i<datos.length;i++){
                 elementos[i] = datos[i];
             }
-            return[elementos];
-            
+            //return[elementos];
             //console.log(campos);
         })
         return[elementos];

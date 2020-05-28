@@ -310,7 +310,6 @@ app.post('/token',function(req,res){
 }); //fin del post
 
 app.get('/sensor',function (req,res){
- //res.send(dataGlobal[4])
  if(dataGlobal[4]==='1'){
   let sValor = "";
   let fValor = 0;

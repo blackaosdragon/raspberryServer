@@ -119,10 +119,13 @@ wss.on('connection', ws => {
 page.get('/consulta',(req,res)=>{
     let data = tokens.extraer_años();
     
-    let respuesta = {
-        años: data
-    }
+    
     //console.log(respuesta);
-    setTimeout(()=>res.send(respuesta),3000)
+    setTimeout(()=>{
+        let respuesta = {
+            años: data
+        }
+        res.send(respuesta)
+    },5000)
     
 })

@@ -3,11 +3,8 @@ let id;
 let ip = '192.168.0.101';
 let puerto = 5000;
 let endpoint = '/consulta'
-fetch(`http://${ip}:${puerto}${endpoint}`).then(response,request,otro,otromas => {
+fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
     console.log(response);
-    console.log(request);
-    console.log(otro);
-    console.log(otromas);
     return response.json();
 }).then((data => {
     console.log(data);

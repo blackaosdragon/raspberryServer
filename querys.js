@@ -42,7 +42,7 @@ module.exports = {
               if(err){
                   console.log(err)
               }
-              console.log(datos);
+              //console.log(datos);
               for (let i = 0; i<datos.length;i++){
                   elementos[i] = datos[i].año;
                   //console.log(datos[i].año);

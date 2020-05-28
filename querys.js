@@ -47,7 +47,7 @@ module.exports = {
                 elementos[i] = datos[i].año;
                 //console.log(datos[i].año);
             }
-            //return[elementos];
+            return[elementos];
             //console.log(campos);
         })
         return[elementos];

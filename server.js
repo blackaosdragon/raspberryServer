@@ -123,5 +123,6 @@ page.get('/consulta',(req,res)=>{
         años: data
     }
     //console.log(respuesta);
-    res.send(respuesta);
+    setTimeout(res.send(respuesta),3000)
+    
 })

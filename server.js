@@ -25,6 +25,7 @@ const wss = new Ws.Server({port: wsPort});
 page.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-COntrol-Allow-Request-Method');
     next();
 })
 page.use('/',express.static(__dirname+'/home'))

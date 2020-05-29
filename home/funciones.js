@@ -1,3 +1,5 @@
+import { response } from "express";
+
 //let years_in_data_base = document.createElement('option');
 let year_options = document.getElementById('year');
 let month_options; 
@@ -6,7 +8,9 @@ let sensor_options;
 let ids = ['year','month','day','sensor'];
 let ip = '192.168.0.101';
 let puerto = 5000;
-let endpoint = '/consulta'
+let endpoint = '/consulta';
+let endPoint_mes = '/mes';
+
 fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
     console.log(response);
     return response.json();
@@ -22,7 +26,12 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
         year_in_data_base.innerHTML = year_in_data_base.innerHTML+element;
     })
 
-}))
+})).then(
+    fetch(`http://${ip}:${puerto}${endPoint_mes}`).then(response=>{
+        console.log(response);
+    })
+
+)
 asignacion_de_opciones = (elemento,indice,arr) => {
     let opcion_a_elegir = document.createElement('option');
     opcion_a_elegir.setAttribute('id','item');

@@ -122,18 +122,10 @@ page.get('/consulta',(req,res)=>{
     tokens.extraer_datos().then((data=>{
         console.log(data);
         res.send(data);
-    }))
-    
-    
-    
-    //console.log(respuesta);
-    /*
-    setTimeout(()=>{
-        let respuesta = {
-            años: data
-        }
-        res.send(respuesta)
-    },5000)
-    */
-    
+    }))    
+})
+page.get('/mes',(req,res)=>{
+    tokens.extraer_mes().then(data => {
+        res.send(data);
+    })
 })

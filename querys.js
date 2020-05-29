@@ -102,7 +102,7 @@ module.exports = {
                 
                 else{
                     for (let i = 0; i<data.length;i++){
-                        elementos[i] = data[i].año;
+                        elementos[i] = data[i].mes;
                     }
                     console.log(elementos);
                     resolve(elementos);

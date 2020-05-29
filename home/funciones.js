@@ -1,5 +1,3 @@
-import { response } from "express";
-
 //let years_in_data_base = document.createElement('option');
 let year_options = document.getElementById('year');
 let month_options; 

@@ -125,7 +125,7 @@
 
                 }
                 sensor_wireless.innerHTML = `${temp_wireless}°C`;
-                wireless_fecha.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
+                wireless_fecha.innerHTML = `${hora.getHours()}:${hora.getMinutes()}`
 
                 //console.log('tempwilres: ', temp_wireless);
                 
@@ -160,7 +160,7 @@
                     }
                 }
                 wsSensor.innerHTML = `${temp}°C `
-                tiempo_actual.innerHTML = `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`
+                tiempo_actual.innerHTML = `${hora.getHours()}:${hora.getMinutes()}`
                 //console.log(mensaje.data.length);
             }else if(mensaje.data[0] == '3'){
                 for(let i = 2; i<=mensaje.data.length-1; i++){

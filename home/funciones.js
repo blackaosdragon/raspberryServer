@@ -42,11 +42,11 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
             month_in_data_base.innerHTML = element;
         })
         console.log(`Values: Year: ${year_options.value} Month: ${month_options.value}`)
-        let data = {year: `${year_options.value}`,mes: `${month_options.value}`}
+        let info = {year: `${year_options.value}`,mes: `${month_options.value}`}
         console.log("Enviando data: ",info);
         fetch('http://192.168.0.101:5000/dia',{
             method: 'POST',
-            body: JSON.stringify(data),
+            body: JSON.stringify(info),
             headers:{
                 'Content-Type': 'application/json' 
               },

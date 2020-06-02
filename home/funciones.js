@@ -1,5 +1,6 @@
 //let years_in_data_base = document.createElement('option');
 let year_options = document.getElementById('year');
+let month_options = document.getElementById('month');
 let month_options; 
 let day_options; 
 let sensor_options;
@@ -30,6 +31,15 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
         return response.json();
     }).then(data=>{
         console.log(data);
+        month_options.style.visibility = 'visible';
+        data.forEach((element,id)=>{
+            console.log(element);
+            console.log(id);
+            let month_in_data_base = document.createElement('option');
+            month_in_data_base.setAttribute('id',id);
+            month_options.appendChild(month_in_data_base);
+            month_in_data_base.innerHTML = month_in_data_base + element;
+        })
     })
 
 )

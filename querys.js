@@ -107,8 +107,9 @@ module.exports = {
                     
                     resolve(elementos);
                 }
+                console.log(elementos);
             })
-            console.log(elementos);
+            
         })        
     },
     extraer_dia: (year,mes) => {

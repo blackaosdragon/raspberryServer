@@ -65,7 +65,7 @@ lector.on('data', temp => {
         tokens.insertar_valores(temperatura,ubicacion);
     }
     //console.log(`Alertas: ${integer_alertas} ubicacion: ${ubicacion} Temp: ${temperatura}°C`);
-    if (temperatura>24.9){
+    if (temperatura>28.9){
         alerta++;
         integer_alertas++;
         console.log(`${alerta} ${integer_alertas}  Temp: ${temp}°C`);
@@ -134,7 +134,8 @@ page.get('/mes',(req,res)=>{
     })
 })
 page.post('/dia',(req,res)=>{
-    let data = req.body
-    console.log(data);
+    let data = req
+    console.log("req: "+data);
+    console.log("res: "+res);
     res.end("Yes");
 })

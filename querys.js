@@ -86,9 +86,10 @@ module.exports = {
                     for (let i = 0; i<data.length;i++){
                         elementos[i] = data[i].año;
                     }
-                    console.log(elementos);
+                    
                     resolve(elementos);
                 }
+                console.log(elementos);
             })
         })
     },
@@ -103,10 +104,11 @@ module.exports = {
                     for (let i = 0; i<data.length;i++){
                         elementos[i] = data[i].mes;
                     }
-                    console.log(elementos);
+                    
                     resolve(elementos);
                 }
             })
+            console.log(elementos);
         })        
     },
     extraer_dia: (year,mes) => {

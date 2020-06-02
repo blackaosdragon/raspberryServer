@@ -1,3 +1,5 @@
+import { response } from "express";
+
 //let years_in_data_base = document.createElement('option');
 let year_options = document.getElementById('year');
 let month_options = document.getElementById('month');
@@ -47,7 +49,7 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
             mes: `${month_options.value}`
         }
         console.log("Enviando data: ",info);
-        fetch('http://192.168.1.101/dia',{
+        fetch('http://192.168.0.101:5000/dia',{
             method: 'POST',
             body: JSON.stringify(info),
             headers:{
@@ -59,7 +61,7 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
         }).catch( err => {
             console.log("Error: ",err);
         }).then(respuesta=>{
-            console.log()
+            console.log("Termindao: ",respuesta);
         })
         
     })

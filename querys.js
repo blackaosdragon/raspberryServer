@@ -99,7 +99,6 @@ module.exports = {
                 if(err){
                     reject (new Error());
                 }
-                
                 else{
                     for (let i = 0; i<data.length;i++){
                         elementos[i] = data[i].mes;

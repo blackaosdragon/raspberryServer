@@ -27,6 +27,9 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
 })).then(
     fetch(`http://${ip}:${puerto}${endPoint_mes}`).then(response=>{
         console.log(response);
+        return response.json();
+    }).then(data=>{
+        console.log(data);
     })
 
 )

@@ -130,5 +130,5 @@ page.get('/mes',(req,res)=>{
     })
 })
 page.post('/dia',(req,res)=>{
-    console.log(req.body);
+    console.log(req);
 })

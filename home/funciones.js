@@ -46,16 +46,20 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
             year: `${year_options.value}`,
             mes: `${month_options.value}`
         }
-        console.log(info);
-        
-        fetch(`http://192.168.1.101/dia`,{
+        console.log("Enviando data: ",info);
+        fetch('http://192.168.1.101/dia',{
             method: 'POST',
             body: JSON.stringify(info),
             headers:{
                 'Content-Type': 'application/json' 
-              }
-        }).then(res=>res.json()).catch( err => {
+              },
+        }).then(res=>{
+            console.log("Se envio la data");
+            res.json()
+        }).catch( err => {
             console.log("Error: ",err);
+        }).then(respuesta=>{
+            console.log()
         })
         
     })

@@ -4,6 +4,8 @@ const SerialPort = require('serialport');
 const mySql = require('mysql');
 const tokens = require('./querys.js');
 
+const bodyParser = require('body-parser');
+
 let asignar = require('./asignacion.js');
 //let datos_temperatura = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
@@ -21,6 +23,8 @@ let alertas_de_un_minuto = 150;
 
 
 const wss = new Ws.Server({port: wsPort});
+page.use(bodyParser.urlencoded({extended: false}));
+page.use(bodyParser.json());
 
 page.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','*');

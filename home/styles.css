@@ -141,7 +141,32 @@ body{
     "variable registro datatime"
     "historial vacio vacio";
 }
+.grid-container-consulta{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "titleYear titleMonth titleDay titleUbicacion"
+     "year month day ubicacion"
+}
+.titleYear{
+    grid-area: titleYear;
+    font-family: 'Znric-Regular';
+    margin: 0% 10% 0% 10;
+}
+.titleMonth{
+    grid-area: titleMonth;
+    font-family: 'Znric-Regular';
+}
+.titleDay{
+    grid-area: titleDay;
+    font-family: 'Znric-Regular';
+}
+.titleUbicacion{
+    grid-area: titleUbicacion;
+    font-family: 'Znric-Regular';
+}
 .opciones{
     visibility: hidden;
-    
+    /*font-family: 'Znric-Regular';*/
+    margin: 0% 20% 0% 0%;
 }

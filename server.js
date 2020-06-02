@@ -129,3 +129,6 @@ page.get('/mes',(req,res)=>{
         res.send(data);
     })
 })
+page.post('/dia',(req,res)=>{
+    console.log(req.body);
+})

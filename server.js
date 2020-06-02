@@ -138,7 +138,7 @@ page.post('/dia',(req,res)=>{
     let data = req.body
     console.log(data.year);
     console.log(data.mes);
-    //console.log("res: ");
-    //console.log(res);
-    res.end("Yes");
+    tokens.extraer_dia(data.year,data.mes).then(data=>{
+        res.send(data);
+    })
 })

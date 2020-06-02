@@ -23,8 +23,8 @@ let alertas_de_un_minuto = 150;
 
 
 const wss = new Ws.Server({port: wsPort});
-page.use(bodyParser.urlencoded({extended: false}));
-page.use(bodyParser.json());
+//page.use(bodyParser.urlencoded({extended: false}));
+//page.use(bodyParser.json());
 
 page.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','*');

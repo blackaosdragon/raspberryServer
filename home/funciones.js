@@ -46,8 +46,9 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
             year: `${year_options.value}`,
             mes: `${month_options.value}`
         }
+        console.log(info);
         
-        fetch(`http://${ip}:${puerto}${endPoint_dia}`,{
+        fetch(`http://192.168.1.101/dia`,{
             method: 'POST',
             body: JSON.stringify(info),
             headers:{

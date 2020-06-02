@@ -135,9 +135,8 @@ page.get('/mes',(req,res)=>{
     })
 })
 page.post('/dia',(req,res)=>{
-    let data = req
-    console.log("req: ");
-    console.log(JSON.stringify(data));
+    let data = req.body
+    console.log(data);
     //console.log("res: ");
     //console.log(res);
     res.end("Yes");

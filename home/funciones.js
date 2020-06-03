@@ -44,19 +44,18 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
         console.log(`Values: Year: ${year_options.value} Month: ${month_options.value}`)
         let info = {year: `${year_options.value}`,mes: `${month_options.value}`}
         console.log("Enviando data: ",info);
-        fetch('http://192.168.0.101:5000/dia',{
+        fetch(`http://${ip}:${puerto}${endPoint_dia}`,{
             method: 'POST',
             body: JSON.stringify(info),
             headers:{
                 'Content-Type': 'application/json' 
               },
         }).then(res=>{
-            console.log("Se envio la data");
             res.json()
         }).catch( err => {
             console.log("Error: ",err);
         }).then(respuesta=>{
-            console.log("Termindao: ",respuesta);
+            console.log("Termindo: ",respuesta);
         })
         
     })

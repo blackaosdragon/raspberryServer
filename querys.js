@@ -113,17 +113,21 @@ module.exports = {
         })        
     },
     extraer_dia: (year,mes) => {
+        console.log("Consultando los dias")
         return new Promise((resolve,reject)=>{
             let elementos = [];
             base_de_datos.query(`SELECT DISTINCT (extract(day FROM fecha)) AS dia FROM monitoreo.Registro WHERE fecha>= '${year}-${mes}-01' AND fecha<'${year}-${mes}-31';`,(err,data,otro)=>{
                 if(err){
+                    reject(new Error());
                     console.log(err);
                 } else {
                     for(let i=0;i<data.length;i++){
                         elementos[i] = data[i].dia;
                     }
+                    console.log(elementos);
                     resolve(elementos);
                 }
+                console.log(elementos);
             });
         })
     }

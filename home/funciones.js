@@ -2,12 +2,20 @@
 let year_options = document.getElementById('year');
 let carga_year = document.getElementById('cargaYear');
 let boton_envio_year = document.getElementById('botonYear');
+
 let month_options = document.getElementById('month');
 let carga_mes = document.getElementById('cargaMes');
 let boton_envio_mes_year = document.getElementById('botonMesYear');
 
 //let month_options; 
 let day_options = document.getElementById('day'); 
+let carga_dia = document.getElementById('cargaDia');
+let boton_carga_ubicaciones = document.getElementById('botonUbicaciones');
+
+let sensor_options = document.getElementById('sensor');
+let carga_Ubicaciones = document.getElementById('cargaUbicaciones');
+
+
 let sensor_options;
 let ids = ['year','month','day','sensor'];
 let ip = '192.168.0.101';
@@ -15,6 +23,7 @@ let puerto = 5000;
 let endpoint = '/consulta';
 let endPoint_mes = '/mes';
 let endPoint_dia = '/dia';
+let endPoint_ubicacion = '/ubicaciones';
 
 envioYear = () =>{
     carga_mes.style.visibility = 'visible';
@@ -68,6 +77,22 @@ envioMesYear = (mes,year) => {
         }).then(respuesta=>{
             console.log("Termindo!");
         })
+}
+cargaUbicaciones = () =>{
+    carga_Ubicaciones.style.visibility = 'visible'
+    fetch(`http://${ip}:${puerto}${endPoint_ubicacion}`)
+    .then(response=>{
+        return response.json();
+    }).then(data=>{
+        data.forEach((element,id)=>{
+            let ubicaciones_in_database = document.createElement('option');
+            ubicaciones_in_database.setAttribute('id',id);
+            sensor_options.appendChild(ubicaciones_in_database);
+            ubicaciones_in_database.innerHTML = null;
+            ubicaciones_in_database = ubicaciones_in_database.innerHTML+element;
+
+        })
+    })
 }
 
 fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {

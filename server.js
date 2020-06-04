@@ -144,4 +144,8 @@ page.post('/dia',(req,res)=>{
         res.send(respuesta);
     })
 })
-
+page.get('/ubicaciones',(req,res)=>{
+    tokens.extraer_ubicacion().then(respuesta=>{
+        res.send(respuesta);
+    })
+})

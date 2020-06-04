@@ -113,12 +113,19 @@ module.exports = {
         })        
     },
     extraer_dia: (year,mes) => {
-        console.log("Consultando los dias")
+        console.log("Consultando los dias");
+        let meSiguiente = mes+1;
+        let dia_primero = 1;
+        let dia_final = 1;
+        if(mes==12){
+            meSiguiente = 12;
+            dia_final = 31;
+        }
         return new Promise((resolve,reject)=>{
             let elementos = [];
-            base_de_datos.query(`SELECT DISTINCT (extract(day FROM fecha)) AS dia FROM monitoreo.Registro WHERE fecha>= '${year}-${mes}-01' AND fecha<'${year}-${mes}-31';`,(err,data,otro)=>{
+            base_de_datos.query(`SELECT DISTINCT (extract(day FROM fecha)) AS dia FROM monitoreo.Registro WHERE fecha>= '${year}-${mes}-${dia_primero}' AND fecha<'${year}-${meSiguiente}-${dia_final}';`,(err,data,otro)=>{
                 if(err){
-                    reject(new Error());
+                    reject(new Error()); 
                     console.log(err);
                 } else {
                     for(let i=0;i<data.length;i++){

@@ -9,16 +9,23 @@
 <body>
     <h1>Historial de temperaturas</h1>
     <h3>Por favor selecciona la fecha de los datos que necesitas</h3>
-    <div class="grid-container-consulta">
-      <h5 class="titleYear">Año</h5>
+    <!--<div class="grid-container-consulta">-->
+      <div class="years">
+        <h5 class="titleYear">Año</h5>
+        <select id="year" class="opcionesYear"></select>
+      </div>
+      
+      
       <h5 class="titleMonth">Mes</h5>
+      <select id="month" class="opcionesMes"></select>     
+      <button onclick="envioMesYear()" class="botonMesYear" id="botonMesYear">Enviar</button>
       <h5 class="titleDay">Día</h5>
       <h5 class="titleUbicacion">Ubicacion</h5>
-      <select id="year" class="opciones"></select>
-      <select id="month" class="opciones"></select>
+      
+      
       <select id="day" class="opciones"></select>
       <select id="sensor" class="opciones"></select>
-    </div>
+    <!--</div>-->
 <script src="funciones.js"></script>
 
 </body>

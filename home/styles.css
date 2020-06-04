@@ -127,7 +127,6 @@ body{
 }
 .vacio{
     grid-area: vacio;
-
 }
 .grid-container{
     display: grid;
@@ -143,10 +142,9 @@ body{
 }
 .grid-container-consulta{
     display: grid;
-    grid-template-rows: auto;
-    grid-template-areas: 
-    "titleYear titleMonth titleDay titleUbicacion"
-     "year month day ubicacion"
+    /*grid-template-rows: auto;*/
+    grid-template-columns: auto auto auto;
+    
 }
 .titleYear{
     grid-area: titleYear;
@@ -169,4 +167,14 @@ body{
     visibility: hidden;
     /*font-family: 'Znric-Regular';*/
     margin: 0% 20% 0% 0%;
+}
+.botonMesYear{
+    grid-area: botonMesYear;
+    visibility: hidden;
+}
+.nada{
+    grid-area: nada;
+}
+.years{
+    justify-content: center;
 }

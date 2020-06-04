@@ -1,8 +1,9 @@
 //let years_in_data_base = document.createElement('option');
 let year_options = document.getElementById('year');
 let month_options = document.getElementById('month');
+let boton_envio_mes_year = document.getElementById('botonMesYear')
 //let month_options; 
-let day_options; 
+let day_options = document.getElementById('day'); 
 let sensor_options;
 let ids = ['year','month','day','sensor'];
 let ip = '192.168.0.101';
@@ -10,6 +11,35 @@ let puerto = 5000;
 let endpoint = '/consulta';
 let endPoint_mes = '/mes';
 let endPoint_dia = '/dia';
+
+envioMesYear = (mes,year) => {
+    let info = {year: `${year_options.value}`,mes: `${month_options.value}`}
+    console.log("Enviando data: ",info);
+    fetch(`http://${ip}:${puerto}${endPoint_dia}`,{
+            method: 'POST',
+            body: JSON.stringify(info),
+            headers:{
+                'Content-Type': 'application/json' 
+              },
+        }).then(response=>{
+            return response.json();
+        }).then((data)=>{
+            console.log(data)
+            data.forEach((element,id)=>{
+                let day_in_database = document.createElement('option');
+                day_in_database.setAttribute('id',id);
+                day_options.appendChild(day_in_database);
+                day_in_database.innerHTML = element;
+            })
+            day_options.style.visibility = 'visible';
+        }).catch( err => {
+            console.log("Error: ",err);
+        }).then(respuesta=>{
+            console.log("Termindo!");
+        })
+        
+
+}
 
 fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
     //console.log(response);
@@ -41,23 +71,9 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
             month_options.appendChild(month_in_data_base);
             month_in_data_base.innerHTML = element;
         })
-        console.log(`Values: Year: ${year_options.value} Month: ${month_options.value}`)
-        let info = {year: `${year_options.value}`,mes: `${month_options.value}`}
-        console.log("Enviando data: ",info);
-        fetch(`http://${ip}:${puerto}${endPoint_dia}`,{
-            method: 'POST',
-            body: JSON.stringify(info),
-            headers:{
-                'Content-Type': 'application/json' 
-              },
-        }).then(res=>{
-            res.json()
-        }).catch( err => {
-            console.log("Error: ",err);
-        }).then(respuesta=>{
-            console.log("Termindo: ",respuesta);
-        })
-        
+        boton_envio_mes_year.style.visibility = 'visible';
+        //console.log(`Values: Year: ${year_options.value} Month: ${month_options.value}`)
+        //envioMesYear(); 
     })
 
 )

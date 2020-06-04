@@ -16,7 +16,7 @@ let sensor_options = document.getElementById('sensor');
 let carga_Ubicaciones = document.getElementById('cargaUbicaciones');
 
 
-let sensor_options;
+//let sensor_options;
 let ids = ['year','month','day','sensor'];
 let ip = '192.168.0.101';
 let puerto = 5000;
@@ -92,6 +92,10 @@ cargaUbicaciones = () =>{
             ubicaciones_in_database = ubicaciones_in_database.innerHTML+element;
 
         })
+        carga_Ubicaciones.style.visibility = 'collapse';
+        sensor_options.style.visibility = 'visible';
+        boton_carga_ubicaciones.style.visibility = 'visible';
+
     })
 }
 

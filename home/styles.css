@@ -243,3 +243,6 @@ body{
         transform: rotate(360deg);
     }
 }
+.botonUbicaciones{
+    visibility: collapse;
+}

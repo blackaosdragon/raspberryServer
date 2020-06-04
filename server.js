@@ -123,6 +123,7 @@ wss.on('connection', ws => {
 //page.use('')
 page.get('/consulta',(req,res)=>{
     let respuesta = {};
+    console.log('Solicitando años');
     //let data = tokens.extraer_años();
     tokens.extraer_datos().then((data=>{
         console.log(data);
@@ -130,6 +131,7 @@ page.get('/consulta',(req,res)=>{
     }))    
 })
 page.post('/mes',(req,res)=>{
+    console.log('Solicitando meses');
     let data = req.body;
     console.log(data);
     tokens.extraer_mes(data.year).then(respuesta => {
@@ -137,6 +139,7 @@ page.post('/mes',(req,res)=>{
     })
 })
 page.post('/dia',(req,res)=>{
+    console.log('Solicitando dias');
     let data = req.body
     console.log(data.year);
     console.log(data.mes);
@@ -145,6 +148,7 @@ page.post('/dia',(req,res)=>{
     })
 })
 page.get('/ubicaciones',(req,res)=>{
+    console.log('Solicitando ubicaciones');
     tokens.extraer_ubicacion().then(respuesta=>{
         res.send(respuesta);
     })

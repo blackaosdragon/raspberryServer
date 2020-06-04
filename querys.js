@@ -93,10 +93,10 @@ module.exports = {
             })
         })
     },
-    extraer_mes: () => {
+    extraer_mes: (year) => {
         return new Promise((resolve,reject)=>{
             let elementos =[];
-            base_de_datos.query(`SELECT DISTINCT (extract(month FROM fecha)) AS mes FROM monitoreo.Registro`,(err,data,filas)=>{
+            base_de_datos.query(`SELECT DISTINCT (extract(month FROM fecha)) AS mes FROM monitoreo.Registro WHERE fecha>'${year}-01-01'`,(err,data,filas)=>{
                 if(err){
                     reject (new Error());
                 }
@@ -114,7 +114,8 @@ module.exports = {
     },
     extraer_dia: (year,mes) => {
         console.log("Consultando los dias");
-        let meSiguiente = mes+1;
+
+        let meSiguiente = parseInt(mes)+1;
         let dia_primero = 1;
         let dia_final = 1;
         if(mes==12){

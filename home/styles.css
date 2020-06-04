@@ -168,13 +168,51 @@ body{
     /*font-family: 'Znric-Regular';*/
     margin: 0% 20% 0% 0%;
 }
+.opcionesYear{
+    visibility: collapse;
+}
 .botonMesYear{
     grid-area: botonMesYear;
-    visibility: hidden;
+    visibility: collapse;
 }
 .nada{
     grid-area: nada;
 }
 .years{
     justify-content: center;
+}
+.cargaYear{
+    visibility: visible;    
+    width: 30px;
+    height: 30px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    border-top: 5px solid #222;
+    animation-name: rotacion;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.botonYear{
+    visibility: collapse;
+}
+.cargaMes{
+    visibility: collapse;    
+    width: 30px;
+    height: 30px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    border-top: 5px solid #222;
+    animation-name: rotacion;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes rotacion {
+    from {
+        otate: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

@@ -129,16 +129,18 @@ page.get('/consulta',(req,res)=>{
         res.send(data);
     }))    
 })
-page.get('/mes',(req,res)=>{
-    tokens.extraer_mes().then(data => {
-        res.send(data);
+page.post('/mes',(req,res)=>{
+    let data = req.body;
+    console.log(data);
+    tokens.extraer_mes(data.year).then(respuesta => {
+        res.send(respuesta);
     })
 })
 page.post('/dia',(req,res)=>{
     let data = req.body
     console.log(data.year);
     console.log(data.mes);
-    tokens.extraer_dia(data.year,data.mes).then(data=>{
-        res.send(data);
+    tokens.extraer_dia(data.year,data.mes).then(respuesta=>{
+        res.send(respuesta);
     })
 })

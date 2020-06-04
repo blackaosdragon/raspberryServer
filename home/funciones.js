@@ -1,7 +1,11 @@
 //let years_in_data_base = document.createElement('option');
 let year_options = document.getElementById('year');
+let carga_year = document.getElementById('cargaYear');
+let boton_envio_year = document.getElementById('botonYear');
 let month_options = document.getElementById('month');
-let boton_envio_mes_year = document.getElementById('botonMesYear')
+let carga_mes = document.getElementById('cargaMes');
+let boton_envio_mes_year = document.getElementById('botonMesYear');
+
 //let month_options; 
 let day_options = document.getElementById('day'); 
 let sensor_options;
@@ -12,6 +16,31 @@ let endpoint = '/consulta';
 let endPoint_mes = '/mes';
 let endPoint_dia = '/dia';
 
+envioYear = () =>{
+    let year = {year: `${year_options.value}`};
+
+    fetch(`http://${ip}:${puerto}${endPoint_mes}`,{
+        method: 'POST',
+        body: json.stringify(year),
+        headers:{
+            'Content-Type': 'application/json' 
+        }
+    }).then(response=>{
+        return response.json();
+    }).then(data=>{
+        month_options.style.visibility = 'visible';
+        carga_mes.style.visibility = 'collapse';
+        data.forEach((element,id)=>{
+            //console.log('Element: '+element);
+            //console.log('id: '+id);
+            let month_in_data_base = document.createElement('option');
+            month_in_data_base.setAttribute('id',id);
+            month_options.appendChild(month_in_data_base);
+            month_in_data_base.innerHTML = element;
+        })
+        boton_envio_mes_year.style.visibility = 'visible';        
+    })
+}
 envioMesYear = (mes,year) => {
     let info = {year: `${year_options.value}`,mes: `${month_options.value}`}
     console.log("Enviando data: ",info);
@@ -37,18 +66,15 @@ envioMesYear = (mes,year) => {
         }).then(respuesta=>{
             console.log("Termindo!");
         })
-        
-
 }
 
 fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
     //console.log(response);
     return response.json();
 }).then((data => {
-    //console.log(data[0]);
-    //years_in_data_base.setAttribute(`${id}`,`name`)
-    
     year_options.style.visibility = 'visible';
+    carga_year.style.visibility = 'collapse';
+    boton_envio_year.style.visibility = 'visible';
     data.forEach((element,id)=>{
         let year_in_data_base = document.createElement('option');
         year_in_data_base.setAttribute(`id`,id);
@@ -56,27 +82,8 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
         year_in_data_base.innerHTML = year_in_data_base.innerHTML+element;
     })
 
-})).then(
-    fetch(`http://${ip}:${puerto}${endPoint_mes}`).then(response=>{
-        //console.log(response);
-        return response.json();
-    }).then(data=>{
-        //console.log(data);
-        month_options.style.visibility = 'visible';
-        data.forEach((element,id)=>{
-            //console.log('Element: '+element);
-            //console.log('id: '+id);
-            let month_in_data_base = document.createElement('option');
-            month_in_data_base.setAttribute('id',id);
-            month_options.appendChild(month_in_data_base);
-            month_in_data_base.innerHTML = element;
-        })
-        boton_envio_mes_year.style.visibility = 'visible';
-        //console.log(`Values: Year: ${year_options.value} Month: ${month_options.value}`)
-        //envioMesYear(); 
-    })
+})).catch(err=>{console.warn(err)});
 
-)
 asignacion_de_opciones = (elemento,indice,arr) => {
     let opcion_a_elegir = document.createElement('option');
     opcion_a_elegir.setAttribute('id','item');

@@ -138,6 +138,23 @@ module.exports = {
                 console.log(elementos);
             });
         })
+    },
+    extraer_ubicacion: () => {
+        return new Promise((resolve,reject)=>{
+            let elementos = [];
+            base_de_datos.query(`SELECT DISTINCT ubicacion AS lugar FROM monitoreo.Registro;`,(err,data,otro)=>{
+                if(err){
+                    reject(new Error());
+                }else{
+                    for (let i = 0; i<data.length;i++){
+                        elementos[i] = data[i].mes;
+                    }
+                    
+                    resolve(elementos);
+                }
+                console.log(elementos);
+            })
+        })
     }
     
 }

@@ -17,15 +17,17 @@ let endPoint_mes = '/mes';
 let endPoint_dia = '/dia';
 
 envioYear = () =>{
+    carga_mes.style.visibility = 'visible';
     let year = {year: `${year_options.value}`};
 
     fetch(`http://${ip}:${puerto}${endPoint_mes}`,{
         method: 'POST',
-        body: json.stringify(year),
+        body: JSON.stringify(year),
         headers:{
             'Content-Type': 'application/json' 
         }
     }).then(response=>{
+        carga_mes.style.visibility = 'collapse';
         return response.json();
     }).then(data=>{
         month_options.style.visibility = 'visible';
@@ -79,6 +81,7 @@ fetch(`http://${ip}:${puerto}${endpoint}`).then(response => {
         let year_in_data_base = document.createElement('option');
         year_in_data_base.setAttribute(`id`,id);
         year_options.appendChild(year_in_data_base);
+        year_in_data_base.innerHTML = null;
         year_in_data_base.innerHTML = year_in_data_base.innerHTML+element;
     })
 

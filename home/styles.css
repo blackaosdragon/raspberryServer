@@ -171,6 +171,9 @@ body{
 .opcionesYear{
     visibility: collapse;
 }
+.opcionesMes{
+    visibility: collapse;
+}
 .botonMesYear{
     grid-area: botonMesYear;
     visibility: collapse;

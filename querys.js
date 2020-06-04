@@ -147,7 +147,7 @@ module.exports = {
                     reject(new Error());
                 }else{
                     for (let i = 0; i<data.length;i++){
-                        elementos[i] = data[i].mes;
+                        elementos[i] = data[i].lugar;
                     }
                     
                     resolve(elementos);

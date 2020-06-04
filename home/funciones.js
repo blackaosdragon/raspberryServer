@@ -53,6 +53,7 @@ envioYear = () =>{
     })
 }
 envioMesYear = (mes,year) => {
+    carga_dia.style.visibility = 'visible';
     let info = {year: `${year_options.value}`,mes: `${month_options.value}`}
     console.log("Enviando data: ",info);
     fetch(`http://${ip}:${puerto}${endPoint_dia}`,{
@@ -66,12 +67,15 @@ envioMesYear = (mes,year) => {
         }).then((data)=>{
             console.log(data)
             data.forEach((element,id)=>{
-                let day_in_database = document.createElement('option');
+                let day_in_database = null;
+                day_in_database = document.createElement('option');
                 day_in_database.setAttribute('id',id);
                 day_options.appendChild(day_in_database);
                 day_in_database.innerHTML = element;
             })
             day_options.style.visibility = 'visible';
+            carga_dia.style.visibility = 'collapse';
+            boton_carga_ubicaciones.style.visibility = 'visible';
         }).catch( err => {
             console.log("Error: ",err);
         }).then(respuesta=>{
@@ -89,7 +93,7 @@ cargaUbicaciones = () =>{
             ubicaciones_in_database.setAttribute('id',id);
             sensor_options.appendChild(ubicaciones_in_database);
             ubicaciones_in_database.innerHTML = null;
-            ubicaciones_in_database = ubicaciones_in_database.innerHTML+element;
+            ubicaciones_in_database = element;
 
         })
         carga_Ubicaciones.style.visibility = 'collapse';

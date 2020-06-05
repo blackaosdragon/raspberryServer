@@ -168,7 +168,8 @@ module.exports = {
 
                     data.forEach((element,i) => {
                         //console.log(element);
-                        console.log(element[i]);                        
+                        console.log('i: ',i)
+                        console.log('elemet: '+element);                        
                         /*
                         elementos[i]={
                             ubicacion: element[i].ubicacion,

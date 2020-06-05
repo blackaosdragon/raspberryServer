@@ -159,15 +159,27 @@ module.exports = {
     consultar_base_de_datos: (ubication,year,mes,dia,hora_inicial,minuto_inicial,hora_final,minuto_final) => {
         return new Promise( (resolve,reject) => {
             let elementos = [];
-            base_de_datos.query(`SELECT ubicacion,valor AS Temperatura, fecha FROM monitoreo.Registro WHERE ubicacion='${ubication}' AND fecha>='${year}-${mes}-${dia} ${hora_inicial}:${minuto_inicial}:00' AND fecha<'${year}-${mes}-${dia} ${hora_final}:${minuto_final}:00;'`,(err,data,otro)=>{
+            base_de_datos.query(`SELECT ubicacion,valor AS temperatura, fecha FROM monitoreo.Registro WHERE ubicacion='${ubication}' AND fecha>='${year}-${mes}-${dia} ${hora_inicial}:${minuto_inicial}:00' AND fecha<'${year}-${mes}-${dia} ${hora_final}:${minuto_final}:00;'`,(err,data,otro)=>{
                 if(err){
                     console.log(err);
                     reject(new Error());
                 } else {
-                    data.forEach(element => {
-                        console.log(element)                        
+                    
+
+                    data.forEach((element,i) => {
+                        //console.log(element);
+                        console.log(element[i]);                        
+                        /*
+                        elementos[i]={
+                            ubicacion: element[i].ubicacion,
+                            temperatura: element[i].temperatura,
+                            fecha: element[i].fecha
+                        }*/
+                        
+                    
+                        //console.log(element)                        
                     });
-                    console.log(data.length);
+                    //console.log(data.length);
                     console.log(data[0].ubicacion);
                     console.log(data[0].temperatura);
                     console.log(data[0].fecha);

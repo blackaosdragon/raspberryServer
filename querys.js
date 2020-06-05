@@ -164,8 +164,16 @@ module.exports = {
                     console.log(err);
                     reject(new Error());
                 } else {
+                    data.forEach(element => {
+                        console.log(element)                        
+                    });
                     console.log(data.length);
-                    console.log(data);
+                    console.log(data[0].ubicacion);
+                    console.log(data[0].temperatura);
+                    console.log(data[0].fecha);
+                    console.log(data[1].ubicacion);
+                    console.log(data[1].temperatura);
+                    console.log(data[1].fecha);
                     resolve('yes');
                 }
             })

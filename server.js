@@ -153,3 +153,21 @@ page.get('/ubicaciones',(req,res)=>{
         res.send(respuesta);
     })
 })
+page.post('/buscar',(req,res)=>{
+    let data = req.body
+    let year = data.year;
+    let mes = data.mes;
+    let dia = data.dia;
+    let lugar = data.lugar;
+    let hora_inicio = data.horas;
+    let minuto_inicio = data.minutos;
+    let hora_final = data.horaFinal;
+    let minuto_final = data.minutoFinal;
+    console.log(`Año: ${year} Mes: ${mes} Dia: ${dia} Lugar: ${lugar} Hora inicial: ${hora_inicio} Minuto Inicial: ${minuto_inicio} Hora final: ${hora_final} Minuto final: ${minuto_final}`);
+    res.send("Yes")
+    /*
+    tokens.consultar_base_de_datos(year,mes,dia,lugar).then(respuesta=>{
+        res.send(respuesta);
+    })
+    */
+})

@@ -32,8 +32,22 @@
         <h5 class="titleUbicacion">Ubicacion</h5>
         <select id="sensor" class="opciones"></select>
         <div id="cargaUbicaciones" class="cargaUbicaciones"></div>
-        
       </div>
+      <div class="intervaloDesde">
+        <h6>Seleccione la hora inicial de la consulta que desea realizar</h6>
+        Horas
+        <select name="horasDesde" id="horasDesde" class="horasDesde"></select>
+        Minutos
+        <select name="minutosDesde" id="minutosDesde" class="minutosDesde"></select>
+      </div>
+      <div class="intervaloHasta">
+        <h6>Seleccione la hora final de la consulta que desea realizar</h6>
+        Horas
+        <select name="horasHasta" id="horasHasta" class="horasHasta"></select>
+        Minutos
+        <select name="minutosHasta" id="minutosHasta" class="minutosHasta"></select>
+      </div>
+      <button id='consulta' class="consulta" onclick="consultarBase()">Buscar en la base de datos</button>
       
       
       

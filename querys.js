@@ -155,6 +155,20 @@ module.exports = {
                 console.log(elementos);
             })
         })
+    },
+    consultar_base_de_datos: (ubication,year,mes,dia,hora_inicial,minuto_inicial,hora_final,minuto_final) => {
+        return new Promise( (resolve,reject) => {
+            let elementos = [];
+            base_de_datos.query(`SELECT ubicacion,valor AS Temperatura, fecha FROM monitoreo.Registro WHERE ubicacion='${ubication}' AND fecha>='${year}-${mes}-${dia} ${hora_inicial}-${minuto_inicial}-00' AND fecha<=${year}-${mes}-${dia} ${hora_final}:${minuto_final}:00`,(err,data,otro)=>{
+                if(err){
+                    reject(new Error());
+                } else {
+                    console.log(data.length);
+                    console.log(data);
+                    resolve('yes');
+                }
+            })
+        })
     }
     
 }

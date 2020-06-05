@@ -21,6 +21,8 @@ let options_minutos = document.getElementById('minutosDesde');
 let options_horas_hasta = document.getElementById('horasHasta');
 let options_minutos_hasta = document.getElementById('minutosHasta');
 
+let datos_consulta = document.getElementById('datos_consulta');
+
 let horas_dia = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
 let arreglo_0_60 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59];
 
@@ -177,6 +179,11 @@ consultarBase = () => {
     }).then(response=>{return response.json()})
     .then(data=>{
         console.log(data);
+        data.forEach( (element,id) => {
+            let fila_de_datos = document.createElement('tr');
+            datos_consulta.appendChild(fila_de_datos);
+            fila_de_datos.innerHTML = `<td class="celda"> ${element.ubicacion} </td><td class="celda"> ${element.temperatura}°C </td><td class="celda"> ${element.fecha} </td>`;
+        });
     })
     .catch(err=>console.log(err));
 

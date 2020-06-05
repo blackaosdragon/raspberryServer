@@ -164,10 +164,8 @@ page.post('/buscar',(req,res)=>{
     let hora_final = data.horaFinal;
     let minuto_final = data.minutoFinal;
     console.log(`Año: ${year} Mes: ${mes} Dia: ${dia} Lugar: ${lugar} Hora inicial: ${hora_inicio} Minuto Inicial: ${minuto_inicio} Hora final: ${hora_final} Minuto final: ${minuto_final}`);
-    res.send("Yes")
-    /*
-    tokens.consultar_base_de_datos(year,mes,dia,lugar).then(respuesta=>{
+    tokens.consultar_base_de_datos(lugar,year,mes,dia,hora_inicio,minuto_inicio,hora_final,minuto_final).then(respuesta=>{
         res.send(respuesta);
-    })
-    */
+    });
+    
 })

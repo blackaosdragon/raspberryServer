@@ -33,6 +33,7 @@ let endpoint = '/consulta';
 let endPoint_mes = '/mes';
 let endPoint_dia = '/dia';
 let endPoint_ubicacion = '/ubicaciones';
+let endPoint_consulta = '/buscar';
 
 envioYear = () =>{
     carga_mes.style.visibility = 'visible';

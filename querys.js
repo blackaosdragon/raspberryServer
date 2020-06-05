@@ -169,7 +169,9 @@ module.exports = {
                     data.forEach((element,i) => {
                         //console.log(element);
                         console.log('i: ',i);
-                        console.log('elemet: ',element);
+                        console.log('Ubicacion: ',element.ubicacion);
+                        console.log('Temperatura: ',element.temperatura);
+                        console.log('fecha: ',element.fecha);
                         /*
                         elementos[i]={
                             ubicacion: element[i].ubicacion,

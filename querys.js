@@ -164,32 +164,14 @@ module.exports = {
                     console.log(err);
                     reject(new Error());
                 } else {
-                    
-
-                    data.forEach((element,i) => {
-                        //console.log(element);
-                        console.log('i: ',i);
-                        console.log('Ubicacion: ',element.ubicacion);
-                        console.log('Temperatura: ',element.temperatura);
-                        console.log('fecha: ',element.fecha);
-                        /*
+                    data.forEach((element,i) => {                      
                         elementos[i]={
-                            ubicacion: element[i].ubicacion,
-                            temperatura: element[i].temperatura,
-                            fecha: element[i].fecha
-                        }*/
-                        
-                    
-                        //console.log(element)                        
+                            ubicacion: element.ubicacion,
+                            temperatura: element.temperatura,
+                            fecha: element.fecha
+                        }                       
                     });
-                    //console.log(data.length);
-                    console.log(data[0].ubicacion);
-                    console.log(data[0].temperatura);
-                    console.log(data[0].fecha);
-                    console.log(data[1].ubicacion);
-                    console.log(data[1].temperatura);
-                    console.log(data[1].fecha);
-                    resolve('yes');
+                    resolve(elementos);
                 }
             })
         })

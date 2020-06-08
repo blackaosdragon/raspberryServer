@@ -62,9 +62,9 @@
     
     <script>
         const puerto = 5001;
-        let ip = 'instrumentacionline.ddns.net'
+        let ip = 'https://instrumentacionline.ddns.net'
         //const ip = "192.168.1.68"
-        let webSocket = new WebSocket(`ws://${ip}:${puerto}`);
+        let webSocket = new WebSocket(`wss://${ip}:${puerto}`);
         //let webSocket = new WebSocket(`ws://localhost:${puerto}`);
         webSocket.onopen = () => {
             console.log('Conexion');

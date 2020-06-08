@@ -24,6 +24,7 @@ let integer_alertas = 0;
 let alerta = 1;
 let alertas_de_un_minuto = 150;
 
+/*
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/ubuntu/privkey.pem')),
     cert: fs.readFileSync(path.resolve('/home/ubuntu/cert.pem'))
@@ -32,7 +33,7 @@ const httpServer = https.createServer({
 
 httpServer.listen(pagePort,()=>{
   console.log(`Servidor disponible en el puerto ${pagePort}`);
-})
+})*/
 
 
 const wss = new Ws.Server({port: wsPort});
@@ -49,11 +50,11 @@ page.use((req,res,next)=>{
 })
 page.use('/',express.static(__dirname+'/home'))
 
-/*
+
 page.listen(pagePort, data => {
     //console.log(data);
     console.log(`Servidor corriendo en el puerto ${pagePort}`);
-});*/
+});
 
 const Readline = SerialPort.parsers.Readline;
 let port = new SerialPort('/dev/ttyUSB0');

@@ -30,8 +30,8 @@ const httpServer = https.createServer({
    
    },page);
 
-httpServer.listen(puerto,()=>{
-  console.log(`Servidor disponible en el puerto ${puerto}`);
+httpServer.listen(pagePort,()=>{
+  console.log(`Servidor disponible en el puerto ${pagePort}`);
 })
 
 
@@ -49,10 +49,11 @@ page.use((req,res,next)=>{
 })
 page.use('/',express.static(__dirname+'/home'))
 
+/*
 page.listen(pagePort, data => {
     //console.log(data);
     console.log(`Servidor corriendo en el puerto ${pagePort}`);
-});
+});*/
 
 const Readline = SerialPort.parsers.Readline;
 let port = new SerialPort('/dev/ttyUSB0');

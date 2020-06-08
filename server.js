@@ -184,3 +184,7 @@ page.post('/buscar',(req,res)=>{
     });
     
 })
+page.get('/.well-known/acme-challenge/dD77E-POg2_VMJB2Y8z3sEoz41n2p8bK246aOSwf4So:',(req,res)=>{
+    res.send('hello');
+})
+

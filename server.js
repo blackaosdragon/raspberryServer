@@ -5,6 +5,7 @@ const mySql = require('mysql');
 const tokens = require('./querys.js');
 
 const https = require('https');
+const fs = require('fs');
 
 let asignar = require('./asignacion.js');
 //let datos_temperatura = require('./asignacion.js');

@@ -30,8 +30,8 @@ const httpServer = https.createServer({
    
    },page);
 
-httpServer.listen(pagePort,()=>{
-  console.log(`Servidor disponible en el puerto ${pagePort}`);
+httpServer.listen(puerto,()=>{
+  console.log(`Servidor disponible en el puerto ${puerto}`);
 })
 
 

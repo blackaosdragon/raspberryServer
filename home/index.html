@@ -65,7 +65,7 @@
         let ip = 'instrumentacionline.ddns.net'
 
         //const ip = "192.168.1.68"
-        let webSocket = new WebSocket(`wss://${ip}:${puerto}`);
+        let webSocket = new WebSocket(`ws://${ip}:${puerto}`);
         //let webSocket = new WebSocket(`ws://localhost:${puerto}`);
         webSocket.onopen = () => {
             console.log('Conexion');

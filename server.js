@@ -6,6 +6,7 @@ const tokens = require('./querys.js');
 
 const https = require('https');
 const fs = require('fs');
+const path = require('path');
 
 let asignar = require('./asignacion.js');
 //let datos_temperatura = require('./asignacion.js');

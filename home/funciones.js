@@ -29,7 +29,7 @@ let arreglo_0_60 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,2
 
 //let sensor_options;
 let ids = ['year','month','day','sensor'];
-let ip = '192.168.0.101';
+let ip = '192.168.1.68';
 let puerto = 5000;
 let endpoint = '/consulta';
 let endPoint_mes = '/mes';

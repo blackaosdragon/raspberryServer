@@ -4,7 +4,7 @@ const SerialPort = require('serialport');
 const mySql = require('mysql');
 const tokens = require('./querys.js');
 
-const bodyParser = require('body-parser');
+const https = require('https');
 
 let asignar = require('./asignacion.js');
 //let datos_temperatura = require('./asignacion.js');
@@ -14,12 +14,23 @@ const page = express();
 
 const wsPort = 5001;
 const pagePort = 5000;
+const puerto = 443;
 let string_ofice_temperature = "";
 let float_ofice_temperature = 0.0;
 let string_ofice_ID = "";
 let integer_alertas = 0;
 let alerta = 1;
 let alertas_de_un_minuto = 150;
+
+const httpServer = https.createServer({
+    key: fs.readFileSync(path.resolve('/home/ubuntu/privkey.pem')),
+    cert: fs.readFileSync(path.resolve('/home/ubuntu/cert.pem'))
+   
+   },page);
+
+httpServer.listen(pagePort,()=>{
+  console.log(`Servidor disponible en el puerto ${pagePort}`);
+})
 
 
 const wss = new Ws.Server({port: wsPort});

@@ -105,7 +105,7 @@ const ioLector = port.pipe(new Readline({delimiter: '\r\n'}));
 
 ioLector.on('data',temp=>{
     console.log(temp);
-    io.emit('temp',temp);
+    io.emit('temp',`id: ID Temp: temp`);
 });
 
 wss.on('connection', ws => { 

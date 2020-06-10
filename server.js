@@ -72,7 +72,7 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 lector.on('data', temp => {
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
-    
+    timer++;
     console.log(timer);
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);    

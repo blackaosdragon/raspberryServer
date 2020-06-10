@@ -69,7 +69,7 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 //const lector_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}));
 //let parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
-lector.on('data', temp => {
+lector.on('temp', temp => {
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     timer++;

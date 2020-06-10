@@ -73,6 +73,9 @@ lector.on('data', temp => {
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     timer++;
+    if (timer%3==0){
+        console.log("900ms");
+    }
     console.log(timer);
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);    

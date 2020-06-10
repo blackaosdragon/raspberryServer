@@ -69,10 +69,9 @@
 
         const ip = "192.168.0.101"
         let ioSocket = io.connect(`http://${ip}:${ioSocket_port}`);
-        ioSocket.on('temp', data => {
+        ioSocket.on('data', data => {
             console.log(data);
         })
-        console.log()
 
         let webSocket = new WebSocket(`ws://${ip}:${puerto}`);
         //let webSocket = new WebSocket(`ws://localhost:${puerto}`);

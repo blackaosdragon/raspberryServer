@@ -4,6 +4,8 @@ const SerialPort = require('serialport');
 const mySql = require('mysql');
 const tokens = require('./querys.js');
 
+
+
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
@@ -13,6 +15,8 @@ let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
 
 const page = express();
+
+const io = require('socket.io')(page);
 
 const wsPort = 5001;
 const pagePort = 5000;
@@ -63,8 +67,6 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 //const lector_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}));
 //let parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
-
-
 lector.on('data', temp => {
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
@@ -89,6 +91,13 @@ lector.on('data', temp => {
     }
     
 })
+
+const ioLector = port.pipe(new Readline({delimiter: '\r\n'}));
+
+ioLector.on('data',temp=>{
+    console.log(temp);
+    io.emit(temp);
+});
 
 wss.on('connection', ws => { 
     let parser = port.pipe(new Readline({delimiter: '\r\n'}));
@@ -118,8 +127,6 @@ wss.on('connection', ws => {
     parser.on('close', ()=>{console.log('puerto cerrado')});
     parser.on('end',()=>{console.log('Puerto finalizado')});
     console.log('Cliente conectado'); //metodo para subscribir a un usuario
-
-
     ws.on('close',(cliente)=>{
         parser.end(()=>{console.log("lector terminado")})
     })

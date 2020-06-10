@@ -59,12 +59,21 @@
 </div>
     
     
-    
+<!-- <script src="/socket.io/socket.io.js"></script>-->
     <script>
-        const puerto = 5001;
-        let ip = 'instrumentacionline.ddns.net'
 
-        //const ip = "192.168.1.68"
+        const puerto = 5001;
+        const ioSocket = 5000;
+        //let ip = 'instrumentacionline.ddns.net'
+
+
+        const ip = "192.168.0.101"
+        let ioSocket = io.connect(`http://${ip}:${ioSocket}`);
+        ioSocket.on('temp', data => {
+            console.log(data);
+        })
+        console.log()
+
         let webSocket = new WebSocket(`ws://${ip}:${puerto}`);
         //let webSocket = new WebSocket(`ws://localhost:${puerto}`);
         webSocket.onopen = () => {

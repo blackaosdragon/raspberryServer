@@ -28,6 +28,8 @@ let integer_alertas = 0;
 let alerta = 1;
 let alertas_de_un_minuto = 150;
 
+let timer = 0;
+
 /*
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/ubuntu/privkey.pem')),
@@ -70,6 +72,8 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 lector.on('data', temp => {
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
+    
+    console.log(timer);
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);    
     //console.log(`Temperatura en Float: ${temperatura}`);
@@ -121,6 +125,7 @@ wss.on('connection', ws => {
         }
         let sensor_manual = asignar.string_to_float(temp);
         let id_sensor = parseFloat(string_ofice_ID);
+        //io.emit(`${id_sensor} ${sensor_manual}`)
         ws.send(`${id_sensor} ${sensor_manual}`);
         string_ofice_ID = "";
         

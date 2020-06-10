@@ -16,7 +16,7 @@ let mensajes = require('./fcmessage.js');
 
 const page = express();
 
-const io = require('socket.io')(page);
+
 
 const wsPort = 5001;
 const pagePort = 5000;
@@ -54,7 +54,7 @@ page.use((req,res,next)=>{
 page.use('/',express.static(__dirname+'/home'))
 
 
-page.listen(pagePort, data => {
+const server = page.listen(pagePort, data => {
     //console.log(data);
     console.log(`Servidor corriendo en el puerto ${pagePort}`);
 });
@@ -91,6 +91,8 @@ lector.on('data', temp => {
     }
     
 })
+
+const io = require('socket.io')(server);
 
 const ioLector = port.pipe(new Readline({delimiter: '\r\n'}));
 

@@ -52,6 +52,7 @@ envioYear = () =>{
         carga_mes.style.visibility = 'collapse';
         return response.json();
     }).then(data=>{
+        console.log(data);
         month_options.style.visibility = 'visible';
         carga_mes.style.visibility = 'collapse';
         data.forEach((element,id)=>{

@@ -105,7 +105,14 @@ const ioLector = port.pipe(new Readline({delimiter: '\r\n'}));
 
 ioLector.on('data',temp=>{
     console.log(temp);
-    io.emit('temp',`id: ID Temp: temp`);
+    
+    for(let i = 4; i<=8;i++){
+        string_ofice_ID = string_ofice_ID+temp[i];
+    }
+    let id_sensor = parseFloat(string_ofice_ID);
+    let sensor_manual = asignar.string_to_float(temp);
+    io.emit('temp',`${id_sensor} ${sensor_manual}`);
+    string_ofice_ID = "";
 });
 
 wss.on('connection', ws => { 

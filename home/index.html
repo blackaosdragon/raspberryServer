@@ -70,7 +70,7 @@
         const ip = "192.168.0.13"
         let ioSocket = io.connect(`192.168.0.13:5000`);
         ioSocket.on('temp', data => {
-            console.log(data);
+            console.log('SocketIO: ', data);
         })
 
         let webSocket = new WebSocket(`ws://${ip}:${puerto}`);
@@ -207,7 +207,7 @@
 
             }
            
-            //console.log('WebSocket: ', mensaje.data);
+            console.log('WebSocket: ', mensaje.data);
         }
     </script>
     

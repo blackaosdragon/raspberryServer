@@ -69,12 +69,12 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 //const lector_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}));
 //let parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
-lector.on('temp', temp => {
+lector.on('data', temp => {
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     timer++;
     if (timer%3==0){
-        console.log("900ms");
+        console.log("900ms")
     }
     console.log(timer);
     let temperatura = asignar.string_to_float(temp);
@@ -105,7 +105,7 @@ const ioLector = port.pipe(new Readline({delimiter: '\r\n'}));
 
 ioLector.on('data',temp=>{
     console.log(temp);
-    io.emit(temp);
+    io.emit('temp',temp);
 });
 
 wss.on('connection', ws => { 

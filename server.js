@@ -38,8 +38,7 @@ httpServer.listen(pagePort,()=>{
 
 const wss = new Ws.Server({port: wsPort});
 page.use(express.json());
-//page.use(bodyParser.urlencoded({extended: false}));
-//page.use(bodyParser.json());
+page.use(express.static(__dirname, {dotfiles: 'allow'}))
 
 page.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','*');
@@ -72,7 +71,6 @@ lector.on('data', temp => {
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);    
     //console.log(`Temperatura en Float: ${temperatura}`);
-    //let lugar = asignar.
     if(Number.isNaN(temperatura)){
         console.log(`El numero que se quiere ingresar es ${temperatura}, es incompatible a la base de datos y no se agregara`);
     } else if(temperatura==undefined){
@@ -91,15 +89,6 @@ lector.on('data', temp => {
     }
     
 })
-/*
-lector_wireless.on('data', temp => {
-    if (temp === "No se ha recibido datos"){
-
-    } else {
-        let temperatura = datos_temperatura(temp);
-        console.log(temperatura);
-    }
-})*/
 
 wss.on('connection', ws => { 
     let parser = port.pipe(new Readline({delimiter: '\r\n'}));
@@ -184,7 +173,7 @@ page.post('/buscar',(req,res)=>{
     });
     
 })
-page.get('/.well-known/acme-challenge/dD77E-POg2_VMJB2Y8z3sEoz41n2p8bK246aOSwf4So:',(req,res)=>{
+page.get('/.well-known/pki-validation',(req,res)=>{
     res.send('hello');
 })
 

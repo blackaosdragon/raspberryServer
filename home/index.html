@@ -68,7 +68,7 @@
 
 
         const ip = "192.168.0.13"
-        let ioSocket = io.connect(`http://${ip}:${ioSocket_port}`);
+        let ioSocket = io.connect(`192.168.0.13:5000`);
         ioSocket.on('data', data => {
             console.log(data);
         })

@@ -39,9 +39,10 @@ let endPoint_ubicacion = '/ubicaciones';
 let endPoint_consulta = '/buscar';
 
 envioYear = () =>{
+    console.log("Solicitando el mes");
     carga_mes.style.visibility = 'visible';
     let year = {year: `${parseInt(year_options.value)}`};
-
+    
     fetch(`http://${ip}:${puerto}${endPoint_mes}`,{
         method: 'POST',
         body: JSON.stringify(year),
@@ -69,7 +70,8 @@ envioYear = () =>{
 envioMesYear = (mes,year) => {
     carga_dia.style.visibility = 'visible';
     let info = {year: `${year_options.value}`,mes: `${month_options.value}`}
-    console.log("Enviando data: ",info);
+    //console.log("Enviando data: ",info);
+    console.log("Solicitando dias");
     fetch(`http://${ip}:${puerto}${endPoint_dia}`,{
             method: 'POST',
             body: JSON.stringify(info),
@@ -98,6 +100,7 @@ envioMesYear = (mes,year) => {
 }
 cargaUbicaciones = () =>{
     carga_Ubicaciones.style.visibility = 'visible'
+    console.log("Solicitando ubicaciones");
     fetch(`http://${ip}:${puerto}${endPoint_ubicacion}`)
     .then(response=>{
         return response.json();
@@ -146,6 +149,7 @@ colocar_intervalo_tiempo = (horas,minutos) => {
 
 }
 consultarBase = () => {
+    console.log("Solicitando la base de datos");
     let years = parseInt(year_options.value);
     let mes = month_options.value;
     let dia = day_options.value;

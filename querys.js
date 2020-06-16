@@ -40,7 +40,7 @@ module.exports = {
         //let elementos = [];
         return new Promise( (resolve,reject) => {
             let elementos = [];
-            base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM monitoreo.Registro WHERE ubicacion='${ubicacion}';`,(err,datos,campos)=>{
+            base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM monitoreo.Registro WHERE ubicacion='${ubicacion}';`,(err,data,campos)=>{
                 if (err){
                     reject(new Error());
                     console.log(err);

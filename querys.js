@@ -56,41 +56,33 @@ module.exports = {
                 }
             })
         })
-                
-        /*callback(
-            base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM monitoreo.Registro`,(err,datos,campos)=>{
-                if(err){
+    },extraer_dias: (mes,year,lugar) => {
+        console.log("consultando los dias");
+        let meSiguiente = parseInt(mes)+1;
+        let dia_primero = 1;
+        let dia_final = 1;
+        let meSiguiente = mes +1
+        if (mes==12){
+            dia_final = 31;
+            meSiguiente = 12;
+        }
+
+        return new Promise( (resolve,reject) => {
+            let elementos = [];
+            base_de_datos.query(`SELECT DISTINCT (extract(day FROM fecha)) AS dia FROM monitoreo.Registro WHERE fecha>= '${year}-${mes}-${dia_primero}' AND fecha<'${year}-${meSiguiente}-${dia_final}' AND ubicacion='${lugar}';`, (err,data,otro) => {
+                if (err){
+                    reject(new Error());
                     console.log(err);
+                } else {
+                    for(let i=0;i<data.length;i++){
+                        elementos[i] = data[i].dia;
+                    }
+                    console.log(elementos);
+                    resolve(elementos);
                 }
-                for (let i = 0; i<datos.length;i++){
-                    elementos[i] = datos[i].año;
-                    //console.log(datos[i].año);
-                }
-  
-                console.log("Antes de salir del query: "+elementos);
-                //return[elementos];
-
             })
-            
-        );*/
-        
-            /*base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM monitoreo.Registro`,(err,datos,campos)=>{
-              if(err){
-                  console.log(err)
-              }
-              //console.log(datos);
-              for (let i = 0; i<datos.length;i++){
-                  elementos[i] = datos[i].año;
-                  //console.log(datos[i].año);
-              }
+        })
 
-              console.log("Esto tarda en salir: "+elementos);
-              return[elementos];
-              //console.log(campos);
-          })*/
-          
-          //return[elementos];
-        
     },
     extraer_datos:()=>{
         return new Promise((resolve,reject)=>{

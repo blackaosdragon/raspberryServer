@@ -38,6 +38,7 @@ module.exports = {
     },
     extraer_años: (ubicacion) => {
         //let elementos = [];
+        console.log("Buscando años");
         return new Promise( (resolve,reject) => {
             let elementos = [];
             base_de_datos.query(`SELECT DISTINCT (extract(year FROM fecha)) AS año FROM monitoreo.Registro WHERE ubicacion='${ubicacion}';`,(err,data,campos)=>{
@@ -48,7 +49,9 @@ module.exports = {
                     for (let i = 0; i<data.length;i++){
                         elementos[i] = data[i].año;
                     }
+                    console.log(elementos);
                     resolve(elementos);
+                    console.log("Años enviados");
                 }
             })
         })

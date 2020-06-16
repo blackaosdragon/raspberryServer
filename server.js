@@ -27,6 +27,7 @@ let string_ofice_ID = "";
 let integer_alertas = 0;
 let alerta = 1;
 let alertas_de_un_minuto = 150;
+let minutos_para_guardar_Data = 0;
 
 let timer = 0;
 
@@ -74,18 +75,24 @@ lector.on('data', temp => {
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     timer++;
     if (timer%3==0){
-        //console.log("900ms")
+        console.log("900ms");
+        minutos_para_guardar_Data++;
     }
     //console.log(timer);
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);    
     //console.log(`Temperatura en Float: ${temperatura}`);
+    if(minutos_para_guardar_Data==810){
     if(Number.isNaN(temperatura)){
         console.log(`El numero que se quiere ingresar es ${temperatura}, es incompatible a la base de datos y no se agregara`);
     } else if(temperatura==undefined){
         console.log(`El numero que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
     } else {
         tokens.insertar_valores(temperatura,ubicacion);
+        cnosole.log("data agragada a la DB");
+    }
+    
+    minutos_para_guardar_Data=0;
     }
     //console.log(`Alertas: ${integer_alertas} ubicacion: ${ubicacion} Temp: ${temperatura}°C`);
     if (temperatura>28.9){
@@ -196,6 +203,12 @@ page.post('/buscar',(req,res)=>{
         res.send(respuesta);
     });
     
+})
+page.post('/years', (req,res) => {
+    let ubicacion = req.ubicacion;
+    tokens.extraer_años(ubicacion).then( respuesta => {
+        res.send(respuesta);
+    })
 })
 page.get('/.well-known/pki-validation',(req,res)=>{
     res.send('hello');

@@ -207,6 +207,7 @@ page.post('/buscar',(req,res)=>{
 page.post('/years', (req,res) => {
     console.log("Solicitando años")
     let ubicacion = req.ubicacion;
+    console.log("Ubicacion fuera de la base: ",ubicacion);
     tokens.extraer_años(ubicacion).then( respuesta => {
         res.send(respuesta);
     })

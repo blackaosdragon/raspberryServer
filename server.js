@@ -182,6 +182,13 @@ page.post('/dia',(req,res)=>{
         res.send(respuesta);
     })
 })
+page.post('/days', solocitar_dias = (req, res) => {
+    let mes = req.body.year
+    let ubicacion = req.body.ubicacion
+    let year = req.body.year
+    console.log(`Mes: ${mes}, ubicacion: ${ubicacion}, año: ${year}`);
+    
+})
 page.get('/ubicaciones',(req,res)=>{
     console.log('Solicitando ubicaciones');
     tokens.extraer_ubicacion().then(respuesta=>{

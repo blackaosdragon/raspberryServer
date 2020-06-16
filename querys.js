@@ -61,7 +61,7 @@ module.exports = {
         let meSiguiente = parseInt(mes)+1;
         let dia_primero = 1;
         let dia_final = 1;
-        let meSiguiente = mes +1
+        
         if (mes==12){
             dia_final = 31;
             meSiguiente = 12;

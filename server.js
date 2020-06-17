@@ -71,8 +71,10 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 //let parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
 lector.on('data', temp => {
+    let teempo = new Date();
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
+    console.log(`${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds}`)
     timer++;
     if (timer%3==0){
         console.log("900ms");

@@ -89,7 +89,7 @@ lector.on('data', temp => {
         console.log(`El numero que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
     } else {
         tokens.insertar_valores(temperatura,ubicacion);
-        cnosole.log("data agragada a la DB");
+        console.log("data agragada a la DB");
     }
     
     minutos_para_guardar_Data=0;

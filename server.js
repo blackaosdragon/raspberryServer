@@ -18,7 +18,7 @@ const { parse } = require('path');
 const page = express();
 
 
-
+let hora_server = new Date();
 
 
 const wsPort = 5001;
@@ -77,7 +77,8 @@ lector.on('data', temp => {
     let teempo = new Date();
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
-    console.log(`${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
+    console.log(`Hora  de actualizacion: ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
+    console.log(`Hora  de iniciacion: ${hora_server.getHours()} : ${hora_server.getMinutes()} : ${hora_server.getSeconds()}`)
     let minutosIni = parseInt(teempo.getMinutes());
     let minutosFin = parseInt()
     timer++;

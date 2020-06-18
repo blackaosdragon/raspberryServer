@@ -81,15 +81,8 @@ lector.on('data', temp => {
     //console.log(`Hora  de iniciacion: ${hora_server.getHours()} : ${hora_server.getMinutes()} : ${hora_server.getSeconds()}`)
     let minuto_refresh = parseInt(teempo.getMinutes());
     let segundo_refresh = parseInt(teempo.getSeconds());
-
-
-    if (minuto_refresh%15 == 0){
-        console.log("Cuarto de hora");
-    }
-    //console.log(timer);
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);    
-    //console.log(`Temperatura en Float: ${temperatura}`);
     if(minuto_refresh%15 == 0){
         if(segundo_refresh>=0 && segundo_refresh<=3){
             if(Number.isNaN(temperatura)){

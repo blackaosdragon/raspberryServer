@@ -85,7 +85,7 @@ lector.on('data', temp => {
     let segundo_inicio_server = parseInt(hora_server.getSeconds());
 
     if (minuto_refresh%15){
-        console.log("Cuarto de hora");
+        console.log(minuto_refresh%15);
     }
     timer++;
     if (timer%3==0){

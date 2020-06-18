@@ -79,8 +79,14 @@ lector.on('data', temp => {
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     console.log(`Hora  de actualizacion: ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
     console.log(`Hora  de iniciacion: ${hora_server.getHours()} : ${hora_server.getMinutes()} : ${hora_server.getSeconds()}`)
-    let minutosIni = parseInt(teempo.getMinutes());
-    let minutosFin = parseInt()
+    let minuto_refresh = parseInt(teempo.getMinutes());
+    let segundo_refresh = parseInt(teempo.getSeconds());
+    let minutos_inicio_server = parseInt(hora_server.getMinutes());
+    let segundo_inicio_server = parseInt(hora_server.getSeconds());
+
+    if (minuto_refresh%15){
+        console.log("Cuarto de hora");
+    }
     timer++;
     if (timer%3==0){
         //console.log("900ms");

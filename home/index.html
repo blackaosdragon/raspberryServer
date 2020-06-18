@@ -67,8 +67,8 @@
         //let ip = 'instrumentacionline.ddns.net'
 
 
-        const ip = "192.168.0.13"
-        let ioSocket = io.connect(`192.168.0.13:5000`);
+        const ip = "instrumentacionline.ddns.net"
+        let ioSocket = io.connect(`http://instrumentacionline.ddns.net:5000`);
         ioSocket.on('temp', data => {
             console.log('SocketIO: ', data);
         })

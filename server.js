@@ -77,37 +77,32 @@ lector.on('data', temp => {
     let teempo = new Date();
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
-    console.log(`Hora  de actualizacion: ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
-    console.log(`Hora  de iniciacion: ${hora_server.getHours()} : ${hora_server.getMinutes()} : ${hora_server.getSeconds()}`)
+    //console.log(`Hora  de actualizacion: ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
+    //console.log(`Hora  de iniciacion: ${hora_server.getHours()} : ${hora_server.getMinutes()} : ${hora_server.getSeconds()}`)
     let minuto_refresh = parseInt(teempo.getMinutes());
     let segundo_refresh = parseInt(teempo.getSeconds());
-    let minutos_inicio_server = parseInt(hora_server.getMinutes());
-    let segundo_inicio_server = parseInt(hora_server.getSeconds());
+
 
     if (minuto_refresh%15 == 0){
         console.log("Cuarto de hora");
-    }
-    timer++;
-    if (timer%3==0){
-        //console.log("900ms");
-        minutos_para_guardar_Data++;
     }
     //console.log(timer);
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);    
     //console.log(`Temperatura en Float: ${temperatura}`);
-    if(minutos_para_guardar_Data==810){
-    if(Number.isNaN(temperatura)){
-        console.log(`El numero que se quiere ingresar es ${temperatura}, es incompatible a la base de datos y no se agregara`);
-    } else if(temperatura==undefined){
-        console.log(`El numero que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
-    } else {
-        tokens.insertar_valores(temperatura,ubicacion);
-        console.log("data agragada a la DB");
+    if(minuto_refresh%15 == 0){
+        if(segundo_refresh>=0 && segundo_refresh<=3){
+            if(Number.isNaN(temperatura)){
+                console.log(`El numero que se quiere ingresar es ${temperatura}, es incompatible a la base de datos y no se agregara`);
+            } else if(temperatura==undefined){
+                console.log(`El numero que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
+            } else {
+                tokens.insertar_valores(temperatura,ubicacion);
+                console.log("data agragada a la DB");
+            }
+        }
     }
     
-    minutos_para_guardar_Data=0;
-    }
     //console.log(`Alertas: ${integer_alertas} ubicacion: ${ubicacion} Temp: ${temperatura}°C`);
     if (temperatura>28.9){
         alerta++;

@@ -13,8 +13,11 @@ const path = require('path');
 let asignar = require('./asignacion.js');
 //let datos_temperatura = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
+const { parse } = require('path');
 
 const page = express();
+
+
 
 
 
@@ -74,10 +77,12 @@ lector.on('data', temp => {
     let teempo = new Date();
     //console.log(temp);
     //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
-    console.log(`${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds}`)
+    console.log(`${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
+    let minutosIni = parseInt(teempo.getMinutes());
+    let minutosFin = parseInt()
     timer++;
     if (timer%3==0){
-        console.log("900ms");
+        //console.log("900ms");
         minutos_para_guardar_Data++;
     }
     //console.log(timer);

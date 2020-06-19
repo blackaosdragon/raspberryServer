@@ -223,7 +223,5 @@ page.post('/years', (req,res) => {
         res.send(respuesta);
     })
 })
-page.get('/.well-known/pki-validation',(req,res)=>{
-    res.send('hello');
-})
+
 

@@ -48,7 +48,7 @@ httpServer.listen(pagePort,()=>{
 
 const wss = new Ws.Server({port: wsPort});
 page.use(express.json());
-page.use(express.static(__dirname, {dotfiles: 'allow'}))
+page.use(express.static(__dirname+'/static', {dotfiles: 'allow'}))
 
 page.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','*');
@@ -223,5 +223,6 @@ page.post('/years', (req,res) => {
         res.send(respuesta);
     })
 })
+page.use('/.well-known/pki-validation/',express.static('verifi'))
 
 

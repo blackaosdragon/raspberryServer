@@ -13,7 +13,6 @@ const path = require('path');
 let asignar = require('./asignacion.js');
 //let datos_temperatura = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
-const { parse } = require('path');
 
 const page = express();
 
@@ -34,16 +33,16 @@ let minutos_para_guardar_Data = 0;
 
 let timer = 0;
 
-/*
+
 const httpServer = https.createServer({
-    key: fs.readFileSync(path.resolve('/home/ubuntu/privkey.pem')),
-    cert: fs.readFileSync(path.resolve('/home/ubuntu/cert.pem'))
+    key: fs.readFileSync(path.resolve('/home/ubuntu/server/certs/private.key')),
+    cert: fs.readFileSync(path.resolve('/home/ubuntu/server/certs/certificate.crt'))
    
    },page);
 
 httpServer.listen(pagePort,()=>{
   console.log(`Servidor disponible en el puerto ${pagePort}`);
-})*/
+})
 
 
 const wss = new Ws.Server({port: wsPort});
@@ -223,6 +222,6 @@ page.post('/years', (req,res) => {
         res.send(respuesta);
     })
 })
-page.use('/.well-known/pki-validation/',express.static('verifi'))
+page.use('/.well-known/pki-validation/',express.static('verifi'));
 
 

@@ -28,8 +28,6 @@ let float_ofice_temperature = 0.0;
 let string_ofice_ID = "";
 let integer_alertas = 0;
 let alerta = 1;
-let alertas_de_un_minuto = 150;
-let minutos_para_guardar_Data = 0;
 
 let timer = 0;
 
@@ -58,16 +56,19 @@ page.use((req,res,next)=>{
 })
 page.use('/',express.static(__dirname+'/home'))
 
+
 /*
 const server = page.listen(pagePort, data => {
     //console.log(data);
     console.log(`Servidor corriendo en el puerto ${pagePort}`);
 });
-*/
+este seccion de codigo es cuando el servidor https no sirve
+*/ 
 
 const Readline = SerialPort.parsers.Readline;
-let port = new SerialPort('/dev/ttyUSB0');
-//let puerto_inalambrico = new SerialPort('/dev/ttyUSB1');
+let port = new SerialPort('/dev/ttyUSB0'); //la direccion es por el puerto que esta enmtrnado los datos
+//let puerto_inalambrico = new SerialPort('/dev/ttyUSB1'); 
+//seccion por si habra más antenas o algun otro tipo de sensor
 
 const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 //const lector_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}));
@@ -75,8 +76,6 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 
 lector.on('data', temp => {
     let teempo = new Date();
-    //console.log(temp);
-    //console.log(`Alertas: ${alerta} Temp: ${temp}°C`);
     //console.log(`Hora  de actualizacion: ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
     //console.log(`Hora  de iniciacion: ${hora_server.getHours()} : ${hora_server.getMinutes()} : ${hora_server.getSeconds()}`)
     let minuto_refresh = parseInt(teempo.getMinutes());
@@ -95,8 +94,6 @@ lector.on('data', temp => {
             }
         }
     }
-    
-    //console.log(`Alertas: ${integer_alertas} ubicacion: ${ubicacion} Temp: ${temperatura}°C`);
     if (temperatura>28.9){
         alerta++;
         integer_alertas++;
@@ -112,9 +109,7 @@ const io = require('socket.io')(httpServer);
 
 const ioLector = port.pipe(new Readline({delimiter: '\r\n'}));
 
-ioLector.on('data',temp=>{
-    //console.log(temp);
-    
+ioLector.on('data',temp=>{    
     for(let i = 4; i<=8;i++){
         string_ofice_ID = string_ofice_ID+temp[i];
     }
@@ -157,9 +152,7 @@ wss.on('connection', ws => {
         parser.end(()=>{console.log("lector terminado")})
     })
 })
-//page.use('')
 page.get('/consulta',(req,res)=>{
-    let respuesta = {};
     console.log('Solicitando años');
     //let data = tokens.extraer_años();
     tokens.extraer_datos().then((data=>{

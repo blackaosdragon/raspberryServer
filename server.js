@@ -31,7 +31,7 @@ let alerta = 1;
 
 let timer = 0;
 
-
+/*
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/ubuntu/server/certs/private.key')),
     cert: fs.readFileSync(path.resolve('/home/ubuntu/server/certs/certificate.crt'))
@@ -41,6 +41,7 @@ const httpServer = https.createServer({
 httpServer.listen(puerto,()=>{
   console.log(`Servidor disponible en el puerto ${puerto}`);
 })
+*/
 
 
 const wss = new Ws.Server({port: wsPort});
@@ -57,13 +58,13 @@ page.use((req,res,next)=>{
 page.use('/',express.static(__dirname+'/home'))
 
 
-/*
+
 const server = page.listen(pagePort, data => {
     //console.log(data);
     console.log(`Servidor corriendo en el puerto ${pagePort}`);
 });
-este seccion de codigo es cuando el servidor https no sirve
-*/ 
+//este seccion de codigo es cuando el servidor https no sirve
+
 
 const Readline = SerialPort.parsers.Readline;
 let port = new SerialPort('/dev/ttyUSB0'); //la direccion es por el puerto que esta enmtrnado los datos

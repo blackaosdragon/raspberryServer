@@ -106,7 +106,7 @@ lector.on('data', temp => {
     
 })
 
-const io = require('socket.io')(httpServer);
+const io = require('socket.io')(server);
 
 const ioLector = port.pipe(new Readline({delimiter: '\r\n'}));
 

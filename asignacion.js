@@ -41,6 +41,10 @@ module.exports = {
           return "taller";
       } else if (float_id == 3.0){
           return "manual";
+      } else if (float_id == 4.0){
+          return "nueva ubicacion"
+      } else if (float_id == 5.0){
+          return "nuevo sensor"
       }
   }
 }

@@ -182,7 +182,8 @@ module.exports = {
                             ubicacion: element.ubicacion,
                             temperatura: element.temperatura,
                             fecha: element.fecha
-                        }                       
+                        }
+                        console.log(elementos[i]);
                     });
                     console.log(elementos);
                     resolve(elementos);

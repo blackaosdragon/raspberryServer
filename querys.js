@@ -167,7 +167,7 @@ module.exports = {
         })
     },
     consultar_base_de_datos: (ubication,year,mes,dia,hora_inicial,minuto_inicial,hora_final,minuto_final) => {
-        console.log(`Lugar: ${ubication} ${dia}/${mes}/${year}, Hora: ${hora_inicial}:${minuto_inicial} - ${hora_final}:${minuto_final}`)
+        //console.log(`Lugar: ${ubication} ${dia}/${mes}/${year}, Hora: ${hora_inicial}:${minuto_inicial} - ${hora_final}:${minuto_final}`)
         return new Promise( (resolve,reject) => {
             let elementos = [];
             console.log(`SELECT ubicacion,valor AS temperatura, fecha FROM monitoreo.Registro WHERE ubicacion='${ubication}' AND fecha>='${year}-${mes}-${dia} ${hora_inicial}:${minuto_inicial}:00' AND fecha<'${year}-${mes}-${dia} ${hora_final}:${minuto_final}:00';`)
@@ -176,7 +176,8 @@ module.exports = {
                     console.log(err);
                     reject(new Error());
                 } else {
-                    data.forEach((element,i) => {                    
+                    data.forEach((element,i) => {  
+                        console.log(`${element.ubicacion} ${element.temperatura} ${element.fecha}`)                  
                         elementos[i]={
                             ubicacion: element.ubicacion,
                             temperatura: element.temperatura,

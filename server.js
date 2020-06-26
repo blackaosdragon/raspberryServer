@@ -76,7 +76,7 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 //let parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
 lector.on('data', temp => {
-    //console.log(temp);
+    console.log(temp);
     let teempo = new Date();
     //let extra = "FALSE"
     //console.log(`Hora  de actualizacion: ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)

@@ -85,13 +85,14 @@ lector.on('data', temp => {
     let segundo_refresh = parseInt(teempo.getSeconds());
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);   
-    let id =  asignar.asignar_id(temp);
+    let id = asignar.asignar_id(temp);
+    console.log(id);
     if (temperatura>28.9){
         alerta++;
         integer_alertas++;
         console.log(`${alerta} ${integer_alertas}  Temp: ${temp}°C`);
         mensajes.sendPushAlert(temperatura,alerta,integer_alertas);
-        extra = "TRUE";
+        //extra = "TRUE";
     } else if (temperatura<24.9){
         alerta=0;
     }

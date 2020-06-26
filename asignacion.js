@@ -48,6 +48,14 @@ module.exports = {
       }
   },
   asignar_id: (data_reciber) => {
-      console.log(data_reciber);    
+      //console.log(data_reciber);    
+      let string_id = "";
+      let float_id = 0.0;
+      for (let i=4; i<8; i++){
+        string_id = string_id + data_reciber[i];
+      }
+      if(parseInt(string_id)){
+          return parseInt(string_id);
+      }
   }
 }

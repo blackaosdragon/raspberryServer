@@ -223,6 +223,6 @@ page.post('/years', (req,res) => {
         res.send(respuesta);
     })
 })
-page.use('/.well-known/pki-validation/',express.static('verifi'));
+//page.use('/.well-known/pki-validation/',express.static('verifi'));
 
 

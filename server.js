@@ -101,6 +101,8 @@ lector.on('data', temp => {
                 console.log(`El numero que se quiere ingresar es ${temperatura}, es incompatible a la base de datos y no se agregara`);
             } else if(temperatura==undefined){
                 console.log(`El numero que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
+            } else if (id == undefined){
+                console.log(`El id que se quiere  es ${id} no es valido y no se agregara a la base de datos`);
             } else {
                 tokens.insertar_valores(temperatura,ubicacion,id);
                 console.log("data agragada a la DB");

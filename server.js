@@ -78,7 +78,7 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 lector.on('data', temp => {
     //console.log(temp);
     let teempo = new Date();
-    let extra = "FALSE"
+    //let extra = "FALSE"
     //console.log(`Hora  de actualizacion: ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
     //console.log(`Hora  de iniciacion: ${hora_server.getHours()} : ${hora_server.getMinutes()} : ${hora_server.getSeconds()}`)
     let minuto_refresh = parseInt(teempo.getMinutes());
@@ -86,7 +86,6 @@ lector.on('data', temp => {
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);   
     let id = asignar.asignar_id(temp);
-    console.log(id);
     if (temperatura>28.9){
         alerta++;
         integer_alertas++;
@@ -103,7 +102,7 @@ lector.on('data', temp => {
             } else if(temperatura==undefined){
                 console.log(`El numero que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
             } else {
-                //tokens.insertar_valores(temperatura,ubicacion,extra,ubicacion,marca,modelo,numSerie,inventario,ID);
+                tokens.insertar_valores(temperatura,ubicacion,id);
                 console.log("data agragada a la DB");
             }
         }

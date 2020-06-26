@@ -36,7 +36,8 @@ module.exports = {
             //console.log(datos);
             //console.log(campos);
         })
-    },
+    }
+    ,
     extraer_años: (ubicacion) => {
         let elementos = [];
         console.log("Ubicacion en la base: ",ubicacion);

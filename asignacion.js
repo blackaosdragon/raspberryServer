@@ -46,5 +46,8 @@ module.exports = {
       } else if (float_id == 5.0){
           return "nuevo sensor"
       }
+  },
+  asignar_id: (data_reciber) => {
+      console.log(data_reciber);    
   }
 }

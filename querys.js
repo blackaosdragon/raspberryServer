@@ -20,8 +20,9 @@ module.exports = {
         })
         return tokens;
     },
-    insertar_valores: (temperatura, lugar) => {
-        base_de_datos.query(`INSERT INTO monitoreo.Registro (registro, ubicacion, valor, fecha) VALUES (NULL, '${lugar}', '${temperatura}', CURRENT_TIMESTAMP)`,(err,values,data)=>{
+    insertar_valores: (temperatura, lugar,ID) => {
+        let tiempo = new Date();
+        base_de_datos.query(`INSERT INTO monitoreo.Bitacora(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID) VALUES ("${lugar}",${temperatura}, ${tiempo.getDay()},${tiempo.getMonth()},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes},${tiempo.getSeconds()},${ID});`,(err,values,data)=>{
             if(err){
                 console.log(err);
             }

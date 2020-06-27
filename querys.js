@@ -5,6 +5,8 @@ const base_de_datos = mySql.createConnection({
     password: '107005205',
     
 })
+const data_base = 'monitoreo'
+const tabla_de_datos = 'Bitacora'
 let tokens = [];
 
 module.exports = {
@@ -154,7 +156,20 @@ module.exports = {
     extraer_ubicacion: () => {
         return new Promise((resolve,reject)=>{
             let elementos = [];
+            /*
             base_de_datos.query(`SELECT DISTINCT ubicacion AS lugar FROM monitoreo.Registro;`,(err,data,otro)=>{
+                if(err){
+                    reject(new Error());
+                }else{
+                    for (let i = 0; i<data.length;i++){
+                        elementos[i] = data[i].lugar;
+                    }
+                    
+                    resolve(elementos);
+                }
+                console.log(elementos);
+            })*/
+            base_de_datos.query(`SELECT DISTINCT ubicacion AS lugar FROM ${data_base}.${tabla_de_datos};`,(err,data,otro)=>{
                 if(err){
                     reject(new Error());
                 }else{

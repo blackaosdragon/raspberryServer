@@ -169,7 +169,7 @@ module.exports = {
                 }
                 console.log(elementos);
             })*/
-            base_de_datos.query(`SELECT DISTINCT ubicacion AS lugar FROM ${data_base}.${tabla_de_datos};`,(err,data,otro)=>{
+            base_de_datos.query(`SELECT DISTINCT Lugar AS lugar FROM ${data_base}.${tabla_de_datos};`,(err,data,otro)=>{
                 if(err){
                     reject(new Error());
                 }else{

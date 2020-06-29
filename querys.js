@@ -46,7 +46,7 @@ module.exports = {
         console.log("Buscando años");
         return new Promise( (resolve,reject) => {
             //let elementos = [];
-            base_de_datos.query(`SELECT DISTINCT Año FROM monitoreo.Registro WHERE ubicacion='${ubicacion}';`,(err,data,campos)=>{
+            base_de_datos.query(`SELECT DISTINCT Año FROM ${data_base}.${tabla_de_datos} WHERE Lugar='${ubicacion}';`,(err,data,campos)=>{
                 if (err){
                     reject(new Error());
                     console.log(err);

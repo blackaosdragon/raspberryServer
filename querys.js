@@ -24,7 +24,7 @@ module.exports = {
     },
     insertar_valores: (temperatura, lugar,ID) => {
         let tiempo = new Date();
-        base_de_datos.query(`INSERT INTO monitoreo.Bitacora(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID) VALUES ("${lugar}",${temperatura}, ${tiempo.getDay()},${tiempo.getMonth()},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${ID});`,(err,values,data)=>{
+        base_de_datos.query(`INSERT INTO monitoreo.Bitacora(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID) VALUES ("${lugar}",${temperatura}, ${tiempo.getDate()},${tiempo.getMonth()},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${ID});`,(err,values,data)=>{
             if(err){
                 console.log(err);
             }

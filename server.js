@@ -86,13 +86,13 @@ lector.on('data', temp => {
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);   
     let id = asignar.asignar_id(temp);
-    if (temperatura>28.9){
+    if (temperatura>38.9){
         alerta++;
         integer_alertas++;
         console.log(`${alerta} ${integer_alertas}  Temp: ${temp}°C`);
         mensajes.sendPushAlert(temperatura,alerta,integer_alertas);
         //extra = "TRUE";
-    } else if (temperatura<38.1){
+    } else if (temperatura<38.8){
         alerta=0;
     }
     if(minuto_refresh%15 == 0){

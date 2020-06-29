@@ -110,7 +110,7 @@ module.exports = {
     extraer_mes: (year) => {
         return new Promise((resolve,reject)=>{
             let elementos =[];
-            base_de_datos.query(`SELECT DISTINCT Mes AS mes FROM monitoreo.Bitacora WHERE Año=${year};`,(err,data,filas)=>{
+            base_de_datos.query(`SELECT DISTINCT Mes AS mes FROM ${data_base}.${tabla_de_datos} WHERE Año=${year};`,(err,data,filas)=>{
                 if(err){
                     reject (new Error());
                 }

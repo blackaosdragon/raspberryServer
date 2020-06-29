@@ -92,7 +92,7 @@ lector.on('data', temp => {
         console.log(`${alerta} ${integer_alertas}  Temp: ${temp}°C`);
         mensajes.sendPushAlert(temperatura,alerta,integer_alertas);
         //extra = "TRUE";
-    } else if (temperatura<24.9){
+    } else if (temperatura<38.1){
         alerta=0;
     }
     if(minuto_refresh%15 == 0){

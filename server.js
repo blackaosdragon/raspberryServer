@@ -205,12 +205,8 @@ page.post('/buscar',(req,res)=>{
     let mes = data.mes;
     let dia = data.dia;
     let lugar = data.lugar;
-    let hora_inicio = data.horas;
-    let minuto_inicio = data.minutos;
-    let hora_final = data.horaFinal;
-    let minuto_final = data.minutoFinal;
-    console.log(` Lugar: ${lugar} ${dia}/${mes}/${year} ${hora_inicio}:${minuto_inicio} - ${hora_final}:${minuto_final}`);
-    tokens.consultar_base_de_datos(lugar,year,mes,dia,hora_inicio,minuto_inicio,hora_final,minuto_final).then(respuesta=>{
+    console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
+    tokens.consultar_base_de_datos(lugar,year,mes,dia).then(respuesta=>{
         res.send(respuesta);
     });
     

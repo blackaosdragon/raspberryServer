@@ -30,6 +30,7 @@ let float_ofice_temperature = 0.0;
 let string_ofice_ID = "";
 let integer_alertas = 0;
 let alerta = 1;
+let turno = 1;
 
 
 let timer = 0;
@@ -107,19 +108,20 @@ lector.on('data', temp => {
             } else if (id == undefined){
                 console.log(`El id que se quiere  es ${id} no es valido y no se agregara a la base de datos`);
             } else {
-                for(let turno = 1; turno<sensores_en_total; turno++){
-                    if(turno==id){
-                        tokens.insertar_valores(temperatura,ubicacion,id);
-                        console.log("data agragada a la DB");
-                    } else{
-                        console.log(`Turno ${turno} y el id: ${id} no coinciden`);
-                    }
+                while(turno==id){
+                    tokens.insertar_valores(temperatura,ubicacion,id);
+                    console.log("data agragada a la DB");
+                    turno++;
                 }
                 //tokens.insertar_valores(temperatura,ubicacion,id);
                 //console.log("data agragada a la DB");
             }
         }
     }
+    if(minuto_refresh==16){
+        turno=1;
+    }
+
     
 })
 

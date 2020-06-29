@@ -74,7 +74,7 @@ module.exports = {
 
         return new Promise( (resolve,reject) => {
             let elementos = [];
-            base_de_datos.query(`SELECT DISTINCT (extract(day FROM fecha)) AS dia FROM monitoreo.Registro WHERE fecha>= '${year}-${mes}-${dia_primero}' AND fecha<'${year}-${meSiguiente}-${dia_final}' AND ubicacion='${lugar}';`, (err,data,otro) => {
+            base_de_datos.query(`SELECT DISTINCT Dia AS dia FROM ${data_base}.${tabla_de_datos} WHERE Año=${year} AND Lugar='${lugar}' AND Mes=${mes};`, (err,data,otro) => {
                 if (err){
                     reject(new Error());
                     console.log(err);

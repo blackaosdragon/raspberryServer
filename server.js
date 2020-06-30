@@ -111,7 +111,7 @@ lector.on('data', temp => {
                 while(turno==id){
                     tokens.insertar_valores(temperatura,ubicacion,id);
                     console.log("data agragada a la DB");
-                    console.log(turno);
+                    console.log(`${turno} y ${id}`);
                     turno++;
                 }
                 //tokens.insertar_valores(temperatura,ubicacion,id);

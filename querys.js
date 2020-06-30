@@ -213,5 +213,8 @@ module.exports = {
                 }
             })
         })
-    },    
+    },
+    leer_error: (error) => {
+        console.log(error);
+    }
 }

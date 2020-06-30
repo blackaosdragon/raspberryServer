@@ -100,7 +100,7 @@ lector.on('data', temp => {
         alerta=0;
     }
     if(minuto_refresh%15 == 0){
-        if(segundo_refresh>=0 && segundo_refresh<=59){
+        if(segundo_refresh>=0 && segundo_refresh<=10){
             if(Number.isNaN(temperatura)){
                 console.log(`El numero que se quiere ingresar es ${temperatura}, es incompatible a la base de datos y no se agregara`);
             } else if(temperatura==undefined){

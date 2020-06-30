@@ -100,7 +100,12 @@ lector.on('data', temp => {
         alerta=0;
     }
     if(minuto_refresh%15 == 0){
-        if(segundo_refresh>=0 && segundo_refresh<=2){
+        /*
+        while(id==turno){
+            tokens.insertar_valores(temperatura,ubicacion,id);
+        }
+        */
+        if(segundo_refresh>=0 && segundo_refresh<2){
             if(Number.isNaN(temperatura)){
                 console.log(`El numero que se quiere ingresar es ${temperatura}, es incompatible a la base de datos y no se agregara`);
             } else if(temperatura==undefined){
@@ -109,6 +114,7 @@ lector.on('data', temp => {
                 console.log(`El id que se quiere  es ${id} no es valido y no se agregara a la base de datos`);
             } else {
                 tokens.insertar_valores(temperatura,ubicacion,id);
+                console.log(`Data agragada a la DB: ${ubicacion} ${temperatura} ${id}`);
                 /*
                 while(turno==id){
                     

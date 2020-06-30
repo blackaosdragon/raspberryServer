@@ -129,7 +129,9 @@ lector.on('data', temp => {
                 //console.log("data agragada a la DB");
             }
         }
-    }    
+    } else {
+        turno=1;
+    }
 })
 
 const io = require('socket.io')(httpServer);

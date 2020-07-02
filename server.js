@@ -125,6 +125,10 @@ lector.on('data', temp => {
                 tokens.insertar_valores(temperatura,ubicacion,id);
                 turno++;
             }
+            if(segundo_refresh%5==0){
+                turno++;
+                console.log(turno);
+            }
         }
     } else {
         turno=1;

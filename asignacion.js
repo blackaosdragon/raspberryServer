@@ -40,7 +40,7 @@ module.exports = {
       } else if (float_id==2.0){
           return "taller";
       } else if (float_id == 3.0){
-          return "manual";
+          return "refrigerador";
       } else if (float_id == 4.0){
           return "nueva ubicacion"
       } else if (float_id == 5.0){

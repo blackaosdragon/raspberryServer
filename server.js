@@ -124,6 +124,13 @@ lector.on('data', temp => {
             } else {
                 tokens.buscar_repetido(turno).then(response=>{
                     console.log(response);
+                    if(response){
+                        console.log("respondio");
+                        console.log(response);
+                    } else {
+                        console.log("NO hubo respuesta");
+                        console.log(response);
+                    }
                 })
                 console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}`);
                 tokens.insertar_valores(temperatura,ubicacion,id);

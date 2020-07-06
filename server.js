@@ -81,7 +81,7 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 //let parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
 lector.on('data', temp => {
-    console.log(`${temp} turno: ${turno}`);
+    //console.log(`${temp} turno: ${turno}`);
     let teempo = new Date();
     //let extra = "FALSE"
     //console.log(`Hora  de actualizacion: ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
@@ -103,6 +103,7 @@ lector.on('data', temp => {
     if(minuto_refresh%15 == 0){
         //console.log(`${temp} turno: ${turno}`);
         while(id==turno){
+            console.log(`${temp} turno: ${turno}`);
             if(Number.isNaN(temperatura)){
                 console.log(`El valor de la temperatura que se quiere ingresar no es un entero: ${temperatura}, es incompatible en la base de datos y no se agregara`);
                 turno++;                    

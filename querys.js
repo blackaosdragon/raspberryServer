@@ -216,5 +216,24 @@ module.exports = {
     },
     leer_error: (error) => {
         console.log(error);
+    },
+    buscar_repetido: (id_turno) => {
+        let tiempo = new Date();
+        let mes = tiempo.getMonth()+1;
+        return new Promise((resolve,reject)=>{
+            base_de_datos.query(`SELECT * FROM monitore.Bitacora WHERE ID=${id_turno} AND Año=${tiempo.getFullYear()} AND Mes=${mes} Dia=${tiempo.getDate()} AND Hora=${tiempo.getHours()} AND Minuto>=${tiempo.getMinutes()}`,(err,data,otro)=>{
+                if(err){
+                    console.log(err);
+                    reject(new Error());
+                }
+                else{
+                    console.log(data);
+                    resolve(data);
+                }
+    
+            })
+
+        })
+        
     }
 }

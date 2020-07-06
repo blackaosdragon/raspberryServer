@@ -14,6 +14,7 @@ let asignar = require('./asignacion.js');
 //let datos_temperatura = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
 const { pbkdf2 } = require('crypto');
+const { response } = require('express');
 
 const page = express();
 
@@ -24,7 +25,7 @@ let hora_server = new Date();
 const wsPort = 5001;
 const pagePort = 5000;
 const puerto = 443;
-const sensores_en_total = 2;
+const sensores_en_total = 3;
 let string_ofice_temperature = "";
 let float_ofice_temperature = 0.0;
 let string_ofice_ID = "";
@@ -80,7 +81,7 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 //let parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
 lector.on('data', temp => {
-    console.log(`${temp} turno: ${turno}`);
+    //console.log(`${temp} turno: ${turno}`);
     let teempo = new Date();
     //let extra = "FALSE"
     //console.log(`Hora  de actualizacion: ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
@@ -104,26 +105,32 @@ lector.on('data', temp => {
             if(Number.isNaN(temperatura)){
                 console.log(`El valor de la temperatura que se quiere ingresar no es un entero: ${temperatura}, es incompatible en la base de datos y no se agregara`);
                 //turno++;
-                if(segundo_refresh%10==0){
+                if(segundo_refresh%5==0){
                     turno++;                    
                 }
                 tokens.leer_error(`Bug: id=${id} turno=${turno} data=${temperatura}`);
             } else if(temperatura==undefined){
                 console.log(`El valor de la temperatura que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
-                if(segundo_refresh%10==0){
+                if(segundo_refresh%5==0){
                     turno++;                    
                 }
                 //turno++;
             } else if (id == undefined){
                 console.log(`El id que se quiere  es ${id} no es valido y no se agregara a la base de datos`);
-                if(segundo_refresh%10==0){
+                if(segundo_refresh%5==0){
                     turno++;                    
                 }
                 //turno++;
             } else {
+                tokens.buscar_repetido(turno).then(response=>{
+                    console.log(response);
+                })
                 console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}`);
                 tokens.insertar_valores(temperatura,ubicacion,id);
                 turno++;
+                if(sensores_en_total<turno){
+                    turno=0;
+                }
             }
             
         }

@@ -101,6 +101,7 @@ lector.on('data', temp => {
         alerta=0;
     }
     if(minuto_refresh%15 == 0){
+        console.log(`${temp} turno: ${turno}`);
         while(id==turno){
             if(Number.isNaN(temperatura)){
                 console.log(`El valor de la temperatura que se quiere ingresar no es un entero: ${temperatura}, es incompatible en la base de datos y no se agregara`);

@@ -131,6 +131,8 @@ lector.on('data', temp => {
                         console.log("NO hubo respuesta");
                         console.log(response);
                     }
+                }).catch(err=>{
+                    console.log(err);
                 })
                 console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}`);
                 tokens.insertar_valores(temperatura,ubicacion,id);

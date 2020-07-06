@@ -124,24 +124,21 @@ lector.on('data', temp => {
             } else {
                 tokens.buscar_repetido(turno).then(response=>{
                     console.log(response);
-                    if(response){
-                        console.log("respondio");
-                        console.log(response);
+                    if(response.length<1){
+                        console.log("Ya existe un dato agregado a la base");
+                        turno++;
                     } else {
-                        console.log("NO hubo respuesta");
-                        console.log(response);
+                        console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}`);
+                        tokens.insertar_valores(temperatura,ubicacion,id);
+                        turno++;                        
                     }
                 }).catch(err=>{
                     console.log(err);
                 })
-                console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}`);
-                tokens.insertar_valores(temperatura,ubicacion,id);
-                turno++;
                 if(sensores_en_total<turno){
                     turno=1;
                 }
             }
-            
         }
     } else {
         turno=1;

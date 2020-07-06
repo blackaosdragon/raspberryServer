@@ -227,7 +227,7 @@ module.exports = {
                     reject(new Error());
                 }
                 else{
-                    console.log(data);
+                    //console.log(data);
                     resolve(data);
                 }
     

@@ -99,7 +99,7 @@ lector.on('data', temp => {
     } else if (temperatura<38.8){
         alerta=0;
     }
-    if(minuto_refresh%15 >= 0 && minuto_refresh%15<=5){
+    if(minuto_refresh%15 == 0){
         //console.log(`${temp} turno: ${turno}`);
         while(id==turno){
             console.log(`${temp} turno: ${turno}`);
@@ -118,20 +118,15 @@ lector.on('data', temp => {
                 tokens.buscar_repetido(turno).then(response=>{
                     console.log(`Tamaño de la respuesta: ${response.length}`);
                     if(response.length>0){
-                        console.log("Ya existe un dato agregado a la base");
-                        //console.log(response)
-                        //turno++;
+                        console.log(`Para el id ${id} ya existe un dato guardado`);
                     } else {
                         console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}`);
                         tokens.insertar_valores(temperatura,ubicacion,id);
-                        //turno++;                        
                     }
                 }).catch(err=>{
                     console.log(err);
-                    //turno++;
                 })
                 turno++;
-                
             }
         } 
         turno++;

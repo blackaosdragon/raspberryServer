@@ -116,6 +116,7 @@ lector.on('data', temp => {
                 console.log(`${temp} turno: ${turno}`);
                 console.log("Entrando al ciclo y revisando si hay un dato repetido");
                 tokens.buscar_repetido(turno).then(response=>{
+                    console.log(`Tamaño de la respuesta: ${response.length}`);
                     if(response.length<1){
                         console.log("Ya existe un dato agregado a la base");
                         console.log(response)

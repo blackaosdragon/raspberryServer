@@ -132,7 +132,8 @@ lector.on('data', temp => {
                     turno=1;
                 }
             }
-        }
+        } 
+        turno++;
     } else {
         turno=1;
     }

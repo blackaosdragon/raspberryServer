@@ -119,7 +119,7 @@ lector.on('data', temp => {
                     console.log(`Tamaño de la respuesta: ${response.length}`);
                     if(response.length>0){
                         console.log("Ya existe un dato agregado a la base");
-                        console.log(response)
+                        //console.log(response)
                         //turno++;
                     } else {
                         console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}`);

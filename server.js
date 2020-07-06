@@ -126,7 +126,7 @@ lector.on('data', temp => {
                 }).catch(err=>{
                     console.log(err);
                 })
-                turno++;
+                //turno++;
             }
         } 
         turno++;

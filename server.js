@@ -100,7 +100,7 @@ lector.on('data', temp => {
     } else if (temperatura<38.8){
         alerta=0;
     }
-    if(minuto_refresh%5 == 0){
+    if(minuto_refresh%15 == 0){
         //console.log(`${temp} turno: ${turno}`);
         while(id==turno){
             if(Number.isNaN(temperatura)){

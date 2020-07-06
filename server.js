@@ -113,21 +113,23 @@ lector.on('data', temp => {
                 console.log(`El id que se quiere  es ${id} no es valido y no se agregara a la base de datos`);
                 turno++;
             } else {
+                console.log(`${temp} turno: ${turno}`);
                 console.log("Entrando al ciclo y revisando si hay un dato repetido");
                 tokens.buscar_repetido(turno).then(response=>{
                     if(response.length<1){
                         console.log("Ya existe un dato agregado a la base");
                         console.log(response)
-                        turno++;
+                        //turno++;
                     } else {
                         console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}`);
                         tokens.insertar_valores(temperatura,ubicacion,id);
-                        turno++;                        
+                        //turno++;                        
                     }
                 }).catch(err=>{
                     console.log(err);
-                    turno++;
+                    //turno++;
                 })
+                turno++;
                 
             }
         } 

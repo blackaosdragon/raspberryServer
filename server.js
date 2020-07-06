@@ -114,13 +114,13 @@ lector.on('data', temp => {
                 turno++;
             } else {
                 console.log(`${temp} turno: ${turno}`);
-                console.log(`Entrando al ciclo y revisando si hay un dato repetido. ${teempo.getHours()} : ${teempo.getMinutes} : ${teempo.getSeconds()}`);
+                console.log(`Entrando al ciclo y revisando si hay un dato repetido. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
                 tokens.buscar_repetido(turno).then(response=>{
                     console.log(`Tamaño de la respuesta: ${response.length}`);
                     if(response.length>0){
-                        console.log(`Para el id ${id} ya existe un dato guardado. ${teempo.getHours()} : ${teempo.getMinutes} : ${teempo.getSeconds()}`);
+                        console.log(`Para el id ${id} ya existe un dato guardado. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
                     } else {
-                        console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}. ${teempo.getHours()} : ${teempo.getMinutes} : ${teempo.getSeconds()}`);
+                        console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
                         tokens.insertar_valores(temperatura,ubicacion,id);
                     }
                 }).catch(err=>{

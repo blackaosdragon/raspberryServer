@@ -87,7 +87,6 @@ lector.on('data', temp => {
     //console.log(`Hora  de actualizacion: ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
     //console.log(`Hora  de iniciacion: ${hora_server.getHours()} : ${hora_server.getMinutes()} : ${hora_server.getSeconds()}`)
     let minuto_refresh = parseInt(teempo.getMinutes());
-    let segundo_refresh = parseInt(teempo.getSeconds());
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);   
     let id = asignar.asignar_id(temp);
@@ -100,7 +99,7 @@ lector.on('data', temp => {
     } else if (temperatura<38.8){
         alerta=0;
     }
-    if(minuto_refresh%15 == 0){
+    if(minuto_refresh%15 >= 0 && minuto_refresh%15<=5){
         //console.log(`${temp} turno: ${turno}`);
         while(id==turno){
             console.log(`${temp} turno: ${turno}`);
@@ -135,6 +134,7 @@ lector.on('data', temp => {
                 
             }
         } 
+        turno++;
         if(sensores_en_total<turno){
             turno=1;
         }

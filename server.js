@@ -101,7 +101,7 @@ lector.on('data', temp => {
     }
     if(minuto_refresh%15 == 0){
         console.log(`Dato`);
-        //console.log(`${temp} turno: ${turno}`);
+        console.log(`${temp} turno: ${turno}`);
         if(id==turno){
             console.log(`${temp} turno: ${turno}`);
             if(Number.isNaN(temperatura)){

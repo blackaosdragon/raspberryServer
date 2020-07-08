@@ -119,6 +119,9 @@ lector.on('data', temp => {
                         console.log(`Para el id ${id} ya existe un dato guardado. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
                     } else {
                         console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
+                        if(id==2){
+                            temperatura = temperatura + 1.2;
+                        }
                         tokens.insertar_valores(temperatura,ubicacion,id);
                     }
                 }).catch(err=>{
@@ -145,6 +148,9 @@ ioLector.on('data',temp=>{
     }
     let id_sensor = parseFloat(string_ofice_ID);
     let sensor_manual = asignar.string_to_float(temp);
+    if(id_sensor==2){
+        sensor_manual = sensor_manual + 1.2;
+    }
     io.emit('temp',`${id_sensor} ${sensor_manual}`);
     string_ofice_ID = "";
 });

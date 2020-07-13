@@ -151,6 +151,9 @@ ioLector.on('data',temp=>{
     if(id_sensor==2){
         sensor_manual = sensor_manual + 1.2;
     }
+    if(id_sensor==3){
+        
+    }
     io.emit('temp',`${id_sensor} ${sensor_manual}`);
     string_ofice_ID = "";
 });

@@ -108,6 +108,8 @@ lector.on('data', temp => {
                 console.log(`El valor de la temperatura que se quiere ingresar no es un entero: ${temperatura}, es incompatible en la base de datos y no se agregara`);
             } else if(temperatura==undefined){
                 console.log(`El valor de la temperatura que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
+            } else if(temperatura==null) {
+                console.log(`El valor de la tamperatura es ${temperatura}`)
             } else if (id == undefined){
                 console.log(`El id que se quiere  es ${id} no es valido y no se agregara a la base de datos`);
             } else {
@@ -154,7 +156,12 @@ ioLector.on('data',temp=>{
     if(id_sensor==3){
         
     }
-    io.emit('temp',`${id_sensor} ${sensor_manual}`);
+    if(sensor_manual==null || sensor_manual==undefined || Number.isNaN(sensor_manual) || sensor_manual=='NaN'){
+        console.log(`Temperatura es ${sensor_manual}, no es valida para emitirse`);
+    } else {
+        io.emit('temp',`${id_sensor} ${sensor_manual}`);
+    }
+    
     string_ofice_ID = "";
 });
 

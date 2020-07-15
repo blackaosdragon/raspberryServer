@@ -2,5 +2,18 @@ The --keep-until-expiring flag instructs certbot to keep the certificate if it i
 
 cat /sys/class/net/eth0/address
 ip link show eth0 
-ip addr show
+    ip addr show
 ip link
+
+config raspberry
+network:
+    version: 2
+    renderer: networkd
+    ethernets:
+        eth0:
+            addresses: [192.168.1.10/24]
+            gateway4: 192.168.1.1
+            nameservers:
+             addresses: [8.8.8.8,4.4.4.2]
+            dhcp4: false
+            optional: true

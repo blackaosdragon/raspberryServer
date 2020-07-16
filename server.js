@@ -110,20 +110,17 @@ lector.on('data', temp => {
                 console.log(`El valor de la temperatura que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
             } else if(temperatura==null) {
                 console.log(`El valor de la tamperatura es ${temperatura}`)
-            } else if (id == undefined){
+            } else if (id == undefined || id == null || Number.isNaN(id)){
                 console.log(`El id que se quiere  es ${id} no es valido y no se agregara a la base de datos`);
             } else {
-                console.log(`${temp} turno: ${turno}`);
-                console.log(`Entrando al ciclo y revisando si hay un dato repetido. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
+                //console.log(`${temp} turno: ${turno}`);
+                //console.log(`Entrando al ciclo y revisando si hay un dato repetido. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
                 tokens.buscar_repetido(turno).then(response=>{
                     console.log(`Tamaño de la respuesta: ${response.length}`);
                     if(response.length>0){
                         console.log(`Para el id ${id} ya existe un dato guardado. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
                     } else {
                         console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
-                        if(id==2){
-                            temperatura = temperatura + 1.2;
-                        }
                         tokens.insertar_valores(temperatura,ubicacion,id);
                     }
                 }).catch(err=>{
@@ -150,13 +147,7 @@ ioLector.on('data',temp=>{
     }
     let id_sensor = parseFloat(string_ofice_ID);
     let sensor_manual = asignar.string_to_float(temp);
-    if(id_sensor==2){
-        sensor_manual = sensor_manual + 1.2;
-    }
-    if(id_sensor==3){
-        
-    }
-    if(sensor_manual==null || sensor_manual==undefined || Number.isNaN(sensor_manual) || sensor_manual=='NaN'){
+    if(sensor_manual == null || sensor_manual == undefined || Number.isNaN(sensor_manual) || sensor_manual == 'NaN'){
         console.log(`Temperatura "${temp}" no es valida para emitirse`);
     } else {
         io.emit('temp',`${id_sensor} ${sensor_manual}`);

@@ -229,6 +229,8 @@ page.get('/ubicaciones',(req,res)=>{
         res.send(respuesta);
     })
 })
+
+let name = null;
 page.post('/buscar',(req,res)=>{
     let data = req.body
     let year = data.year;
@@ -236,11 +238,24 @@ page.post('/buscar',(req,res)=>{
     let dia = data.dia;
     let lugar = data.lugar;
     console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
-    tokens.consultar_base_de_datos(lugar,year,mes,dia).then(respuesta=>{
+    tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
+        name = respuesta;
+    })
+    tokens.consultar_base_de_datos(lugar,year,mes,dia,name).then(respuesta=>{
         res.send(respuesta);
     });
     
 })
+page.get('/descarga_consulta', (req,res)=>{
+    res.download(name);
+    fs.unlink(name,(err)=>{
+        if(err){
+            throw err;
+        }
+        console.log(`${name} borrado`);
+    })
+})
+
 page.post('/years', (req,res) => {
     console.log("Solicitando años")
     let ubicacion = req.body.ubicacion;

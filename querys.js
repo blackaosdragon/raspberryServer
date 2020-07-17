@@ -195,7 +195,7 @@ module.exports = {
                     console.log(err);
                     reject(new Error());
                 } else {
-                    fs.appendFile(`Consulta ${ubication} ${year}-${mes}-${dia}`,``,function(err){
+                    fs.appendFile(`Consulta ${ubication} ${year}-${mes}-${dia}.csv`,`Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}\n Lugar; Temperatura; Hora\n`,function(err){
                         if(err){
                             throw err;
                         }
@@ -204,7 +204,7 @@ module.exports = {
                     })
                     data.forEach((element,i) => {  
                         console.log(`${element.ubicacion} ${element.temperatura} ${element.fecha}`)                  
-                        fs.appendFile(`Consulta ${ubication} ${year}-${mes}-${dia}`,`${element.ubicacion}; ${element.temperatura}°C; ${element.Hora}:${element.Minuto} \n`,function(err){
+                        fs.appendFile(`Consulta ${ubication} ${year}-${mes}-${dia}`,`"${element.ubicacion}"; "${element.temperatura}°C"; "${element.Hora}:${element.Minuto}" \n`,function(err){
                             if(err){
                                 throw err;
                             }

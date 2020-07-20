@@ -220,9 +220,10 @@ module.exports = {
                             if(err){
                                 throw err;
                             }
-                            console.log('Guardado');
+                            //console.log('Guardado');
     
                         })
+                        console.log("Archivo creado y actualizado");
                         elementos[i]={
                             ubicacion: element.ubicacion,
                             temperatura: element.temperatura,

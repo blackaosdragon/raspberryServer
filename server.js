@@ -241,6 +241,7 @@ page.post('/buscar',(req,res)=>{
     console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
         console.log(`Obteniendo el nombre: ${respuesta}`);
+        name = respuesta;
         return respuesta;
     })
     .then(name=>{

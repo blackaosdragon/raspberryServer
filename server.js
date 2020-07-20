@@ -247,14 +247,18 @@ page.post('/buscar',(req,res)=>{
     });
     
 })
-page.get('/descarga_consulta', (req,res)=>{
-    console.log(name);
-    //res.download(path.join(__dirname,`${name}`),`${name}`);
+page.get('/descarga_consulta/consulta.csv', (req,res)=>{
+    res.download('/consulta.csv');
+    console.log("Solicitando el archivo");
 
-    res.download(`/${name}`,'consulta.csv');
-    res.send("Respuesta");
+
+    //page.use('/',express.static(__dirname+'/home'))
+    //res.download('/home/ubuntu/server/',`${name}`),`${name}`);
+
+    //res.download(`/${name}`,'consulta.csv');
+    //res.send("Respuesta");
     //res.sendFile(`/home/ubuntu/server/${name}`);
-    console.log(`Descargando ${name}`);
+    //console.log(`Descargando ${name}`);
     /*
     return new Promise ((resolve,reject)=>{
         res.download(name);

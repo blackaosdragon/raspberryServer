@@ -250,7 +250,7 @@ page.post('/buscar',(req,res)=>{
 page.get('/descarga_consulta', (req,res)=>{
     console.log(name);
     res.download(name);
-    res.sendFile(name);
+    res.sendFile(`/home/ubuntu/server/${name}`);
     console.log("descargando archivo");
     /*
     return new Promise ((resolve,reject)=>{

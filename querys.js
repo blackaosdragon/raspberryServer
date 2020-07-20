@@ -215,7 +215,7 @@ module.exports = {
 
                     })
                     data.forEach((element,i) => {  
-                        console.log(`${element.ubicacion} ${element.temperatura} ${element.fecha}`)                  
+                        //console.log(`${element.ubicacion} ${element.temperatura} ${element.fecha}`)                  
                         fs.appendFile(`Consulta ${ubication} ${year}-${mes}-${dia}.csv`,`"${element.ubicacion}"; "${element.temperatura}°C"; "${element.Hora}:${element.Minuto}" \n`,function(err){
                             if(err){
                                 throw err;
@@ -234,9 +234,9 @@ module.exports = {
                             minuto: element.Minuto,
                             segundo: element.Segundo
                         }
-                        console.log(elementos[i]);
+                        //console.log(elementos[i]);
                     });
-                    console.log(elementos);
+                    //console.log(elementos);
                     resolve(elementos);
                 }
             })

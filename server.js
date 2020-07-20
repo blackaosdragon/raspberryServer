@@ -240,15 +240,18 @@ page.post('/buscar',(req,res)=>{
     let lugar = data.lugar;
     console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
-        name = respuesta;
-        console.log(`Obteniendo el nombre: ${name}`);
+        console.log(`Obteniendo el nombre: ${respuesta}`);
+        return respuesta;
     })
-    console.log(`Proporcionando el nombre: ${name} para consultar la case de datos`)
-    tokens.consultar_base_de_datos(lugar,year,mes,dia,name)
-    .then(respuesta=>{
-        console.log(`Despues de llenar el archivo: ${name}`);
-        res.send(respuesta);
-    });
+    .then(name=>{
+        console.log(`Proporcionando el nombre: ${name} para consultar la case de datos`)
+        tokens.consultar_base_de_datos(lugar,year,mes,dia,name)
+        .then(respuesta=>{
+            console.log(`Despues de llenar el archivo: ${name}`);
+            res.send(respuesta);
+        });
+    })
+    
     
 })
 page.get('/descarga_consulta', (req,res)=>{

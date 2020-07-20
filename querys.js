@@ -211,7 +211,7 @@ module.exports = {
                     reject(new Error());
                 } else {
                     console.log(`Creando la cabecera del archivo: ${name}`)
-                    fs.appendFile(`${name}`,`"Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}"\n "Lugar"; "Temperatura"; "Hora"\n`,function(err){
+                    fs.appendFile(`${name}`,`"Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}"\n "Lugar"; "Temperatura"; "Hora"\n; "Minuto"\n`,function(err){
                         if(err){
                             throw err;
                         }
@@ -221,7 +221,7 @@ module.exports = {
                     console.log(`Para cada elemento en el archivo: ${name}`)
                     data.forEach((element,i) => {  
                         //console.log(`${element.ubicacion} ${element.temperatura} ${element.fecha}`)                  
-                        fs.appendFile(`${name}`,`"${element.ubicacion}"; "${element.temperatura}°C"; "${element.Hora}:${element.Minuto}" \n`,function(err){
+                        fs.appendFile(`${name}`,`"${element.ubicacion}"; "${element.temperatura}°C"; "${element.Hora}";"${element.Minuto}" \n`,function(err){
                             if(err){
                                 throw err;
                             }

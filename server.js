@@ -248,7 +248,7 @@ page.post('/buscar',(req,res)=>{
     
 })
 page.get('/descarga_consulta', (req,res)=>{
-    res.download('consulta.csv');
+    res.download('B618C96DA3686B8EF52DB4EAD6FC7A3E.txt','data.txt');
     console.log("Solicitando el archivo");
 
 

@@ -249,8 +249,8 @@ page.post('/buscar',(req,res)=>{
 })
 page.get('/descarga_consulta', (req,res)=>{
     console.log(name);
-    res.download(name);
-    res.sendFile(`/home/ubuntu/server/${name}`);
+    res.download(`/${name}`,'consulta.csv');
+    //res.sendFile(`/home/ubuntu/server/${name}`);
     console.log("descargando archivo");
     /*
     return new Promise ((resolve,reject)=>{

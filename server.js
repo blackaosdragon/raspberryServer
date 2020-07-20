@@ -15,6 +15,8 @@ let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
 const { pbkdf2 } = require('crypto');
 const { response } = require('express');
+const { resolve } = require('path');
+const { rejects } = require('assert');
 
 const page = express();
 
@@ -247,8 +249,13 @@ page.post('/buscar',(req,res)=>{
     
 })
 page.get('/descarga_consulta', (req,res)=>{
-    res.download(name);
-    console.log("descargando archivo");
+    return new Promise ((resolve,reject)=>{
+        res.download(name);
+        resolve(name);
+        console.log("descargando archivo");
+    })
+    
+    
     /*
     fs.unlink(name,(err)=>{
         if(err){

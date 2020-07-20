@@ -248,7 +248,7 @@ page.post('/buscar',(req,res)=>{
     
 })
 page.get('/descarga_consulta', (req,res)=>{
-    res.download(`${name}`,'consulta.csv');
+    res.download(`${name}`,`${name}`);
     console.log("Archivo descargado");
 
 

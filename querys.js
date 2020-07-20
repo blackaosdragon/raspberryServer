@@ -211,7 +211,7 @@ module.exports = {
                     reject(new Error());
                 } else {
                     console.log(`Creando la cabecera del archivo: ${name}`)
-                    fs.appendFile(`${name}`,`"Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}"\n "Lugar"; "Temperatura"; "Hora"; "Minuto"\n`,function(err){
+                    fs.appendFile(`${name}`,`"Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}"\n "Lugar"; "Temperatura"; "Hora"; "Minuto";\n`,function(err){
                         if(err){
                             throw err;
                         }

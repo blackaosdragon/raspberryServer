@@ -247,7 +247,7 @@ page.post('/buscar',(req,res)=>{
     
 })
 page.get('/descarga_consulta', (req,res)=>{
-    //res.download(name);
+    res.download(name);
     res.sendFile(name);
     console.log("descargando archivo");
     /*

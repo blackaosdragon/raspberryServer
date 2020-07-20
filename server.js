@@ -20,6 +20,7 @@ const page = express();
 
 
 let hora_server = new Date();
+let name;
 
 
 const wsPort = 5001;
@@ -230,7 +231,7 @@ page.get('/ubicaciones',(req,res)=>{
     })
 })
 
-let name;
+
 page.post('/buscar',(req,res)=>{
     let data = req.body
     let year = data.year;

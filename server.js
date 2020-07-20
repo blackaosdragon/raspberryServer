@@ -249,9 +249,9 @@ page.post('/buscar',(req,res)=>{
 })
 page.get('/descarga_consulta', (req,res)=>{
     console.log(name);
-    res.download(path.join(__dirname,`${name}`),`${name}`);
+    //res.download(path.join(__dirname,`${name}`),`${name}`);
 
-    //res.download(`/${name}`,'consulta.csv');
+    res.download(`/${name}`,'consulta.csv');
     res.send("Respuesta");
     //res.sendFile(`/home/ubuntu/server/${name}`);
     console.log(`Descargando ${name}`);

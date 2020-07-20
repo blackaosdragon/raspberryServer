@@ -3,7 +3,6 @@ const express = require('express');
 const SerialPort = require('serialport');
 const mySql = require('mysql');
 const tokens = require('./querys.js');
-const path = require('path');
 
 
 

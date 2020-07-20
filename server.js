@@ -248,6 +248,7 @@ page.post('/buscar',(req,res)=>{
 })
 page.get('/descarga_consulta', (req,res)=>{
     res.download(name);
+    console.log("descargando archivo");
     fs.unlink(name,(err)=>{
         if(err){
             throw err;

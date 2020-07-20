@@ -211,7 +211,7 @@ module.exports = {
                         if(err){
                             throw err;
                         }
-                        console.log('Guardado');
+                        //console.log('Guardado');
 
                     })
                     data.forEach((element,i) => {  

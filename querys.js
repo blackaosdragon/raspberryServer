@@ -223,7 +223,6 @@ module.exports = {
                             //console.log('Guardado');
     
                         })
-                        console.log("Archivo creado y actualizado");
                         elementos[i]={
                             ubicacion: element.ubicacion,
                             temperatura: element.temperatura,
@@ -237,6 +236,7 @@ module.exports = {
                         //console.log(elementos[i]);
                     });
                     //console.log(elementos);
+                    console.log("Archivo creado y actualizado");
                     resolve(elementos);
                 }
             })

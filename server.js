@@ -239,8 +239,8 @@ page.post('/buscar',(req,res)=>{
     let lugar = data.lugar;
     console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
-        console.log(name);
         name = respuesta;
+        console.log(name);
     })
     tokens.consultar_base_de_datos(lugar,year,mes,dia,name).then(respuesta=>{
         res.send(respuesta);

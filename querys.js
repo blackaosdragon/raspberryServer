@@ -188,6 +188,7 @@ module.exports = {
     },obtener_nombre:(ubication,year,mes,dia)=>{
         return new Promise((resolve,reject)=>{
             let name = `Consulta_${ubication}_${year}-${mes}-${dia}.csv`
+            console.log(`Generando el nombre: ${name}`)
             
             if(ubication.length<0||year<0||mes<0||dia<0){
                 reject(()=>{
@@ -198,6 +199,7 @@ module.exports = {
         })
     },
     consultar_base_de_datos: (ubication,year,mes,dia,name) => {
+        console.log(`Obteniendo el nombre para la consulta: ${name}`);
         //console.log(`Lugar: ${ubication} ${dia}/${mes}/${year}, Hora: ${hora_inicial}:${minuto_inicial} - ${hora_final}:${minuto_final}`)
         return new Promise( (resolve,reject) => {
             let elementos = [];
@@ -208,6 +210,7 @@ module.exports = {
                     console.log(err);
                     reject(new Error());
                 } else {
+                    console.log(`Creando la cabecera del archivo: ${name}`)
                     fs.appendFile(`${name}`,`"Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}"\n "Lugar"; "Temperatura"; "Hora"\n`,function(err){
                         if(err){
                             throw err;
@@ -215,6 +218,7 @@ module.exports = {
                         //console.log('Guardado');
 
                     })
+                    console.log(`Para cada elemento en el archivo: ${name}`)
                     data.forEach((element,i) => {  
                         //console.log(`${element.ubicacion} ${element.temperatura} ${element.fecha}`)                  
                         fs.appendFile(`${name}`,`"${element.ubicacion}"; "${element.temperatura}°C"; "${element.Hora}:${element.Minuto}" \n`,function(err){

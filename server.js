@@ -243,6 +243,7 @@ page.post('/buscar',(req,res)=>{
         name = respuesta;
         console.log(`Obteniendo el nombre: ${name}`);
     })
+    console.log(`Proporcionando el nombre: ${name} para consultar la case de datos`)
     tokens.consultar_base_de_datos(lugar,year,mes,dia,name)
     .then(respuesta=>{
         console.log(`Despues de llenar el archivo: ${name}`);

@@ -239,6 +239,7 @@ page.post('/buscar',(req,res)=>{
     let lugar = data.lugar;
     console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
+        console.log(name);
         name = respuesta;
     })
     tokens.consultar_base_de_datos(lugar,year,mes,dia,name).then(respuesta=>{
@@ -248,8 +249,8 @@ page.post('/buscar',(req,res)=>{
 })
 page.get('/descarga_consulta', (req,res)=>{
     console.log(name);
-    res.download(name);
-    res.sendFile(name);
+    //res.download(name);
+    //res.sendFile(name);
     console.log("descargando archivo");
     /*
     return new Promise ((resolve,reject)=>{

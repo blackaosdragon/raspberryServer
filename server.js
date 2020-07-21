@@ -91,6 +91,11 @@ lector.on('data', temp => {
     let temperatura = asignar.string_to_float(temp);
     let ubicacion = asignar.ubicar_dato(temp);   
     let id = asignar.asignar_id(temp);
+    if(id==null || id == undefined || Number.isNaN(id)){} else {
+        if(temperatura==null || temperatura == undefined || Number.isNaN(temperatura)){}else{
+            temperatura-0.8;
+        }
+    }
     if (temperatura>38.9){
         alerta++;
         integer_alertas++;
@@ -148,9 +153,10 @@ ioLector.on('data',temp=>{
     }
     let id_sensor = parseFloat(string_ofice_ID);
     let sensor_manual = asignar.string_to_float(temp);
-    if(sensor_manual == null || sensor_manual == undefined || Number.isNaN(sensor_manual) || sensor_manual == 'NaN'){
+    if(sensor_manual == null || sensor_manual == undefined || Number.isNaN(sensor_manual) || sensor_manual == 'NaN' || id_sensor==null || id_sensor == undefined || Number.isNaN(id_sensor)){
         console.log(`Temperatura "${temp}" no es valida para emitirse`);
     } else {
+        sensor_manual-0.8;
         io.emit('temp',`${id_sensor} ${sensor_manual}`);
     }
     
@@ -183,7 +189,7 @@ wss.on('connection', ws => {
         
     })
     
-    parser.on('close', ()=>{console.log('puerto cerrado')});
+    parser.on('close', ()=>{console.log('Puerto cerrado')});
     parser.on('end',()=>{console.log('Puerto finalizado')});
     console.log('Cliente conectado'); //metodo para subscribir a un usuario
     ws.on('close',(cliente)=>{

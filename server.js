@@ -22,6 +22,7 @@ const page = express();
 let hora_server = new Date();
 let name;
 
+const ajuste = -0.0;
 
 const wsPort = 5001;
 const pagePort = 5000;
@@ -93,7 +94,7 @@ lector.on('data', temp => {
     let id = asignar.asignar_id(temp);
     if(id==null || id == undefined || Number.isNaN(id)){} else {
         if(temperatura==null || temperatura == undefined || Number.isNaN(temperatura)){}else{
-            temperatura-0.8;
+            temperatura+ajuste;
         }
     }
     if (temperatura>38.9){
@@ -156,7 +157,7 @@ ioLector.on('data',temp=>{
     if(sensor_manual == null || sensor_manual == undefined || Number.isNaN(sensor_manual) || sensor_manual == 'NaN' || id_sensor==null || id_sensor == undefined || Number.isNaN(id_sensor)){
         console.log(`Temperatura "${temp}" no es valida para emitirse`);
     } else {
-        sensor_manual-0.8;
+        sensor_manual-ajuste;
         io.emit('temp',`${id_sensor} ${sensor_manual}`);
     }
     

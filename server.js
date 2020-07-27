@@ -22,7 +22,7 @@ const page = express();
 let hora_server = new Date();
 let name;
 
-const ajuste = 2.5;
+const ajuste = 2.8;
 
 const wsPort = 5001;
 const pagePort = 5000;

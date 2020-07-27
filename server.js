@@ -157,7 +157,7 @@ ioLector.on('data',temp=>{
     if(sensor_manual == null || sensor_manual == undefined || Number.isNaN(sensor_manual) || sensor_manual == 'NaN' || id_sensor==null || id_sensor == undefined || Number.isNaN(id_sensor)){
         console.log(`Temperatura "${temp}" no es valida para emitirse`);
     } else {
-        sensor_manual-ajuste;
+        sensor_manual+ajuste;
         io.emit('temp',`${id_sensor} ${sensor_manual}`);
     }
     

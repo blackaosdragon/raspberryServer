@@ -303,7 +303,7 @@ page.post('/years', (req,res) => {
 })
 page.post('/login',(req,res)=>{
     console.log(req.body);
-    tokens.validar_login(res.body.user,res.body.pass).then((logueado)=>{
+    tokens.validar_login(req.body.user,req.body.pass).then((logueado)=>{
         console.log(logueado)
         res.send(logueado);
     })

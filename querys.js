@@ -278,8 +278,8 @@ module.exports = {
                         console.log(err);
                         reject(new Error());
                     } else{
-                        console.log(data);
-                        console.log(data.length);
+                        //console.log(data);
+                        //console.log(data.length);
                         if(data.data1==`${user}` && data.data2==`${pass}`){
                             let clear = {
                                 data: 1

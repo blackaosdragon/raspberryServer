@@ -274,15 +274,16 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             try{
                 base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_test} WHERE data1='${user}';`,(err,data,otro)=>{
+                    if(data.length>0){
+                        console.log("No hubo resultados");
+                    } else{
+                        console.log("Hubo resultados");
+                    }
                     if(err){
                         console.log(err);
                         reject(new Error());
                     } else{
-                        if(data.length>0){
-                            console.log("No hubo resultados");
-                        } else{
-                            console.log("Hubo resultados");
-                        }
+                        
                         console.log(data[0].data1);
                         console.log(`${user}`);
                         console.log(data[0].data2);

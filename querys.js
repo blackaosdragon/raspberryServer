@@ -275,9 +275,13 @@ module.exports = {
             try{
                 base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_test} WHERE data1='${user}';`,(err,data,otro)=>{
                     if(data.length>0){
-                        console.log("No hubo resultados");
-                    } else{
                         console.log("Hubo resultados");
+                    } else{
+                        let unsuccessfully = {
+                            data: 0
+                        }
+                        resolve(unsuccessfully);
+                        console.log("No hubo resultados");
                     }
                     if(err){
                         console.log(err);

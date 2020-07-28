@@ -278,18 +278,20 @@ module.exports = {
                         console.log(err);
                         reject(new Error());
                     } else{
-                        //console.log(data);
+                        console.log(data);
                         //console.log(data.length);
                         if(data.data1==`${user}` && data.data2==`${pass}`){
                             console.log("Se encontro coincidencia")
-                            console.log(data.data1);
-                            console.log(data.data2);
+                            //console.log(data.data1);
+                            //console.log(data.data2);
                             let success = {
                                 data: 1
                             }
                             resolve(success);
                         } else {
                             console.log("NO hubo coincidencia");
+                            //console.log(data.data1);
+                            //console.log(data.data2);
                             let unsuccessfully = {
                                 data: 0
                             }

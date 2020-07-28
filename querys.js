@@ -282,10 +282,18 @@ module.exports = {
                         //console.log(data.length);
                         if(data.data1==`${user}` && data.data2==`${pass}`){
                             console.log("Se encontro coincidencia")
-                            let clear = {
+                            console.log(data.data1);
+                            console.log(data.data2);
+                            let success = {
                                 data: 1
                             }
-                            resolve(clear);
+                            resolve(success);
+                        } else {
+                            console.log("NO hubo coincidencia");
+                            let unsuccessfully = {
+                                data: 0
+                            }
+                            resolve(unsuccessfully);
                         }
                     }
                 });

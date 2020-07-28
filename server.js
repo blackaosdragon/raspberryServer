@@ -301,7 +301,7 @@ page.post('/years', (req,res) => {
         res.send(respuesta);
     })
 })
-page.post('login',(req,res)=>{
+page.post('/login',(req,res)=>{
     console.log(req.body);
     res.send('Recibido');
 })

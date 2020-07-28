@@ -22,6 +22,8 @@ Crear Tabla nueva
  Insertar Data
  - INSERT INTO `pruebaFechas`(`Lugar`, `Temperatura`, `Dia`, `Mes`, `Año`, `Hora`, `Minuto`, `Segundo`, `Ubicacion`, `Marca`, `Modelo`, `Serie`, `Inventario`) VALUES ("oficina",21.5,25,06,2020,11,10,0,"Plata Baja","Sin marca",NULL,"101010","imss2020pbST1")
 
+Otorgar Permisos
+ - GRANT SELECT on monitoreo.test to 'infoUpdater'@'localhost';
 
 
 

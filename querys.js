@@ -281,6 +281,7 @@ module.exports = {
                         //console.log(data);
                         //console.log(data.length);
                         if(data.data1==`${user}` && data.data2==`${pass}`){
+                            console.log("Se encontro coincidencia")
                             let clear = {
                                 data: 1
                             }

@@ -273,7 +273,7 @@ module.exports = {
     validar_login: (user,pass) =>{
         return new Promise((resolve,reject)=>{
             try{
-                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_test} WHERE data1=${user};`,(err,data,otro)=>{
+                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_test} WHERE data1='${user}';`,(err,data,otro)=>{
                     if(err){
                         console.log(err);
                         reject(new Error());

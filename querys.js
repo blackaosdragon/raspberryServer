@@ -274,35 +274,26 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             try{
                 base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_test} WHERE data1='${user}';`,(err,data,otro)=>{
-                    if(data.length>0){
-                        console.log("Hubo resultados");
-                    } else{
-                        let unsuccessfully = {
-                            data: 0
-                        }
-                        resolve(unsuccessfully);
-                        console.log("No hubo resultados");
-                    }
                     if(err){
                         console.log(err);
                         reject(new Error());
                     } else{
-                        
-                        console.log(data[0].data1);
-                        console.log(`${user}`);
-                        console.log(data[0].data2);
-                        console.log(`${pass}`);
-                        //console.log(data.length);
-                        if(data[0].data1==`${user}` && data[0].data2==`${pass}`){
-                            console.log("Se encontro coincidencia")
-                            //console.log(data.data1);
-                            //console.log(data.data2);
-                            let success = {
-                                data: 1
-                            }
-                            resolve(success);
+                        if (data.length>0){
+                             console.log(data[0].data1);
+                             console.log(`${user}`);
+                             console.log(data[0].data2);
+                             console.log(`${pass}`);
+                             if(data[0].data1==`${user}` && data[0].data2==`${pass}`){
+                                 console.log("Se encontro coincidencia")
+                               //console.log(data.data1);
+                               //console.log(data.data2);
+                                 let success = {
+                                     data: 1
+                                 }
+                                 resolve(success);
+                           }
                         } else {
-                            console.log("NO hubo coincidencia");
+                            console.log("No hubo coincidencia");
                             //console.log(data.data1);
                             //console.log(data.data2);
                             let unsuccessfully = {

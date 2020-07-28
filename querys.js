@@ -9,6 +9,7 @@ const base_de_datos = mySql.createConnection({
 })
 const data_base = 'monitoreo'
 const tabla_de_datos = 'Bitacora'
+const tabla_test = 'test'
 let tokens = [];
 
 module.exports = {
@@ -268,5 +269,29 @@ module.exports = {
 
         })
         
+    },
+    validar_login: (user,pass) =>{
+        return new Promise((resolve,reject)=>{
+            try{
+                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_test} WHERE user=${user};`,(err,data,otro)=>{
+                    if(err){
+                        console.log(err);
+                        reject(new Error());
+                    } else{
+                        console.log(data);
+                        console.log(data.length);
+                        if(data.data1==`${user}` && data.data2==`${pass}`){
+                            let clear = {
+                                data: 1
+                            }
+                            resolve(clear);
+                        }
+                    }
+                });
+            } catch (error){
+                console.log(error);                
+            }
+            
+        })
     }
 }

@@ -278,6 +278,11 @@ module.exports = {
                         console.log(err);
                         reject(new Error());
                     } else{
+                        if(data>0){
+                            console.log("No hubo resultados");
+                        } else{
+                            console.log("Hubo resultados");
+                        }
                         console.log(data[0].data1);
                         console.log(`${user}`);
                         console.log(data[0].data2);

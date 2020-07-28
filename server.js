@@ -1,7 +1,7 @@
 const Ws = require('ws');
 const express = require('express');
 const SerialPort = require('serialport');
-const mySql = require('mysql');
+//const mySql = require('mysql');
 const tokens = require('./querys.js');
 
 
@@ -13,8 +13,8 @@ const path = require('path');
 let asignar = require('./asignacion.js');
 //let datos_temperatura = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
-const { pbkdf2 } = require('crypto');
-const { response } = require('express');
+//const { pbkdf2 } = require('crypto');
+//const { response } = require('express');
 
 const page = express();
 
@@ -300,6 +300,10 @@ page.post('/years', (req,res) => {
     tokens.extraer_años(ubicacion).then( respuesta => {
         res.send(respuesta);
     })
+})
+page.post('login',(req,res)=>{
+    console.log(req.body);
+    res.send('Recibido');
 })
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
 

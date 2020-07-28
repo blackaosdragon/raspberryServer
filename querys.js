@@ -278,7 +278,7 @@ module.exports = {
                         console.log(err);
                         reject(new Error());
                     } else{
-                        if(data>0){
+                        if(data.length>0){
                             console.log("No hubo resultados");
                         } else{
                             console.log("Hubo resultados");

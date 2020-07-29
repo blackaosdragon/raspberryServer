@@ -41,7 +41,7 @@ module.exports = {
           //console.log("El dato no puede convertirse a float")
       }
       if(float_id==1.0){
-          return "oficina";
+          return "Camara fria farmacia";
       } else if (float_id==2.0){
           return "taller";
       } else if (float_id == 3.0){

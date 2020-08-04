@@ -291,6 +291,18 @@ module.exports = {
                                      data: 1
                                  }
                                  resolve(success);
+                           } else {
+                               if(data[0].data1!=user){
+                                   console.log("No coincide el nombre de usuario");
+                               } else if (data[0].data2!=pass){
+                                   console.log("No coincide la contraseña");
+                               } else {
+                                   console.log("No hubo algún tipo de coincidencia");
+                               }
+                               let unsuccessfully = {
+                                   data: 0
+                               }
+                               resolve(unsuccessfully);
                            }
                         } else {
                             console.log("No hubo coincidencia");

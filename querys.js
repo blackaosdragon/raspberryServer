@@ -279,9 +279,9 @@ module.exports = {
                         reject(new Error());
                     } else{
                         if (data.length>0){
-                             console.log(data[0].data1);
+                             console.log(data[0].data1==user);
                              console.log(`${user}`);
-                             console.log(data[0].data2);
+                             console.log(data[0].data2==pass);
                              console.log(`${pass}`);
                              if(data[0].data1==`${user}` && data[0].data2==`${pass}`){
                                  console.log("Se encontro coincidencia")

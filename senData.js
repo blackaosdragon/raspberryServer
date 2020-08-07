@@ -15,6 +15,7 @@ const server = app.listen(puerto , () => {
 })
 
 let turno = 1;
+const sensores_en_total = 2;
 
 lector.on('data', temp => {
     console.log(temp);

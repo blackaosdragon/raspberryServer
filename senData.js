@@ -14,6 +14,8 @@ const server = app.listen(puerto , () => {
     console.log(`Server corriendo en el puerto ${puerto}`);
 })
 
+let turno = 1;
+
 lector.on('data', temp => {
     console.log(temp);
     let teempo = new Date();

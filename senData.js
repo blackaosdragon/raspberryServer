@@ -20,12 +20,14 @@ const sensores_en_total = 2;
 
 
 const fakedata = `ID: 1.0 temp: 18.3`;
+io.emit('temp',`${fakedata}`);
 let teempo = new Date();
 let minuto_refresh = parseInt(teempo.getMinutes());
+let segundo_refresh = parseInt(teempo.getMinutes());
 let temperatura = asignar.string_to_float(fakedata);
 let ubicacion = asignar.ubicar_dato(fakedata);
 let id = asignar.asignar_id(fakedata);
-if(minuto_refresh%2 == 0){
+if(minuto_refresh%2 == 0 && segundo_refresh > 0 && segundo_refresh < 10){
     console.log(`Dato`);
     //console.log(`${temp} turno: ${turno}`);
     if(id==turno){

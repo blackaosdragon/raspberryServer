@@ -53,7 +53,7 @@ if(minuto_refresh%2 == 0){
                         ubicacion: ubicacion,
                         id: id
                     }
-                    fetch('https://instrumentacionline.ddns.net/temperatura',{
+                    fetch('http://192.168.0.10/temperatura',{
                         method: 'POST',
                         body: JSON.stringify(data),
                         headers:{

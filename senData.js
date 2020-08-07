@@ -17,6 +17,18 @@ const server = app.listen(puerto , () => {
 let turno = 1;
 const sensores_en_total = 2;
 
+
+
+const fakedata = `ID: 1.0 temp: 18.3`;
+let reloj = new Date();
+let minuto_refresh = parseInt(teempo.getMinutes());
+let temperatura = asignar.string_to_float(fakedata);
+let ubicacion = asignar.ubicar_dato(fakedata);
+let id = asignar.asignar_id(fakedata);
+
+
+
+
 lector.on('data', temp => {
     console.log(temp);
     let teempo = new Date();

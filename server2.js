@@ -38,6 +38,11 @@ let turno = 1;
 
 let timer = 0;
 
+page.listen(pagePort, () => {
+    //console.log(data);
+    console.log(`Servidor corriendo en el puerto ${pagePort}`);
+
+/*
 
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/ubuntu/server/certs/private.key')),
@@ -48,6 +53,7 @@ const httpServer = https.createServer({
 httpServer.listen(puerto,()=>{
   console.log(`Servidor disponible en el puerto ${puerto}`);
 })
+*/
 
 page.use(express.json());
 page.use(express.static(__dirname+'/static', {dotfiles: 'allow'}))

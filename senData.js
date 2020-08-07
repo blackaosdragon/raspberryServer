@@ -1,4 +1,5 @@
 const tokens = require('./querys.js');
+let asignar = require('./asignacion.js');
 
 const express = require('express');
 const app = express();
@@ -17,6 +18,12 @@ lector.on('data', temp => {
     console.log(temp);
     let teempo = new Date();
     let minuto_refresh = parseInt(teempo.getMinutes());
+
+    let temperatura = asignar.string_to_float(temp);
+    let ubicacion = asignar.ubicar_dato(temp);
+    let id = asignar.asignar_id(temp);
+
+
     if(minuto_refresh%2 == 0){
         console.log(`Dato`);
         //console.log(`${temp} turno: ${turno}`);

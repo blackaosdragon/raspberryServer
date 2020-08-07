@@ -20,7 +20,7 @@ const sensores_en_total = 2;
 
 
 const fakedata = `ID: 1.0 temp: 18.3`;
-io.emit('temp',`${fakedata}`);
+//io.emit('temp',`${fakedata}`);
 let teempo = new Date();
 let minuto_refresh = parseInt(teempo.getMinutes());
 let segundo_refresh = parseInt(teempo.getMinutes());

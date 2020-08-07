@@ -40,6 +40,26 @@ lector.on('data', temp => {
                     } else {
                         console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
                         tokens.insertar_valores(temperatura,ubicacion,id);
+                        let data = {
+                            temperatura: temperatura,
+                            ubicacion: ubicacion,
+                            id: id
+                        }
+                        fetch('/temperatura',{
+                            method: 'POST',
+                            body: JSON.stringify(data),
+                            headers:{
+                                'Content-Type': 'application/json' 
+                              },
+                        }).then(response=>{
+                            return response.json();
+                        }).then(data=>{
+                            console.log(data);
+                        }).catch((err)=>{
+                            console.log("Error:");
+                            console.log(err);
+                        })
+                        
                     }
                 }).catch(err=>{
                     console.log(err);

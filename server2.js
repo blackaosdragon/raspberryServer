@@ -163,8 +163,9 @@ page.get('/descarga_consulta', (req,res)=>{
         }
         console.log(`${name} borrado`);
     })
-    */
+    
 })
+*/
 
 page.post('/years', (req,res) => {
     console.log("Solicitando años")

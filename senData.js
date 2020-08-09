@@ -53,9 +53,9 @@ if(minuto_refresh%1){
                     tokens.insertar_valores(temperatura,ubicacion,id);
                     */
                     let data = {
-                        temperatura: temperatura,
-                        ubicacion: ubicacion,
-                        id: id
+                        temperatura: 10,
+                        ubicacion: 'sala',
+                        id: '1.0'
                     }
                     
                     fetch('http://192.168.0.10:5000/temperatura',{
@@ -86,9 +86,9 @@ if(minuto_refresh%1){
 } else {
     console.log("No entro al if");
     let data = {
-        temperatura: temperatura,
-        ubicacion: ubicacion,
-        id: id
+        temperatura: 10,
+        ubicacion: 'sala',
+        id: '1.0'
     }
     fetch('http://192.168.0.10:5000/temperatura',{
                         method: 'post',

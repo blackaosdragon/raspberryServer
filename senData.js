@@ -23,6 +23,9 @@ let temperatura = asignar.string_to_float(fakedata);
 let ubicacion = asignar.ubicar_dato(fakedata);
 let id = asignar.asignar_id(fakedata);
 if(minuto_refresh%2 == 0 && segundo_refresh > 0 && segundo_refresh < 10){
+    console.log("A ver si sale la data");
+    console.log(fakedata);
+    /*
     console.log("Hora cumplida");
     console.log(`Dato`);
     //console.log(`${temp} turno: ${turno}`);
@@ -75,7 +78,7 @@ if(minuto_refresh%2 == 0 && segundo_refresh > 0 && segundo_refresh < 10){
     turno++;
     if(sensores_en_total<turno){
         turno=1;
-    }
+    }*/
 } else {
     turno=1;
 }

@@ -2,6 +2,8 @@ const tokens = require('./querys.js');
 let asignar = require('./asignacion.js');
 
 const express = require('express');
+const fetch = require('node-fetch');
+
 
 const SerialPort = require('serialport');
 const Readline = SerialPort.parsers.Readline;
@@ -54,8 +56,9 @@ if(minuto_refresh%1){
                         ubicacion: ubicacion,
                         id: id
                     }
-                    fetch('http://192.168.0.10/temperatura',{
-                        method: 'POST',
+                    */
+                    fetch('http://192.168.0.10:5000/temperatura',{
+                        method: 'post',
                         body: JSON.stringify(data),
                         headers:{
                             'Content-Type': 'application/json' 
@@ -67,7 +70,7 @@ if(minuto_refresh%1){
                     }).catch((err)=>{
                         console.log("Error:");
                         console.log(err);
-                    })
+                    })/*
                     
                 }
             }).catch(err=>{
@@ -82,7 +85,7 @@ if(minuto_refresh%1){
 } else {
     console.log("No entro al if");
     fetch('http://192.168.0.10:5000/temperatura',{
-                        method: 'POST',
+                        method: 'post',
                         body: JSON.stringify(data),
                         headers:{
                             'Content-Type': 'application/json' 

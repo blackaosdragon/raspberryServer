@@ -84,7 +84,7 @@ if(minuto_refresh%2 == 0 && segundo_refresh > 0 && segundo_refresh < 10){
 
 
 
-
+/*
 
 lector.on('data', temp => {
     console.log(temp);
@@ -153,3 +153,4 @@ lector.on('data', temp => {
         turno=1;
     }
 })
+*/

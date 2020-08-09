@@ -51,12 +51,13 @@ if(minuto_refresh%1){
                 } else {
                     console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
                     tokens.insertar_valores(temperatura,ubicacion,id);
+                    */
                     let data = {
                         temperatura: temperatura,
                         ubicacion: ubicacion,
                         id: id
                     }
-                    */
+                    
                     fetch('http://192.168.0.10:5000/temperatura',{
                         method: 'post',
                         body: JSON.stringify(data),
@@ -84,6 +85,11 @@ if(minuto_refresh%1){
     }*/
 } else {
     console.log("No entro al if");
+    let data = {
+        temperatura: temperatura,
+        ubicacion: ubicacion,
+        id: id
+    }
     fetch('http://192.168.0.10:5000/temperatura',{
                         method: 'post',
                         body: JSON.stringify(data),

@@ -15,7 +15,7 @@ let turno = 1;
 const sensores_en_total = 2;
 
 
-
+/*
 const fakedata = `ID: 1.0 temp: 18.3`;
 //io.emit('temp',`${fakedata}`);
 let teempo = new Date();
@@ -24,7 +24,7 @@ let segundo_refresh = parseInt(teempo.getMinutes());
 let temperatura = asignar.string_to_float(fakedata);
 let ubicacion = asignar.ubicar_dato(fakedata);
 let id = asignar.asignar_id(fakedata);
-if(minuto_refresh%1){
+if(minuto_refresh%15){
     console.log("A ver si sale la data");
     console.log(fakedata);
     /*
@@ -58,7 +58,7 @@ if(minuto_refresh%1){
                         ubicacion: 'sala',
                         id: '1.0'
                     }
-                    */
+                    
                     (async ()=> {
                         let data = {
                             temperatura: 10,
@@ -96,7 +96,7 @@ if(minuto_refresh%1){
     turno++;
     if(sensores_en_total<turno){
         turno=1;
-    }*/
+    }
 } else {
     console.log("No entro al if");
     let data = {
@@ -121,7 +121,7 @@ if(minuto_refresh%1){
     turno=1;
 }
 
-
+*/
 
 
 

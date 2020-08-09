@@ -92,7 +92,7 @@ if(minuto_refresh%1){
     }
     fetch('http://192.168.0.10:5000/temperatura',{
                         method: 'post',
-                        body: JSON.stringify(data),
+                        data: JSON.stringify(data),
                         headers:{
                             'Content-Type': 'application/json' 
                           },

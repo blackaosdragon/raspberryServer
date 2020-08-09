@@ -81,7 +81,7 @@ if(minuto_refresh%1){
     }*/
 } else {
     console.log("No entro al if");
-    fetch('http://192.168.0.10/temperatura',{
+    fetch('http://192.168.0.10:5000/temperatura',{
                         method: 'POST',
                         body: JSON.stringify(data),
                         headers:{

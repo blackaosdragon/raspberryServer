@@ -58,7 +58,7 @@ if(minuto_refresh%1){
                         id: id
                     }
                     
-                    fetch('192.168.0.10:5000/temperatura',{
+                    fetch('http://192.168.0.10:5000/temperatura',{
                         method: 'post',
                         body: JSON.stringify(data),
                         headers:{
@@ -90,7 +90,7 @@ if(minuto_refresh%1){
         ubicacion: ubicacion,
         id: id
     }
-    fetch('192.168.0.10:5000/temperatura',{
+    fetch('http://192.168.0.10:5000/temperatura',{
                         method: 'post',
                         body: JSON.stringify(data),
                         headers:{

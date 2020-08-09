@@ -186,6 +186,7 @@ page.post('/login',(req,res)=>{
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
 */
 page.post('/temperatura',(req,res)=>{
+    console.log(req);
     console.log(req.body);
     res.send("Recibido");
 })

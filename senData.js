@@ -2,17 +2,12 @@ const tokens = require('./querys.js');
 let asignar = require('./asignacion.js');
 
 const express = require('express');
-const app = express();
-const puerto = 3005;
 
 const SerialPort = require('serialport');
 const Readline = SerialPort.parsers.Readline;
 let port = new SerialPort('/dev/ttyUSB0');
 const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 
-const server = app.listen(puerto , () => {
-    console.log(`Server corriendo en el puerto ${puerto}`);
-})
 
 let turno = 1;
 const sensores_en_total = 2;

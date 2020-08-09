@@ -166,7 +166,7 @@ page.get('/descarga_consulta', (req,res)=>{
     
 })
 */
-
+/*
 page.post('/years', (req,res) => {
     console.log("Solicitando años")
     let ubicacion = req.body.ubicacion;
@@ -184,7 +184,7 @@ page.post('/login',(req,res)=>{
     //res.send('Recibido');
 })
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
-
+*/
 page.post('/temperatura',(req,res)=>{
     console.log(req.body);
     res.send("Recibido");

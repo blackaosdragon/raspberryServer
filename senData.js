@@ -52,11 +52,25 @@ if(minuto_refresh%1){
                     console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
                     tokens.insertar_valores(temperatura,ubicacion,id);
                     */
+                   /*
                     let data = {
                         temperatura: 10,
                         ubicacion: 'sala',
                         id: '1.0'
                     }
+                    */
+                    (async ()=> {
+                        let data = {
+                            temperatura: 10,
+                            ubicacion: 'sala',
+                            id: '1.0'};
+                            const response = await fetch('http://192.168.0.10:5000/temperatura',{
+                                method: 'post',
+                                body: JSON.stringify(data),
+                                headers:{'Content-Type': 'application/json'},
+                            });
+                            
+                    })
                     
                     fetch('http://192.168.0.10:5000/temperatura',{
                         method: 'POST',

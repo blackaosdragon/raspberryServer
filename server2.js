@@ -185,6 +185,7 @@ page.post('/login',(req,res)=>{
 })
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
 */
+page.use(express.json());
 let response = {
     data: 'recibido'
 }

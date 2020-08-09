@@ -190,6 +190,6 @@ let response = {
 }
 page.post('/temperatura',(req,res)=>{
     //console.log(req);
-    console.log(req.data);
+    console.log(req.body);
     res.send(response);
 })

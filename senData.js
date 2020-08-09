@@ -59,7 +59,7 @@ if(minuto_refresh%1){
                     }
                     
                     fetch('http://192.168.0.10:5000/temperatura',{
-                        method: 'post',
+                        method: 'POST',
                         body: JSON.stringify(data),
                         headers:{
                             'Content-Type': 'application/json' 
@@ -91,8 +91,8 @@ if(minuto_refresh%1){
         id: '1.0'
     }
     fetch('http://192.168.0.10:5000/temperatura',{
-                        method: 'post',
-                        data: JSON.stringify(data),
+                        method: 'POST',
+                        body: JSON.stringify(data),
                         headers:{
                             'Content-Type': 'application/json' 
                           },

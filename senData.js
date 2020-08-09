@@ -81,6 +81,20 @@ if(minuto_refresh%1){
     }*/
 } else {
     console.log("No entro al if");
+    fetch('http://192.168.0.10/temperatura',{
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers:{
+                            'Content-Type': 'application/json' 
+                          },
+                    }).then(response=>{
+                        return response.json();
+                    }).then(data=>{
+                        console.log(data);
+                    }).catch((err)=>{
+                        console.log("Error:");
+                        console.log(err);
+                    })
     turno=1;
 }
 

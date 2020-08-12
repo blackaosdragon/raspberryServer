@@ -2,25 +2,28 @@ const tokens = require('./querys.js');
 let asignar = require('./asignacion.js');
 
 const express = require('express');
-const app = express();
-const puerto = 3005;
+const fetch = require('node-fetch');
+
 
 const SerialPort = require('serialport');
 const Readline = SerialPort.parsers.Readline;
 let port = new SerialPort('/dev/ttyUSB0');
 const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 
+<<<<<<< HEAD
 const fetch = require('node-fetch');
 
 const server = app.listen(puerto , () => {
     console.log(`Server corriendo en el puerto ${puerto}`);
 })
+=======
+>>>>>>> 5a4dfed51f8349023f1c87823ba1f56fd8b48f6f
 
 let turno = 1;
 const sensores_en_total = 2;
 
 
-
+/*
 const fakedata = `ID: 1.0 temp: 18.3`;
 //io.emit('temp',`${fakedata}`);
 let teempo = new Date();
@@ -29,7 +32,10 @@ let segundo_refresh = parseInt(teempo.getMinutes());
 let temperatura = asignar.string_to_float(fakedata);
 let ubicacion = asignar.ubicar_dato(fakedata);
 let id = asignar.asignar_id(fakedata);
-if(minuto_refresh%2 == 0 && segundo_refresh > 0 && segundo_refresh < 10){
+if(minuto_refresh%15){
+    console.log("A ver si sale la data");
+    console.log(fakedata);
+    /*
     console.log("Hora cumplida");
     console.log(`Dato`);
     //console.log(`${temp} turno: ${turno}`);
@@ -53,12 +59,60 @@ if(minuto_refresh%2 == 0 && segundo_refresh > 0 && segundo_refresh < 10){
                 } else {
                     console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
                     tokens.insertar_valores(temperatura,ubicacion,id);
+                    */
+                   /*
                     let data = {
-                        temperatura: temperatura,
-                        ubicacion: ubicacion,
-                        id: id
+                        temperatura: 10,
+                        ubicacion: 'sala',
+                        id: '1.0'
                     }
-                    fetch('http://192.168.0.10/temperatura',{
+                    
+                    (async ()=> {
+                        let data = {
+                            temperatura: 10,
+                            ubicacion: 'sala',
+                            id: '1.0'};
+                            const response = await fetch('http://192.168.0.10:5000/temperatura',{
+                                method: 'post',
+                                body: JSON.stringify(data),
+                                headers:{'Content-Type': 'application/json'},
+                            });
+                            
+                    })
+                    
+                    fetch('http://192.168.0.10:5000/temperatura',{
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers:{
+                            'Content-Type': 'application/json' 
+                          },
+                    }).then(response=>{
+                        return response.json();
+                    }).then(data=>{
+                        console.log(data);
+                    }).catch((err)=>{
+                        console.log("Error:");
+                        console.log(err);
+                    })/*
+                    
+                }
+            }).catch(err=>{
+                console.log(err);
+            })
+        }
+    } 
+    turno++;
+    if(sensores_en_total<turno){
+        turno=1;
+    }
+} else {
+    console.log("No entro al if");
+    let data = {
+        temperatura: 10,
+        ubicacion: 'sala',
+        id: '1.0'
+    }
+    fetch('http://192.168.0.10:5000/temperatura',{
                         method: 'POST',
                         body: JSON.stringify(data),
                         headers:{
@@ -72,22 +126,10 @@ if(minuto_refresh%2 == 0 && segundo_refresh > 0 && segundo_refresh < 10){
                         console.log("Error:");
                         console.log(err);
                     })
-                    
-                }
-            }).catch(err=>{
-                console.log(err);
-            })
-        }
-    } 
-    turno++;
-    if(sensores_en_total<turno){
-        turno=1;
-    }
-} else {
     turno=1;
 }
 
-
+*/
 
 
 

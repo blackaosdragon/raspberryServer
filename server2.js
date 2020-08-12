@@ -12,7 +12,7 @@ const path = require('path');
 
 let asignar = require('./asignacion.js');
 //let datos_temperatura = require('./asignacion.js');
-let mensajes = require('./fcmessage.js');
+//let mensajes = require('./fcmessage.js');
 //const { pbkdf2 } = require('crypto');
 //const { response } = require('express');
 
@@ -166,7 +166,7 @@ page.get('/descarga_consulta', (req,res)=>{
     
 })
 */
-
+/*
 page.post('/years', (req,res) => {
     console.log("Solicitando años")
     let ubicacion = req.body.ubicacion;
@@ -184,8 +184,13 @@ page.post('/login',(req,res)=>{
     //res.send('Recibido');
 })
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
-
+*/
+page.use(express.json());
+let response = {
+    data: 'recibido'
+}
 page.post('/temperatura',(req,res)=>{
+    //console.log(req);
     console.log(req.body);
-    res.send("Recibido");
+    res.send(response);
 })

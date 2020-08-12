@@ -37,10 +37,20 @@ let turno = 1;
 
 let timer = 0;
 
-
+/*
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/ubuntu/server/certs/private.key')),
     cert: fs.readFileSync(path.resolve('/home/ubuntu/server/certs/certificate.crt'))
+   
+   },page);
+
+httpServer.listen(puerto,()=>{
+  console.log(`Servidor disponible en el puerto ${puerto}`);
+})
+*/
+const httpServer = https.createServer({
+    key: fs.readFileSync(path.resolve('/home/pi/Web/raspberry/raspberryServer/certs/private.key')),
+    cert: fs.readFileSync(path.resolve('/home/pi/Web/raspberry/raspberryServer/certs/certificate.crt'))
    
    },page);
 
@@ -309,8 +319,18 @@ page.post('/login',(req,res)=>{
     //res.send('Recibido');
 })
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
+<<<<<<< HEAD
 page.post('/temperatura',(req,res)=>{
     console.log(req.body);
     res.send("Recibido");
 })
+=======
+
+page.post('/temperatura',(req,res)=>{
+    //console.log(req);
+    console.log(req.body);
+    res.send(response);
+})
+
+>>>>>>> 5a4dfed51f8349023f1c87823ba1f56fd8b48f6f
 

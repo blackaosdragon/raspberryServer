@@ -10,14 +10,6 @@ const Readline = SerialPort.parsers.Readline;
 let port = new SerialPort('/dev/ttyUSB0');
 const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 
-<<<<<<< HEAD
-const fetch = require('node-fetch');
-
-const server = app.listen(puerto , () => {
-    console.log(`Server corriendo en el puerto ${puerto}`);
-})
-=======
->>>>>>> 5a4dfed51f8349023f1c87823ba1f56fd8b48f6f
 
 let turno = 1;
 const sensores_en_total = 2;

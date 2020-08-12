@@ -319,12 +319,6 @@ page.post('/login',(req,res)=>{
     //res.send('Recibido');
 })
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
-<<<<<<< HEAD
-page.post('/temperatura',(req,res)=>{
-    console.log(req.body);
-    res.send("Recibido");
-})
-=======
 
 page.post('/temperatura',(req,res)=>{
     //console.log(req);
@@ -332,5 +326,4 @@ page.post('/temperatura',(req,res)=>{
     res.send(response);
 })
 
->>>>>>> 5a4dfed51f8349023f1c87823ba1f56fd8b48f6f
 

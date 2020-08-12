@@ -1,7 +1,6 @@
 const Ws = require('ws');
 const express = require('express');
-const SerialPort = require('serialport');
-//const mySql = require('mysql');
+/*const SerialPort = require('serialport');*/
 const tokens = require('./querys.js');
 
 
@@ -73,130 +72,130 @@ const server = page.listen(pagePort, data => {
 //este seccion de codigo es cuando el servidor https no sirve
 */
 
-const Readline = SerialPort.parsers.Readline;
-let port = new SerialPort('/dev/ttyUSB0'); //la direccion es por el puerto que esta enmtrnado los datos
+//const Readline = SerialPort.parsers.Readline;
+//let port = new SerialPort('/dev/ttyUSB0'); //la direccion es por el puerto que esta enmtrnado los datos
 //let puerto_inalambrico = new SerialPort('/dev/ttyUSB1'); 
 //seccion por si habra más antenas o algun otro tipo de sensor
 
-const lector = port.pipe(new Readline({delimiter: '\r\n'}));
+//const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 //const lector_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}));
 //let parser = port.pipe(new Readline({delimiter: '\r\n'}));
 
-lector.on('data', temp => {
-    //console.log(`${temp} turno: ${turno}`);
-    let teempo = new Date();
-    //let extra = "FALSE"
-    //console.log(`Hora  de actualizacion: ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
-    //console.log(`Hora  de iniciacion: ${hora_server.getHours()} : ${hora_server.getMinutes()} : ${hora_server.getSeconds()}`)
-    let minuto_refresh = parseInt(teempo.getMinutes());
-    let temperatura = asignar.string_to_float(temp);
-    let ubicacion = asignar.ubicar_dato(temp);   
-    let id = asignar.asignar_id(temp);
-    if(id==null || id == undefined || Number.isNaN(id)){} else {
-        if(temperatura==null || temperatura == undefined || Number.isNaN(temperatura)){}else{
-            temperatura+ajuste;
-        }
-    }
-    if (temperatura>38.9){
-        alerta++;
-        integer_alertas++;
-        console.log(`${alerta} ${integer_alertas}  Temp: ${temp}°C`);
-        mensajes.sendPushAlert(temperatura,alerta,integer_alertas);
-        //extra = "TRUE";
-    } else if (temperatura<38.8){
-        alerta=0;
-    }
-    if(minuto_refresh%15 == 0){
-        console.log(`Dato`);
-        //console.log(`${temp} turno: ${turno}`);
-        if(id==turno){
-            //console.log(`${temp} turno: ${turno}`);
-            if(Number.isNaN(temperatura)){
-                console.log(`El valor de la temperatura que se quiere ingresar no es un entero: ${temperatura}, es incompatible en la base de datos y no se agregara`);
-            } else if(temperatura==undefined){
-                console.log(`El valor de la temperatura que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
-            } else if(temperatura==null) {
-                console.log(`El valor de la tamperatura es ${temperatura}`)
-            } else if (id == undefined || id == null || Number.isNaN(id)){
-                console.log(`El id que se quiere  es ${id} no es valido y no se agregara a la base de datos`);
-            } else {
-                //console.log(`${temp} turno: ${turno}`);
-                //console.log(`Entrando al ciclo y revisando si hay un dato repetido. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
-                tokens.buscar_repetido(turno).then(response=>{
-                    console.log(`Tamaño de la respuesta: ${response.length}`);
-                    if(response.length>0){
-                        console.log(`Para el id ${id} ya existe un dato guardado. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
-                    } else {
-                        console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
-                        tokens.insertar_valores(temperatura,ubicacion,id);
-                    }
-                }).catch(err=>{
-                    console.log(err);
-                })
-            }
-        } 
-        turno++;
-        if(sensores_en_total<turno){
-            turno=1;
-        }
-    } else {
-        turno=1;
-    }
-})
+        // lector.on('data', temp => {
+        //     //console.log(`${temp} turno: ${turno}`);
+        //     let teempo = new Date();
+        //     //let extra = "FALSE"
+        //     //console.log(`Hora  de actualizacion: ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`)
+        //     //console.log(`Hora  de iniciacion: ${hora_server.getHours()} : ${hora_server.getMinutes()} : ${hora_server.getSeconds()}`)
+        //     let minuto_refresh = parseInt(teempo.getMinutes());
+        //     let temperatura = asignar.string_to_float(temp);
+        //     let ubicacion = asignar.ubicar_dato(temp);   
+        //     let id = asignar.asignar_id(temp);
+        //     if(id==null || id == undefined || Number.isNaN(id)){} else {
+        //         if(temperatura==null || temperatura == undefined || Number.isNaN(temperatura)){}else{
+        //             temperatura+ajuste;
+        //         }
+        //     }
+        //     if (temperatura>38.9){
+        //         alerta++;
+        //         integer_alertas++;
+        //         console.log(`${alerta} ${integer_alertas}  Temp: ${temp}°C`);
+        //         mensajes.sendPushAlert(temperatura,alerta,integer_alertas);
+        //         //extra = "TRUE";
+        //     } else if (temperatura<38.8){
+        //         alerta=0;
+        //     }
+        //     if(minuto_refresh%15 == 0){
+        //         console.log(`Dato`);
+        //         //console.log(`${temp} turno: ${turno}`);
+        //         if(id==turno){
+        //             //console.log(`${temp} turno: ${turno}`);
+        //             if(Number.isNaN(temperatura)){
+        //                 console.log(`El valor de la temperatura que se quiere ingresar no es un entero: ${temperatura}, es incompatible en la base de datos y no se agregara`);
+        //             } else if(temperatura==undefined){
+        //                 console.log(`El valor de la temperatura que se quiere ingresar es ${temperatura}, no es compatible a la base de datos y no se agregara`);
+        //             } else if(temperatura==null) {
+        //                 console.log(`El valor de la tamperatura es ${temperatura}`)
+        //             } else if (id == undefined || id == null || Number.isNaN(id)){
+        //                 console.log(`El id que se quiere  es ${id} no es valido y no se agregara a la base de datos`);
+        //             } else {
+        //                 //console.log(`${temp} turno: ${turno}`);
+        //                 //console.log(`Entrando al ciclo y revisando si hay un dato repetido. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
+        //                 tokens.buscar_repetido(turno).then(response=>{
+        //                     console.log(`Tamaño de la respuesta: ${response.length}`);
+        //                     if(response.length>0){
+        //                         console.log(`Para el id ${id} ya existe un dato guardado. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
+        //                     } else {
+        //                         console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
+        //                         tokens.insertar_valores(temperatura,ubicacion,id);
+        //                     }
+        //                 }).catch(err=>{
+        //                     console.log(err);
+        //                 })
+        //             }
+        //         } 
+        //         turno++;
+        //         if(sensores_en_total<turno){
+        //             turno=1;
+        //         }
+        //     } else {
+        //         turno=1;
+        //     }
+        // })
 
 const io = require('socket.io')(httpServer);
 
-const ioLector = port.pipe(new Readline({delimiter: '\r\n'}));
+//const ioLector = port.pipe(new Readline({delimiter: '\r\n'}));
 
-ioLector.on('data',temp=>{    
-    for(let i = 4; i<=8;i++){
-        string_ofice_ID = string_ofice_ID+temp[i];
-    }
-    let id_sensor = parseFloat(string_ofice_ID);
-    let sensor_manual = asignar.string_to_float(temp);
-    if(sensor_manual == null || sensor_manual == undefined || Number.isNaN(sensor_manual) || sensor_manual == 'NaN' || id_sensor==null || id_sensor == undefined || Number.isNaN(id_sensor)){
-        console.log(`Temperatura "${temp}" no es valida para emitirse`);
-    } else {
-        sensor_manual+ajuste;
-        io.emit('temp',`${id_sensor} ${sensor_manual}`);
-    }
-    
-    string_ofice_ID = "";
-});
+        // ioLector.on('data',temp=>{    
+        //     for(let i = 4; i<=8;i++){
+        //         string_ofice_ID = string_ofice_ID+temp[i];
+        //     }
+        //     let id_sensor = parseFloat(string_ofice_ID);
+        //     let sensor_manual = asignar.string_to_float(temp);
+        //     if(sensor_manual == null || sensor_manual == undefined || Number.isNaN(sensor_manual) || sensor_manual == 'NaN' || id_sensor==null || id_sensor == undefined || Number.isNaN(id_sensor)){
+        //         console.log(`Temperatura "${temp}" no es valida para emitirse`);
+        //     } else {
+        //         sensor_manual+ajuste;
+        //         io.emit('temp',`${id_sensor} ${sensor_manual}`);
+        //     }
+            
+        //     string_ofice_ID = "";
+        // });
 
-wss.on('connection', ws => { 
-    let parser = port.pipe(new Readline({delimiter: '\r\n'}));
-    //let parser_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}));
+        // wss.on('connection', ws => { 
+        //     let parser = port.pipe(new Readline({delimiter: '\r\n'}));
+        //     //let parser_wireless = puerto_inalambrico.pipe(new Readline({delimiter: '\r\n'}));
 
-    /*parser_wireless.on('data', temp => {
-        if (temp === "No se ha recibido datos"){
+        //     /*parser_wireless.on('data', temp => {
+        //         if (temp === "No se ha recibido datos"){
 
-        } else {
-            let wireless_temp = datos_temperatura(temp);
-            console.log(wireless_temp);
-            ws.send(`1 ${wireless_temp}`);
-        }
-    })*/
+        //         } else {
+        //             let wireless_temp = datos_temperatura(temp);
+        //             console.log(wireless_temp);
+        //             ws.send(`1 ${wireless_temp}`);
+        //         }
+        //     })*/
 
-    parser.on('data', temp => {
-        for(let i = 4; i<=8;i++){
-            string_ofice_ID = string_ofice_ID+temp[i];
-        }
-        let sensor_manual = asignar.string_to_float(temp);
-        let id_sensor = parseFloat(string_ofice_ID);
-        //io.emit(`${id_sensor} ${sensor_manual}`)
-        ws.send(`${id_sensor} ${sensor_manual}`);
-        string_ofice_ID = "";
-        
-    })
-    
-    parser.on('close', ()=>{console.log('Puerto cerrado')});
-    parser.on('end',()=>{console.log('Puerto finalizado')});
-    console.log('Cliente conectado'); //metodo para subscribir a un usuario
-    ws.on('close',(cliente)=>{
-        parser.end(()=>{console.log("lector terminado")})
-    })
-})
+        //     parser.on('data', temp => {
+        //         for(let i = 4; i<=8;i++){
+        //             string_ofice_ID = string_ofice_ID+temp[i];
+        //         }
+        //         let sensor_manual = asignar.string_to_float(temp);
+        //         let id_sensor = parseFloat(string_ofice_ID);
+        //         //io.emit(`${id_sensor} ${sensor_manual}`)
+        //         ws.send(`${id_sensor} ${sensor_manual}`);
+        //         string_ofice_ID = "";
+                
+        //     })
+            
+        //     parser.on('close', ()=>{console.log('Puerto cerrado')});
+        //     parser.on('end',()=>{console.log('Puerto finalizado')});
+        //     console.log('Cliente conectado'); //metodo para subscribir a un usuario
+        //     ws.on('close',(cliente)=>{
+        //         parser.end(()=>{console.log("lector terminado")})
+        //     })
+        // })
 page.get('/consulta',(req,res)=>{
     console.log('Solicitando años');
     //let data = tokens.extraer_años();
@@ -310,5 +309,8 @@ page.post('/login',(req,res)=>{
     //res.send('Recibido');
 })
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
-
+page.post('/temperatura',(req,res)=>{
+    console.log(req.body);
+    res.send("Recibido");
+})
 

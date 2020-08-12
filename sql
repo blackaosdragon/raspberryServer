@@ -38,3 +38,4 @@ SELECT count(distinct fecha) from Registro;
 SELECT EXTRACT(year FROM fecha) 
 SELECT COUNT (DISTINCT fecha) FROM Registro;
 SELECT COUNT(DISTINCT (EXTRACT (year FROM fecha))) FROM Registro;
+

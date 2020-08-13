@@ -323,7 +323,7 @@ let response = {
     data: 'recibido'
 }
 page.post('/temperatura',(req,res)=>{
-    console.log(req);
+    //console.log(req);
     console.log(req.body);
     res.send(response);
 })

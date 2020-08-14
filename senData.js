@@ -165,7 +165,7 @@ lector.on('data', temp => {
                             ubicacion: ubicacion,
                             id: id
                         }
-                        fetch('https://instrumentacionline.ddns.net/temperatura',{
+                        fetch('https://192.168.1.10:5000/temperatura',{
                             method: 'POST',
                             body: JSON.stringify(data),
                             headers:{

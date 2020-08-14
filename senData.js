@@ -3,6 +3,11 @@ let asignar = require('./asignacion.js');
 
 const express = require('express');
 const fetch = require('node-fetch');
+const https = require('https');
+
+const httpsAgent = new https.Agent({
+    rejectUnauthorized: false,
+})
 
 
 const SerialPort = require('serialport');
@@ -13,6 +18,7 @@ const lector = port.pipe(new Readline({delimiter: '\r\n'}));
 
 let turno = 1;
 const sensores_en_total = 2;
+
 
 
 /*
@@ -137,7 +143,7 @@ lector.on('data', temp => {
     let id = asignar.asignar_id(temp);
 
 
-    if(minuto_refresh%2 == 0){
+    if(minuto_refresh%1 == 0){
         console.log(`Dato`);
         //console.log(`${temp} turno: ${turno}`);
         if(id==turno){
@@ -165,7 +171,7 @@ lector.on('data', temp => {
                             ubicacion: ubicacion,
                             id: id
                         }
-                        fetch('https://192.168.1.10:5000/temperatura',{
+                        fetch('https://instrumentacionline.ddns.net/temperatura',{
                             method: 'POST',
                             body: JSON.stringify(data),
                             headers:{
@@ -194,3 +200,26 @@ lector.on('data', temp => {
         turno=1;
     }
 })
+
+const datos = {
+    temperatura: 21.3,
+    id: 1.0,
+    ubicacion: 'sillon'
+}
+
+fetch('https://instrumentacionline.ddns.net/temperatura',{
+                            method: 'POST',
+                            body: JSON.stringify(datos),
+                            headers:{
+                                'Content-Type': 'application/json' 
+                              },
+                              agent: httpsAgent
+
+                        }).then(response=>{
+                            return response.json();
+                        }).then(data=>{
+                            console.log(data);
+                        }).catch((err)=>{
+                            console.log("Error:");
+                            console.log(err);
+                        })

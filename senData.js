@@ -177,6 +177,7 @@ lector.on('data', temp => {
                             headers:{
                                 'Content-Type': 'application/json' 
                               },
+                              agent: httpsAgent
                         }).then(response=>{
                             return response.json();
                         }).then(data=>{

@@ -327,5 +327,9 @@ page.post('/temperatura',(req,res)=>{
     console.log(req.body);
     res.send(response);
 })
+page.get('/test',(req,res)=>{
+    console.log('Se pudo hacer el get');
+    res.send(response);
+})
 
 

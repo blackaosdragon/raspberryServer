@@ -143,7 +143,7 @@ lector.on('data', temp => {
     let id = asignar.asignar_id(temp);
 
 
-    if(minuto_refresh%1 == 0){
+    if(minuto_refresh%15 == 0){
         console.log(`Dato`);
         //console.log(`${temp} turno: ${turno}`);
         if(id==turno){
@@ -208,6 +208,8 @@ const datos = {
     ubicacion: 'sillon'
 }
 
+console.log("Realizando el fetch");
+
 fetch('https://instrumentacionline.ddns.net/temperatura',{
                             method: 'POST',
                             body: JSON.stringify(datos),
@@ -217,6 +219,7 @@ fetch('https://instrumentacionline.ddns.net/temperatura',{
                               agent: httpsAgent
 
                         }).then(response=>{
+                            console.log("Respuesta")
                             return response.json();
                         }).then(data=>{
                             console.log(data);

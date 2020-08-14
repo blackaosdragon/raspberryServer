@@ -224,3 +224,4 @@ fetch('https://instrumentacionline.ddns.net/temperatura',{
                             console.log("Error:");
                             console.log(err);
                         })
+

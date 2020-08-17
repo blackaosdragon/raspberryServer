@@ -342,7 +342,7 @@ page.post('/temperatura',(req,res)=>{
     } else {
         let id = parseInt(req.body.id);
         let ubicacion = asignar.asignar_ubicacion(id);
-        tokens.insertar_valores(req.body.temperatura,ubicacion,temperatura);
+        tokens.insertar_valores(req.body.temperatura,ubicacion,id);
         let good = {
             data: 'recibido'
         }

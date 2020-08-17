@@ -319,16 +319,34 @@ page.post('/login',(req,res)=>{
     //res.send('Recibido');
 })
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
-let response = {
-    data: 'recibido'
-}
+
+
 page.post('/temperatura',(req,res)=>{
     //console.log(req);
     console.log(req.body);
     console.log(req.body.temperatura);
     console.log(req.body.ubicacion);
     console.log(req.body.id);
-    res.send(response);
+    if(Number.isNaN(req.body.temperatura)){
+        console.log(`El dato: ${req.body.temperatura}, no es un numero`);
+        let response = {
+            data: 'recibido pero fallo'
+        }
+        res.send(response);
+    } else if (Number.isNaN(req.body.id)){
+        console.log(`El dato: ${req.body.id}, no es un numero y no se agregara`);
+        let response = {
+            data: 'recibido pero fallo'
+        }
+        res.send(response);
+    } else {
+        tokens.insertar_valores(req.body.temperatura);
+        let response = {
+            data: 'recibido'
+        }
+        res.send(response);
+    }
+
 })
 page.get('/test',(req,res)=>{
     console.log('Se pudo hacer el get');

@@ -325,6 +325,9 @@ let response = {
 page.post('/temperatura',(req,res)=>{
     //console.log(req);
     console.log(req.body);
+    console.log(req.body.temperatura);
+    console.log(req.body.ubicacion);
+    console.log(req.body.id);
     res.send(response);
 })
 page.get('/test',(req,res)=>{

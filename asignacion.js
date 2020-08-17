@@ -62,5 +62,14 @@ module.exports = {
       if(parseInt(string_id)){
           return parseInt(string_id);
       }
+  },
+  asignar_ubicacion: id => {
+      if(id==1){
+          return "Cámara dieto";
+      } if (id==2){
+          return "Camara farmacia";
+      }
+
   }
+
 }

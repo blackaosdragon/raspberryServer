@@ -166,9 +166,15 @@ lector.on('data', temp => {
                     } else {
                         console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
                         //tokens.insertar_valores(temperatura,ubicacion,id);
+                        /*
                         let data = {
                             temperatura: temperatura,
                             ubicacion: ubicacion,
+                            id: id
+                        }
+                        */
+                        let data = {
+                            temperatura: temperatura,
                             id: id
                         }
                         fetch('https://instrumentacionline.ddns.net/temperatura',{

@@ -165,7 +165,7 @@ lector.on('data', temp => {
                         console.log(`Para el id ${id} ya existe un dato guardado. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
                     } else {
                         console.log(`En el turno ${turno} se guardo: ${ubicacion} a ${temperatura} id: ${id}. ${teempo.getHours()} : ${teempo.getMinutes()} : ${teempo.getSeconds()}`);
-                        tokens.insertar_valores(temperatura,ubicacion,id);
+                        //tokens.insertar_valores(temperatura,ubicacion,id);
                         let data = {
                             temperatura: temperatura,
                             ubicacion: ubicacion,

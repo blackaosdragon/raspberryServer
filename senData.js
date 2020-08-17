@@ -134,7 +134,7 @@ if(minuto_refresh%15){
 
 
 lector.on('data', temp => {
-    console.log(temp);
+    //console.log(temp);
     let teempo = new Date();
     let minuto_refresh = parseInt(teempo.getMinutes());
 
@@ -144,7 +144,7 @@ lector.on('data', temp => {
 
 
     if(minuto_refresh%15 == 0){
-        console.log(`Dato`);
+        //console.log(`Dato`);
         //console.log(`${temp} turno: ${turno}`);
         if(id==turno){
             //console.log(`${temp} turno: ${turno}`);
@@ -177,6 +177,7 @@ lector.on('data', temp => {
                             temperatura: temperatura,
                             id: id
                         }
+                        console.log(temp);
                         fetch('https://instrumentacionline.ddns.net/temperatura',{
                             method: 'POST',
                             body: JSON.stringify(data),

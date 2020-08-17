@@ -329,25 +329,28 @@ page.post('/temperatura',(req,res)=>{
     console.log(req.body.id);
     if(Number.isNaN(req.body.temperatura)){
         console.log(`El dato: ${req.body.temperatura}, no es un numero`);
-        let response = {
+        let bad = {
             data: 'recibido pero fallo'
         }
-        res.send(response);
+        res.send(bad);
     } else if (Number.isNaN(req.body.id)){
         console.log(`El dato: ${req.body.id}, no es un numero y no se agregara`);
-        let response = {
+        let bad = {
             data: 'recibido pero fallo'
         }
-        res.send(response);
+        res.send(bad);
     } else {
         tokens.insertar_valores(req.body.temperatura);
-        let response = {
+        let good = {
             data: 'recibido'
         }
-        res.send(response);
+        res.send(good);
     }
 
 })
+let response = {
+    data: 'recibido'
+}
 page.get('/test',(req,res)=>{
     console.log('Se pudo hacer el get');
     res.send(response);

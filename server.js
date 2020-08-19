@@ -245,6 +245,15 @@ page.get('/ubicaciones',(req,res)=>{
     tokens.extraer_ubicacion().then(respuesta=>{
         res.send(respuesta);
     })
+
+    io.emit(`Data Server`);
+})
+
+page.get('/socket', (req,res) => {
+    console.log('Emitiendo datos');
+    tokens.obtener_datos().then(respuesta=>{
+        res.send(res);
+    })
 })
 
 

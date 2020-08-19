@@ -270,6 +270,20 @@ module.exports = {
         })
         
     },
+    obtener_datos: () => {
+        let sentancia_1 = ``
+        return new Promise( (resolve,reject) => {
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos};`), (err,data,otro) =>{
+                if(err){
+                    console.log(err);
+                    reject(new Error());
+                } else {
+                    console.log(data);
+                    resolve(data);
+                }
+            }
+        })
+    },
     validar_login: (user,pass) =>{
         return new Promise((resolve,reject)=>{
             try{
@@ -320,5 +334,8 @@ module.exports = {
             }
             
         })
+    },
+    emitir_datos: () => {
+
     }
 }

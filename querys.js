@@ -341,6 +341,17 @@ module.exports = {
         })
     },
     emitir_datos: () => {
+        base_de_datos.query(`SELECT * FROM  ${data_base}.${tabla_de_datos}`,(err,datos,campos)=>{
+            if(err){
+                console.log(err);
+            }
+            else {
+                console.log("khe");
+                console.log(datos);
+            }
+            
+            //console.log(campos);
+        })
 
     }
 }

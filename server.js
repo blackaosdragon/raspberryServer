@@ -251,11 +251,12 @@ page.get('/ubicaciones',(req,res)=>{
 
 page.get('/socket', (req,res) => {
     console.log('Se recibio el get');
-    tokens.consultar_base();
+    //tokens.consultar_base();
     tokens.obtener_datos().then(respuesta=>{
         console.log("Enviando respuesta");
         res.send(respuesta);
     })
+    tokens.emitir_datos();
 })
 
 

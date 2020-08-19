@@ -8,9 +8,10 @@ const base_de_datos = mySql.createConnection({
     password: '107005205',
     
 })
-const data_base = 'monitoreo'
-const tabla_de_datos = 'Bitacora'
-const tabla_test = 'test'
+const data_base = 'monitoreo';
+const tabla_de_datos = 'Bitacora';
+const tabla_daly = 'dalyData';
+const tabla_test = 'test';
 let tokens = [];
 
 module.exports = {
@@ -342,14 +343,14 @@ module.exports = {
     },
     emitir_datos: () => {
         return new Promise( (resolve, reject) => {
-            base_de_datos.query(`SELECT * FROM  ${data_base}.${tabla_de_datos}`,(err,datos,campos)=>{
+            base_de_datos.query(`SELECT * FROM  ${data_base}.${tabla_daly}`,(err,datos,campos)=>{
                 if(err){
                     console.log(err);
                     reject(new Error());
                 }
                 else {
-                    console.log(`${datos.Lugar}`);
-                    console.log(datos.Temperatura);
+                    console.log(`${datos[0].Lugar}`);
+                    console.log(datos[0].Temperatura);
                     console.log(datos[0].Año);
                     console.log(datos[0].Dia);
                     console.log(datos[0].Mes);

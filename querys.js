@@ -350,11 +350,11 @@ module.exports = {
                 else {
                     console.log(`${datos.Lugar}`);
                     console.log(datos.Temperatura);
-                    console.log(datos.Año);
-                    console.log(datos.Dia);
-                    console.log(datos.Mes);
-                    console.log(datos.Hora);
-                    console.log(datos.Minuto);
+                    console.log(datos[0].Año);
+                    console.log(datos[0].Dia);
+                    console.log(datos[0].Mes);
+                    console.log(datos[0].Hora);
+                    console.log(datos[0].Minuto);
                     resolve(datos);
                 }
             })

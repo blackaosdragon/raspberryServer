@@ -36,11 +36,11 @@ module.exports = {
         })
     },
     consultar_base: () => {
-        base_de_datos.query(`SELECT * FROM  monitoreo.Registro`,(err,datos,campos)=>{
+        base_de_datos.query(`SELECT * FROM  monitoreo.Bitacora`,(err,datos,campos)=>{
             if(err){
                 console.log(err);
             }
-            //console.log(datos);
+            console.log(datos);
             //console.log(campos);
         })
     }
@@ -272,7 +272,7 @@ module.exports = {
         
     },
     obtener_datos: () => {
-        console.log("Buscando en emit")
+        console.log("Buscando en emit");
         let sentancia_1 = ``
         return new Promise( (resolve,reject) => {
             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos}`), (err,info,otro) =>{

@@ -40,6 +40,7 @@ module.exports = {
             if(err){
                 console.log(err);
             }
+            console.log("khe");
             console.log(datos);
             //console.log(campos);
         })

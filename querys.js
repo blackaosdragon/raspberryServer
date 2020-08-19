@@ -349,6 +349,7 @@ module.exports = {
                     reject(new Error());
                 }
                 else {
+                    console.log(datos.length);
                     console.log(`${datos[0].Lugar}`);
                     console.log(datos[0].Temperatura);
                     console.log(datos[0].Año);

@@ -271,6 +271,7 @@ module.exports = {
         
     },
     obtener_datos: () => {
+        console.log("Buscando en emit")
         let sentancia_1 = ``
         return new Promise( (resolve,reject) => {
             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos};`), (err,data,otro) =>{

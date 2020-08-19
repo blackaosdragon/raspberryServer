@@ -252,7 +252,7 @@ page.get('/ubicaciones',(req,res)=>{
 page.get('/socket', (req,res) => {
     console.log('Emitiendo datos');
     tokens.obtener_datos().then(respuesta=>{
-        res.send(res);
+        res.send(respuesta);
     })
 })
 

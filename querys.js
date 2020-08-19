@@ -350,13 +350,13 @@ module.exports = {
                 }
                 else {
                     console.log(datos.length);
-                    console.log(`${datos[data.length-1].Lugar}`);
-                    console.log(datos[data.length-1].Temperatura);
-                    console.log(datos[data.length-1].Año);
-                    console.log(datos[data.length-1].Dia);
-                    console.log(datos[data.length-1].Mes);
-                    console.log(datos[data.length-1].Hora);
-                    console.log(datos[data.length-1].Minuto);
+                    console.log(`${datos[datos.length-1].Lugar}`);
+                    console.log(datos[datos.length-1].Temperatura);
+                    console.log(datos[datos.length-1].Año);
+                    console.log(datos[datos.length-1].Dia);
+                    console.log(datos[datos.length-1].Mes);
+                    console.log(datos[datos.length-1].Hora);
+                    console.log(datos[datos.length-1].Minuto);
                     resolve(datos);
                 }
             })

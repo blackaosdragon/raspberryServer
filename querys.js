@@ -274,11 +274,12 @@ module.exports = {
         console.log("Buscando en emit")
         let sentancia_1 = ``
         return new Promise( (resolve,reject) => {
-            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos};`), (err,data,otro) =>{
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos}`), (err,data,otro) =>{
                 if(err){
                     console.log(err);
                     reject(new Error());
                 } else {
+                    console.log("Dato emitido: ");
                     console.log(data);
                     resolve(data);
                 }

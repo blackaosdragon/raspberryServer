@@ -355,6 +355,7 @@ module.exports = {
                     console.log(datos.Mes);
                     console.log(datos.Hora);
                     console.log(datos.Minuto);
+                    resolve(datos);
                 }
             })
         })

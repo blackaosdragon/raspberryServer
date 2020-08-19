@@ -1,6 +1,7 @@
 const mySql = require ('mysql');
 const fs = require('fs');
 const { resolve } = require('path');
+const { Console } = require('console');
 const base_de_datos = mySql.createConnection({
     host: 'localhost',
     user: 'infoUpdater',
@@ -274,14 +275,15 @@ module.exports = {
         console.log("Buscando en emit")
         let sentancia_1 = ``
         return new Promise( (resolve,reject) => {
-            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos}`), (err,data,otro) =>{
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos}`), (err,info,otro) =>{
+                console.log("Terminada la busqueda");
                 if(err){
                     console.log(err);
                     reject(new Error());
                 } else {
                     console.log("Dato emitido: ");
-                    console.log(data);
-                    resolve(data);
+                    console.log(info);
+                    resolve(info);
                 }
             }
         })

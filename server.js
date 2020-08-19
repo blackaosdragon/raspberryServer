@@ -252,6 +252,7 @@ page.get('/ubicaciones',(req,res)=>{
 page.get('/socket', (req,res) => {
     console.log('Se recibio el get');
     tokens.obtener_datos().then(respuesta=>{
+        console.log("Enviando respuesta");
         res.send(respuesta);
     })
 })

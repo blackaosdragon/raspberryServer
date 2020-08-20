@@ -343,7 +343,7 @@ module.exports = {
     },
     emitir_datos: () => {
         return new Promise( (resolve, reject) => {
-            base_de_datos.query(`SELECT * FROM  ${data_base}.${tabla_daly}`,(err,datos,campos)=>{
+            base_de_datos.query(`SELECT * FROM  ${data_base}.${tabla_daly} WHERE ID=1`,(err,datos,campos)=>{
                 if(err){
                     console.log(err);
                     reject(new Error());
@@ -352,11 +352,12 @@ module.exports = {
                     console.log(datos.length);
                     console.log(`${datos[datos.length-1].Lugar}`);
                     console.log(datos[datos.length-1].Temperatura);
-                    console.log(datos[datos.length-1].Año);
+                    //console.log(datos[datos.length-1].Año);
                     console.log(datos[datos.length-1].Dia);
                     console.log(datos[datos.length-1].Mes);
                     console.log(datos[datos.length-1].Hora);
                     console.log(datos[datos.length-1].Minuto);
+                    console.log(datos[datos.length-1].ID);
                     resolve(datos);
                 }
             })

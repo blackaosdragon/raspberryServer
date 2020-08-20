@@ -39,3 +39,31 @@ SELECT EXTRACT(year FROM fecha)
 SELECT COUNT (DISTINCT fecha) FROM Registro;
 SELECT COUNT(DISTINCT (EXTRACT (year FROM fecha))) FROM Registro;
 
+
+SELECT * FROM monitoreo.Bitacora 
+WHERE 
+año=(SELECT MAX(Año) FROM monitoreo.Bitacora WHERE ID=1) AND 
+Mes=(SELECT MAX(Mes) FROM monitoreo.Bitacora WHERE ID=1) AND 
+Dia=(SELECT MAX(Dia) FROM monitoreo.Bitacora WHERE ID=1) AND 
+Hora=(SELECT MAX(Hora) FROM monitoreo.Bitacora WHERE ID=1) AND 
+Minuto=(SELECT MAX(Minuto) FROM monitoreo.Bitacora WHERE ID=1;
+
+SELECT * FROM monitoreo.Bitacora WHERE año=(SELECT MAX(Año) FROM monitoreo.Bitacora WHERE ID=1) AND Mes=(SELECT MAX(Mes) FROM monitoreo.Bitacora WHERE ID=1) AND Dia=(SELECT MAX(Dia) FROM monitoreo.Bitacora WHERE ID=1) AND Hora=(SELECT MAX(Hora) FROM monitoreo.Bitacora WHERE ID=1) AND Minuto=(SELECT MAX(Minuto) FROM monitoreo.Bitacora WHERE ID=1;
+
+SELECT * FROM monitoreo.Bitacora 
+  WHERE año=(SELECT MAX(Año) FROM monitoreo.Bitacora WHERE ID=1) AND
+  Mes=(SELECT MAX(Mes) FROM monitoreo.Bitacora WHERE ID=1) and 
+  Dia=(SELECT MAX(Dia) FROM monitoreo.Bitacora WHERE ID=1) AND 
+  Hora=(SELECT MAX(Hora) FROM monitoreo.Bitacora WHERE ID=1) AND 
+  Minuto=(SELECT MAX(Minuto) FROM monitoreo.Bitacora WHERE ID=1;
+  Hora=(SELECT MAX(Hora) FROM monitoreo.Bitacora WHERE id=1));
+
+  SELECT * FROM monitoreo.Bitacora WHERE año=(SELECT MAX(Año) FROM monitoreo.Bitacora WHERE ID=1) AND Mes=(SELECT MAX(Mes) FROM monitoreo.Bitacora WHERE ID=1) and Dia=(SELECT MAX(Dia) FROM monitoreo.Bitacora WHERE ID=1) AND Hora=(SELECT MAX(Hora) FROM monitoreo.Bitacora WHERE ID=1) AND Minuto=(SELECT MAX(Minuto) FROM monitoreo.Bitacora WHERE ID=1;
+
+  SELECT * FROM monitoreo.Bitacora 
+    WHERE año=(SELECT MAX(Año) FROM monitoreo.Bitacora WHERE ID=1) AND 
+    Mes=(SELECT MAX(Mes) FROM monitoreo.Bitacora WHERE ID=1) AND 
+    Dia=(SELECT MAX(Dia) FROM monitoreo.Bitacora WHERE ID=1) AND 
+    Hora=(SELECT MAX(Hora) FROM monitoreo.Bitacora WHERE ID=1) AND 
+      Minuto=
+      (SELECT MAX(Minuto) FROM monitoreo.Bitacora WHERE ID=1 AND Hora=(SELECT MAX(Hora) FROM monitoreo.Bitacora WHERE ID=1));

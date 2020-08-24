@@ -341,8 +341,7 @@ page.post('/login',(req,res)=>{
 page.post('/temperatura',(req,res)=>{
     //console.log(req);
     console.log(`Temperatura: ${req.body.temperatura}`);
-    console.log(`ID: 
-    ${req.body.id}`);
+    console.log(`ID: ${req.body.id}`);
     if(Number.isNaN(req.body.temperatura)){
         console.log(`El dato: ${req.body.temperatura}, no es un numero`);
         let bad = {

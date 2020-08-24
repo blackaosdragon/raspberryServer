@@ -358,7 +358,7 @@ module.exports = {
                     console.log(datos[datos.length-1].Hora);
                     console.log(datos[datos.length-1].Minuto);
                     console.log(datos[datos.length-1].ID);
-                    resolve(datos);
+                    resolve(datos[datos.length-1]);
                 }
             })
         })

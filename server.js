@@ -363,7 +363,7 @@ page.post('/temperatura',(req,res)=>{
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
         res.send(good);
     } else {
-        console.log(`La temperatura ${req.body.temperatura} para el id: ${req.body.id} no es valida`);
+        //console.log(`La temperatura ${req.body.temperatura} para el id: ${req.body.id} no es valida`);
     }
 })
 let response = {

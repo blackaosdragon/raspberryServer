@@ -246,7 +246,7 @@ page.get('/ubicaciones',(req,res)=>{
         res.send(respuesta);
     })
 
-    io.emit(`Data Server`);
+    //io.emit(`Data Server`);
 })
 
 page.get('/socket', (req,res) => {
@@ -360,6 +360,7 @@ page.post('/temperatura',(req,res)=>{
         let good = {
             data: 'recibido'
         }
+        io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
         res.send(good);
     } else {
         console.log(`La temperatura ${req.body.temperatura} para el id: ${req.body.id} no es valida`);

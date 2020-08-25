@@ -67,7 +67,7 @@ module.exports = {
       if(id==1){
           return "Cámara dieto";
       } if (id==2){
-          return "Camara farmacia";
+          return "Cámara farmacia";
       }
 
   }

@@ -340,8 +340,7 @@ page.post('/login',(req,res)=>{
 
 page.post('/temperatura',(req,res)=>{
     //console.log(req);
-    console.log(`Temperatura: ${req.body.temperatura}`);
-    console.log(`ID: ${req.body.id}`);
+    console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} `);
     if(Number.isNaN(req.body.temperatura)){
         console.log(`El dato: ${req.body.temperatura}, no es un numero`);
         let bad = {
@@ -354,7 +353,7 @@ page.post('/temperatura',(req,res)=>{
             data: 'recibido pero fallo'
         }
         res.send(bad);
-    } else {
+    } else if (req.body.temperatura!=-127){
         let id = parseInt(req.body.id);
         let ubicacion = asignar.asignar_ubicacion(id);
         tokens.insertar_valores(req.body.temperatura,ubicacion,id);
@@ -362,8 +361,9 @@ page.post('/temperatura',(req,res)=>{
             data: 'recibido'
         }
         res.send(good);
+    } else {
+        console.log(`La temperatura ${req.body.temperatura} para el id: ${req.body.id} no es valida`);
     }
-
 })
 let response = {
     data: 'recibido'

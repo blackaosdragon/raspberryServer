@@ -360,6 +360,10 @@ page.post('/temperatura',(req,res)=>{
         let good = {
             data: 'recibido'
         }
+        if(req.body.id==2){
+            let temp = req.body.temperatura - 2;
+            io.emit('temp',`${req.body.id} ${req.body.temperatura}`);            
+        }
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
         res.send(good);
     } else {

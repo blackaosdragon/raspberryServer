@@ -25,6 +25,9 @@ Crear Tabla nueva
 Otorgar Permisos
  - GRANT SELECT on monitoreo.test to 'infoUpdater'@'localhost';
 
+MOstrar todas las tablas de un base de datos
+ - SHOW FULL TABLES from base_De_Datos;
+
 
 
 

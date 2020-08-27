@@ -379,7 +379,7 @@ page.post('/temperatura',(req,res)=>{
                         tokens.insertar_valores_2hour(temp,ubicacion,id);
                         tokens.insertar_valores(temp,ubicacion,id);
                     } else {
-                        tokens.insertar_valores(req.body.temperatura,ubicacion,id);
+                        tokens.insertar_valores_2hour(req.body.temperatura,ubicacion,id);
                     }
                     let good = {
                         data: 'recibido y guardado'

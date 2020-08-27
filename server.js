@@ -359,7 +359,7 @@ page.post('/temperatura',(req,res)=>{
     } else if (req.body.temperatura!=-127){
         let id = parseInt(req.body.id);
         let ubicacion = asignar.asignar_ubicacion(id);
-        tokens.insertar_valores(req.body.temperatura,ubicacion,id);
+        //tokens.insertar_valores(req.body.temperatura,ubicacion,id);
         if ( horas%2==0 ){
             console.log("Hora par se guardará dato");
             tokens.buscar_repetido(req.body.id).then( response => {

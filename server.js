@@ -365,6 +365,13 @@ page.post('/temperatura',(req,res)=>{
             tokens.buscar_repetido(req.body.id).then( response => {
                 console.log(`Tamaño de la respuesta: ${response.length}`);
                 if( response.length > 0 ){
+                    console.log(`Ya existe un dato para el id: ${req.body.id}`);
+                    console.log(response);
+                    let good2 = {
+                        data: 'recibido pero ya no se guardará'
+                    }
+                    res.send(good2);                    
+                } else {
                     console.log('Se agregará el dato');
                     if(req.body.id==2){
                         let temp = req.body.temperatura - 2;
@@ -378,13 +385,6 @@ page.post('/temperatura',(req,res)=>{
                         data: 'recibido y guardado'
                     }
                     res.send(good);
-                } else {
-                    console.log(`Ya existe un dato para el id: ${req.body.id}`);
-                    console.log(response);
-                    let good2 = {
-                        data: 'recibido pero ya no se guardará'
-                    }
-                    res.send(good2);
                 }
             })
         }

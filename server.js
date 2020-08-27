@@ -240,16 +240,19 @@ page.post('/days', solocitar_dias = (req, res) => {
         res.send(respuesta);
     })
 })
-page.get('/ubicaciones',(req,res)=>{
-    console.log('Solicitando ubicaciones');
-    /*tokens.extraer_ubicaciones().then( res => {
-        console.log(res);
-    })
-    */
+page.get('/ubicaciones',(req,res)=>{    
     tokens.extraer_ubicacion().then(respuesta=>{
+        console.log(respuesta)
         res.send(respuesta);
     })
-
+    //io.emit(`Data Server`);
+})
+page.get('/ubicaciones2',(req,res)=>{
+    console.log('Solicitando ubicaciones');
+    tokens.extraer_ubicaciones().then( respuesta => {
+        console.log(respuesta);
+        res.send(respuesta);
+    })
     //io.emit(`Data Server`);
 })
 

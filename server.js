@@ -366,7 +366,7 @@ page.post('/temperatura',(req,res)=>{
                 console.log(`Tamaño de la respuesta: ${response.length}`);
                 if( response.length > 0 ){
                     console.log(`Ya existe un dato para el id: ${req.body.id}`);
-                    console.log(response);
+                    //console.log(response);
                     let good2 = {
                         data: 'recibido pero ya no se guardará'
                     }

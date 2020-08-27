@@ -263,7 +263,7 @@ module.exports = {
         let tiempo = new Date();
         let mes = tiempo.getMonth()+1;
         return new Promise((resolve,reject)=>{
-            base_de_datos.query(`SELECT * FROM monitoreo.Bitacora WHERE ID=${id_turno} AND Año=${tiempo.getFullYear()} AND Mes=${mes} AND Dia=${tiempo.getDate()} AND Hora=${tiempo.getHours()} AND Minuto>=${tiempo.getMinutes()}`,(err,data,otro)=>{
+            base_de_datos.query(`SELECT * FROM monitoreo.Bitacora WHERE ID=${id_turno} AND Año=${tiempo.getFullYear()} AND Mes=${mes} AND Dia=${tiempo.getDate()} AND Hora=${tiempo.getHours()} AND Minuto<=${tiempo.getMinutes()}`,(err,data,otro)=>{
                 if(err){
                     console.log(err);
                     reject(new Error());

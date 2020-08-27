@@ -343,7 +343,7 @@ page.post('/temperatura',(req,res)=>{
     let registro = new Date();
     let horas = parseInt(registro.getHours());
 
-    console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} `);
+    console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
     if(Number.isNaN(req.body.temperatura)){
         console.log(`El dato: ${req.body.temperatura}, no es un numero`);
         let bad = {

@@ -242,6 +242,9 @@ page.post('/days', solocitar_dias = (req, res) => {
 })
 page.get('/ubicaciones',(req,res)=>{
     console.log('Solicitando ubicaciones');
+    tokens.extraer_ubicaciones().then( res => {
+        console.log(res);
+    })
     tokens.extraer_ubicacion().then(respuesta=>{
         res.send(respuesta);
     })

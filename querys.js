@@ -168,6 +168,19 @@ module.exports = {
                 console.log(elementos);
             });
         })
+    }, extraer_ubicaciones: () => {
+        return new Promise( (res, rej) => {
+            let payload;
+            base_de_datos.query(`SELECT DISTINCT Lugar AS lugar, Ubicacion FROM ${data_base}.${tabla_daly};`,(err,data,otro)=>{
+                if (err){
+                    console.log(err)
+                    rej(new Error);
+                } else {
+                    res(data);
+                }
+            })
+            
+        })
     },
     extraer_ubicacion: () => {
         return new Promise((resolve,reject)=>{

@@ -196,7 +196,9 @@ module.exports = {
                     
                     resolve(elementos);
                 }
+                let experimento = data;
                 console.log(elementos);
+                console.log(experimento);
             })
         })
     },obtener_nombre:(ubication,year,mes,dia)=>{

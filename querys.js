@@ -185,10 +185,11 @@ module.exports = {
                 }
                 console.log(elementos);
             })*/
-            base_de_datos.query(`SELECT DISTINCT Lugar AS lugar FROM ${data_base}.${tabla_de_datos};`,(err,data,otro)=>{
+            base_de_datos.query(`SELECT DISTINCT Lugar AS lugar, Ubicacion FROM ${data_base}.${tabla_daly};`,(err,data,otro)=>{
                 if(err){
                     reject(new Error());
                 }else{
+                    console.log(data);
                     for (let i = 0; i<data.length;i++){
                         elementos[i] = data[i].lugar;
                     }

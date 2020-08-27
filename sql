@@ -28,7 +28,8 @@ Otorgar Permisos
 MOstrar todas las tablas de un base de datos
  - SHOW FULL TABLES from base_De_Datos;
 
-
+Mostrar los Permisos de un usuario
+ - SHOW GRANTS FOR 'infoUpdater'@'localhost';
 
 
 
@@ -70,3 +71,5 @@ SELECT * FROM monitoreo.Bitacora
     Hora=(SELECT MAX(Hora) FROM monitoreo.Bitacora WHERE ID=1) AND 
       Minuto=
       (SELECT MAX(Minuto) FROM monitoreo.Bitacora WHERE ID=1 AND Hora=(SELECT MAX(Hora) FROM monitoreo.Bitacora WHERE ID=1));
+
+  

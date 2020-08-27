@@ -340,6 +340,9 @@ page.post('/login',(req,res)=>{
 
 page.post('/temperatura',(req,res)=>{
     //console.log(req);
+    let registro = new Date();
+    let horas = parseInt(registro.getHours());
+
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} `);
     if(Number.isNaN(req.body.temperatura)){
         console.log(`El dato: ${req.body.temperatura}, no es un numero`);
@@ -357,15 +360,35 @@ page.post('/temperatura',(req,res)=>{
         let id = parseInt(req.body.id);
         let ubicacion = asignar.asignar_ubicacion(id);
         tokens.insertar_valores(req.body.temperatura,ubicacion,id);
-        let good = {
-            data: 'recibido'
-        }
-        if(req.body.id==2){
-            let temp = req.body.temperatura - 2;
-            io.emit('temp',`${req.body.id} ${req.body.temperatura}`);            
+        if ( horas%2==0 ){
+            console.log("Hora par se guardará dato");
+            tokens.buscar_repetido(req.body.id).then( response => {
+                console.log(`Tamaño de la respuesta: ${response.length}`);
+                if( response.length > 0 ){
+                    console.log('Se agregará el dato');
+                    if(req.body.id==2){
+                        let temp = req.body.temperatura - 2;
+                        io.emit('temp',`${req.body.id} ${temp}`);
+                        tokens.insertar_valores_2hour(temp,ubicacion,id);
+                        tokens.insertar_valores(temp,ubicacion,id);
+                    } else {
+                        tokens.insertar_valores(req.body.temperatura,ubicacion,id);
+                    }
+                    let good = {
+                        data: 'recibido y guardado'
+                    }
+                    res.send(good);
+                } else {
+                    console.log(`Ya existe un dato para el id: ${req.body.id}`);
+                    console.log(response);
+                    let good2 = {
+                        data: 'recibido pero ya no se guardará'
+                    }
+                    res.send(good2);
+                }
+            })
         }
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
-        res.send(good);
     } else {
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
         //console.log(`La temperatura ${req.body.temperatura} para el id: ${req.body.id} no es valida`);
@@ -378,5 +401,6 @@ page.get('/test',(req,res)=>{
     console.log('Se pudo hacer el get');
     res.send(response);
 })
+
 
 

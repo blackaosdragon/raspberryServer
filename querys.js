@@ -27,10 +27,15 @@ module.exports = {
         })
         return tokens;
     },
+    buscar_hospitales: () => {
+        base_de_datos.query(`SELECT DISTINCT Ubicacion FROM monitoreo.dalyData;`,(err,data,otro) => {
+
+        }) 
+    },
     insertar_valores_2hour: (temperatura, lugar,ID) => {
         let tiempo = new Date();
         let mes = tiempo.getMonth() + 1;
-        base_de_datos.query(`INSERT INTO monitoreo.dalyData(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temperatura}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${ID},'H. Siglo XXI');`,(err,values,data) => {
+        base_de_datos.query(`INSERT INTO monitoreo.dalyData(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temperatura}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${ID},'H. Cardiología S. XXI');`,(err,values,data) => {
             if(err){
                 console.log(err);
             }

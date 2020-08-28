@@ -255,6 +255,9 @@ page.get('/ubicaciones2',(req,res)=>{
     })
     //io.emit(`Data Server`);
 })
+page.get('/hospitales', (req,res) =>{
+    console.log("Solicitando Hospitales");
+})
 
 page.get('/socket', (req,res) => {
     console.log('Se recibio el get');

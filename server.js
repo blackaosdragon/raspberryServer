@@ -286,8 +286,7 @@ page.post('/buscar',(req,res)=>{
         console.log(`Obteniendo el nombre: ${respuesta}`);
         name = respuesta;
         return respuesta;
-    })
-    .then(name=>{
+    }).then(name=>{
         console.log(`Proporcionando el nombre: ${name} para consultar la case de datos`)
         tokens.consultar_base_de_datos(lugar,year,mes,dia,name)
         .then(respuesta=>{
@@ -299,6 +298,60 @@ page.post('/buscar',(req,res)=>{
     
 })
 page.get('/descarga_consulta', (req,res)=>{
+    /////////////////////////////////////////////
+    let data = req.body
+    let year = data.year;
+    let mes = data.mes;
+    let dia = data.dia;
+    let lugar = data.lugar;
+    console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
+    tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
+        console.log(`Obteniendo el nombre: ${respuesta}`);
+        name = respuesta;
+        return respuesta;
+    })
+    .then(name=>{
+        console.log(`Proporcionando el nombre: ${name} para consultar la case de datos`)
+        tokens.consultar_base_de_datos(lugar,year,mes,dia,name)
+        .then(respuesta=>{
+            console.log(`Despues de llenar el archivo: ${name}`);
+            res.send(respuesta);
+        });
+        res.download(`${name}`,`${name}`);
+        console.log("Archivo descargado");
+        fs.unlink(name);
+        console.log("Archivo borrado");
+    })
+
+    /////////////////////////////////////////////////
+    console.log(`El archivo a descargar es: ${name}`)
+    
+    console.log("Archivo descargado");
+
+
+    //page.use('/',express.static(__dirname+'/home'))
+    //res.download('/home/ubuntu/server/',`${name}`),`${name}`);
+
+    //res.download(`/${name}`,'consulta.csv');
+    //res.send("Respuesta");
+    //res.sendFile(`/home/ubuntu/server/${name}`);
+    //console.log(`Descargando ${name}`);
+    /*
+    return new Promise ((resolve,reject)=>{
+        res.download(name);
+        resolve(name);
+        console.log("descargando archivo");
+    })
+    
+    */
+    /*
+    fs.unlink(name,(err)=>{
+        if(err){
+            throw err;
+        }
+        console.log(`${name} borrado`);
+    })
+    */
     console.log(`El archivo a descargar es: ${name}`)
     res.download(`${name}`,`${name}`);
     console.log("Archivo descargado");

@@ -12,6 +12,7 @@ const data_base = 'monitoreo';
 const tabla_de_datos = 'Bitacora';
 const tabla_daly = 'dalyData';
 const tabla_test = 'test';
+const tabla_de_temperaturas = 'dalyData';
 let tokens = [];
 
 module.exports = {
@@ -35,7 +36,7 @@ module.exports = {
     insertar_valores_2hour: (temperatura, lugar,ID) => {
         let tiempo = new Date();
         let mes = tiempo.getMonth() + 1;
-        base_de_datos.query(`INSERT INTO monitoreo.dalyData(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temperatura}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${ID},'H. Cardiología S. XXI');`,(err,values,data) => {
+        base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_temperaturas}(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temperatura}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${ID},'H. Cardiología S. XXI');`,(err,values,data) => {
             if(err){
                 console.log(err);
             }
@@ -239,7 +240,7 @@ module.exports = {
             let elementos = [];
             //let name = `Consulta_${ubication}_${year}-${mes}-${dia}.csv`
             console.log(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año FROM monitoreo.Bitacora WHERE Lugar='oficina' AND Dia=29 AND Mes=6 AND Hora>0 AND Hora<24;`)
-            base_de_datos.query(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_daly} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`,(err,data,otro)=>{
+            base_de_datos.query(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_de_datos} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`,(err,data,otro)=>{
                 if(err){
                     console.log(err);
                     reject(new Error());

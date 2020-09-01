@@ -3,6 +3,15 @@ const express = require('express');
 /*const SerialPort = require('serialport');*/
 const tokens = require('./querys.js');
 
+//const admin = require('firebase-admin');
+//const serviceAccount = require("/home/ubuntu/home-8bea3-firebase-adminsdk-ilfkz-544a451f7b.json");
+//cambiar la ruta anterir ingresando el archivo y la nueva ruta
+/*
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://home-8bea3.firebaseio.com/'
+});
+*/
 
 
 const https = require('https');
@@ -242,7 +251,7 @@ page.post('/days', solocitar_dias = (req, res) => {
 })
 page.get('/ubicaciones',(req,res)=>{    
     tokens.extraer_ubicacion().then(respuesta=>{
-        console.log(respuesta)
+        console.log(respuesta);
         res.send(respuesta);
     })
     //io.emit(`Data Server`);
@@ -443,6 +452,7 @@ page.post('/temperatura',(req,res)=>{
                         tokens.insertar_valores(temp,ubicacion,id);
                     } else {
                         tokens.insertar_valores_2hour(req.body.temperatura,ubicacion,id);
+                        tokens.insertar_valores(temp,ubicacion,id);
                     }
                     let good = {
                         data: 'recibido y guardado'

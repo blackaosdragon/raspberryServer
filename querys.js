@@ -239,8 +239,8 @@ module.exports = {
         return new Promise( (resolve,reject) => {
             let elementos = [];
             //let name = `Consulta_${ubication}_${year}-${mes}-${dia}.csv`
-            console.log(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año FROM monitoreo.Bitacora WHERE Lugar='oficina' AND Dia=29 AND Mes=6 AND Hora>0 AND Hora<24;`)
-            base_de_datos.query(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_de_datos} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`,(err,data,otro)=>{
+            console.log(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`)
+            base_de_datos.query(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`,(err,data,otro)=>{
                 if(err){
                     console.log(err);
                     reject(new Error());

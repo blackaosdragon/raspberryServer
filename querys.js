@@ -68,7 +68,7 @@ module.exports = {
         console.log("Buscando años");
         return new Promise( (resolve,reject) => {
             //let elementos = [];
-            base_de_datos.query(`SELECT DISTINCT Año FROM ${data_base}.${tabla_de_datos} WHERE Lugar='${ubicacion}';`,(err,data,campos)=>{
+            base_de_datos.query(`SELECT DISTINCT Año FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubicacion}';`,(err,data,campos)=>{
                 if (err){
                     reject(new Error());
                     console.log(err);
@@ -95,7 +95,7 @@ module.exports = {
 
         return new Promise( (resolve,reject) => {
             let elementos = [];
-            base_de_datos.query(`SELECT DISTINCT Dia AS dia FROM ${data_base}.${tabla_de_datos} WHERE Año=${year} AND Lugar='${lugar}' AND Mes=${mes};`, (err,data,otro) => {
+            base_de_datos.query(`SELECT DISTINCT Dia AS dia FROM ${data_base}.${tabla_de_temperaturas} WHERE Año=${year} AND Lugar='${lugar}' AND Mes=${mes};`, (err,data,otro) => {
                 if (err){
                     reject(new Error());
                     console.log(err);
@@ -132,7 +132,7 @@ module.exports = {
     extraer_mes: (year) => {
         return new Promise((resolve,reject)=>{
             let elementos =[];
-            base_de_datos.query(`SELECT DISTINCT Mes AS mes FROM ${data_base}.${tabla_de_datos} WHERE Año=${year};`,(err,data,filas)=>{
+            base_de_datos.query(`SELECT DISTINCT Mes AS mes FROM ${data_base}.${tabla_de_temperaturas} WHERE Año=${year};`,(err,data,filas)=>{
                 if(err){
                     reject (new Error());
                 }

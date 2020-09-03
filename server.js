@@ -313,6 +313,7 @@ page.get('/descarga_consulta', (req,res)=>{
     let mes = data.mes;
     let dia = data.dia;
     let lugar = data.lugar;
+    console.log(`Año: ${year}, Mes: ${mes}, Dia: ${lugar}`)
     console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
         console.log(`Obteniendo el nombre: ${respuesta}`);
@@ -473,6 +474,15 @@ let response = {
 page.get('/test',(req,res)=>{
     console.log('Se pudo hacer el get');
     res.send(response);
+})
+page.get('/descarga_csv',(req,res)=>{
+    tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
+        console.log(`Obteniendo el nombre: ${respuesta}`);
+        name = respuesta;
+        return respuesta;
+    })
+    res.download(`${name}`,`${name}`);
+    res.send(name);
 })
 
 

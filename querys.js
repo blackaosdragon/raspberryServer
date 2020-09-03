@@ -246,7 +246,7 @@ module.exports = {
                     reject(new Error());
                 } else {
                     console.log(`Creando la cabecera del archivo: ${name}`)
-                    fs.appendFile(`${name}`,`"Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}"\n "Lugar";"Temperatura";"Hora";"Minuto";\n`,function(err){
+                    fs.appendFile(`${name}`,`Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}\nLugar;Temperatura;Hora;Minuto;\n`,function(err){
                         if(err){
                             throw err;
                         }
@@ -256,7 +256,7 @@ module.exports = {
                     console.log(`Para cada elemento en el archivo: ${name}`)
                     data.forEach((element,i) => {  
                         //console.log(`${element.ubicacion} ${element.temperatura} ${element.fecha}`)                  
-                        fs.appendFile(`${name}`,`"${element.ubicacion}";"${element.temperatura}°C";"${element.Hora}";"${element.Minuto}"\n`,function(err){
+                        fs.appendFile(`${name}`,`${element.ubicacion};${element.temperatura}°C;${element.Hora};${element.Minuto}\n`,function(err){
                             if(err){
                                 throw err;
                             }
@@ -281,6 +281,7 @@ module.exports = {
 
                     }
                     resolve(elementos);
+                    
                     
                 }
             })
@@ -397,7 +398,57 @@ module.exports = {
                 }
             })
         })
-        
+    },descargar_consulta: (ubication,year,mes,dia,name,descarga_solicitada) => {
+        console.log(`Obteniendo el nombre para la consulta: ${name}`);
+        //console.log(`Lugar: ${ubication} ${dia}/${mes}/${year}, Hora: ${hora_inicial}:${minuto_inicial} - ${hora_final}:${minuto_final}`)
+        return new Promise( (resolve,reject) => {
+            let elementos = [];
+            //let name = `Consulta_${ubication}_${year}-${mes}-${dia}.csv`
+            console.log(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`)
+            base_de_datos.query(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`,(err,data,otro)=>{
+                if(err){
+                    console.log(err);
+                    reject(new Error());
+                } else {
+                    console.log(`Creando la cabecera del archivo: ${name}`)
+                    fs.appendFile(`${name}`,`Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}\nLugar;Temperatura;Hora;Minuto;\n`,function(err){
+                        if(err){
+                            throw err;
+                        }
+                        //console.log('Guardado');
 
+                    })
+                    console.log(`Para cada elemento en el archivo: ${name}`)
+                    data.forEach((element,i) => {  
+                        //console.log(`${element.ubicacion} ${element.temperatura} ${element.fecha}`)                  
+                        fs.appendFile(`${name}`,`${element.ubicacion};${element.temperatura}°C;${element.Hora};${element.Minuto}\n`,function(err){
+                            if(err){
+                                throw err;
+                            }
+                            //console.log('Guardado');
+    
+                        })
+                        elementos[i]={
+                            ubicacion: element.ubicacion,
+                            temperatura: element.temperatura,
+                            dia: element.Dia,
+                            mes: element.Mes,
+                            año: element.Año,
+                            hora: element.Hora,
+                            minuto: element.Minuto,
+                            segundo: element.Segundo
+                        }
+                        //console.log(elementos[i]);
+                    });
+                    //console.log(elementos);
+                    console.log("Archivo creado y actualizado");
+                    if(descarga_solicitada==1){
+
+                    }
+                    resolve(elementos);
+                    
+                }
+            })
+        })
     }
 }

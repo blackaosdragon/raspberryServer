@@ -331,9 +331,21 @@ page.get('/descarga_consulta', (req,res)=>{
     }).then(payload => {
         console.log(payload.descargado)
         if(payload.descargado==1){
-            console.log(`Se va a borrar el archivo ${name}`)
+            console.log(`Se va a borrar el archivo ${name}`);
+            return payload.descargado
         } else {
             console.log(`No hubo respuesta y no se borrara el archivo`);
+            return 0;
+        }
+    }).then( borrar => {
+        if(borrar){
+            fs.unlink(`${name}`, err => {
+                if(err){
+                    console.log(err);
+                } else {}
+            })
+        } else {
+            console.log("EL archivo no se pudo descargar y no se borrara");
         }
     })
     .catch( err => {

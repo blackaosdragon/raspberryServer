@@ -306,13 +306,14 @@ page.post('/buscar',(req,res)=>{
     
     
 })
-page.get('/descarga_consulta', (req,res)=>{
+page.post('/descarga_consulta', (req,res)=>{
     /////////////////////////////////////////////
+    
     let data = req.body
     let year = data.year;
     let mes = data.mes;
     let dia = data.dia;
-    console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);    
+    console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
 
 
     //page.use('/',express.static(__dirname+'/home'))

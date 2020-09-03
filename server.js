@@ -322,6 +322,7 @@ page.get('/descarga_consulta', (req,res)=>{
     })
     promesa_descarga.then(()=>{
         console.log("Termino la promesa");
+        res.download(`${name}`,`${name}`);
     }).then( () => {
         console.log("Preparando para borrar archivo");
         fs.unlink(`${name}`,(err)=>{

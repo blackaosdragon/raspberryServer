@@ -329,7 +329,7 @@ page.get('/descarga_consulta', (req,res)=>{
         console.log(payload);
         return payload;
     }).then(payload => {
-        console.log(payload.descarga)
+        console.log(payload)
         if(payload.descarga==1){
             console.log(`Se va a borrar el archivo ${name}`)
         } else {

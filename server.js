@@ -313,6 +313,7 @@ page.post('/descarga_consulta', (req,res)=>{
     let year = data.year;
     let mes = data.mes;
     let dia = data.dia;
+    let lugar = data.lugar;
     console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
 
 

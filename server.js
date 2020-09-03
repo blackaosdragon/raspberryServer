@@ -308,6 +308,12 @@ page.post('/buscar',(req,res)=>{
 })
 page.get('/descarga_consulta', (req,res)=>{
     console.log(`El archivo a descargar es: ${name}`)
+    descarga.then(()=>{
+        console.log("Sise puede hacer una promesa asi");
+    })
+    .catch( err => {
+        console.log(err);
+    })
     res.download(`${name}`,`${name}`, err => {
         if(err){
             console.log(err);
@@ -316,12 +322,14 @@ page.get('/descarga_consulta', (req,res)=>{
             }
             //res.send(payload);
         } else {
+            console.log("Antes de eliminarlo");
             fs.unlink(`${name}`, err => {
                 if (err){
                     console.log(err);
                 }
                 console.log(`${name} eliminado`);
             })
+            console.log("Eliminado");
         }
     });
     console.log("Archivo descargado");

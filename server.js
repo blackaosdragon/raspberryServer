@@ -308,35 +308,7 @@ page.post('/buscar',(req,res)=>{
 })
 page.get('/descarga_consulta', (req,res)=>{
     /////////////////////////////////////////////
-    let data = req.body
-    let year = data.year;
-    let mes = data.mes;
-    let dia = data.dia;
-    let lugar = data.lugar;
-    console.log(`Año: ${year}, Mes: ${mes}, Dia: ${lugar}`)
-    console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
-    tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
-        console.log(`Obteniendo el nombre: ${respuesta}`);
-        name = respuesta;
-        return respuesta;
-    })
-    .then(name=>{
-        console.log(`Proporcionando el nombre: ${name} para consultar la case de datos`)
-        tokens.consultar_base_de_datos(lugar,year,mes,dia,name)
-        .then(respuesta=>{
-            console.log(`Despues de llenar el archivo: ${name}`);
-            res.send(respuesta);
-        });
-        res.download(`${name}`,`${name}`);
-        console.log("Archivo descargado");
-        fs.unlink(name);
-        console.log("Archivo borrado");
-    })
-
-    /////////////////////////////////////////////////
-    console.log(`El archivo a descargar es: ${name}`)
     
-    console.log("Archivo descargado");
 
 
     //page.use('/',express.static(__dirname+'/home'))

@@ -21,6 +21,8 @@ const path = require('path');
 let asignar = require('./asignacion.js');
 //let datos_temperatura = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
+const { resolve } = require('path');
+const { rejects } = require('assert');
 //const { pbkdf2 } = require('crypto');
 //const { response } = require('express');
 
@@ -308,12 +310,35 @@ page.post('/buscar',(req,res)=>{
 })
 page.get('/descarga_consulta', (req,res)=>{
     console.log(`El archivo a descargar es: ${name}`)
-    descarga.then(()=>{
-        console.log("Sise puede hacer una promesa asi");
+    let promesa_descarga = new Promise ((resolve,reject)=>{
+        res.download(`${name}`,`${name}`, err => {
+            if (err){
+                reject();
+            } else {
+                console.log("Archivo descargado");
+                let payload = {
+                    data: 1
+                }
+                resolve(payload);
+            }
+        })
+    })
+    promesa_descarga.then(()=>{
+        console.log("Termino la promesa");
+        return payload;
+    }).then( payload => {
+        console.log(payload);
+        fs.unlink(`${name}`, err => {
+            if (err){
+                console.log(err);
+            }
+            console.log(`${name} eliminado`);
+        })
     })
     .catch( err => {
         console.log(err);
     })
+    /*
     res.download(`${name}`,`${name}`, err => {
         if(err){
             console.log(err);
@@ -323,16 +348,11 @@ page.get('/descarga_consulta', (req,res)=>{
             //res.send(payload);
         } else {
             console.log("Antes de eliminarlo");
-            fs.unlink(`${name}`, err => {
-                if (err){
-                    console.log(err);
-                }
-                console.log(`${name} eliminado`);
-            })
             console.log("Eliminado");
         }
     });
     console.log("Archivo descargado");
+    */
     
     /////////////////////////////////////////////
 

@@ -314,7 +314,7 @@ page.get('/descarga_consulta', (req,res)=>{
             let payload = {
                 descarga: 0
             }
-            res.send(payload);
+            //res.send(payload);
         } else {
             fs.unlink(`${name}`, err => {
                 if (err){

@@ -327,7 +327,16 @@ page.get('/descarga_consulta', (req,res)=>{
     descarga().then( (payload)=> {
         console.log(`Descarga del archivo ${name}, realizada!`);
         console.log(payload);
-    }).catch( err => {
+        return payload;
+    }).then(payload => {
+        console.log(payload.descarga)
+        if(payload.descarga==1){
+            console.log(`Se va a borrar el archivo ${name}`)
+        } else {
+            console.log(`No hubo respuesta y no se borrara el archivo`);
+        }
+    })
+    .catch( err => {
         console.log(err);
     })
     

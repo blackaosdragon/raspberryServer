@@ -308,8 +308,24 @@ page.post('/buscar',(req,res)=>{
 })
 page.get('/descarga_consulta', (req,res)=>{
     console.log(`El archivo a descargar es: ${name}`)
-    res.download(`${name}`,`${name}`);
+    res.download(`${name}`,`${name}`, err => {
+        if(err){
+            console.log(err);
+            let payload = {
+                descarga: 0
+            }
+            res.send(payload);
+        } else {
+            fs.unlink(`${name}`, err => {
+                if (err){
+                    console.log(err);
+                }
+                console.log(`${name} eliminado`);
+            })
+        }
+    });
     console.log("Archivo descargado");
+    
     /////////////////////////////////////////////
 
 
@@ -336,17 +352,6 @@ page.get('/descarga_consulta', (req,res)=>{
         console.log(`${name} borrado`);
     })
     */
-   
-    
-    
-    fs.unlinkSync(`${name}`, err => {
-        if (err){
-            console.log(err);
-        }
-        
-        
-        console.log(`${name} eliminado`);
-    })
 
 
 

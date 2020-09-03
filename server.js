@@ -309,7 +309,38 @@ page.post('/buscar',(req,res)=>{
     
 })
 page.get('/descarga_consulta', (req,res)=>{
-    res.download(`${name}`,`${name}`);
+    function descarga(){
+        return new Promise( (resolve,reject) => {
+            res.download(`${name}`,`${name}`, err => {
+                if(err){
+                    console.log(err);
+                    reject(err);
+                } else {
+                    let payload = {
+                        descargado: 1
+                    }
+                    resolve(payload);
+                }
+            })
+        })
+    }
+    descarga().then( (payload)=> {
+        console.log(`Descarga del archivo ${name}, realizada!`);
+        console.log(payload);
+    }).catch( err => {
+        console.log(err);
+    })
+    
+    
+    /*
+    res.download(`${name}`,`${name}`, err => {
+        if(err){
+            console.log(err);
+        } else {
+
+        }
+    });
+    */
     /*
     descarga = () => {
         return new Promise( (resolve,reject) => {

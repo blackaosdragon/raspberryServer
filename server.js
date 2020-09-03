@@ -324,12 +324,7 @@ page.get('/descarga_consulta', (req,res)=>{
         console.log("Termino la promesa");
     }).then( () => {
         console.log("Preparando para borrar archivo");
-        fs.unlink(`${name}`,`${name}`, err => {
-            if (err){
-                console.log(err);
-            }
-            console.log(`${name} eliminado`);
-        })
+        fs.unlink(`${name}`,`${name}`)
     })
     .catch( err => {
         console.log(err);

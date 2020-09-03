@@ -309,7 +309,7 @@ page.post('/buscar',(req,res)=>{
     
 })
 page.get('/descarga_consulta', (req,res)=>{
-    descarga = (name) => {
+    descarga = () => {
         return new Promise( (resolve,reject) => {
             console.log(`Preparando para descargar el archivo: ${name}`);
             res.download(`${name}`,`${name}`);

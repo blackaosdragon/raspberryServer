@@ -309,6 +309,33 @@ page.post('/buscar',(req,res)=>{
     
 })
 page.get('/descarga_consulta', (req,res)=>{
+    descarga = (name) => {
+        return new Promise( (resolve,reject) => {
+            console.log(`Preparando para descargar el archivo: ${name}`);
+            res.download(`${name}`,`${name}`);
+            resolve(`${name}`);
+        })
+    };
+    descarga().then( name => {
+        console.log(name);
+        res.download(`${name}`,`${name}`);
+        return(name);
+    }).then( name => {
+        console.log(`Archivo descargado: ${name}`);
+        return name;
+    }).then( name => {
+        console.log(`Borrando archivo: ${name}`);
+        return (name)
+    }).then( name => {
+        fs.unlinkSync(`${name}`,(err)=>{
+            if(err){
+                console.log(err);
+            } else {
+                console.log("Archivo borrado por la funcion promesa");
+            }
+            
+        })         
+    })
     console.log(`El archivo a descargar es: ${name}`)
     let promesa_descarga = new Promise ((resolve,reject)=>{
         res.download(`${name}`,`${name}`, err => {

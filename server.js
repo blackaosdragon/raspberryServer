@@ -333,13 +333,15 @@ page.get('/descarga_consulta', (req,res)=>{
         console.log(`${name} borrado`);
     })
     */
-    console.log(`El archivo a descargar es: ${name}`)
-    res.download(`${name}`,`${name}`);
+   
+    
     console.log("Archivo descargado");
     fs.unlink(`${name}`, err => {
         if (err){
             console.log(err);
         }
+        console.log(`El archivo a descargar es: ${name}`)
+        res.download(`${name}`,`${name}`);
         console.log(`${name} eliminado`);
     })
 

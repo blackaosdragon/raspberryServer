@@ -453,7 +453,7 @@ page.post('/temperatura',(req,res)=>{
                         tokens.insertar_valores(temp,ubicacion,id);
                     } else {
                         tokens.insertar_valores_2hour(req.body.temperatura,ubicacion,id);
-                        tokens.insertar_valores(temp,ubicacion,id);
+                        tokens.insertar_valores(req.body.temperatura,ubicacion,id);
                     }
                     let good = {
                         data: 'recibido y guardado'
@@ -484,6 +484,6 @@ page.get('/descarga_csv',(req,res)=>{
     res.download(`${name}`,`${name}`);
     res.send(name);
 })
-
+server.js:456:49 
 
 

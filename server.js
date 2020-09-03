@@ -309,10 +309,12 @@ page.post('/buscar',(req,res)=>{
     
 })
 page.get('/descarga_consulta', (req,res)=>{
+    res.download(`${name}`,`${name}`);
+    /*
     descarga = () => {
         return new Promise( (resolve,reject) => {
             console.log(`Preparando para descargar el archivo: ${name}`);
-            res.download(`${name}`,`${name}`);
+            
             resolve(`${name}`);
         })
     };
@@ -363,7 +365,10 @@ page.get('/descarga_consulta', (req,res)=>{
     })
     .catch( err => {
         console.log(err);
-    })
+    })*/
+
+
+
     /*
     res.download(`${name}`,`${name}`, err => {
         if(err){

@@ -316,19 +316,15 @@ page.get('/descarga_consulta', (req,res)=>{
                 reject();
             } else {
                 console.log("Archivo descargado");
-                let payload = {
-                    data: 1
-                }
-                resolve(payload);
+                resolve();
             }
         })
     })
     promesa_descarga.then(()=>{
         console.log("Termino la promesa");
-        return payload;
-    }).then( payload => {
-        console.log(payload);
-        fs.unlink(`${name}`, err => {
+    }).then( () => {
+        console.log("Preparando para borrar archivo");
+        fs.unlink(`${name}`,`${name}`, err => {
             if (err){
                 console.log(err);
             }

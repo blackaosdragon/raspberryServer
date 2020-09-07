@@ -31,6 +31,9 @@ MOstrar todas las tablas de un base de datos
 Mostrar los Permisos de un usuario
  - SHOW GRANTS FOR 'infoUpdater'@'localhost';
 
+Obtener los tipos de datos en una tabla:
+ - DESCRIBE monitoreo.test;
+
 
 
 SELECT EXTRACT(year FROM fecha) year FROM monitoreo.Registro;

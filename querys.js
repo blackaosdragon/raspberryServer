@@ -13,6 +13,7 @@ const tabla_de_datos = 'Bitacora';
 const tabla_daly = 'dalyData';
 const tabla_test = 'test';
 const tabla_de_temperaturas = 'dalyData';
+const tabla_de_tokens = 'mensajeria';
 let tokens = [];
 
 module.exports = {
@@ -27,6 +28,23 @@ module.exports = {
             return tokens;
         })
         return tokens;
+    },insertar_tokens: (token,activo) => {
+        return new Promise( (resolve,reject) => {
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_tokens} WHERE token=${token};`, (err,result,otro) => {
+                if(result.length>0){
+                    console.log("El token ya existe");
+                    resolve(result);
+                } else {
+                    base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_tokens} (token,activo) VALUES (${token},${activo})`, err => {
+                        if(err){
+                            console.log(err);
+                            reject();
+                        }
+                        resolve();
+                    })
+                }
+            })
+        })
     },
     buscar_hospitales: () => {
         base_de_datos.query(`SELECT DISTINCT Ubicacion FROM monitoreo.dalyData;`,(err,data,otro) => {

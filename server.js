@@ -583,6 +583,13 @@ page.get('/descarga_csv',(req,res)=>{
     res.download(`${name}`,`${name}`);
     res.send(name);
 })
+page.post('/insertar_token', (req,res) => {
+    console.log(req.body);
+    let data = {
+        data: 1
+    }
+    res.send(data);
+})
 
 
 

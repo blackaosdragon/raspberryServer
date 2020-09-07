@@ -40,6 +40,7 @@ module.exports = {
                             console.log(err);
                             reject();
                         }
+                        console.log("Token insertado");
                         resolve();
                     })
                 }

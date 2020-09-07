@@ -23,6 +23,7 @@ let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
 const { resolve } = require('path');
 const { rejects } = require('assert');
+const { insertar_valores } = require('./querys.js');
 //const { pbkdf2 } = require('crypto');
 //const { response } = require('express');
 
@@ -585,9 +586,20 @@ page.get('/descarga_csv',(req,res)=>{
 })
 page.post('/insertar_token', (req,res) => {
     console.log(req.body);
-    let data = {
-        data: 1
-    }
+    let data = {}
+    tokens.insertar_tokens(req.body.token,req.body.activo).then( respuesta => {
+        if(respuesta){
+            console.log(respuesta);
+        }
+        data = {
+            data: 1
+        }
+    }).catch( error => {
+        console.log(error);
+        data = {
+            data: 0
+        }
+    })
     res.send(data);
 })
 

@@ -31,21 +31,27 @@ module.exports = {
     },insertar_tokens: (token,activo) => {
         return new Promise( (resolve,reject) => {
             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_tokens} WHERE token=${token};`, (err,result,otro) => {
-                if(result){
-                    if(result.length>0){
-                        console.log("El token ya existe");
-                        resolve(result);
-                    } else {
-                        base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_tokens} (token,activo) VALUES (${token},${activo})`, err => {
-                            if(err){
-                                console.log(err);
-                                reject();
-                            }
-                            console.log("Token insertado");
-                            resolve();
-                        })
+                if(err){
+                    console.log(err)
+                    reject()
+                } else{
+                    if(result){
+                        if(result.length>0){
+                            console.log("El token ya existe");
+                            resolve(result);
+                        } else {
+                            base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_tokens} (token,activo) VALUES (${token},${activo})`, err => {
+                                if(err){
+                                    console.log(err);
+                                    reject();
+                                }
+                                console.log("Token insertado");
+                                resolve();
+                            })
+                        }
                     }
                 }
+                
             })
         })
     },

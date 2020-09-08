@@ -3,18 +3,6 @@ const express = require('express');
 /*const SerialPort = require('serialport');*/
 const tokens = require('./querys.js');
 
-const admin = require('firebase-admin');
-const serviceAccount = require("/home/pi/Web/raspberry/raspberryServer/home-8bea3-firebase-adminsdk-ilfkz-544a451f7b.json");
-//cambiar la ruta anterir ingresando el archivo y la nueva ruta
-
-/*admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://home-8bea3.firebaseio.com/'
-});
-*/
-
-
-
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
@@ -601,6 +589,13 @@ page.post('/insertar_token', (req,res) => {
         res.send(data);
     })
     //res.send(data);
+})
+page.get('/test_notificacion', (req,res) => {
+    mensajes.test_notification();
+    let mensajes_enviados = {
+        data: 1
+    }
+    res.send(mensajes_enviados);
 })
 
 

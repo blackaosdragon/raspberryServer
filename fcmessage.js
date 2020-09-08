@@ -3,6 +3,7 @@ const admin = require('firebase-admin');
 
 //const serviceAccount = require("/home/ubuntu/home-8bea3-firebase-adminsdk-ilfkz-544a451f7b.json");
 const serviceAccount = require("/home/pi/Web/raspberry/home-8bea3-firebase-adminsdk-ilfkz-544a451f7b.json");
+const { response } = require('express');
 
 const url_de_base_de_datos = 'https://home-8bea3.firebaseio.com/'
 
@@ -43,5 +44,10 @@ module.exports = {
                 return envios;
             }
         }
+    },test_notification: () => {
+        tokens.solicitar_tokens().then( response => {
+            console.log("Respuesta desde los mensajes: ");
+            console.log(response);
+        })
     }
 }

@@ -1,5 +1,6 @@
 const mySql = require ('mysql');
 const fs = require('fs');
+const { resolve } = require('path');
 const base_de_datos = mySql.createConnection({
     host: 'localhost',
     user: 'infoUpdater',
@@ -72,10 +73,20 @@ module.exports = {
             })
         })
     },
-    buscar_hospitales: () => {
-        base_de_datos.query(`SELECT DISTINCT Ubicacion FROM monitoreo.dalyData;`,(err,data,otro) => {
-
-        }) 
+    solicitar_tokens: () => {
+        return new Promise( (resolve,reject) => {
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_tokens} WHERE activo=1;`,(err,data,otro) => {
+                if(err){
+                    console.log(err);
+                    reject();
+                } else {
+                    console.log("Datos: ")
+                    console.log(data);
+                    resolve(data);
+                }
+            })
+        })
+         
     },
     insertar_valores_2hour: (temperatura, lugar,ID) => {
         let tiempo = new Date();

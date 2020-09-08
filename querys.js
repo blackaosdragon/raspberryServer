@@ -38,7 +38,22 @@ module.exports = {
                     if(result){
                         if(result.length>0){
                             console.log("El token ya existe");
-                            resolve(result);
+                            //if(activo==false){
+                                base_de_datos.query(`UPDATE ${data_base}.${tabla_de_tokens} SET activo=${activo} WHERE token="${token}";`, err => {
+                                    if(err){
+                                        let payload = {
+                                            actualizado: false
+                                        }
+                                        console.log(err);
+                                        resolve(payload); //en caso de no poder actualizar
+                                    } else {
+                                        let payload = {
+                                            actualizado: true 
+                                        }
+                                        resolve(payload); //en caso de poder actualizar
+                                    }
+                                })
+                            //}
                         } else {
                             base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_tokens} (token,activo) VALUES ("${token}",${activo})`, err => {
                                 if(err){
@@ -473,7 +488,6 @@ module.exports = {
 
                     }
                     resolve(elementos);
-                    
                 }
             })
         })

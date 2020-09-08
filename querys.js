@@ -36,6 +36,7 @@ module.exports = {
                     reject()
                 } else{
                     if(result){
+                        console.log(result);
                         if(result.length>0){
                             console.log("El token ya existe");
                             //if(activo==false){

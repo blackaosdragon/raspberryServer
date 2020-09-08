@@ -50,6 +50,7 @@ module.exports = {
                                         let payload = {
                                             actualizado: true 
                                         }
+                                        console.log("Token actualizado");
                                         resolve(payload); //en caso de poder actualizar
                                     }
                                 })

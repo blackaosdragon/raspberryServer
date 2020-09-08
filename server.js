@@ -7,10 +7,11 @@ const admin = require('firebase-admin');
 const serviceAccount = require("/home/pi/Web/raspberry/raspberryServer/home-8bea3-firebase-adminsdk-ilfkz-544a451f7b.json");
 //cambiar la ruta anterir ingresando el archivo y la nueva ruta
 
-admin.initializeApp({
+/*admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: 'https://home-8bea3.firebaseio.com/'
 });
+*/
 
 
 

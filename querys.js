@@ -1,7 +1,5 @@
 const mySql = require ('mysql');
 const fs = require('fs');
-const { resolve } = require('path');
-const { Console } = require('console');
 const base_de_datos = mySql.createConnection({
     host: 'localhost',
     user: 'infoUpdater',

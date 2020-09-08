@@ -30,7 +30,7 @@ module.exports = {
         return tokens;
     },insertar_tokens: (token,activo) => {
         return new Promise( (resolve,reject) => {
-            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_tokens} WHERE token=${token};`, (err,result,otro) => {
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_tokens} WHERE token="${token}";`, (err,result,otro) => {
                 if(err){
                     console.log(err)
                     reject()
@@ -40,7 +40,7 @@ module.exports = {
                             console.log("El token ya existe");
                             resolve(result);
                         } else {
-                            base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_tokens} (token,activo) VALUES (${token},${activo})`, err => {
+                            base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_tokens} (token,activo) VALUES ('${token}',${activo})`, err => {
                                 if(err){
                                     console.log(err);
                                     reject();

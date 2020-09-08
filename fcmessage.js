@@ -47,10 +47,6 @@ module.exports = {
     },test_notification: () => {
         tokens.solicitar_tokens().then( response => {
             console.log("Respuesta desde los mensajes: ");
-            response.forEach( element => {
-                console.log(element.token)
-            });
-            console.log(response[0].token);
             const options = {
                 priority: 'high',
                 timeToLive: 60 * 60 * 0
@@ -62,7 +58,15 @@ module.exports = {
                     contenido: `Test de notificaciones exitoso`
                 }
             }
-            //admin.messaging().sendToDevice()
+            response.forEach( element => {
+                console.log(element.token)
+            admin.messaging().sendToDevice(element.token,mensaje,options)
+            .then( response => {
+                console.log('Entrega satisfactoria: ',response);
+            }).catch( error => {console.log("Error al enviar mensaje: ",error);})
+            });
+            //console.log(response[0].token);
+            
         })
     }
 }

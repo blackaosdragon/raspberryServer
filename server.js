@@ -504,8 +504,17 @@ page.post('/temperatura',(req,res)=>{
     //console.log(req);
     let registro = new Date();
     let horas = parseInt(registro.getHours());
+    let minutos = parseInt(registro.getMinutes());
+    let segundos = parseInt(registro.getSeconds());
 
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
+    if(req.body.temperatura>=7.8){
+        if(minutos%2==0 && segundos%5==0){
+            let id = parseInt(req.body.id);
+            let ubicacion = asignar.asignar_ubicacion(id);
+            mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
+        }
+    }
     if(Number.isNaN(req.body.temperatura)){
         console.log(`El dato: ${req.body.temperatura}, no es un numero`);
         let bad = {
@@ -552,6 +561,7 @@ page.post('/temperatura',(req,res)=>{
             })
         }
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
+        
     } else {
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
         //console.log(`La temperatura ${req.body.temperatura} para el id: ${req.body.id} no es valida`);

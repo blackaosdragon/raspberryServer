@@ -68,5 +68,26 @@ module.exports = {
             //console.log(response[0].token);
             
         })
+    },notificacion_temperatura: (temperatura,ubicacion) => {
+        tokens.solicitar_tokens().then( response => {
+            const options = {
+                priority: 'high',
+                timeToLive: 60 * 60 * 0
+            }
+            const mensaje = {
+                data: {
+                    tipo: "Bienvenida",
+                    titulo: "¡Alerta!",
+                    contenido: `La temperatura de ${ubicacion} es: ${temperatura}°C`
+                }
+            }
+            response.forEach( element => {
+                console.log(element.token)
+            admin.messaging().sendToDevice(element.token,mensaje,options)
+            .then( response => {
+                console.log('Entrega satisfactoria: ',response);
+            }).catch( error => {console.log("Error al enviar mensaje: ",error);})
+            });
+        })
     }
 }

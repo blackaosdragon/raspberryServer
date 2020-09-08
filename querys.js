@@ -40,7 +40,7 @@ module.exports = {
                             console.log("El token ya existe");
                             resolve(result);
                         } else {
-                            base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_tokens} (token,activo) VALUES ('${token}',${activo})`, err => {
+                            base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_tokens} (token,activo) VALUES ("${token}",${activo})`, err => {
                                 if(err){
                                     console.log(err);
                                     reject();

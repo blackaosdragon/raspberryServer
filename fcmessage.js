@@ -47,6 +47,9 @@ module.exports = {
     },test_notification: () => {
         tokens.solicitar_tokens().then( response => {
             console.log("Respuesta desde los mensajes: ");
+            response.forEach( element => {
+                console.log(element.token)
+            });
             console.log(response[0].token);
             const options = {
                 priority: 'high',
@@ -59,7 +62,7 @@ module.exports = {
                     contenido: `Test de notificaciones exitoso`
                 }
             }
-            admin.messaging().sendToDevice()
+            //admin.messaging().sendToDevice()
         })
     }
 }

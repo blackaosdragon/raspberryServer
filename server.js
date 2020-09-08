@@ -589,7 +589,7 @@ page.post('/insertar_token', (req,res) => {
     let data = {}
     tokens.insertar_tokens(req.body.token,req.body.activo).then( respuesta => {
         if(respuesta){
-            console.log(respuesta);
+            res.send(respuesta);
         }
         data = {
             data: 1
@@ -599,8 +599,9 @@ page.post('/insertar_token', (req,res) => {
         data = {
             data: 0
         }
+        res.send(data);
     })
-    res.send(data);
+    //res.send(data);
 })
 
 

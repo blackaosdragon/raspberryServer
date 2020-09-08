@@ -47,7 +47,19 @@ module.exports = {
     },test_notification: () => {
         tokens.solicitar_tokens().then( response => {
             console.log("Respuesta desde los mensajes: ");
-            console.log(response);
+            console.log(response[0].token);
+            const options = {
+                priority: 'high',
+                timeToLive: 60 * 60 * 0
+            }
+            const mensaje = {
+                data: {
+                    tipo: "Bienvenida",
+                    titulo: "Probando notificaciones",
+                    contenido: `Test de notificaciones exitoso`
+                }
+            }
+            admin.messaging().sendToDevice()
         })
     }
 }

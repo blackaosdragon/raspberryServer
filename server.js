@@ -499,9 +499,9 @@ page.post('/login',(req,res)=>{
 })
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
 let reloj = new Date();
+let cronoMinutos = parseInt(reloj.getMinutes());
+let cronoSegundos = parseInt(reloj.getSeconds());
 setInterval( () => {
-    let cronoMinutos = parseInt(reloj.getMinutes());
-    let cronoSegundos = parseInt(reloj.getSeconds());
     console.log(`${cronoMinutos}:${cronoSegundos}`);
     if(cronoMinutos%2==0){
         console.log("Se cumplieron 2 minutos")

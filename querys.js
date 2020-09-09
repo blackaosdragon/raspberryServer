@@ -38,8 +38,12 @@ module.exports = {
                         //console.log(result);
                         if(result.length>0){
                             console.log("El token ya existe");
-                            console.log(typeof(activo));
-                            if(activo!=2){
+                            //console.log(typeof(activo));
+                            if(activo==2){
+                                console.log("Token consultado: ",result)
+                                resolve(result);
+                                
+                            } else {
                                 base_de_datos.query(`UPDATE ${data_base}.${tabla_de_tokens} SET activo=${activo} WHERE token="${token}";`, err => {
                                     if(err){
                                         let payload = {
@@ -55,8 +59,6 @@ module.exports = {
                                         resolve(payload); //en caso de poder actualizar
                                     }
                                 })
-                            } else if(activo==2){
-                                resolve(result);
                             }
                         } else {
                             base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_tokens} (token,activo) VALUES ("${token}",${activo})`, err => {

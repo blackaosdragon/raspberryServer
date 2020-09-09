@@ -585,7 +585,6 @@ page.get('/descarga_csv',(req,res)=>{
 })
 page.post('/insertar_token', (req,res) => {
     console.log(req.body);
-    console.log(typeof(req.body.activo));
     let data = {}
     tokens.insertar_tokens(req.body.token,req.body.activo).then( respuesta => {
         if(respuesta){

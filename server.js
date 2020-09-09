@@ -505,6 +505,7 @@ page.post('/login',(req,res)=>{
     console.log(`${cronoMinutos}:${cronoSegundos}`)
 }
 setInterval(()=>cronometro(),1000);*/
+/*
 //if(req.body.temperatura>5){
     let contador = 0;
     temporizador = () => {
@@ -519,6 +520,7 @@ setInterval(()=>cronometro(),1000);*/
         mensajes.test_notification();
     }
 //}
+*/
 page.post('/temperatura',(req,res)=>{
     //console.log(req);
     let registro = new Date();

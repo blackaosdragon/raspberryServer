@@ -498,13 +498,23 @@ page.post('/login',(req,res)=>{
     //res.send('Recibido');
 })
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
-cronometro = () => {
+/*cronometro = () => {
     let reloj = new Date();
     let cronoMinutos = parseInt(reloj.getMinutes());
     let cronoSegundos = parseInt(reloj.getSeconds());
     console.log(`${cronoMinutos}:${cronoSegundos}`)
 }
-setInterval(()=>cronometro(),1000);
+setInterval(()=>cronometro(),1000);*/
+//if(req.body.temperatura>5){
+    temporizador = () => {
+        console.log("Contador: ",contador);
+        contador++;
+    }
+    setInterval(()=>temporizador(),1000);
+    if(contador%120==0){
+        mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
+    }
+//}
 page.post('/temperatura',(req,res)=>{
     //console.log(req);
     let registro = new Date();
@@ -513,6 +523,8 @@ page.post('/temperatura',(req,res)=>{
     let segundos = parseInt(registro.getSeconds());
 
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
+    let contador = 0;
+    
     if(req.body.temperatura>=7.8){
         
         if(minutos%2==0 && segundos%5==0){

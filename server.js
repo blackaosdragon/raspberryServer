@@ -498,8 +498,15 @@ page.post('/login',(req,res)=>{
     //res.send('Recibido');
 })
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
-
-
+let reloj = new Date();
+setInterval( () => {
+    let cronoMinutos = parseInt(reloj.getMinutes());
+    let cronoSegundos = parseint(reloj.getSeconds());
+    console.log(`${cronoMinutos}:${cronoSegundos}`);
+    if(cronoMinutos%2==0){
+        console.log("Se cumplieron 2 minutos")
+    }
+},1000)
 page.post('/temperatura',(req,res)=>{
     //console.log(req);
     let registro = new Date();
@@ -509,7 +516,9 @@ page.post('/temperatura',(req,res)=>{
 
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
     if(req.body.temperatura>=7.8){
+        
         if(minutos%2==0 && segundos%5==0){
+            
             let id = parseInt(req.body.id);
             let ubicacion = asignar.asignar_ubicacion(id);
             mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
@@ -590,6 +599,11 @@ page.post('/insertar_token', (req,res) => {
         if(respuesta){
             console.log(respuesta)
             res.send(respuesta);
+        } else {
+            let respuesta = {
+                actualizado
+            }
+            res.send()
         }
     }).catch( error => {
         console.log(error);

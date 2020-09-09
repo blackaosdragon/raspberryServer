@@ -498,14 +498,13 @@ page.post('/login',(req,res)=>{
     //res.send('Recibido');
 })
 //page.use('/.well-known/pki-validation/',express.static('verifi'));
-let reloj = new Date();
-
 cronometro = () => {
+    let reloj = new Date();
     let cronoMinutos = parseInt(reloj.getMinutes());
     let cronoSegundos = parseInt(reloj.getSeconds());
     console.log(`${cronoMinutos}:${cronoSegundos}`)
 }
-setTimeout(()=>{cronometro()},1000);
+setInterval(()=>cronometro(),1000);
 page.post('/temperatura',(req,res)=>{
     //console.log(req);
     let registro = new Date();

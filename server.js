@@ -501,7 +501,7 @@ page.post('/login',(req,res)=>{
 let reloj = new Date();
 setInterval( () => {
     let cronoMinutos = parseInt(reloj.getMinutes());
-    let cronoSegundos = parseint(reloj.getSeconds());
+    let cronoSegundos = parseInt(reloj.getSeconds());
     console.log(`${cronoMinutos}:${cronoSegundos}`);
     if(cronoMinutos%2==0){
         console.log("Se cumplieron 2 minutos")

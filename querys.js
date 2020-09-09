@@ -61,6 +61,9 @@ module.exports = {
                                 })
                             }
                         } else {
+                            if(activo==2){
+                                activo=1
+                            }
                             base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_tokens} (token,activo) VALUES ("${token}",${activo})`, err => {
                                 if(err){
                                     console.log(err);

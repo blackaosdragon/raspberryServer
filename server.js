@@ -618,7 +618,7 @@ page.post('/insertar_token', (req,res) => {
             res.send(respuesta);
         } else {
             let respuesta = {
-                actualizado
+                actualizado: 1
             }
             res.send()
         }

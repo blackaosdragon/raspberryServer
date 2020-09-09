@@ -351,7 +351,7 @@ page.post('/insertar_token', (req,res) => {
             let respuesta = {
                 actualizado: 1
             }
-            res.send()
+            res.send(respuesta)
         }
     }).catch( error => {
         console.log(error);

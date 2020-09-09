@@ -38,6 +38,7 @@ module.exports = {
                         //console.log(result);
                         if(result.length>0){
                             console.log("El token ya existe");
+                            console.log(typeof(activo));
                             if(activo!=2){
                                 base_de_datos.query(`UPDATE ${data_base}.${tabla_de_tokens} SET activo=${activo} WHERE token="${token}";`, err => {
                                     if(err){

@@ -53,7 +53,7 @@ module.exports = {
             }
             const mensaje = {
                 data: {
-                    tipo: "Bienvenida",
+                    tipo: "Test",
                     titulo: "Probando notificaciones",
                     contenido: `Test de notificaciones exitoso`
                 }

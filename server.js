@@ -508,15 +508,15 @@ setInterval(()=>cronometro(),1000);*/
 //if(req.body.temperatura>5){
     let contador = 0;
     temporizador = () => {
-        console.log("Contador: ",contador);
+        //console.log("Contador: ",contador);
         contador++;
         if(contador%120==0){
-            mensajes.test_notification(7.99,"Test");
+            mensajes.test_notification();
         }
     }
     setInterval(()=>temporizador(),1000);
     if(contador%120==0){
-        mensajes.test_notification(7.99,"Test");
+        mensajes.test_notification();
     }
 //}
 page.post('/temperatura',(req,res)=>{
@@ -607,6 +607,7 @@ page.get('/descarga_csv',(req,res)=>{
     res.send(name);
 })
 page.post('/insertar_token', (req,res) => {
+    console.log("Hizo solicitud de token",req.body.activo);
     console.log(req.body);
     let data = {}
     tokens.insertar_tokens(req.body.token,req.body.activo).then( respuesta => {

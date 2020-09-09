@@ -506,6 +506,7 @@ page.post('/login',(req,res)=>{
 }
 setInterval(()=>cronometro(),1000);*/
 //if(req.body.temperatura>5){
+    let contador = 0;
     temporizador = () => {
         console.log("Contador: ",contador);
         contador++;
@@ -523,7 +524,7 @@ page.post('/temperatura',(req,res)=>{
     let segundos = parseInt(registro.getSeconds());
 
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
-    let contador = 0;
+    
     
     if(req.body.temperatura>=7.8){
         

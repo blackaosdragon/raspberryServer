@@ -511,12 +511,12 @@ setInterval(()=>cronometro(),1000);*/
         console.log("Contador: ",contador);
         contador++;
         if(contador%120==0){
-            mensajes.notificacion_temperatura(7.99,"Test");
+            mensajes.test_notification(7.99,"Test");
         }
     }
     setInterval(()=>temporizador(),1000);
     if(contador%120==0){
-        mensajes.notificacion_temperatura(7.99,"Test");
+        mensajes.test_notification(7.99,"Test");
     }
 //}
 page.post('/temperatura',(req,res)=>{

@@ -510,11 +510,14 @@ setInterval(()=>cronometro(),1000);*/
     temporizador = () => {
         console.log("Contador: ",contador);
         contador++;
+        if(contador%120==0){
+            mensajes.notificacion_temperatura(7.99,"Test");
+        }
     }
     setInterval(()=>temporizador(),1000);
-    if(contador%120==0){
+    /*if(contador%120==0){
         mensajes.notificacion_temperatura(7.99,"Test");
-    }
+    }*/
 //}
 page.post('/temperatura',(req,res)=>{
     //console.log(req);

@@ -505,7 +505,7 @@ cronometro = () => {
     let cronoSegundos = parseInt(reloj.getSeconds());
     console.log(`${cronoMinutos}:${cronoSegundos}`)
 }
-setTimeout(cronometro(),1000);
+setTimeout(()=>{cronometro()},1000);
 page.post('/temperatura',(req,res)=>{
     //console.log(req);
     let registro = new Date();

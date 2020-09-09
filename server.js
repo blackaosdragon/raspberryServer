@@ -513,7 +513,7 @@ setInterval(()=>cronometro(),1000);*/
     }
     setInterval(()=>temporizador(),1000);
     if(contador%120==0){
-        mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
+        mensajes.notificacion_temperatura(7.99,"Test");
     }
 //}
 page.post('/temperatura',(req,res)=>{

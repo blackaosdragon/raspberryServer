@@ -274,19 +274,19 @@ page.post('/temperatura',(req,res)=>{
         console.log("Contador detenido")
     }
     //crono 2
-    if(parseFloat(req.body.temperatura)>7.8 && parseInt(req.body.id)==2 && idContador2<=0){
+    if(parseFloat(req.body.temperatura)>=7.8 && parseInt(req.body.id)==2 && idContador2<=0){
         crono2 = setInterval(()=>{
             idContador2++;
             console.log(idContador2);
             if(idContador2%120==0){
-                idContador2=1;
+                idContador2=0;
                 console.log("Notificacion enviada");
                 let id = parseInt(req.body.id);
                 let ubicacion = asignar.asignar_ubicacion(id);
                 mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
             }
         },1000);
-    } else if(parseFloat(req.body.temperatura)<=7.7 && parseInt(req.body.id)==2 && idContador2>0){
+    } else if(parseFloat(req.body.temperatura)<7.8 && parseInt(req.body.id)==2 && idContador2>0){
         clearInterval(crono2);
         console.log("Contador detenido")
     }

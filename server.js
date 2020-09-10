@@ -1,20 +1,18 @@
 const Ws = require('ws');
 const express = require('express');
-/*const SerialPort = require('serialport');*/
 const tokens = require('./querys.js');
-
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
-
 let asignar = require('./asignacion.js');
-//let datos_temperatura = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
-const { resolve } = require('path');
-const { rejects } = require('assert');
-const { insertar_valores } = require('./querys.js');
-//const { pbkdf2 } = require('crypto');
-//const { response } = require('express');
+
+let id = 0;
+let id2 = 0;
+let idMinutos = 0;
+let idSegundos = 0;
+let idContador = 0;
+let crono1;
 
 const page = express();
 
@@ -260,9 +258,20 @@ page.post('/temperatura',(req,res)=>{
     let segundos = parseInt(registro.getSeconds());
 
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
+    if(parseFloat(req.body.temperatura)>5.9 && parseInt(req.body.id==1) && idContador<=0){
+        crono1 = setInterval(()=>{
+            idContador++;
+            console.log(idContador);
+            if(idContador%120==0){
+                console.log("Notificacion enviada");
+            }
+        },1000);
+    } else if(parseFloat(req.body.temperatura) && parseInt(req.body.id==1) && idContador>0){
+        clearInterval(crono1);
+        console.log("Contador detenido")
+    }
     
-    
-    if(req.body.temperatura>=7.8){
+    if(req.body.temperatura>=5){
         
         if(minutos%2==0 && segundos%5==0){
             

@@ -258,7 +258,7 @@ page.post('/temperatura',(req,res)=>{
     let segundos = parseInt(registro.getSeconds());
 
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
-    if(parseFloat(req.body.temperatura)>5.9 && parseInt(req.body.id==1) && idContador<=0){
+    if(parseFloat(req.body.temperatura)>5.0 && parseInt(req.body.id==1) && idContador<=0){
         crono1 = setInterval(()=>{
             idContador++;
             console.log(idContador);
@@ -271,7 +271,7 @@ page.post('/temperatura',(req,res)=>{
         console.log("Contador detenido")
     }
     
-    if(req.body.temperatura>=5){
+    if(req.body.temperatura>=7.8){
         
         if(minutos%2==0 && segundos%5==0){
             

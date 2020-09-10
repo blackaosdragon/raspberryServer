@@ -7,12 +7,15 @@ const path = require('path');
 let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
 
-let id = 0;
-let id2 = 0;
+let idTemp = 0;
+let id2Temp = 0;
+let id3Temp = 0;
 let idContador = 0;
 let idContador2 = 0;
+let idContador3 = 0;
 let crono1;
 let crono2;
+let crono3;
 
 const page = express();
 
@@ -251,6 +254,34 @@ setInterval(()=>cronometro(),1000);*/
 //}
 */
 page.post('/temperatura',(req,res)=>{
+    
+    if(req.body.id==1){
+        idTemp = parseFloat(req.body.temperatura);
+    } else if (req.body.id==2){
+        id2Temp = parseFloat(req.body.temperatura);
+    } else if (req.body.id==3){
+        id3Temp = parseFloat(req.body.temperatura);
+    }
+    sendTemp = () => {
+        let temp;
+        let id ;
+        //let ubicacion = asignar.asignar_ubicacion(id);
+        let ubicacion;
+        if(req.body.id==1){
+            temp = idTemp;
+            id = parseInt(req.body.id);
+            ubicacion = asignar.asignar_ubicacion(id);
+        } else if(req.body.id==2){
+            temp = id2Temp
+            id = parseInt(req.body.id);
+            ubicacion = asignar.asignar_ubicacion(id);
+        } else if(req.body.id==3){
+            temp = id3Temp
+            id = parseInt(req.body.id);
+            ubicacion = asignar.asignar_ubicacion(id);
+        }
+        mensajes.notificacion_temperatura(temp,ubicacion);
+    }
     //console.log(req);
     let registro = new Date();
     let horas = parseInt(registro.getHours());
@@ -259,16 +290,17 @@ page.post('/temperatura',(req,res)=>{
 
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
     //crono 1
-    if(parseFloat(req.body.temperatura)>5.4 && parseInt(req.body.id)==1 && idContador<=0){
+    if(parseFloat(req.body.temperatura)>7.7 && parseInt(req.body.id)==1 && idContador<=0){
         crono1 = setInterval(()=>{
             idContador++;
             console.log("Contador 1: ",idContador);
             if(idContador%120==0){
                 console.log("Notificacion enviada");
+                sendTemp();
                 idContador=0;
             }
         },1000);
-    } else if(parseFloat(req.body.temperatura)<=5.4 && parseInt(req.body.id)==1 && idContador>0){
+    } else if(parseFloat(req.body.temperatura)<=7.7 && parseInt(req.body.id)==1 && idContador>0){
         clearInterval(crono1);
         idContador=0;
         console.log("Contador detenido")
@@ -281,14 +313,34 @@ page.post('/temperatura',(req,res)=>{
             if(idContador2%120==0){
                 idContador2=0;
                 console.log("Notificacion enviada");
-                let id = parseInt(req.body.id);
-                let ubicacion = asignar.asignar_ubicacion(id);
-                mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
+                //let id = parseInt(req.body.id);
+                //let ubicacion = asignar.asignar_ubicacion(id);
+                sendTemp();
+                //mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
             }
         },1000);
     } else if(parseFloat(req.body.temperatura)<7.8 && parseInt(req.body.id)==2 && idContador2>0){
+        idContador2=0;
         clearInterval(crono2);
         console.log("Contador detenido")
+    }
+    if(parseFloat(req.body.temperatura)>=7.8 && parseInt(req.body.id)==3 && idContador3<=0){
+        crono3 = setInterval(()=>{
+            idContador2++;
+            console.log("Contador 2: ",idContador2);
+            if(idContador2%120==0){
+                idContador2=0;
+                console.log("Notificacion enviada");
+                //let id = parseInt(req.body.id);
+                //let ubicacion = asignar.asignar_ubicacion(id);
+                //mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
+                sendTemp();
+            }
+        },1000);        
+    } else if(parseFloat(req.body.temperatura)<7.8 && parseInt(req.body.id)==3 && idContador3>0){
+        idContador3 = 0;
+        clearInterval(crono3);
+        console.log("Contador detenido");
     }
 
     

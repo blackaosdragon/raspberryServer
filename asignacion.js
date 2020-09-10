@@ -68,6 +68,8 @@ module.exports = {
           return "Cámara dieto";
       } if (id==2){
           return "Cámara farmacia";
+      } if (id==3){
+          return "Sensor de prueba";
       }
 
   }

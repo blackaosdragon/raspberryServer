@@ -53,7 +53,7 @@ module.exports = {
             }
             const mensaje = {
                 data: {
-                    tipo: "Bienvenida",
+                    tipo: "Test",
                     titulo: "Probando notificaciones",
                     contenido: `Test de notificaciones exitoso`
                 }
@@ -89,5 +89,29 @@ module.exports = {
             }).catch( error => {console.log("Error al enviar mensaje: ",error);})
             });
         })
+    },notificacion_test: () => {
+        tokens.solicitar_tokens().then( response => {
+            console.log("Respuesta desde los mensajes: ");
+            const options = {
+                priority: 'high',
+                timeToLive: 60 * 60 * 0
+            }
+            const mensaje = {
+                data: {
+                    tipo: "Test",
+                    titulo: "Probando notificaciones",
+                    contenido: `Test de notificaciones exitoso`
+                }
+            }
+            response.forEach( element => {
+                console.log(element.token)
+            admin.messaging().sendToDevice(element.token,mensaje,options)
+            .then( response => {
+                console.log('Entrega satisfactoria: ',response);
+            }).catch( error => {console.log("Error al enviar mensaje: ",error);})
+            });
+            //console.log(response[0].token);
+            
+        })        
     }
 }

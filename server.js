@@ -259,7 +259,7 @@ page.post('/temperatura',(req,res)=>{
 
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
     //crono 1
-    if(parseFloat(req.body.temperatura)>5.5 && parseInt(req.body.id)==1 && idContador<=0){
+    if(parseFloat(req.body.temperatura)>5.4 && parseInt(req.body.id)==1 && idContador<=0){
         crono1 = setInterval(()=>{
             idContador++;
             console.log("Contador 1: ",idContador);

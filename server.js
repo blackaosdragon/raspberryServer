@@ -9,10 +9,10 @@ let mensajes = require('./fcmessage.js');
 
 let id = 0;
 let id2 = 0;
-let idMinutos = 0;
-let idSegundos = 0;
 let idContador = 0;
+let idContador2 = 0;
 let crono1;
+let crono2;
 
 const page = express();
 
@@ -258,18 +258,39 @@ page.post('/temperatura',(req,res)=>{
     let segundos = parseInt(registro.getSeconds());
 
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
-    if(parseFloat(req.body.temperatura)>5.0 && parseInt(req.body.id)==1 && idContador<=0){
+    //crono 1
+    if(parseFloat(req.body.temperatura)>5.5 && parseInt(req.body.id)==1 && idContador<=0){
         crono1 = setInterval(()=>{
             idContador++;
             console.log(idContador);
             if(idContador%120==0){
                 console.log("Notificacion enviada");
+                idContador=0;
             }
         },1000);
-    } else if(parseFloat(req.body.temperatura) && parseInt(req.body.id==1) && idContador>0){
+    } else if(parseFloat(req.body.temperatura)<=5.4 && parseInt(req.body.id==1) && idContador>0){
         clearInterval(crono1);
+        idContador=0;
         console.log("Contador detenido")
     }
+    //crono 2
+    if(parseFloat(req.body.temperatura)>7.8 && parseInt(req.body.id)==2 && idContador2<=0){
+        crono2 = setInterval(()=>{
+            idContador2++;
+            console.log(idContador2);
+            if(idContador2%120==0){
+                idContador2=1;
+                console.log("Notificacion enviada");
+                let id = parseInt(req.body.id);
+                let ubicacion = asignar.asignar_ubicacion(id);
+                mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
+            }
+        },1000);
+    } else if(parseFloat(req.body.temperatura)<=5.4 && parseInt(req.body.id)==2 && idContador2>0){
+        clearInterval(crono2);
+        console.log("Contador detenido")
+    }
+
     
     if(req.body.temperatura>=7.8){
         
@@ -277,7 +298,7 @@ page.post('/temperatura',(req,res)=>{
             
             let id = parseInt(req.body.id);
             let ubicacion = asignar.asignar_ubicacion(id);
-            mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
+            //mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
         }
     }
     if(Number.isNaN(req.body.temperatura)){

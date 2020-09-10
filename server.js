@@ -268,7 +268,7 @@ page.post('/temperatura',(req,res)=>{
                 idContador=0;
             }
         },1000);
-    } else if(parseFloat(req.body.temperatura)<=5.4 && parseInt(req.body.id==1) && idContador>0){
+    } else if(parseFloat(req.body.temperatura)<=5.4 && parseInt(req.body.id)==1 && idContador>0){
         clearInterval(crono1);
         idContador=0;
         console.log("Contador detenido")

@@ -262,7 +262,7 @@ page.post('/temperatura',(req,res)=>{
     if(parseFloat(req.body.temperatura)>5.5 && parseInt(req.body.id)==1 && idContador<=0){
         crono1 = setInterval(()=>{
             idContador++;
-            console.log(idContador);
+            console.log("Contador 1: ",idContador);
             if(idContador%120==0){
                 console.log("Notificacion enviada");
                 idContador=0;
@@ -277,7 +277,7 @@ page.post('/temperatura',(req,res)=>{
     if(parseFloat(req.body.temperatura)>=7.8 && parseInt(req.body.id)==2 && idContador2<=0){
         crono2 = setInterval(()=>{
             idContador2++;
-            console.log(idContador2);
+            console.log("Contador 2: ",idContador2);
             if(idContador2%120==0){
                 idContador2=0;
                 console.log("Notificacion enviada");

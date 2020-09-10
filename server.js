@@ -286,7 +286,7 @@ page.post('/temperatura',(req,res)=>{
                 mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
             }
         },1000);
-    } else if(parseFloat(req.body.temperatura)<=5.4 && parseInt(req.body.id)==2 && idContador2>0){
+    } else if(parseFloat(req.body.temperatura)<=7.7 && parseInt(req.body.id)==2 && idContador2>0){
         clearInterval(crono2);
         console.log("Contador detenido")
     }

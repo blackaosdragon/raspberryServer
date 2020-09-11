@@ -258,7 +258,7 @@ setInterval(()=>cronometro(),1000);*/
 //}
 */
 page.post('/temperatura',(req,res)=>{
-    
+    console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
     if(req.body.id==1){
         idTemp = parseFloat(req.body.temperatura);
     } else if (req.body.id==2){
@@ -267,7 +267,7 @@ page.post('/temperatura',(req,res)=>{
         id3Temp = parseFloat(req.body.temperatura);
     }
     sendTemp = (id) => {
-        console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
+        
         let temp;
         let temp2;
         let temp3;

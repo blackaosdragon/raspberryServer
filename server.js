@@ -273,7 +273,7 @@ page.post('/temperatura',(req,res)=>{
         let temp3;
         let id ;
         //let ubicacion = asignar.asignar_ubicacion(id);
-        let ubicacion;
+        //let ubicacion;
         if(req.body.id==1){
             temp = idTemp;
             id = parseInt(req.body.id);

@@ -266,7 +266,7 @@ page.post('/temperatura',(req,res)=>{
     } else if (req.body.id==3){
         id3Temp = parseFloat(req.body.temperatura);
     }
-    sendTemp = (ubicacion) => {
+    sendTemp = (id) => {
         console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
         let temp;
         let temp2;
@@ -278,17 +278,17 @@ page.post('/temperatura',(req,res)=>{
             temp = idTemp;
             id = parseInt(req.body.id);
             ubicacion = asignar.asignar_ubicacion(id);
-            mensajes.notificacion_temperatura(temp,ubicacion);
+            //mensajes.notificacion_temperatura(temp,ubicacion);
         } else if(req.body.id==2){
             temp2 = id2Temp
             id = parseInt(req.body.id);
             ubicacion = asignar.asignar_ubicacion(id);
-            mensajes.notificacion_temperatura(temp2,ubicacion);
+            //mensajes.notificacion_temperatura(temp2,ubicacion);
         } else if(req.body.id==3){
             temp3 = id3Temp
             id = parseInt(req.body.id);
             ubicacion = asignar.asignar_ubicacion(id);
-            mensajes.notificacion_temperatura(temp3,ubicacion);
+            //mensajes.notificacion_temperatura(temp3,ubicacion);
         }
         
     }
@@ -304,6 +304,7 @@ page.post('/temperatura',(req,res)=>{
         idContador++;
         horas1Plasmado = parseInt(hora_server.getHours());
         minutos1Plasmado = parseInt(hora_server.getMinutes());
+        sendTemp(1);
 
         /*
         crono1 = setInterval(()=>{

@@ -368,7 +368,7 @@ page.post('/temperatura',(req,res)=>{
         //clearInterval(crono3);
         console.log("Contador detenido");
     }
-
+    console.log(`${registro.getMinutes()}-${minutos1Plasmado} = ${parseInt(registro.getMinutes())-minutos1Plasmado}`)
     if(parseInt(registro.getMinutes())-minutos1Plasmado%2==0){
         console.log("Se va a enviar una alerta");
     }

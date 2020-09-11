@@ -26,6 +26,7 @@ let hora_server = new Date();
 let horas1Plasmado;
 let minutos1Plasmado;
 let name;
+let envio_hecho = false;
 
 const ajuste = 3.3;
 
@@ -368,9 +369,10 @@ page.post('/temperatura',(req,res)=>{
         //clearInterval(crono3);
         console.log("Contador detenido");
     }
-    console.log(`Resta: ${registro.getMinutes()}-${minutos1Plasmado} = ${parseInt(registro.getMinutes())-minutos1Plasmado}`)
-    console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${parseInt(registro.getMinutes())-minutos1Plasmado%2}`)
-    if(parseInt((registro.getMinutes())-minutos1Plasmado)%2==0){
+    console.log(`Resta: ${registro.getMinutes()}-${minutos1Plasmado} = ${parseInt(registro.getMinutes())-minutos1Plasmado}`);
+    console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
+    if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2==0) && envio_hecho==false){
+        envio_hecho = true;
         console.log("Se va a enviar una alerta");
     }
 

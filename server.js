@@ -302,8 +302,9 @@ page.post('/temperatura',(req,res)=>{
     //crono 1
     if(parseFloat(req.body.temperatura)>5.7 && parseInt(req.body.id)==1 && idContador==0){
         idContador++;
-        horas1Plasmado = parseInt(hora_server.getHours());
-        minutos1Plasmado = parseInt(hora_server.getMinutes());
+        let tiempo = new Date();
+        horas1Plasmado = parseInt(tiempo.getHours());
+        minutos1Plasmado = parseInt(tiempo.getMinutes());
 
         sendTemp(1);
 
@@ -368,7 +369,7 @@ page.post('/temperatura',(req,res)=>{
         console.log("Contador detenido");
     }
 
-    if(parseInt(registro.getHours())-minutos1Plasmado%2==0){
+    if(parseInt(registro.getMinutes())-minutos1Plasmado%2==0){
         console.log("Se va a enviar una alerta");
     }
 

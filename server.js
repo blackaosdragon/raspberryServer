@@ -301,7 +301,7 @@ page.post('/temperatura',(req,res)=>{
             console.log("Contador 1: ",idContador);
             if(idContador%120==0){
                 console.log("Notificacion enviada");
-                sendTemp(1);
+                //sendTemp(1);
                 idContador=0;
             }
         },1000);
@@ -320,7 +320,7 @@ page.post('/temperatura',(req,res)=>{
                 console.log("Notificacion enviada");
                 //let id = parseInt(req.body.id);
                 //let ubicacion = asignar.asignar_ubicacion(id);
-                sendTemp(2);
+                //sendTemp(2);
                 //mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
             }
         },1000);
@@ -339,7 +339,7 @@ page.post('/temperatura',(req,res)=>{
                 //let id = parseInt(req.body.id);
                 //let ubicacion = asignar.asignar_ubicacion(id);
                 //mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
-                sendTemp(3);
+                //sendTemp(3);
             }
         },1000);        
     } else if(parseFloat(req.body.temperatura)<7.8 && parseInt(req.body.id)==3 && idContador3>0){

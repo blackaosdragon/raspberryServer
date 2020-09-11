@@ -298,9 +298,9 @@ page.post('/temperatura',(req,res)=>{
     let minutos = parseInt(registro.getMinutes());
     let segundos = parseInt(registro.getSeconds());
 
-    console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
+    
     //crono 1
-    if(parseFloat(req.body.temperatura)>5.7 && parseInt(req.body.id)==1 && idContador<=0){
+    if(parseFloat(req.body.temperatura)>5.7 && parseInt(req.body.id)==1 && idContador==0){
         idContador++;
         horas1Plasmado = parseInt(hora_server.getHours());
         minutos1Plasmado = parseInt(hora_server.getMinutes());
@@ -427,6 +427,7 @@ page.post('/temperatura',(req,res)=>{
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
         //console.log(`La temperatura ${req.body.temperatura} para el id: ${req.body.id} no es valida`);
     }
+    console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
     console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
 })
 let response = {

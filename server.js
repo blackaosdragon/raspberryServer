@@ -262,8 +262,10 @@ page.post('/temperatura',(req,res)=>{
     } else if (req.body.id==3){
         id3Temp = parseFloat(req.body.temperatura);
     }
-    sendTemp = () => {
+    sendTemp = (ubicacion) => {
         let temp;
+        let temp2;
+        let temp3;
         let id ;
         //let ubicacion = asignar.asignar_ubicacion(id);
         let ubicacion;
@@ -271,16 +273,19 @@ page.post('/temperatura',(req,res)=>{
             temp = idTemp;
             id = parseInt(req.body.id);
             ubicacion = asignar.asignar_ubicacion(id);
+            mensajes.notificacion_temperatura(temp,ubicacion);
         } else if(req.body.id==2){
-            temp = id2Temp
+            temp2 = id2Temp
             id = parseInt(req.body.id);
             ubicacion = asignar.asignar_ubicacion(id);
+            mensajes.notificacion_temperatura(temp2,ubicacion);
         } else if(req.body.id==3){
-            temp = id3Temp
+            temp3 = id3Temp
             id = parseInt(req.body.id);
             ubicacion = asignar.asignar_ubicacion(id);
+            mensajes.notificacion_temperatura(temp3,ubicacion);
         }
-        mensajes.notificacion_temperatura(temp,ubicacion);
+        
     }
     //console.log(req);
     let registro = new Date();
@@ -296,7 +301,7 @@ page.post('/temperatura',(req,res)=>{
             console.log("Contador 1: ",idContador);
             if(idContador%120==0){
                 console.log("Notificacion enviada");
-                sendTemp();
+                sendTemp(1);
                 idContador=0;
             }
         },1000);
@@ -315,7 +320,7 @@ page.post('/temperatura',(req,res)=>{
                 console.log("Notificacion enviada");
                 //let id = parseInt(req.body.id);
                 //let ubicacion = asignar.asignar_ubicacion(id);
-                sendTemp();
+                sendTemp(2);
                 //mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
             }
         },1000);
@@ -334,7 +339,7 @@ page.post('/temperatura',(req,res)=>{
                 //let id = parseInt(req.body.id);
                 //let ubicacion = asignar.asignar_ubicacion(id);
                 //mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
-                sendTemp();
+                sendTemp(3);
             }
         },1000);        
     } else if(parseFloat(req.body.temperatura)<7.8 && parseInt(req.body.id)==3 && idContador3>0){

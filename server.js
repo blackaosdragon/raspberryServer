@@ -258,7 +258,7 @@ setInterval(()=>cronometro(),1000);*/
 //}
 */
 page.post('/temperatura',(req,res)=>{
-    console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
+    
     if(req.body.id==1){
         idTemp = parseFloat(req.body.temperatura);
     } else if (req.body.id==2){
@@ -427,6 +427,7 @@ page.post('/temperatura',(req,res)=>{
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
         //console.log(`La temperatura ${req.body.temperatura} para el id: ${req.body.id} no es valida`);
     }
+    console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
 })
 let response = {
     data: 'recibido'

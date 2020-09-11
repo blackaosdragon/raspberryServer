@@ -17,10 +17,14 @@ let crono1;
 let crono2;
 let crono3;
 
+
+
 const page = express();
 
 
 let hora_server = new Date();
+let horas1Plasmado;
+let minutos1Plasmado;
 let name;
 
 const ajuste = 3.3;
@@ -263,6 +267,7 @@ page.post('/temperatura',(req,res)=>{
         id3Temp = parseFloat(req.body.temperatura);
     }
     sendTemp = (ubicacion) => {
+        console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
         let temp;
         let temp2;
         let temp3;
@@ -295,7 +300,12 @@ page.post('/temperatura',(req,res)=>{
 
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
     //crono 1
-    if(parseFloat(req.body.temperatura)>7.7 && parseInt(req.body.id)==1 && idContador<=0){
+    if(parseFloat(req.body.temperatura)>5.7 && parseInt(req.body.id)==1 && idContador<=0){
+        idContador++;
+        horas1Plasmado = parseInt(hora_server.getHours());
+        minutos1Plasmado = parseInt(hora_server.getMinutes());
+
+        /*
         crono1 = setInterval(()=>{
             idContador++;
             console.log("Contador 1: ",idContador);
@@ -305,13 +315,18 @@ page.post('/temperatura',(req,res)=>{
                 idContador=0;
             }
         },1000);
-    } else if(parseFloat(req.body.temperatura)<=7.7 && parseInt(req.body.id)==1 && idContador>0){
-        clearInterval(crono1);
+        */
+    } else if(parseFloat(req.body.temperatura)<=5.7 && parseInt(req.body.id)==1 && idContador>0){
+        console.log(`Temperatura normal se borra la hora: ${horas1Plasmado}:${minutos1Plasmado}`)
+        horas1Plasmado=0;
+        minutos1Plasmado=0;
+        //clearInterval(crono1);
         idContador=0;
         console.log("Contador detenido")
     }
     //crono 2
     if(parseFloat(req.body.temperatura)>=7.8 && parseInt(req.body.id)==2 && idContador2<=0){
+        /*
         crono2 = setInterval(()=>{
             idContador2++;
             console.log("Contador 2: ",idContador2);
@@ -324,12 +339,14 @@ page.post('/temperatura',(req,res)=>{
                 //mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
             }
         },1000);
+        */
     } else if(parseFloat(req.body.temperatura)<7.8 && parseInt(req.body.id)==2 && idContador2>0){
         idContador2=0;
-        clearInterval(crono2);
+        //clearInterval(crono2);
         console.log("Contador detenido")
     }
     if(parseFloat(req.body.temperatura)>=7.8 && parseInt(req.body.id)==3 && idContador3<=0){
+        /*
         crono3 = setInterval(()=>{
             idContador2++;
             console.log("Contador 2: ",idContador2);
@@ -342,9 +359,10 @@ page.post('/temperatura',(req,res)=>{
                 //sendTemp(3);
             }
         },1000);        
+        */
     } else if(parseFloat(req.body.temperatura)<7.8 && parseInt(req.body.id)==3 && idContador3>0){
         idContador3 = 0;
-        clearInterval(crono3);
+        //clearInterval(crono3);
         console.log("Contador detenido");
     }
 
@@ -404,7 +422,6 @@ page.post('/temperatura',(req,res)=>{
             })
         }
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
-        
     } else {
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
         //console.log(`La temperatura ${req.body.temperatura} para el id: ${req.body.id} no es valida`);

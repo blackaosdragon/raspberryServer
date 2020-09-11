@@ -369,11 +369,13 @@ page.post('/temperatura',(req,res)=>{
         //clearInterval(crono3);
         console.log("Contador detenido");
     }
-    console.log(`Resta: ${registro.getMinutes()}-${minutos1Plasmado} = ${parseInt(registro.getMinutes())-minutos1Plasmado}`);
-    console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
+    //console.log(`Resta: ${registro.getMinutes()}-${minutos1Plasmado} = ${parseInt(registro.getMinutes())-minutos1Plasmado}`);
+    //console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
     if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2==0) && envio_hecho==false){
         envio_hecho = true;
         console.log("Se va a enviar una alerta");
+    } else {
+        envio_hecho = false;
     }
 
     

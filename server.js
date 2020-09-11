@@ -304,6 +304,7 @@ page.post('/temperatura',(req,res)=>{
         idContador++;
         horas1Plasmado = parseInt(hora_server.getHours());
         minutos1Plasmado = parseInt(hora_server.getMinutes());
+
         sendTemp(1);
 
         /*
@@ -365,6 +366,10 @@ page.post('/temperatura',(req,res)=>{
         idContador3 = 0;
         //clearInterval(crono3);
         console.log("Contador detenido");
+    }
+
+    if(parseInt(registro.getHours())-minutos1Plasmado%2==0){
+        console.log("Se va a enviar una alerta");
     }
 
     

@@ -319,6 +319,7 @@ page.post('/temperatura',(req,res)=>{
     }
     if(parseFloat(req.body.temperatura)>temp_lim && parseInt(req.body.id)==1){
         console.log(`Hora de temperatura irregular del id 1: ${horas1Plasmado}:${minutos1Plasmado}`);
+        console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
     } else {
         
     }
@@ -369,8 +370,8 @@ page.post('/temperatura',(req,res)=>{
         console.log("Contador detenido");
     }
     //console.log(`Resta: ${registro.getMinutes()}-${minutos1Plasmado} = ${parseInt(registro.getMinutes())-minutos1Plasmado}`);
-    console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
-    if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)==0/* && envio_hecho==false*/){
+    //console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
+    if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)==0 && envio_hecho==false){
         envio_hecho = true;
         console.log("Se va a enviar una alerta");
     } else {

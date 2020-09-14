@@ -318,8 +318,9 @@ page.post('/temperatura',(req,res)=>{
         console.log("Contador detenido")
     }
     if(parseFloat(req.body.temperatura)>temp_lim && parseInt(req.body.id)==1){
-        console.log(`Hora de temperatura irregular del id 1: ${horas1Plasmado}:${minutos1Plasmado}`);
+        console.log(`Hora de temperatura irregular del id 1: ${horas1Plasmado}:${minutos1Plasmado} envio_hecho = ${envio_hecho}`);
         console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
+
     } else {
         
     }

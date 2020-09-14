@@ -261,7 +261,7 @@ setInterval(()=>cronometro(),1000);*/
 //}
 */
 page.post('/temperatura',(req,res)=>{
-    console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);    
+    
     if(req.body.id==1){
         idTemp = parseFloat(req.body.temperatura);
     } else if (req.body.id==2){
@@ -300,7 +300,7 @@ page.post('/temperatura',(req,res)=>{
     let horas = parseInt(registro.getHours());
     let minutos = parseInt(registro.getMinutes());
     let segundos = parseInt(registro.getSeconds());
-
+    console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);    
     
     //crono 1
     if(parseFloat(req.body.temperatura)>temp_lim && parseInt(req.body.id)==1 && idContador==0){

@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
+const { parse } = require('path');
 
 let idTemp = 0;
 let id2Temp = 0;
@@ -43,7 +44,7 @@ const ajuste = 3.3;
 
 const wsPort = 5001;
 const pagePort = 5000;
-const puerto = 80;
+const puerto = 443;
 const sensores_en_total = 3;
 let string_ofice_temperature = "";
 let float_ofice_temperature = 0.0;
@@ -61,22 +62,22 @@ const httpServer = https.createServer({
     cert: fs.readFileSync(path.resolve('/home/ubuntu/server/certs/certificate.crt'))
    
    },page);
-*/
+
 httpServer.listen(puerto,()=>{
   console.log(`Servidor disponible en el puerto ${puerto}`);
 })
-/*
+
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/pi/Web/raspberry/raspberryServer/certs/private.key')),
     cert: fs.readFileSync(path.resolve('/home/pi/Web/raspberry/raspberryServer/certs/certificate.crt'))
    
-   },page);*/
+   },page);
 
 httpServer.listen(puerto,()=>{
   console.log(`Servidor disponible en el puerto ${puerto}`);
 })
 
-
+*/
 
 const wss = new Ws.Server({port: wsPort});
 page.use(express.json());

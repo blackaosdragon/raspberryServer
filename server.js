@@ -17,7 +17,7 @@ let idContador3 = 0;
 let crono1;
 let crono2;
 let crono3;
-let temp_lim = 6;
+let temp_lim = 8;
 let temperatura_limite = 8;
 let temp1_irregular=false;
 let temp2_irregular=false;

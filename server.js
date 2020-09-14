@@ -6,7 +6,6 @@ const fs = require('fs');
 const path = require('path');
 let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
-const { parse } = require('path');
 
 let idTemp = 0;
 let id2Temp = 0;
@@ -62,16 +61,16 @@ const httpServer = https.createServer({
     cert: fs.readFileSync(path.resolve('/home/ubuntu/server/certs/certificate.crt'))
    
    },page);
-
+*/
 httpServer.listen(puerto,()=>{
   console.log(`Servidor disponible en el puerto ${puerto}`);
 })
-*/
+/*
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/pi/Web/raspberry/raspberryServer/certs/private.key')),
     cert: fs.readFileSync(path.resolve('/home/pi/Web/raspberry/raspberryServer/certs/certificate.crt'))
    
-   },page);
+   },page);*/
 
 httpServer.listen(puerto,()=>{
   console.log(`Servidor disponible en el puerto ${puerto}`);

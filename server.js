@@ -375,7 +375,7 @@ page.post('/temperatura',(req,res)=>{
     if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)==0 && envio_hecho==false){
         envio_hecho = true;
         console.log("Se va a enviar una alerta");
-    } else if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)!=0 && envio_hecho==false){
+    } else if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)!=0 && envio_hecho==true){
         envio_hecho = false;
     }
 
@@ -408,16 +408,16 @@ page.post('/temperatura',(req,res)=>{
         if ( horas%2==0 ){
             console.log("Hora par se guardará dato");
             tokens.buscar_repetido(req.body.id).then( response => {
-                console.log(`Tamaño de la respuesta: ${response.length}`);
+                //console.log(`Tamaño de la respuesta: ${response.length}`);
                 if( response.length > 0 ){
-                    console.log(`Ya existe un dato para el id: ${req.body.id}`);
+                    //console.log(`Ya existe un dato para el id: ${req.body.id}`);
                     //console.log(response);
                     let good2 = {
                         data: 'recibido pero ya no se guardará'
                     }
                     res.send(good2);                    
                 } else {
-                    console.log('Se agregará el dato');
+                    //console.log('Se agregará el dato');
                     if(req.body.id==2){
                         let temp = req.body.temperatura - 2;
                         io.emit('temp',`${req.body.id} ${temp}`);

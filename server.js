@@ -406,7 +406,7 @@ page.post('/temperatura',(req,res)=>{
         let ubicacion = asignar.asignar_ubicacion(id);
         //tokens.insertar_valores(req.body.temperatura,ubicacion,id);
         if ( horas%2==0 ){
-            console.log("Hora par se guardará dato");
+            //console.log("Hora par se guardará dato");
             tokens.buscar_repetido(req.body.id).then( response => {
                 //console.log(`Tamaño de la respuesta: ${response.length}`);
                 if( response.length > 0 ){

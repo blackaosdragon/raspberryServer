@@ -378,7 +378,7 @@ page.post('/temperatura',(req,res)=>{
     if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)==0 && envio_hecho==false && temp1_irregular==true){
         envio_hecho = true;
         console.log("Se va a enviar una alerta");
-    } else if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)!=0 && envio_hecho==true && temp1_irregular==false){
+    } else if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)!=0 && envio_hecho==true){
         envio_hecho = false;
     }
 

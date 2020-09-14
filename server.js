@@ -343,7 +343,7 @@ page.post('/temperatura',(req,res)=>{
         horas2Plasmado = parseInt(tiempo.getHours());
         minutos2Plasmado = parseInt(tiempo.getMinutes());
         temp2_irregular = true;
-        sendTemp(2);
+        //sendTemp(2);
         /*
         crono2 = setInterval(()=>{
             idContador2++;
@@ -388,24 +388,23 @@ page.post('/temperatura',(req,res)=>{
     }
     //console.log(`Resta: ${registro.getMinutes()}-${minutos1Plasmado} = ${parseInt(registro.getMinutes())-minutos1Plasmado}`);
     //console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
+
     if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)==0 && envio_hecho==false && temp1_irregular==true){
         envio_hecho = true;
-        console.log("Se va a enviar una alerta");
+        console.log("Se va a enviar una alerta por id 1");
         sendTemp(1);
     } else if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)!=0 && envio_hecho==true){
         envio_hecho = false;
     }
-
-    
-    if(req.body.temperatura>=7.8){
-        
-        if(minutos%2==0 && segundos%5==0){
-            
-            let id = parseInt(req.body.id);
-            let ubicacion = asignar.asignar_ubicacion(id);
-            //mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
-        }
+    if(parseInt(((registro.getMinutes())-minutos2Plasmado)%2)==0 && envio2_hecho==false && temp2_irregular==true){
+        envio2_hecho = true;
+        console.log("Se va a enviar una alerta por id 2");
+        sendTemp(2);
+    } else if(parseInt(((registro.getMinutes())-minutos2Plasmado)%2)!=0 && envio2_hecho==true){
+        envio2_hecho = false;
     }
+
+
     if(Number.isNaN(req.body.temperatura)){
         console.log(`El dato: ${req.body.temperatura}, no es un numero`);
         let bad = {

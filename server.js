@@ -21,6 +21,7 @@ let temp_lim = 8;
 let temperatura_limite = 8;
 let temp1_irregular=false;
 let temp2_irregular=false;
+let temp3_irregular=false;
 
 
 
@@ -30,11 +31,14 @@ const page = express();
 let hora_server = new Date();
 let horas1Plasmado;
 let horas2Plasmado;
+let horas3Plasmado;
 let minutos1Plasmado;
 let minutos2Plasmado;
+let minutos3Plasmado;
 let name;
 let envio_hecho = false;
 let envio2_hecho = false;
+let envio3_hecho = false;
 
 const ajuste = 3.3;
 
@@ -343,21 +347,6 @@ page.post('/temperatura',(req,res)=>{
         horas2Plasmado = parseInt(tiempo.getHours());
         minutos2Plasmado = parseInt(tiempo.getMinutes());
         temp2_irregular = true;
-        //sendTemp(2);
-        /*
-        crono2 = setInterval(()=>{
-            idContador2++;
-            console.log("Contador 2: ",idContador2);
-            if(idContador2%120==0){
-                idContador2=0;
-                console.log("Notificacion enviada");
-                //let id = parseInt(req.body.id);
-                //let ubicacion = asignar.asignar_ubicacion(id);
-                //sendTemp(2);
-                //mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
-            }
-        },1000);
-        */
     } else if(parseFloat(req.body.temperatura)<=temperatura_limite && parseInt(req.body.id)==2 && idContador2>0){
         console.log(`Temperatura 2 normal se borra la hora: ${horas2Plasmado}:${minutos2Plasmado}`)
         horas2Plasmado=0;
@@ -366,25 +355,18 @@ page.post('/temperatura',(req,res)=>{
         temp2_irregular = false;
         console.log("Contador 2 detenido")
     }
-    if(parseFloat(req.body.temperatura)>=7.8 && parseInt(req.body.id)==3 && idContador3<=0){
-        /*
-        crono3 = setInterval(()=>{
-            idContador2++;
-            console.log("Contador 2: ",idContador2);
-            if(idContador2%120==0){
-                idContador2=0;
-                console.log("Notificacion enviada");
-                //let id = parseInt(req.body.id);
-                //let ubicacion = asignar.asignar_ubicacion(id);
-                //mensajes.notificacion_temperatura(req.body.temperatura,ubicacion);
-                //sendTemp(3);
-            }
-        },1000);        
-        */
-    } else if(parseFloat(req.body.temperatura)<7.8 && parseInt(req.body.id)==3 && idContador3>0){
+    if(parseFloat(req.body.temperatura)>=temperatura_limite && parseInt(req.body.id)==3 && idContador3<=0){
+        idContador3++;
+        let tiempo = new Date();
+        horas3Plasmado = parseInt(tiempo.getHours());
+        minutos3Plasmado = parseInt(tiempo.getMinutes());
+        temp3_irregular = true;               
+    } else if(parseFloat(req.body.temperatura)<temperatura_limite && parseInt(req.body.id)==3 && idContador3>0){
         idContador3 = 0;
-        //clearInterval(crono3);
-        console.log("Contador detenido");
+        horas3Plasmado = 0;
+        minutos3Plasmado = 0;
+        temp3_irregular = false;
+        console.log("Contador 3 detenido")
     }
     //console.log(`Resta: ${registro.getMinutes()}-${minutos1Plasmado} = ${parseInt(registro.getMinutes())-minutos1Plasmado}`);
     //console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
@@ -402,6 +384,13 @@ page.post('/temperatura',(req,res)=>{
         sendTemp(2);
     } else if(parseInt(((registro.getMinutes())-minutos2Plasmado)%2)!=0 && envio2_hecho==true){
         envio2_hecho = false;
+    }
+    if(parseInt(((registro.getMinutes())-minutos3Plasmado)%2)==0 && envio3_hecho==false && temp3_irregular==true){
+        envio3_hecho = true;
+        console.log("Se va a enviar una alerta por id 3");
+        sendTemp(3);
+    } else if(parseInt(((registro.getMinutes())-minutos2Plasmado)%2)!=0 && envio2_hecho==true){
+        envio3_hecho = false;
     }
 
 

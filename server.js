@@ -18,6 +18,7 @@ let crono1;
 let crono2;
 let crono3;
 let temp_lim = 6;
+let temp1_irregular=false;
 
 
 
@@ -308,6 +309,7 @@ page.post('/temperatura',(req,res)=>{
         let tiempo = new Date();
         horas1Plasmado = parseInt(tiempo.getHours());
         minutos1Plasmado = parseInt(tiempo.getMinutes());
+        temp1_irregular = true;
         sendTemp(1);
     } else if(parseFloat(req.body.temperatura)<=temp_lim && parseInt(req.body.id)==1 && idContador>0){
         console.log(`Temperatura normal se borra la hora: ${horas1Plasmado}:${minutos1Plasmado}`)
@@ -315,6 +317,7 @@ page.post('/temperatura',(req,res)=>{
         minutos1Plasmado=0;
         //clearInterval(crono1);
         idContador=0;
+        temp1_irregular = false;
         console.log("Contador detenido")
     }
     if(parseFloat(req.body.temperatura)>temp_lim && parseInt(req.body.id)==1){
@@ -372,10 +375,10 @@ page.post('/temperatura',(req,res)=>{
     }
     //console.log(`Resta: ${registro.getMinutes()}-${minutos1Plasmado} = ${parseInt(registro.getMinutes())-minutos1Plasmado}`);
     //console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
-    if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)==0 && envio_hecho==false){
+    if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)==0 && envio_hecho==false && temp1_irregular==true){
         envio_hecho = true;
         console.log("Se va a enviar una alerta");
-    } else if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)!=0 && envio_hecho==true){
+    } else if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)!=0 && envio_hecho==true && temp1_irregular==false){
         envio_hecho = false;
     }
 

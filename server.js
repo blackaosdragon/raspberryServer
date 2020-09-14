@@ -246,7 +246,7 @@ page.post('/login',(req,res)=>{
     })
     //res.send('Recibido');
 })
-//page.use('/.well-known/pki-validation/',express.static('verifi'));
+page.use('/.well-known/pki-validation/',express.static('verifi'));
 /*cronometro = () => {
     let reloj = new Date();
     let cronoMinutos = parseInt(reloj.getMinutes());

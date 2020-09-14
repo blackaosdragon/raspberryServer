@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
+const { parse } = require('path');
 
 let idTemp = 0;
 let id2Temp = 0;
@@ -259,7 +260,7 @@ setInterval(()=>cronometro(),1000);*/
 //}
 */
 page.post('/temperatura',(req,res)=>{
-    
+    console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);    
     if(req.body.id==1){
         idTemp = parseFloat(req.body.temperatura);
     } else if (req.body.id==2){
@@ -306,20 +307,7 @@ page.post('/temperatura',(req,res)=>{
         let tiempo = new Date();
         horas1Plasmado = parseInt(tiempo.getHours());
         minutos1Plasmado = parseInt(tiempo.getMinutes());
-
         sendTemp(1);
-
-        /*
-        crono1 = setInterval(()=>{
-            idContador++;
-            console.log("Contador 1: ",idContador);
-            if(idContador%120==0){
-                console.log("Notificacion enviada");
-                //sendTemp(1);
-                idContador=0;
-            }
-        },1000);
-        */
     } else if(parseFloat(req.body.temperatura)<=5.7 && parseInt(req.body.id)==1 && idContador>0){
         console.log(`Temperatura normal se borra la hora: ${horas1Plasmado}:${minutos1Plasmado}`)
         horas1Plasmado=0;
@@ -327,6 +315,16 @@ page.post('/temperatura',(req,res)=>{
         //clearInterval(crono1);
         idContador=0;
         console.log("Contador detenido")
+    }
+    if(parseFloat(req.body.temperatura)>temp_lim && parseInt(req.body.id)==1){
+        console.log(`Hora de temperatura irregular del id 1: ${horas1Plasmado}:${minutos1Plasmado}`);
+    } else {
+        
+    }
+    if(parseFloat(req.body.temperatura)>temp_lim && parseInt(req.body.id)==2){
+        console.log(`Hora de temperatura irregular del id 2: ${horas1Plasmado}:${minutos1Plasmado}`);
+    } else {
+        
     }
     //crono 2
     if(parseFloat(req.body.temperatura)>=7.8 && parseInt(req.body.id)==2 && idContador2<=0){
@@ -438,8 +436,8 @@ page.post('/temperatura',(req,res)=>{
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
         //console.log(`La temperatura ${req.body.temperatura} para el id: ${req.body.id} no es valida`);
     }
-    console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
-    console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
+    
+    //console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
 })
 let response = {
     data: 'recibido'

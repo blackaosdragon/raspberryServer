@@ -439,7 +439,6 @@ page.post('/temperatura',(req,res)=>{
                     } else {
                         tokens.insertar_valores_2hour(req.body.temperatura,ubicacion,id);
                         tokens.insertar_valores(req.body.temperatura,ubicacion,id);
-                        io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
                     }
                     let good = {
                         data: 'recibido y guardado'
@@ -447,6 +446,14 @@ page.post('/temperatura',(req,res)=>{
                     res.send(good);
                 }
             })
+        }
+        if(req.body.id==2){
+            let temp = req.body.temperatura - 2;
+            io.emit('temp',`${req.body.id} ${temp}`);
+            //tokens.insertar_valores_2hour(temp,ubicacion,id);
+            //tokens.insertar_valores(temp,ubicacion,id);
+        } else {
+            io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
         }
         
     } else {

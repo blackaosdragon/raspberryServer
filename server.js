@@ -439,6 +439,7 @@ page.post('/temperatura',(req,res)=>{
                     } else {
                         tokens.insertar_valores_2hour(req.body.temperatura,ubicacion,id);
                         tokens.insertar_valores(req.body.temperatura,ubicacion,id);
+                        io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
                     }
                     let good = {
                         data: 'recibido y guardado'
@@ -447,7 +448,7 @@ page.post('/temperatura',(req,res)=>{
                 }
             })
         }
-        io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
+        
     } else {
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
         //console.log(`La temperatura ${req.body.temperatura} para el id: ${req.body.id} no es valida`);

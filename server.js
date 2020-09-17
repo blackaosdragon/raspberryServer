@@ -18,7 +18,7 @@ let crono1;
 let crono2;
 let crono3;
 let temp_lim = 8;
-let temperatura_limite = 8;
+let temperatura_limite = 7.5;
 let temp1_irregular=false;
 let temp2_irregular=false;
 let temp3_irregular=false;
@@ -349,13 +349,13 @@ page.post('/temperatura',(req,res)=>{
         
     }
     //crono 2
-    if(parseFloat(req.body.temperatura)>temperatura_limite && parseInt(req.body.id)==2 && idContador2<=0){
+    if((parseFloat(req.body.temperatura)-2)>temperatura_limite && parseInt(req.body.id)==2 && idContador2<=0){
         idContador2++;
         let tiempo = new Date();
         horas2Plasmado = parseInt(tiempo.getHours());
         minutos2Plasmado = parseInt(tiempo.getMinutes());
         temp2_irregular = true;
-    } else if(parseFloat(req.body.temperatura)<=temperatura_limite && parseInt(req.body.id)==2 && idContador2>0){
+    } else if((parseFloat(req.body.temperatura)-2)<=temperatura_limite && parseInt(req.body.id)==2 && idContador2>0){
         console.log(`Temperatura 2 normal se borra la hora: ${horas2Plasmado}:${minutos2Plasmado}`)
         horas2Plasmado=0;
         minutos2Plasmado=0;

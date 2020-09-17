@@ -448,7 +448,7 @@ page.post('/temperatura',(req,res)=>{
             })
         }
         if(req.body.id==2){
-            let temp = req.body.temperatura - 2;
+            let temp = req.body.temperatura - 2.0;
             io.emit('temp',`${req.body.id} ${temp}`);
             //tokens.insertar_valores_2hour(temp,ubicacion,id);
             //tokens.insertar_valores(temp,ubicacion,id);

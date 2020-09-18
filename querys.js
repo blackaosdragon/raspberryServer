@@ -13,7 +13,7 @@ const tabla_daly = 'dalyData';
 const tabla_test = 'test';
 const tabla_de_temperaturas = 'dalyData';
 const tabla_de_tokens = 'mensajeria';
-const tabla_de_excepciones = 'mexception'
+const tabla_de_excepciones = 'exception'
 let tokens = [];
 
 module.exports = {

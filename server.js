@@ -320,14 +320,14 @@ page.post('/temperatura',(req,res)=>{
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);    
     
     //crono 1
-    if(parseFloat(req.body.temperatura+2)>temp_lim && parseInt(req.body.id)==1 && idContador==0){
+    if(parseFloat(req.body.temperatura)>temp_lim && parseInt(req.body.id)==1 && idContador==0){
         idContador++;
         let tiempo = new Date();
         horas1Plasmado = parseInt(tiempo.getHours());
         minutos1Plasmado = parseInt(tiempo.getMinutes());
         temp1_irregular = true;
         //sendTemp(1);
-    } else if(parseFloat(req.body.temperatura+2)<=temp_lim && parseInt(req.body.id)==1 && idContador>0){
+    } else if(parseFloat(req.body.temperatura)<=temp_lim && parseInt(req.body.id)==1 && idContador>0){
         console.log(`Temperatura 1 normal se borra la hora: ${horas1Plasmado}:${minutos1Plasmado}`)
         horas1Plasmado=0;
         minutos1Plasmado=0;

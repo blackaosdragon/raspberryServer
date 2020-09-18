@@ -304,6 +304,19 @@ module.exports = {
             resolve(name);
         })
     },
+    consulta_por_mes: (year,id,mes) => {
+        return new Promise( (resolve,reject) => {
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_temperaturas} WHERE ID=${id} AND Año=${year} AND Mes=${mes};`,(err, data, otro) => {
+                if(err){
+                    console.log(err);
+                    reject(err);
+                } else {
+                    //console.log(data);
+                    resolve(data);
+                }
+            })
+        })        
+    },
     consultar_base_de_datos: (ubication,year,mes,dia,name,descarga_solicitada) => {
         console.log(`Obteniendo el nombre para la consulta: ${name}`);
         //console.log(`Lugar: ${ubication} ${dia}/${mes}/${year}, Hora: ${hora_inicial}:${minuto_inicial} - ${hora_final}:${minuto_final}`)

@@ -170,7 +170,17 @@ page.get('/socket', (req,res) => {
     });
 })
 
+page.post('/consulta_mes', (req,res) => {
+    let data = req.body
+    let year = data.year;
+    let mes = data.mes;
+    let lugar = data.lugar;
+    tokens.consulta_por_mes(year,id,mes).then( respuesta => {
+        console.log(respuesta);
+        res.send(respuesta)
+    })
 
+})
 page.post('/buscar',(req,res)=>{
     let data = req.body
     let year = data.year;
@@ -193,6 +203,7 @@ page.post('/buscar',(req,res)=>{
     
     
 })
+
 page.get('/descarga_consulta', (req,res)=>{
     function descarga(){
         return new Promise( (resolve,reject) => {

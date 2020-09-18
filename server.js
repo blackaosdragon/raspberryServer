@@ -296,22 +296,21 @@ page.post('/temperatura',(req,res)=>{
         //let ubicacion = asignar.asignar_ubicacion(id);
         let ubicacion;
         if(id==1){
-            temp = idTemp;
-            
+            temp = idTemp; 
             ubicacion = asignar.asignar_ubicacion(id);
             mensajes.notificacion_temperatura(temp,ubicacion);
+            tokens.insertar_excepcion(temp,ubicacion,id);
         } else if(id==2){
             temp2 = id2Temp
-            
             ubicacion = asignar.asignar_ubicacion(id);
             mensajes.notificacion_temperatura(temp2,ubicacion);
+            tokens.insertar_excepcion(temp2,ubicacion,id);
         } else if(id==3){
             temp3 = id3Temp
             //id = parseInt(req.body.id);
             ubicacion = asignar.asignar_ubicacion(id);
             //mensajes.notificacion_temperatura(temp3,ubicacion);
         }
-        
     }
     //console.log(req);
     let registro = new Date();

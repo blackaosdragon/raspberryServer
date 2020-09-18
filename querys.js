@@ -13,6 +13,7 @@ const tabla_daly = 'dalyData';
 const tabla_test = 'test';
 const tabla_de_temperaturas = 'dalyData';
 const tabla_de_tokens = 'mensajeria';
+const tabla_de_excepciones = 'mexception'
 let tokens = [];
 
 module.exports = {
@@ -102,6 +103,15 @@ module.exports = {
                 console.log(err);
             }
         });
+    },
+    insertar_excepcion: (temperatura,lugar, ID) => {
+        let tiempo = new Date();
+        let mes = tiempo.getMonth() + 1;
+        base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_excepciones} (Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temperatura}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${ID},'H. Cardiología S. XXI');`,(err,values,data) => {
+            if(err){
+                console.log(err)
+            }
+        })
     },
     insertar_valores: (temperatura, lugar,ID) => {
         let tiempo = new Date();

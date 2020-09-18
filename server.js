@@ -175,7 +175,7 @@ page.post('/consulta_mes', (req,res) => {
     let year = data.year;
     let mes = data.mes;
     let lugar = data.lugar;
-    tokens.consulta_por_mes(year,id,mes).then( respuesta => {
+    tokens.consulta_por_mes(year,lugar,mes).then( respuesta => {
         console.log(respuesta);
         res.send(respuesta)
     })

@@ -76,3 +76,10 @@ SELECT * FROM monitoreo.Bitacora
       (SELECT MAX(Minuto) FROM monitoreo.Bitacora WHERE ID=1 AND Hora=(SELECT MAX(Hora) FROM monitoreo.Bitacora WHERE ID=1));
 
   
+  SensorPresion= analogRead(sensor);
+  PresionVolts= SensorPresion* 5;
+  PresionBytes= PresionVolts/1023;  
+  PresMegaPasExt = ((PresionBytes/3.75)-0.1);
+  PresKiloPasExt = (PresMegaPasExt*1000);
+  PresionExt = (PresKiloPasExt/6.895)-4.4;
+  PresionReal= (PresionExt*0.183)+(PresionExt);

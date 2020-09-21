@@ -1,6 +1,7 @@
 const mySql = require ('mysql');
 const fs = require('fs');
 const { resolve } = require('path');
+const { rejects } = require('assert');
 const base_de_datos = mySql.createConnection({
     host: 'localhost',
     user: 'infoUpdater',
@@ -316,6 +317,37 @@ module.exports = {
                 }
             })
         })        
+    },
+    descarga_solicitada: (name,tipo_de_consulta,lugar,year,mes) => {
+        if(tipo_de_consulta==1){
+            return new Promise( (resolve,reject) => {
+                fs.appendFile(`${name}`,`Consulta de ${ubication} del mes/año ${mes}/${year}\nLugar;Temperatura;Hora;Minuto;\n`, err => {
+                    if(err){
+                        console.log(err)
+                        reject(err);
+                    }
+                })
+                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${lugar}' AND Año=${year} AND Mes=${mes};`, (err,data,otro) =>{
+                    if(err){
+                        console.log(err);
+                        reject(err);                        
+                    } else {
+                        data.forEach( (element,id) => {
+                            fs.appendFile(`${name}`,`${element.ubicacion};${element.temperatura}°C;${element.Hora};${element.Minuto}\n`, err => {
+                                if(err){
+                                    console.log(err);
+                                    reject(err);
+                                }
+                            })
+                        })    
+                        resolve(name);
+                    }
+                } )
+            })
+        } else if (tipo_de_consulta==2){
+            console.log("Consulta por dias");
+        }
+        
     },
     consultar_base_de_datos: (ubication,year,mes,dia,name,descarga_solicitada) => {
         console.log(`Obteniendo el nombre para la consulta: ${name}`);

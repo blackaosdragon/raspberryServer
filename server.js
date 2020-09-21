@@ -266,29 +266,6 @@ page.post('/login',(req,res)=>{
     //res.send('Recibido');
 })
 page.use('/.well-known/pki-validation/',express.static('verifi'));
-/*cronometro = () => {
-    let reloj = new Date();
-    let cronoMinutos = parseInt(reloj.getMinutes());
-    let cronoSegundos = parseInt(reloj.getSeconds());
-    console.log(`${cronoMinutos}:${cronoSegundos}`)
-}
-setInterval(()=>cronometro(),1000);*/
-/*
-//if(req.body.temperatura>5){
-    let contador = 0;
-    temporizador = () => {
-        //console.log("Contador: ",contador);
-        contador++;
-        if(contador%120==0){
-            mensajes.test_notification();
-        }
-    }
-    setInterval(()=>temporizador(),1000);
-    if(contador%120==0){
-        mensajes.test_notification();
-    }
-//}
-*/
 page.post('/temperatura',(req,res)=>{
     
     if(req.body.id==1){
@@ -518,6 +495,30 @@ page.get('/test_notificacion', (req,res) => {
         data: 1
     }
     res.send(mensajes_enviados);
+})
+page.post('/descarga_archivo_csv', (req,res) => {
+    let dia = '';
+    let lugar = req.lugar;
+    let year = req.year;
+    let mes = req.mes;
+    if(req.dia!==''){
+        dia = req.dia;
+    }
+    let name = `Consulta_${lugar}_${year}-${mes}.csv`
+    tokens.descarga_solicitada(name,1,lugar,year,mes).then( respuesta => {
+        if(respuesta){
+            console.log(`Archivo ${respuesta} descargado`);
+            res.download(`${name}`,`${name}`);
+        } else {
+            console.log(`Fallo en el archivo`);
+        }
+    }).then( ()=> {
+        console.log("Se borrara el archivo");
+    }).catch( err => {
+        console.log(err);
+    })
+    
+
 })
 
 

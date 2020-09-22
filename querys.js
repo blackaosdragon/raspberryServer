@@ -393,29 +393,18 @@ module.exports = {
 
                     })
                     console.log(`Para cada elemento en el archivo: ${name}`)
-                    /*
-                    data.forEach((element,i) => {  
-                        //console.log(`${element.ubicacion} ${element.temperatura} ${element.fecha}`)                  
-                        fs.appendFile(`${name}`,`${element.ubicacion};${element.temperatura}°C;${element.Hora};${element.Minuto}\n`,function(err){
+                    
+                    data.forEach((element,id) => {  
+                        fs.appendFile(`${name}`,`${element.Lugar};${element.Temperatura}°C;${element.Hora};${element.Minuto}\n`, err => {
                             if(err){
-                                throw err;
+                                console.log(err);
+                                reject(err);
                             }
-                            //console.log('Guardado');
-    
                         })
-                        elementos[i]={
-                            ubicacion: element.ubicacion,
-                            temperatura: element.temperatura,
-                            dia: element.Dia,
-                            mes: element.Mes,
-                            año: element.Año,
-                            hora: element.Hora,
-                            minuto: element.Minuto,
-                            segundo: element.Segundo
-                        }
+                        //console.log(`${element.ubicacion} ${element.temperatura} ${element.fecha}`)
                         //console.log(elementos[i]);
                     });
-                    */
+                    
                     //console.log(elementos);
                     console.log("Archivo creado y actualizado");
                     if(descarga_solicitada==1){

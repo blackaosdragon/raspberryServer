@@ -498,11 +498,11 @@ page.get('/test_notificacion', (req,res) => {
 })
 page.post('/descarga_archivo_csv', (req,res) => {
     let dia = '';
-    let lugar = req.lugar;
-    let year = req.year;
-    let mes = req.mes;
+    let lugar = req.body.lugar;
+    let year = req.body.year;
+    let mes = req.body.mes;
     if(req.dia!==''){
-        dia = req.dia;
+        dia = req.body.dia;
     }
     let name = `Consulta_${lugar}_${year}-${mes}.csv`
     tokens.descarga_solicitada(name,1,lugar,year,mes).then( respuesta => {

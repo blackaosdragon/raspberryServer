@@ -321,7 +321,7 @@ module.exports = {
     descarga_solicitada: (name,tipo_de_consulta,lugar,year,mes) => {
         if(tipo_de_consulta==1){
             return new Promise( (resolve,reject) => {
-                fs.appendFile(`${name}`,`Consulta de ${ubication} del mes/año ${mes}/${year}\nLugar;Temperatura;Hora;Minuto;\n`, err => {
+                fs.appendFile(`${name}`,`Consulta de ${lugar} del mes/año ${mes}/${year}\nLugar;Temperatura;Hora;Minuto;\n`, err => {
                     if(err){
                         console.log(err)
                         reject(err);

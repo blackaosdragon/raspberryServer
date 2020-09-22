@@ -294,18 +294,27 @@ module.exports = {
         })
     },obtener_nombre:(ubication,year,mes,dia)=>{
         return new Promise((resolve,reject)=>{
-            let name = `Consulta_${ubication}_${year}-${mes}-${dia}.csv`
-            console.log(`Generando el nombre: ${name}`)
-            
-            if(ubication.length<0||year<0||mes<0||dia<0){
-                reject(()=>{
-                    console.log("Alguno de los datos no es compatible o no existe");
-                })
+            if(dia==''){
+                if(ubication.length<0 || year<0 || mes < 0){
+                    reject( ()=>{console.log("Error al crear nombre: Con mes")})
+                } else {
+                    let name = `Consulta ${ubication} ${year}-${mes}.csv`
+                    resolve(name)
+                }
+            } else {            
+                if(ubication.length<0||year<0||mes<0||dia<0){
+                    reject(()=>{
+                        console.log("Error al crear nombre con dia");
+                    })
+                } else {
+                    let name = `Consulta_${ubication}_${year}-${mes}-${dia}.csv`;
+                    resolve(name);
+                }
+                
             }
-            resolve(name);
         })
     },
-    consulta_por_mes: (year,lugar,mes) => {
+    consulta_por_mes: (year,lugar,mes,name) => {
         return new Promise( (resolve,reject) => {
             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${lugar}' AND Año=${year} AND Mes=${mes};`,(err, data, otro) => {
                 if(err){
@@ -313,6 +322,14 @@ module.exports = {
                     reject(err);
                 } else {
                     //console.log(data);
+                    data.forEach( (element,id) => {
+                        fs.appendFile(`${name}`,`${element.Lugar};${element.Temperatura}°C;${element.Dia};${element.Mes};${element.Hora};${element.Minuto}\n`, err => {
+                            if(err){
+                                console.log(err);
+                                reject(err);
+                            }
+                        })
+                    })
                     resolve(data);
                 }
             })

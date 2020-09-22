@@ -175,10 +175,21 @@ page.post('/consulta_mes', (req,res) => {
     let year = data.year;
     let mes = data.mes;
     let lugar = data.lugar;
+    tokens.obtener_nombre(lugar,year,mes,''),then( response => {
+        name = response;
+        return response;
+    }).then( nombre => {
+        tokens.consulta_por_mes(year,lugar,mes,nombre).then( respuesta => {
+            res.send(respuesta)
+        }).catch( err => {
+            console.log(err);
+        })
+    })
+    /*
     tokens.consulta_por_mes(year,lugar,mes).then( respuesta => {
         //console.log(respuesta);
         res.send(respuesta)
-    })
+    })*/
 
 })
 page.post('/buscar',(req,res)=>{
@@ -509,6 +520,7 @@ page.post('/descarga_archivo_csv', (req,res) => {
         if(respuesta){
             console.log(`Archivo ${respuesta} descargado`);
             res.download(`${name}`,`${name}`);
+            
         } else {
             console.log(`Fallo en el archivo`);
         }

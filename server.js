@@ -256,6 +256,7 @@ page.get('/descarga_consulta', (req,res)=>{
         } else {
             console.log("EL archivo no se pudo descargar y no se borrara");
         }
+        name = '';
     })
     .catch( err => {
         console.log(err);

@@ -316,6 +316,12 @@ module.exports = {
     },
     consulta_por_mes: (year,lugar,mes,name) => {
         return new Promise( (resolve,reject) => {
+            fs.appendFile(`${name}`,`Consulta de ${lugar} del mes/año ${mes}/${year}\nLugar;Temperatura;Dia;Mes;Hora;Minuto;\n`, err => {
+                if(err){
+                    console.log(err)
+                    reject(err);
+                }
+            })
             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${lugar}' AND Año=${year} AND Mes=${mes};`,(err, data, otro) => {
                 if(err){
                     console.log(err);

@@ -175,7 +175,7 @@ page.post('/consulta_mes', (req,res) => {
     let year = data.year;
     let mes = data.mes;
     let lugar = data.lugar;
-    tokens.obtener_nombre(lugar,year,mes,''),then( response => {
+    tokens.obtener_nombre(lugar,year,mes,'').then( response => {
         name = response;
         return response;
     }).then( nombre => {
@@ -184,6 +184,8 @@ page.post('/consulta_mes', (req,res) => {
         }).catch( err => {
             console.log(err);
         })
+    }).catch( err => {
+        console.log(err);
     })
     /*
     tokens.consulta_por_mes(year,lugar,mes).then( respuesta => {

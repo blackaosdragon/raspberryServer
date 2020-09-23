@@ -18,6 +18,7 @@ let crono1;
 let crono2;
 let crono3;
 let temp_lim = 8;
+let temp_lim_inf = 2.5;
 let temperatura_limite = 7.5;
 let temp1_irregular=false;
 let temp2_irregular=false;
@@ -322,14 +323,13 @@ page.post('/temperatura',(req,res)=>{
     console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);    
     
     //crono 1
-    if(parseFloat(req.body.temperatura)>temp_lim && parseInt(req.body.id)==1 && idContador==0){
+    if( (parseFloat(req.body.temperatura)>temp_lim || parseFloat(req.body.temperatura)<temp_lim_inf) && parseInt(req.body.id)==1 && idContador==0){
         idContador++;
         let tiempo = new Date();
         horas1Plasmado = parseInt(tiempo.getHours());
         minutos1Plasmado = parseInt(tiempo.getMinutes());
         temp1_irregular = true;
-        //sendTemp(1);
-    } else if(parseFloat(req.body.temperatura)<=temp_lim && parseInt(req.body.id)==1 && idContador>0){
+    } else if( (parseFloat(req.body.temperatura)<=temp_lim && parseFloat(req.body.temperatura)>=temp_lim_inf) && parseInt(req.body.id)==1 && idContador>0){
         console.log(`Temperatura 1 normal se borra la hora: ${horas1Plasmado}:${minutos1Plasmado}`)
         horas1Plasmado=0;
         minutos1Plasmado=0;
@@ -337,6 +337,7 @@ page.post('/temperatura',(req,res)=>{
         temp1_irregular = false;
         console.log("Contador 1 detenido")
     }
+    
     if(parseFloat(req.body.temperatura)>temp_lim && parseInt(req.body.id)==1){
         console.log(`Hora de temperatura irregular del id 1: ${horas1Plasmado}:${minutos1Plasmado} envio_hecho = ${envio_hecho}`);
         console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);

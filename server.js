@@ -304,7 +304,7 @@ page.post('/temperatura',(req,res)=>{
             mensajes.notificacion_temperatura(temp,ubicacion);
             tokens.insertar_excepcion(temp,ubicacion,id);
         } else if(id==2){
-            temp2 = id2Temp
+            temp2 = id2Temp - 2
             ubicacion = asignar.asignar_ubicacion(id);
             mensajes.notificacion_temperatura(temp2,ubicacion);
             tokens.insertar_excepcion(temp2,ubicacion,id);

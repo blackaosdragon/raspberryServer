@@ -353,7 +353,7 @@ page.post('/temperatura',(req,res)=>{
         
     }
     //crono 2
-    if( ((parseFloat(req.body.temperatura)-2)>temperatura_limite || (parseFloat(req.body.temperatura)-2)<temp_lim_inf) && parseInt(req.body.id)==2 && idContador2<=0){
+    if( ((parseFloat(req.body.temperatura)-2)>temperatura_limite /*|| (parseFloat(req.body.temperatura)-2)<temp_lim_inf*/) && parseInt(req.body.id)==2 && idContador2<=0){
         idContador2++;
         let tiempo = new Date();
         horas2Plasmado = parseInt(tiempo.getHours());

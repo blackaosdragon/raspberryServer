@@ -359,7 +359,7 @@ page.post('/temperatura',(req,res)=>{
         let tiempo = new Date();
         horas2Plasmado = parseInt(tiempo.getHours());
         minutos2Plasmado = parseInt(tiempo.getMinutes());
-        temp2_irregular = true;
+        //temp2_irregular = true;
     } else if( ( (parseFloat(req.body.temperatura))<=temperatura_limite && (parseFloat(req.body.temperatura))>temp_lim_inf) && parseInt(req.body.id)==2 && idContador2>0){
         console.log(`Temperatura 2 normal se borra la hora: ${horas2Plasmado}:${minutos2Plasmado}`)
         horas2Plasmado=0;

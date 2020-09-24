@@ -287,7 +287,7 @@ page.post('/temperatura',(req,res)=>{
     if(req.body.id==1){
         idTemp = temperatura;
     } else if (req.body.id==2){
-        id2Temp = temperatura;
+        id2Temp = temperatura - 1;
     } else if (req.body.id==3){
         id3Temp = temperatura;
     }
@@ -446,7 +446,7 @@ page.post('/temperatura',(req,res)=>{
                 } else {
                     //console.log('Se agregará el dato');
                     if(req.body.id==2){
-                        let temp = req.body.temperatura;
+                        let temp = req.body.temperatura - 1;
                         io.emit('temp',`${req.body.id} ${temp}`);
                         tokens.insertar_valores_2hour(temp,ubicacion,id);
                         tokens.insertar_valores(temp,ubicacion,id);
@@ -462,7 +462,7 @@ page.post('/temperatura',(req,res)=>{
             })
         }
         if(req.body.id==2){
-            let temp = req.body.temperatura;
+            let temp = req.body.temperatura - 1;
             io.emit('temp',`${req.body.id} ${temp}`);
             //tokens.insertar_valores_2hour(temp,ubicacion,id);
             //tokens.insertar_valores(temp,ubicacion,id);

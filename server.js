@@ -282,13 +282,14 @@ page.post('/login',(req,res)=>{
 })
 page.use('/.well-known/pki-validation/',express.static('verifi'));
 page.post('/temperatura',(req,res)=>{
+    let temperatura = parseFloat(req.body.temperatura);
     
     if(req.body.id==1){
-        idTemp = parseFloat(req.body.temperatura);
+        idTemp = temperatura;
     } else if (req.body.id==2){
-        id2Temp = parseFloat(req.body.temperatura);
+        id2Temp = temperatura;
     } else if (req.body.id==3){
-        id3Temp = parseFloat(req.body.temperatura);
+        id3Temp = temperatura;
     }
     sendTemp = (id) => {
         
@@ -304,7 +305,7 @@ page.post('/temperatura',(req,res)=>{
             mensajes.notificacion_temperatura(temp,ubicacion);
             tokens.insertar_excepcion(temp,ubicacion,id);
         } else if(id==2){
-            temp2 = id2Temp - 2
+            temp2 = id2Temp
             ubicacion = asignar.asignar_ubicacion(id);
             mensajes.notificacion_temperatura(temp2,ubicacion);
             tokens.insertar_excepcion(temp2,ubicacion,id);
@@ -320,10 +321,10 @@ page.post('/temperatura',(req,res)=>{
     let horas = parseInt(registro.getHours());
     let minutos = parseInt(registro.getMinutes());
     let segundos = parseInt(registro.getSeconds());
-    console.log(`ID: ${req.body.id} Temperatura: ${req.body.temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);    
+    console.log(`ID: ${req.body.id} Temperatura: ${temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);    
     
     //crono 1
-    if( (parseFloat(req.body.temperatura)>temp_lim || parseFloat(req.body.temperatura)<temp_lim_inf) && parseInt(req.body.id)==1 && idContador==0){
+    if( (parseFloat(temperatura)>temp_lim || parseFloat(temperatura)<temp_lim_inf) && parseInt(req.body.id)==1 && idContador==0){
         
         idContador++;
         let tiempo = new Date();
@@ -331,7 +332,7 @@ page.post('/temperatura',(req,res)=>{
         minutos1Plasmado = parseInt(tiempo.getMinutes());
         temp1_irregular = true;
         
-    } else if( (parseFloat(req.body.temperatura)<=temp_lim && parseFloat(req.body.temperatura)>=temp_lim_inf) && parseInt(req.body.id)==1 && idContador>0){
+    } else if( (parseFloat(temperatura)<=temp_lim && parseFloat(temperatura)>=temp_lim_inf) && parseInt(req.body.id)==1 && idContador>0){
         console.log(`Temperatura 1 normal se borra la hora: ${horas1Plasmado}:${minutos1Plasmado}`)
         horas1Plasmado=0;
         minutos1Plasmado=0;
@@ -353,13 +354,13 @@ page.post('/temperatura',(req,res)=>{
         
     }
     //crono 2
-    if( ((parseFloat(req.body.temperatura)-2)>temperatura_limite /*|| (parseFloat(req.body.temperatura)-2)<temp_lim_inf*/) && parseInt(req.body.id)==2 && idContador2<=0){
+    if( ((parseFloat(req.body.temperatura))>temperatura_limite /*|| (parseFloat(req.body.temperatura)-2)<temp_lim_inf*/) && parseInt(req.body.id)==2 && idContador2<=0){
         idContador2++;
         let tiempo = new Date();
         horas2Plasmado = parseInt(tiempo.getHours());
         minutos2Plasmado = parseInt(tiempo.getMinutes());
         temp2_irregular = true;
-    } else if( ( (parseFloat(req.body.temperatura)-2)<=temperatura_limite && (parseFloat(req.body.temperatura)-2)>temp_lim_inf) && parseInt(req.body.id)==2 && idContador2>0){
+    } else if( ( (parseFloat(req.body.temperatura))<=temperatura_limite && (parseFloat(req.body.temperatura))>temp_lim_inf) && parseInt(req.body.id)==2 && idContador2>0){
         console.log(`Temperatura 2 normal se borra la hora: ${horas2Plasmado}:${minutos2Plasmado}`)
         horas2Plasmado=0;
         minutos2Plasmado=0;
@@ -406,7 +407,7 @@ page.post('/temperatura',(req,res)=>{
     }
 
 
-    if(Number.isNaN(req.body.temperatura)){
+    if(Number.isNaN(temperatura)){
         console.log(`El dato: ${req.body.temperatura}, no es un numero`);
         let bad = {
             data: 'recibido pero fallo'
@@ -436,7 +437,7 @@ page.post('/temperatura',(req,res)=>{
                 } else {
                     //console.log('Se agregará el dato');
                     if(req.body.id==2){
-                        let temp = req.body.temperatura - 2;
+                        let temp = req.body.temperatura;
                         io.emit('temp',`${req.body.id} ${temp}`);
                         tokens.insertar_valores_2hour(temp,ubicacion,id);
                         tokens.insertar_valores(temp,ubicacion,id);
@@ -452,7 +453,7 @@ page.post('/temperatura',(req,res)=>{
             })
         }
         if(req.body.id==2){
-            let temp = req.body.temperatura - 2.0;
+            let temp = req.body.temperatura;
             io.emit('temp',`${req.body.id} ${temp}`);
             //tokens.insertar_valores_2hour(temp,ubicacion,id);
             //tokens.insertar_valores(temp,ubicacion,id);

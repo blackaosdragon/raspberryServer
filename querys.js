@@ -440,8 +440,7 @@ module.exports = {
         
     },
     guardar_todos_los_datos: (temperatura, lugar,ID) => {
-        console.log("Buscando en emit");
-        let sentancia_1 = ``
+        let tiempo = new Date();
         return new Promise( (resolve,reject) => {
             base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos}(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temperatura}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${ID},'H. Cardiología S. XXI');`), (err,info,otro) =>{
                 console.log("Terminada la busqueda");

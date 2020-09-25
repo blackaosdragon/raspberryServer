@@ -157,18 +157,25 @@ page.get('/hospitales', (req,res) =>{
 })
 
 page.get('/socket', (req,res) => {
-    console.log('Se recibio el get');
-    //tokens.consultar_base();
-    /*
-    tokens.obtener_datos().then(respuesta=>{
-        console.log("Enviando respuesta");
-        res.send(respuesta);
+    tokens.obtener_ultimo_dato(1).then( respuesta => {
+        console.log(respuesta)
+        return(respuesta);
+    }).then( data => {
+        tokens.obtener_ultimo_dato(2).then( respuesta => {
+            console.log(respuesta);
+            let payload = {
+                sensor1: data,
+                sensor2: respuesta
+            }
+            res.send(payload);
+        })
+    }).catch(err=>{
+        console.log(err);
+        let payload = {
+            data: 0
+        }
+        res.send(payload);
     })
-    */
-    tokens.emitir_datos().then( respuesta => {
-        console.log("Ejecutando promesa");
-        res.send(respuesta)
-    });
 })
 
 page.post('/consulta_mes', (req,res) => {

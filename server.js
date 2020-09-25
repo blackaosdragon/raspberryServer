@@ -283,7 +283,8 @@ page.post('/login',(req,res)=>{
 page.use('/.well-known/pki-validation/',express.static('verifi'));
 page.post('/temperatura',(req,res)=>{
     let temperatura = parseFloat(req.body.temperatura);
-    
+    let lugar = asignar.asignar_ubicacion(req.body.id);
+    tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
     if(req.body.id==1){
         idTemp = temperatura;
     } else if (req.body.id==2){
@@ -325,8 +326,8 @@ page.post('/temperatura',(req,res)=>{
     
     //crono 1
     if( (parseFloat(temperatura)>temp_lim || parseFloat(temperatura)<temp_lim_inf) && parseInt(req.body.id)==1 && idContador==0){
-        if(req.body.temperatura==-127){
-
+        if ( temperatura == -127 ){
+            console.log("Medida de error");
         } else {
             idContador++;
             let tiempo = new Date();
@@ -334,8 +335,6 @@ page.post('/temperatura',(req,res)=>{
             minutos1Plasmado = parseInt(tiempo.getMinutes());
             temp1_irregular = true;
         }
-        
-        
     } else if( (parseFloat(temperatura)<=temp_lim && parseFloat(temperatura)>=temp_lim_inf) && parseInt(req.body.id)==1 && idContador>0){
         console.log(`Temperatura 1 normal se borra la hora: ${horas1Plasmado}:${minutos1Plasmado}`)
         horas1Plasmado=0;
@@ -359,8 +358,8 @@ page.post('/temperatura',(req,res)=>{
     }
     //crono 2
     if( ((parseFloat(req.body.temperatura))>temperatura_limite /*|| (parseFloat(req.body.temperatura)-2)<temp_lim_inf*/) && parseInt(req.body.id)==2 && idContador2<=0){
-        if(req.body.temperatura==-127){
-
+        if ( req.body.temperatura == -127){
+            
         } else {
             idContador2++;
             let tiempo = new Date();

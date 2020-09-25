@@ -282,6 +282,8 @@ page.post('/login',(req,res)=>{
 })
 page.use('/.well-known/pki-validation/',express.static('verifi'));
 page.post('/temperatura',(req,res)=>{
+
+
     let temperatura = parseFloat(req.body.temperatura);
     
     if(req.body.id==1){
@@ -325,13 +327,15 @@ page.post('/temperatura',(req,res)=>{
     
     //crono 1
     if( (parseFloat(temperatura)>temp_lim || parseFloat(temperatura)<temp_lim_inf) && parseInt(req.body.id)==1 && idContador==0){
-        
-        idContador++;
-        let tiempo = new Date();
-        horas1Plasmado = parseInt(tiempo.getHours());
-        minutos1Plasmado = parseInt(tiempo.getMinutes());
-        temp1_irregular = true;
-        
+        if ( temperatura == -127 ){
+            console.log("Medida de error");
+        } else {
+            idContador++;
+            let tiempo = new Date();
+            horas1Plasmado = parseInt(tiempo.getHours());
+            minutos1Plasmado = parseInt(tiempo.getMinutes());
+            temp1_irregular = true;
+        }
     } else if( (parseFloat(temperatura)<=temp_lim && parseFloat(temperatura)>=temp_lim_inf) && parseInt(req.body.id)==1 && idContador>0){
         console.log(`Temperatura 1 normal se borra la hora: ${horas1Plasmado}:${minutos1Plasmado}`)
         horas1Plasmado=0;
@@ -355,11 +359,16 @@ page.post('/temperatura',(req,res)=>{
     }
     //crono 2
     if( ((parseFloat(req.body.temperatura))>temperatura_limite /*|| (parseFloat(req.body.temperatura)-2)<temp_lim_inf*/) && parseInt(req.body.id)==2 && idContador2<=0){
-        idContador2++;
-        let tiempo = new Date();
-        horas2Plasmado = parseInt(tiempo.getHours());
-        minutos2Plasmado = parseInt(tiempo.getMinutes());
-        //temp2_irregular = true;
+        if ( req.body.temperatura == -127){
+            
+        } else {
+            idContador2++;
+            let tiempo = new Date();
+            horas2Plasmado = parseInt(tiempo.getHours());
+            minutos2Plasmado = parseInt(tiempo.getMinutes());
+            temp2_irregular = true;
+        }
+        
     } else if( ( (parseFloat(req.body.temperatura))<=temperatura_limite && (parseFloat(req.body.temperatura))>temp_lim_inf) && parseInt(req.body.id)==2 && idContador2>0){
         console.log(`Temperatura 2 normal se borra la hora: ${horas2Plasmado}:${minutos2Plasmado}`)
         horas2Plasmado=0;

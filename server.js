@@ -288,6 +288,8 @@ page.post('/login',(req,res)=>{
     //res.send('Recibido');
 })
 page.use('/.well-known/pki-validation/',express.static('verifi'));
+
+
 page.post('/temperatura',(req,res)=>{
     let temperatura = parseFloat(req.body.temperatura);
     let lugar = asignar.asignar_ubicacion(req.body.id);
@@ -333,7 +335,7 @@ page.post('/temperatura',(req,res)=>{
     
     //crono 1
     if( (parseFloat(temperatura)>temp_lim || parseFloat(temperatura)<temp_lim_inf) && parseInt(req.body.id)==1 && idContador==0){
-        if ( temperatura < -10 ){
+        if ( temperatura == -127 ){
             console.log("Medida de error");
         } else {
             idContador++;
@@ -365,7 +367,7 @@ page.post('/temperatura',(req,res)=>{
     }
     //crono 2
     if( ((parseFloat(req.body.temperatura))>temperatura_limite /*|| (parseFloat(req.body.temperatura)-2)<temp_lim_inf*/) && parseInt(req.body.id)==2 && idContador2<=0){
-        if ( req.body.temperatura < -10){
+        if ( req.body.temperatura == -127){
             
         } else {
             idContador2++;

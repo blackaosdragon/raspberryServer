@@ -442,8 +442,7 @@ module.exports = {
         let tiempo = new Date();
         let mes = tiempo.getMonth()+1;
         return new Promise( (res,rej) => {
-            console.log(`SELECT * FROM ${data_base}.${tabla_de_datos} WHERE Mes<=${mes} AND Dia<=${tiempo.getDay()} AND ID=${id} ORDER BY turno DESC LIMIT 1;`);
-            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos} WHERE Mes<=${mes} AND Dia<=${tiempo.getDay()} AND ID=${id} ORDER BY turno DESC LIMIT 1;`, (err,data,otro)=>{
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos} ORDER BY turno DESC LIMIT 1;`, (err,data,otro)=>{
                 if(err){
                     console.log(err);
                     rej();

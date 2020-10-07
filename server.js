@@ -162,11 +162,12 @@ page.get('/socket', (req,res) => {
         return(respuesta);
     }).then( data => {
         tokens.obtener_ultimo_dato(2).then( respuesta => {
-            console.log(respuesta);
+            //console.log(respuesta);
             let payload = {
                 sensor1: data,
                 sensor2: respuesta
             }
+            console.log(payload);
             res.send(payload);
         })
     }).catch(err=>{

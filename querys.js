@@ -447,6 +447,7 @@ module.exports = {
                     console.log(err);
                     rej();
                 } else {
+                    console.log("Data Solicitada: ");
                     console.log(data)
                     res(data);
                 }

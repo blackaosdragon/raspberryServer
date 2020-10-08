@@ -212,6 +212,7 @@ page.post('/buscar',(req,res)=>{
     console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
         try{
+            console.log("Intentando borrar anterior");
             fs.unlink(`${name}`, err => {
                 if(err){
                     console.log("Error: ",err);

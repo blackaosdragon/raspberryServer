@@ -211,6 +211,17 @@ page.post('/buscar',(req,res)=>{
     let lugar = data.lugar;
     console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
+        try{
+            fs.unlink(`${name}`, err => {
+                if(err){
+                    console.log("Error: ",err);
+                } else {
+                    console.log("Se borrara un archivo que no se decargo anteriormente");
+                }
+            })
+        } catch (err){
+            console.log(err);
+        }
         console.log(`Obteniendo el nombre: ${respuesta}`);
         name = respuesta;
         return respuesta;

@@ -75,7 +75,8 @@ SELECT * FROM monitoreo.Bitacora
       Minuto=
       (SELECT MAX(Minuto) FROM monitoreo.Bitacora WHERE ID=1 AND Hora=(SELECT MAX(Hora) FROM monitoreo.Bitacora WHERE ID=1));
 
-  
+  Base de datos equipos en general:
+  CREATE TABLE `Instrumentacion`.`RedFria` ( `id` INT NOT NULL AUTO_INCREMENT , `ubicacion` VARCHAR(100) NOT NULL , `equipo` VARCHAR(50) NOT NULL , `marca` VARCHAR(30) NULL , `modelo` VARCHAR(50) NULL , `serie` VARCHAR(50) NULL , `inventario` VARCHAR(50) NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
   SensorPresion= analogRead(sensor);
   PresionVolts= SensorPresion* 5;
   PresionBytes= PresionVolts/1023;  

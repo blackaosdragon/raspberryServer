@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
+const asignacion = require('./asignacion.js');
 
 
 let idTemp = 0;
@@ -184,6 +185,7 @@ page.post('/consulta_mes', (req,res) => {
     let year = data.year;
     let mes = data.mes;
     let lugar = data.lugar;
+    asignacion.borrar_archivo(name);
     tokens.obtener_nombre(lugar,year,mes,'').then( response => {
         name = response;
         return response;

@@ -1,3 +1,4 @@
+const fs = require('fs');
 module.exports = {
     string_to_float: (data_reciber) => {
         //tiempo de expera agotado
@@ -72,6 +73,15 @@ module.exports = {
           return "Sensor de prueba";
       }
 
+  },
+  borrar_archivo: name => {
+      fs.unlink(`${name}`, err => {
+          if(err){
+              console.log("Error: ",err)
+          } else {
+              console.log(`Se borro el archivo ${name}`);
+          }
+      })
   }
 
 }

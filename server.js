@@ -221,6 +221,7 @@ page.post('/buscar',(req,res)=>{
                 }
             })
         } catch (err){
+            console.log("Error al borrar");
             console.log(err);
         }
         console.log(`Obteniendo el nombre: ${respuesta}`);

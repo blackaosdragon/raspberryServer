@@ -594,5 +594,31 @@ module.exports = {
                 }
             })
         })
+    },
+    borrar_data: () => {
+        const inicio_de_mes = 1;
+        let reloj = new Date();
+        let mes = reloj.getMonth() + 1;
+        return new Promise( (resolve, reject) => {
+            if( parseInt(reloj.getDate())==inicio_de_mes ){
+                base_de_datos.query(`DELETE FROM monitoreo.Bitacora WHERE Mes<${mes}`, err => {
+                    if(err){
+                        console.log("Error: ", err);
+                        reject(err);
+                    } else {
+
+                    }
+                })
+            } else  {
+                base_de_datos.query(`DELETE FROM monitoreo.Bitacora WHERE Mes=${mes} AND Dia<${parseInt(reloj.getDate())}`,  err => {
+                    if(err){
+                        console.log("Error: ",err)
+                        reject(err);
+                    } else {
+                        console.log("Se ha borrado los datos de la base de datos")
+                    }
+                })
+            }
+        })
     }
 }

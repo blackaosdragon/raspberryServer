@@ -350,6 +350,7 @@ page.post('/temperatura',(req,res)=>{
     let segundos = parseInt(registro.getSeconds());
     console.log(`ID: ${req.body.id} Temperatura: ${temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
     if( parseInt(registro.getHours())==9 && parseInt(registro.getMinutes())==43 && parseInt(registro.getSeconds())<59){
+        
         console.log("Se borraran los datos del dia anterior");
     }
     

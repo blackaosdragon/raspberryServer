@@ -346,8 +346,6 @@ page.post('/temperatura',(req,res)=>{
     //console.log(req);
     let registro = new Date();
     let horas = parseInt(registro.getHours());
-    let minutos = parseInt(registro.getMinutes());
-    let segundos = parseInt(registro.getSeconds());
     console.log(`ID: ${req.body.id} Temperatura: ${temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
     if( parseInt(registro.getHours())==0 && parseInt(registro.getMinutes())==0 && parseInt(registro.getSeconds())<59){
         

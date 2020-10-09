@@ -7,6 +7,7 @@ const path = require('path');
 let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
 const asignacion = require('./asignacion.js');
+const { parse } = require('path');
 
 
 let idTemp = 0;
@@ -347,7 +348,10 @@ page.post('/temperatura',(req,res)=>{
     let horas = parseInt(registro.getHours());
     let minutos = parseInt(registro.getMinutes());
     let segundos = parseInt(registro.getSeconds());
-    console.log(`ID: ${req.body.id} Temperatura: ${temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);    
+    console.log(`ID: ${req.body.id} Temperatura: ${temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
+    if( parseInt(registro.getHours())==9 && parseInt(registro.getMinutes())==43 && parseInt(registro.getSeconds())<59){
+        console.log("Se borraran los datos del dia anterior");
+    }
     
     //crono 1
     if( (parseFloat(temperatura)>temp_lim || parseFloat(temperatura)<temp_lim_inf) && parseInt(req.body.id)==1 && idContador==0){

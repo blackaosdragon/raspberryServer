@@ -25,6 +25,7 @@ let temperatura_limite = 7.5;
 let temp1_irregular=false;
 let temp2_irregular=false;
 let temp3_irregular=false;
+let medida_de_error = -10; //a partir de -10 las medidas ya son de error ya que las camaras no bajan mas
 
 
 
@@ -355,7 +356,7 @@ page.post('/temperatura',(req,res)=>{
     
     //crono 1
     if( (parseFloat(temperatura)>temp_lim || parseFloat(temperatura)<temp_lim_inf) && parseInt(req.body.id)==1 && idContador==0){
-        if ( temperatura == -127 ){
+        if ( temperatura < medida_de_error ){
             console.log("Medida de error");
         } else {
             idContador++;

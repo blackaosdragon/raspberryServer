@@ -601,21 +601,21 @@ module.exports = {
         let mes = reloj.getMonth() + 1;
         return new Promise( (resolve, reject) => {
             if( parseInt(reloj.getDate())==inicio_de_mes ){
-                base_de_datos.query(`DELETE FROM monitoreo.Bitacora WHERE Mes<${mes}`, err => {
+                base_de_datos.query(`DELETE FROM ${data_base}.${tabla_de_datos} WHERE Mes<${mes};`, err => {
                     if(err){
                         console.log("Error: ", err);
                         reject(err);
                     } else {
-
+                        console.log("Se han borrado los datos con exito");
                     }
                 })
             } else  {
-                base_de_datos.query(`DELETE FROM monitoreo.Bitacora WHERE Mes=${mes} AND Dia<${parseInt(reloj.getDate())}`,  err => {
+                base_de_datos.query(`DELETE FROM ${data_base}.${tabla_de_datos} WHERE Mes=${mes} AND Dia<${parseInt(reloj.getDate())};`,  err => {
                     if(err){
                         console.log("Error: ",err)
                         reject(err);
                     } else {
-                        console.log("Se ha borrado los datos de la base de datos")
+                        console.log("Se ha borrado los datos de la base de datos con exito");
                     }
                 })
             }

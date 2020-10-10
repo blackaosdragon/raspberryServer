@@ -363,7 +363,7 @@ page.post('/temperatura',(req,res)=>{
             let tiempo = new Date();
             horas1Plasmado = parseInt(tiempo.getHours());
             minutos1Plasmado = parseInt(tiempo.getMinutes());
-            temp1_irregular = true;
+            //temp1_irregular = true;
         }
     } else if( (parseFloat(temperatura)<=temp_lim && parseFloat(temperatura)>=temp_lim_inf) && parseInt(req.body.id)==1 && idContador>0){
         console.log(`Temperatura 1 normal se borra la hora: ${horas1Plasmado}:${minutos1Plasmado}`)

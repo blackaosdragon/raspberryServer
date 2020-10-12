@@ -27,6 +27,8 @@ let temp2_irregular=false;
 let temp3_irregular=false;
 let medida_de_error = -10; //a partir de -10 las medidas ya son de error ya que las camaras no bajan mas
 
+let contador_de_error = 0;
+
 
 
 const page = express();
@@ -363,6 +365,9 @@ page.post('/temperatura',(req,res)=>{
             let tiempo = new Date();
             horas1Plasmado = parseInt(tiempo.getHours());
             minutos1Plasmado = parseInt(tiempo.getMinutes());
+            if(contador_de_error>5){
+                temp1_irregular = true;
+            }
             //temp1_irregular = true;
         }
     } else if( (parseFloat(temperatura)<=temp_lim && parseFloat(temperatura)>=temp_lim_inf) && parseInt(req.body.id)==1 && idContador>0){
@@ -371,6 +376,7 @@ page.post('/temperatura',(req,res)=>{
         minutos1Plasmado=0;
         idContador=0;
         temp1_irregular = false;
+        contador_de_error = 0;
         console.log("Contador 1 detenido")
     }
     
@@ -395,16 +401,21 @@ page.post('/temperatura',(req,res)=>{
             let tiempo = new Date();
             horas2Plasmado = parseInt(tiempo.getHours());
             minutos2Plasmado = parseInt(tiempo.getMinutes());
+            contador_de_error++;
+            if(contador_de_error>5){
+                temp2_irregular = true;
+            }
             //temp2_irregular = true;
         }
         
     } else if( ( (parseFloat(req.body.temperatura))<=temperatura_limite && (parseFloat(req.body.temperatura))>temp_lim_inf) && parseInt(req.body.id)==2 && idContador2>0){
         console.log(`Temperatura 2 normal se borra la hora: ${horas2Plasmado}:${minutos2Plasmado}`)
-        horas2Plasmado=0;
-        minutos2Plasmado=0;
-        idContador2=0;
+        horas2Plasmado = 0;
+        minutos2Plasmado = 0;
+        idContador2 = 0;
         temp2_irregular = false;
-        console.log("Contador 2 detenido")
+        contador_de_error = 0;
+        console.log("Contador 2 detenido");
     }
     if(parseFloat(req.body.temperatura)>=temperatura_limite && parseInt(req.body.id)==3 && idContador3<=0){
         idContador3++;

@@ -5,7 +5,7 @@ const { rejects } = require('assert');
 const base_de_datos = mySql.createConnection({
     host: 'localhost',
     user: 'infoUpdater',
-    password: '107005205',
+    password: 'Ko-107005205-ko',
     
 })
 const data_base = 'monitoreo';

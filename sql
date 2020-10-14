@@ -84,3 +84,5 @@ SELECT * FROM monitoreo.Bitacora
   PresKiloPasExt = (PresMegaPasExt*1000);
   PresionExt = (PresKiloPasExt/6.895)-4.4;
   PresionReal= (PresionExt*0.183)+(PresionExt);
+
+  INSERT INTO monitoreo.Bitacora(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID) VALUES ("Cámara farmacia",6.5, 14,10,2020,10,0,5,1);

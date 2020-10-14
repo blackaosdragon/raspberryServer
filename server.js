@@ -82,8 +82,8 @@ httpServer.listen(puerto,()=>{
 })
 */
 const httpServer = https.createServer({
-    key: fs.readFileSync(path.resolve('/home/pi/Web/raspberry/raspberryServer/certs/private.key')),
-    cert: fs.readFileSync(path.resolve('/home/pi/Web/raspberry/raspberryServer/certs/certificate.crt'))
+    key: fs.readFileSync(path.resolve('/home/victory/server/raspberryServer/certs/private.key')),
+    cert: fs.readFileSync(path.resolve('/home/victory/server/raspberryServer/certs/certificate.crt'))
    
    },page);
 

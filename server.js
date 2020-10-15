@@ -50,7 +50,7 @@ const ajuste = 3.3;
 
 const wsPort = 5001;
 const pagePort = 5000;
-const puerto = 443; // antes 5002
+const puerto = 5002; // antes 5002
 const sensores_en_total = 3;
 let string_ofice_temperature = "";
 let float_ofice_temperature = 0.0;

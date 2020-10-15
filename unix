@@ -1,5 +1,7 @@
 The --keep-until-expiring flag instructs certbot to keep the certificate if it is not near expiry. Usually, this is the right choice, as it prevents multiple restarts to use up your quota.
 
+scp -P 80 /ruta/del/archivo usuario@ip.del.destino:/carpeta/del/destino
+
 cat /sys/class/net/eth0/address
 ip link show eth0 
     ip addr show

@@ -50,6 +50,7 @@ const ajuste = 3.3;
 
 const wsPort = 5001;
 const pagePort = 5000;
+const puerto_seguro = 5001;
 const puerto = 443;
 const sensores_en_total = 3;
 let string_ofice_temperature = "";
@@ -87,7 +88,7 @@ const httpServer = https.createServer({
    
    },page);
 
-httpServer.listen(puerto,()=>{
+httpServer.listen(puerto_seguro,()=>{
   console.log(`Servidor disponible en el puerto ${puerto}`);
 })
 

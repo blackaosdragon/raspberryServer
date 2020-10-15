@@ -39,6 +39,7 @@ module.exports = {
                     if(result){
                         console.log("Resultado: ",result);
                         if(result.length>0){
+                            console.log("Resultado mayor a 0");
                             //console.log("El token ya existe");
                             //console.log(typeof(activo));
                             if(activo==2){
@@ -71,8 +72,11 @@ module.exports = {
                                     console.log(err);
                                     reject();
                                 }
-                                //console.log("Token insertado");
-                                resolve();
+                                console.log("Token insertado");
+                                let data={
+                                    insertado: 1
+                                }
+                                resolve(data);
                             })
                         }
                     } else {

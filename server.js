@@ -541,12 +541,13 @@ page.post('/insertar_token', (req,res) => {
     let data = {}
     tokens.insertar_tokens(req.body.token,req.body.activo).then( respuesta => {
         if(respuesta){
-            console.log(respuesta)
+            console.log("Se respondio: ",respuesta)
             res.send(respuesta);
         } else {
             let respuesta = {
                 actualizado: 1
             }
+            console.log("Se respondio: ",respuesta)
             res.send(respuesta)
         }
     }).catch( error => {
@@ -554,6 +555,7 @@ page.post('/insertar_token', (req,res) => {
         data = {
             data: 0
         }
+        console.log("Se respondio: ",data)
         res.send(data);
     })
     //res.send(data);

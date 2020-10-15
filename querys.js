@@ -37,7 +37,7 @@ module.exports = {
                     reject()
                 } else {
                     if(result){
-                        console.log(result);
+                        console.log("Resultado: ",result);
                         if(result.length>0){
                             //console.log("El token ya existe");
                             //console.log(typeof(activo));

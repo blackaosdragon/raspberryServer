@@ -37,12 +37,12 @@ module.exports = {
                     reject()
                 } else {
                     if(result){
-                        //console.log(result);
+                        console.log(result);
                         if(result.length>0){
-                            console.log("El token ya existe");
+                            //console.log("El token ya existe");
                             //console.log(typeof(activo));
                             if(activo==2){
-                                console.log("Token consultado: ",result)
+                                //console.log("Token consultado: ",result)
                                 resolve(result);
                                 
                             } else {
@@ -57,7 +57,7 @@ module.exports = {
                                         let payload = {
                                             actualizado: true 
                                         }
-                                        console.log("Token actualizado");
+                                        //console.log("Token actualizado");
                                         resolve(payload); //en caso de poder actualizar
                                     }
                                 })
@@ -71,7 +71,7 @@ module.exports = {
                                     console.log(err);
                                     reject();
                                 }
-                                console.log("Token insertado");
+                                //console.log("Token insertado");
                                 resolve();
                             })
                         }
@@ -90,8 +90,8 @@ module.exports = {
                     console.log(err);
                     reject();
                 } else {
-                    console.log("Datos: ")
-                    console.log(data);
+                    //console.log("Datos: ")
+                    //console.log(data);
                     resolve(data);
                 }
             })
@@ -130,16 +130,16 @@ module.exports = {
             if(err){
                 console.log(err);
             }
-            console.log("khe");
-            console.log(datos);
+            //console.log("khe");
+            //console.log(datos);
             //console.log(campos);
         })
     }
     ,
     extraer_años: (ubicacion) => {
         let elementos = [];
-        console.log("Ubicacion en la base: ",ubicacion);
-        console.log("Buscando años");
+        //console.log("Ubicacion en la base: ",ubicacion);
+        //console.log("Buscando años");
         return new Promise( (resolve,reject) => {
             //let elementos = [];
             base_de_datos.query(`SELECT DISTINCT Año FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubicacion}';`,(err,data,campos)=>{
@@ -150,14 +150,14 @@ module.exports = {
                     for (let i = 0; i<data.length;i++){
                         elementos[i] = data[i].Año;
                     }
-                    console.log(elementos);
+                    //console.log(elementos);
                     resolve(elementos);
-                    console.log("Años enviados");
+                    //console.log("Años enviados");
                 }
             })
         })
     },extraer_dias: (mes,year,lugar) => {
-        console.log("consultando los dias");
+        //console.log("consultando los dias");
         let meSiguiente = parseInt(mes)+1;
         let dia_primero = 1;
         let dia_final = 1;
@@ -177,7 +177,7 @@ module.exports = {
                     for(let i=0;i<data.length;i++){
                         elementos[i] = data[i].dia;
                     }
-                    console.log(elementos);
+                    //console.log(elementos);
                     resolve(elementos);
                 }
             })
@@ -199,7 +199,7 @@ module.exports = {
                     
                     resolve(elementos);
                 }
-                console.log(elementos);
+                //console.log(elementos);
             })
         })
     },
@@ -217,13 +217,13 @@ module.exports = {
                     
                     resolve(elementos);
                 }
-                console.log(elementos);
+                //console.log(elementos);
             })
             
         })        
     },
     extraer_dia: (year,mes) => {
-        console.log("Consultando los dias");
+        //console.log("Consultando los dias");
 
         let meSiguiente = parseInt(mes)+1;
         let dia_primero = 1;
@@ -242,10 +242,10 @@ module.exports = {
                     for(let i=0;i<data.length;i++){
                         elementos[i] = data[i].dia;
                     }
-                    console.log(elementos);
+                    //console.log(elementos);
                     resolve(elementos);
                 }
-                console.log(elementos);
+                //console.log(elementos);
             });
         })
     }, extraer_ubicaciones: () => {
@@ -282,7 +282,7 @@ module.exports = {
                 if(err){
                     reject(new Error());
                 }else{
-                    console.log(data);
+                    //console.log(data);
                     for (let i = 0; i<data.length;i++){
                         elementos[i] = data[i].lugar;
                     }
@@ -290,8 +290,8 @@ module.exports = {
                     resolve(elementos);
                 }
                 let experimento = data;
-                console.log(elementos);
-                console.log(experimento);
+                //console.log(elementos);
+                //console.log(experimento);
             })
         })
     },obtener_nombre:(ubication,year,mes,dia)=>{
@@ -370,23 +370,23 @@ module.exports = {
                 } )
             })
         } else if (tipo_de_consulta==2){
-            console.log("Consulta por dias");
+            //console.log("Consulta por dias");
         }
         
     },
     consultar_base_de_datos: (ubication,year,mes,dia,name,descarga_solicitada) => {
-        console.log(`Obteniendo el nombre para la consulta: ${name}`);
+        //console.log(`Obteniendo el nombre para la consulta: ${name}`);
         //console.log(`Lugar: ${ubication} ${dia}/${mes}/${year}, Hora: ${hora_inicial}:${minuto_inicial} - ${hora_final}:${minuto_final}`)
         return new Promise( (resolve,reject) => {
             let elementos = [];
             //let name = `Consulta_${ubication}_${year}-${mes}-${dia}.csv`
-            console.log(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`)
+            //console.log(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`)
             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`,(err,data,otro)=>{
                 if(err){
                     console.log(err);
                     reject(new Error());
                 } else {
-                    console.log(`Creando la cabecera del archivo: ${name}`)
+                    //console.log(`Creando la cabecera del archivo: ${name}`)
                     fs.appendFile(`${name}`,`Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}\nLugar;Temperatura;Hora;Minuto;\n`,function(err){
                         if(err){
                             throw err;
@@ -394,7 +394,7 @@ module.exports = {
                         //console.log('Guardado');
 
                     })
-                    console.log(`Para cada elemento en el archivo: ${name}`)
+                    //console.log(`Para cada elemento en el archivo: ${name}`)
                     
                     data.forEach((element,id) => {  
                         fs.appendFile(`${name}`,`${element.Lugar};${element.Temperatura}°C;${element.Hora};${element.Minuto}\n`, err => {
@@ -408,7 +408,7 @@ module.exports = {
                     });
                     
                     //console.log(elementos);
-                    console.log("Archivo creado y actualizado");
+                    //console.log("Archivo creado y actualizado");
                     if(descarga_solicitada==1){
 
                     }
@@ -461,13 +461,13 @@ module.exports = {
         let mes = tiempo.getMonth() + 1;
         return new Promise( (resolve,reject) => {
             base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos}(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temperatura}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${ID},'H. Cardiología S. XXI');`), (err,info,otro) =>{
-                console.log("Terminada la busqueda");
+                //console.log("Terminada la busqueda");
                 if(err){
                     console.log(err);
                     reject(new Error());
                 } else {
-                    console.log("Dato emitido: ");
-                    console.log(info);
+                    //console.log("Dato emitido: ");
+                    //console.log(info);
                     resolve(info);
                 }
             }
@@ -482,10 +482,10 @@ module.exports = {
                         reject(new Error());
                     } else{
                         if (data.length>0){
-                             console.log(data[0].data1==user);
-                             console.log(`${user}`);
-                             console.log(data[0].data2==pass);
-                             console.log(`${pass}`);
+                             //console.log(data[0].data1==user);
+                             //console.log(`${user}`);
+                             //console.log(data[0].data2==pass);
+                             //console.log(`${pass}`);
                              if(data[0].data1==`${user}` && data[0].data2==`${pass}`){
                                  console.log("Se encontro coincidencia")
                                //console.log(data.data1);
@@ -496,11 +496,11 @@ module.exports = {
                                  resolve(success);
                            } else {
                                if(data[0].data1!=user){
-                                   console.log("No coincide el nombre de usuario");
+                                   //console.log("No coincide el nombre de usuario");
                                } else if (data[0].data2!=pass){
-                                   console.log("No coincide la contraseña");
+                                   //console.log("No coincide la contraseña");
                                } else {
-                                   console.log("No hubo algún tipo de coincidencia");
+                                   //console.log("No hubo algún tipo de coincidencia");
                                }
                                let unsuccessfully = {
                                    data: 0
@@ -508,7 +508,7 @@ module.exports = {
                                resolve(unsuccessfully);
                            }
                         } else {
-                            console.log("No hubo coincidencia");
+                            //console.log("No hubo coincidencia");
                             //console.log(data.data1);
                             //console.log(data.data2);
                             let unsuccessfully = {
@@ -532,32 +532,32 @@ module.exports = {
                     reject(new Error());
                 }
                 else {
-                    console.log(datos.length);
-                    console.log(`${datos[datos.length-1].Lugar}`);
-                    console.log(datos[datos.length-1].Temperatura);
+                    //console.log(datos.length);
+                    //console.log(`${datos[datos.length-1].Lugar}`);
+                    //console.log(datos[datos.length-1].Temperatura);
                     //console.log(datos[datos.length-1].Año);
-                    console.log(datos[datos.length-1].Dia);
-                    console.log(datos[datos.length-1].Mes);
-                    console.log(datos[datos.length-1].Hora);
-                    console.log(datos[datos.length-1].Minuto);
-                    console.log(datos[datos.length-1].ID);
+                    //console.log(datos[datos.length-1].Dia);
+                    // console.log(datos[datos.length-1].Mes);
+                    // console.log(datos[datos.length-1].Hora);
+                    // console.log(datos[datos.length-1].Minuto);
+                    // console.log(datos[datos.length-1].ID);
                     resolve(datos[datos.length-1]);
                 }
             })
         })
     },descargar_consulta: (ubication,year,mes,dia,name,descarga_solicitada) => {
-        console.log(`Obteniendo el nombre para la consulta: ${name}`);
+        //console.log(`Obteniendo el nombre para la consulta: ${name}`);
         //console.log(`Lugar: ${ubication} ${dia}/${mes}/${year}, Hora: ${hora_inicial}:${minuto_inicial} - ${hora_final}:${minuto_final}`)
         return new Promise( (resolve,reject) => {
             let elementos = [];
             //let name = `Consulta_${ubication}_${year}-${mes}-${dia}.csv`
-            console.log(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`)
+            //console.log(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`)
             base_de_datos.query(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`,(err,data,otro)=>{
                 if(err){
                     console.log(err);
                     reject(new Error());
                 } else {
-                    console.log(`Creando la cabecera del archivo: ${name}`)
+                    //console.log(`Creando la cabecera del archivo: ${name}`)
                     fs.appendFile(`${name}`,`Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}\nLugar;Temperatura;Hora;Minuto;\n`,function(err){
                         if(err){
                             throw err;
@@ -565,7 +565,7 @@ module.exports = {
                         //console.log('Guardado');
 
                     })
-                    console.log(`Para cada elemento en el archivo: ${name}`)
+                    //console.log(`Para cada elemento en el archivo: ${name}`)
                     data.forEach((element,i) => {  
                         //console.log(`${element.ubicacion} ${element.temperatura} ${element.fecha}`)                  
                         fs.appendFile(`${name}`,`${element.ubicacion};${element.temperatura}°C;${element.Hora};${element.Minuto}\n`,function(err){
@@ -588,7 +588,7 @@ module.exports = {
                         //console.log(elementos[i]);
                     });
                     //console.log(elementos);
-                    console.log("Archivo creado y actualizado");
+                    //console.log("Archivo creado y actualizado");
                     if(descarga_solicitada==1){
 
                     }
@@ -608,7 +608,7 @@ module.exports = {
                         console.log("Error: ", err);
                         reject(err);
                     } else {
-                        console.log("Se han borrado los datos con exito");
+                        //console.log("Se han borrado los datos con exito");
                     }
                 })
             } else  {
@@ -617,7 +617,7 @@ module.exports = {
                         console.log("Error: ",err)
                         reject(err);
                     } else {
-                        console.log("Se ha borrado los datos de la base de datos con exito");
+                        //console.log("Se ha borrado los datos de la base de datos con exito");
                     }
                 })
             }

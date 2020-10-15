@@ -487,7 +487,7 @@ module.exports = {
                              //console.log(data[0].data2==pass);
                              //console.log(`${pass}`);
                              if(data[0].data1==`${user}` && data[0].data2==`${pass}`){
-                                 console.log("Se encontro coincidencia")
+                                 //console.log("Se encontro coincidencia")
                                //console.log(data.data1);
                                //console.log(data.data2);
                                  let success = {

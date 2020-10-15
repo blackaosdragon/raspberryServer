@@ -35,7 +35,7 @@ module.exports = {
                 if(err){
                     console.log(err)
                     reject()
-                } else{
+                } else {
                     if(result){
                         //console.log(result);
                         if(result.length>0){
@@ -75,6 +75,8 @@ module.exports = {
                                 resolve();
                             })
                         }
+                    } else {
+                        console.log("No hay respuesta");
                     }
                 }
                 

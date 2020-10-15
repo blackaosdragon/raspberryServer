@@ -127,9 +127,10 @@ page.post('/mes',(req,res)=>{
 page.post('/dia',(req,res)=>{
     console.log('Solicitando dias');
     let data = req.body
-    console.log(data.year);
-    console.log(data.mes);
+    //console.log(data.year);
+    //console.log(data.mes);
     tokens.extraer_dia(data.year,data.mes).then(respuesta=>{
+        console.log(respuesta);
         res.send(respuesta);
     })
 })
@@ -137,8 +138,9 @@ page.post('/days', solocitar_dias = (req, res) => {
     let mes = req.body.mes
     let ubicacion = req.body.ubicacion
     let year = req.body.year
-    console.log(`Mes: ${mes}, ubicacion: ${ubicacion}, año: ${year}`);
+    //console.log(`Mes: ${mes}, ubicacion: ${ubicacion}, año: ${year}`);
     tokens.extraer_dias(mes,year,ubicacion).then( respuesta => {
+        console.log(respuesta);
         res.send(respuesta);
     })
 })
@@ -215,7 +217,7 @@ page.post('/buscar',(req,res)=>{
     let mes = data.mes;
     let dia = data.dia;
     let lugar = data.lugar;
-    console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
+    //console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
         try{
             console.log("Intentando borrar anterior");
@@ -227,7 +229,7 @@ page.post('/buscar',(req,res)=>{
                 }
             })
         } catch (err){
-            console.log("Error al borrar");
+            console.log("Error al borrar ");
             console.log(err);
         }
         console.log(`Obteniendo el nombre: ${respuesta}`);
@@ -535,7 +537,7 @@ page.get('/descarga_csv',(req,res)=>{
 })
 page.post('/insertar_token', (req,res) => {
     console.log("Hizo solicitud de token",req.body.activo);
-    console.log(req.body);
+    //console.log(req.body);
     let data = {}
     tokens.insertar_tokens(req.body.token,req.body.activo).then( respuesta => {
         if(respuesta){

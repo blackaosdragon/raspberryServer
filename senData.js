@@ -134,7 +134,7 @@ if(minuto_refresh%15){
 
 
 lector.on('data', temp => {
-    //console.log(temp);
+    console.log(temp);
     let teempo = new Date();
     let minuto_refresh = parseInt(teempo.getMinutes());
 

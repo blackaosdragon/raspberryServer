@@ -314,7 +314,7 @@ page.use('/.well-known/pki-validation/',express.static('verifi'));
 
 page.post('/temperatura',(req,res)=>{
     let reloj = new Date();
-    console.log(`${req.body.id} ${req.body.temperatura} ${reloj.getHours()}:${reloj.getMinutes}:r${reloj.getSeconds()}`);
+    console.log(`${req.body.id} ${req.body.temperatura} ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
     let temperatura = parseFloat(req.body.temperatura);
     let lugar = asignar.asignar_ubicacion(req.body.id);
     tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);

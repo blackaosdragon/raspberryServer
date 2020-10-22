@@ -492,7 +492,7 @@ module.exports = {
                                             } else {
                                                 if(resultado.length>0){
                                                     console.log(`Temperatura a restar: ${resultado[0].Temperatura}`)
-                                                    console.log(`${info[0].Temperatura} - ${resultado[0].Temperatura} = ${parseFloat(info[0].Temperatura)-parseFloat(resultado[0].Temperatura)}`);
+                                                    console.log(`${info[0].Temperatura} - ${resultado[0].Temperatura} = ${ (parseFloat(info[0].Temperatura) - parseFloat(resultado[0].Temperatura)).toPrecision(2) }`);
                                                     console.log(`INSERT INTO monitoreo.Bitacora (data,hora,minuto) VALUES (${parseFloat(info[0].Temperatura)-parseFloat(resultado[0].Temperatura)},${hora}, ${minutoBusqueda})`)
                                                 } else {
                                                     console.log("Wait")

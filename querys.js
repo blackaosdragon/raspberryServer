@@ -458,7 +458,7 @@ module.exports = {
                 hora = parseInt(tiempo.getHours());
             }
             base_de_datos.query(
-                `SELECT Temperatura FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} Hora=${hora} AND Minuto=${minuto} ORDER BY turno LIMIT 1`
+                `SELECT Temperatura FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} AND Hora=${hora} AND Minuto=${minuto} ORDER BY turno LIMIT 1`
                 ,(err,data,otro)=>{
                     if(err){
                         console.log(err);

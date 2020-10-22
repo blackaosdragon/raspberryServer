@@ -465,7 +465,7 @@ module.exports = {
                 minutoBusqueda2 = minutoBusqueda - 1;
                 hora = parseInt(tiempo.getHours());
             }
-            console.log(`Hora: ${hora}`);
+            //console.log(`Hora: ${hora}`);
             base_de_datos.query(
                 `SELECT Temperatura, Hora, Minuto FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} AND Hora=${hora} AND Minuto=${minuto} ORDER BY turno LIMIT 1;`
                 ,(err,data,otro)=>{
@@ -500,7 +500,9 @@ module.exports = {
                                                     //console.log(`Temperatura a restar: ${resultado[0].Temperatura}`)
                                                     //console.log(`${info[0].Temperatura} - ${resultado[0].Temperatura} = ${ (tempProxima+tempProxima2).toPrecision(2) }`);
                                                     //console.log(`INSERT INTO monitoreo.Bitacora (data,hora,minuto) VALUES (${(tempProxima+tempProxima2).toPrecision(2)},${hora}, ${minutoBusqueda})`)
-                                                    let aproxTemp = (parseFloat(info[0].Temperatura) - parseFloat(resultado[0].Temperatura)).toPrecision(2)
+                                                    //let aproxTemp = (parseFloat(info[0].Temperatura) - parseFloat(resultado[0].Temperatura)).toPrecision(2)
+                                                    let aproxTemp = parseFloat(tempProxima + tempProxima2).toPrecision(2);
+                                                    console.log(`${tempProxima} - ${tempProxima2} = ${aproxTemp}`)
                                                     if( Number.isNaN(aproxTemp)){
                                                         console.log("No se puede agregar el numero");
                                                     } else {

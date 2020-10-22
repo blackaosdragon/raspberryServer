@@ -450,6 +450,7 @@ module.exports = {
         let minuto;
         let hora;
         let minutoBusqueda;
+        let minutoBusqueda2;
         return new Promise( (resolve,reject) => {
             if(parseInt(tiempo.getMinutes())==0){
                 hora = parseInt(tiempo.getHours()) - 1;

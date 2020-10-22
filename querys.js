@@ -481,13 +481,15 @@ module.exports = {
                                      reject(err);
                                 } else {
                                     if(info.length>0){
+                                        console.log("Al no haber resultado anteriro se comparara el dato:")
                                         console.log(info);
                                     } else {
                                         base_de_datos.query(
                                             `SELECT Temperatura, Hora, Minuto FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} AND Hora=${hora} AND Minuto=${minutoBusqueda2} ORDER BY turno LIMIT 1;`
                                             ,(err,resultado,otro) => {
                                             if(err){
-
+                                                console.log(err)
+                                                reject(err);
                                             } else {
                                                 if(resultado.length>0){
                                                     console.log(resultado)

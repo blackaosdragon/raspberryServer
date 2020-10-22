@@ -26,3 +26,8 @@ Raspberry cambio de ip s estática:
   static routers=192.168.x.y
   static domain_name_servers=192.168.x.y 
   where (y = 254 or 1) depends of you gateway
+
+  cat /proc/cpuinfo
+
+  sudo lshw -C CPU
+  lscpu

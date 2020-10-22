@@ -449,22 +449,44 @@ module.exports = {
         let mes= tiempo.getMonth()+1;
         let minuto;
         let hora;
+        let minutoBusqueda;
         return new Promise( (resolve,reject) => {
             if(parseInt(tiempo.getMinutes())==0){
                 hora = parseInt(tiempo.getHours()) - 1;
                 minuto = 59;
+                minutoBusqueda = minuto - 1;
             } else {
                 minuto = parseInt(tiempo.getMinutes()) - 1;
+                minutoBusqueda = parseInt(tiempo.getMinutes()) - 2;
                 hora = parseInt(tiempo.getHours());
             }
             base_de_datos.query(
-                `SELECT Temperatura FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} AND Hora=${hora} AND Minuto=${minuto} ORDER BY turno LIMIT 1`
+                `SELECT Temperatura, Hora, Minuto FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} AND Hora=${hora} AND Minuto=${minuto} ORDER BY turno LIMIT 1;`
                 ,(err,data,otro)=>{
                     if(err){
                         console.log(err);
                         reject(err);
                     } else {
-                        console.log(data);
+                        if(data.length>0){
+                            console.log(data);
+                        } else {
+                            console.log("No hay resultado");
+                            base_de_datos.query(
+                                `SELECT Temperatura, Hora, Minuto FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} AND Hora=${hora} AND Minuto=${minutoBusqueda} ORDER BY turno LIMIT 1;`
+                                , (err,info,otro)=>{
+                                if (err){
+                                     console.log(err)
+                                     reject(err);
+                                } else {
+                                    if(info){
+                                        console.log(info);
+                                    } else {
+                                        console.log("khe?")
+                                    }
+                                }
+                            })
+                        }
+                        
                     }
                     
             })

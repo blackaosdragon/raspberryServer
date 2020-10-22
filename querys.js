@@ -455,6 +455,7 @@ module.exports = {
                 hora = parseInt(tiempo.getHours()) - 1;
                 minuto = 59;
                 minutoBusqueda = minuto - 1;
+                minutoBusqueda2 = minutoBusqueda - 1;
             } else {
                 minuto = parseInt(tiempo.getMinutes()) - 1;
                 minutoBusqueda = parseInt(tiempo.getMinutes()) - 2;
@@ -478,10 +479,26 @@ module.exports = {
                                      console.log(err)
                                      reject(err);
                                 } else {
-                                    if(info){
+                                    if(info.length>0){
                                         console.log(info);
                                     } else {
-                                        console.log("khe?")
+                                        base_de_datos.query(
+                                            `SELECT Temperatura, Hora, Minuto FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} AND Hora=${hora} AND Minuto=${minutoBusqueda2} ORDER BY turno LIMIT 1;`
+                                            ,(err,resultado,otro) => {
+                                            if(err){
+
+                                            } else {
+                                                if(resultado.length>0){
+                                                    console.log(resultado)
+                                                    console.log(`${info.Temperatura} - ${resultado.temperatura} = ${parseFloat(info.Temperatura)-parseFloat(resultado.temperatura)}`);
+                                                    console.log(`INSERT INTO monitoreo.Bitacora (data,hora,minuto) VALUES (${parseFloat(info.Temperatura)-parseFloat(resultado.temperatura)},${hora}, ${minutoBusqueda})`)
+                                                } else {
+                                                    console.log("Wait")
+                                                }
+                                                
+                                            }
+                                        })
+                                        console.log("Sin resultado anterior")
                                     }
                                 }
                             })

@@ -474,9 +474,9 @@ module.exports = {
                         reject(err);
                     } else {
                         if(data.length>0){
-                            console.log(`${data[0].Temperatura}°C ${data[0].Hora}:${data[0].Minuto}`);
+                            //console.log(`${data[0].Temperatura}°C ${data[0].Hora}:${data[0].Minuto}`);
                         } else {
-                            console.log("No hay resultado, se comparara con el inmediato anterior y el anterior al inmediato");
+                            //console.log("No hay resultado, se comparara con el inmediato anterior y el anterior al inmediato");
                             base_de_datos.query(
                                 `SELECT Temperatura, Hora, Minuto FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} AND Hora=${hora} AND Minuto=${minutoBusqueda} ORDER BY turno LIMIT 1;`
                                 , (err,info,otro)=>{
@@ -485,7 +485,7 @@ module.exports = {
                                      reject(err);
                                 } else {
                                     if(info.length>0){
-                                        console.log(`Temperatura más proxima: ${info[0].Temperatura}`);
+                                        //console.log(`Temperatura más proxima: ${info[0].Temperatura}`);
                                         base_de_datos.query(
                                             `SELECT Temperatura, Hora, Minuto FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} AND Hora=${hora} AND Minuto=${minutoBusqueda2} ORDER BY turno LIMIT 1;`
                                             ,(err,resultado,otro) => {
@@ -497,8 +497,8 @@ module.exports = {
                                                     let lugar = "Cámara farmacia"
                                                     let tempProxima = parseFloat(info[0].Temperatura);
                                                     let tempProxima2 = parseFloat(resultado[0].Temperatura);
-                                                    console.log(`Temperatura a restar: ${resultado[0].Temperatura}`)
-                                                    console.log(`${info[0].Temperatura} - ${resultado[0].Temperatura} = ${ (tempProxima+tempProxima2).toPrecision(2) }`);
+                                                    //console.log(`Temperatura a restar: ${resultado[0].Temperatura}`)
+                                                    //console.log(`${info[0].Temperatura} - ${resultado[0].Temperatura} = ${ (tempProxima+tempProxima2).toPrecision(2) }`);
                                                     //console.log(`INSERT INTO monitoreo.Bitacora (data,hora,minuto) VALUES (${(tempProxima+tempProxima2).toPrecision(2)},${hora}, ${minutoBusqueda})`)
                                                     let aproxTemp = (parseFloat(info[0].Temperatura) - parseFloat(resultado[0].Temperatura)).toPrecision(2)
                                                     if( Number.isNaN(aproxTemp)){

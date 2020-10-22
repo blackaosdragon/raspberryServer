@@ -320,10 +320,10 @@ page.post('/temperatura',(req,res)=>{
     if (temperatura<3){
         temperatura=3;
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
-        tokens.agregar_aproximado(2);
+        tokens.agregar_aproximado(2,temp_lim_inf,temp_lim);
     } else {
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
-        tokens.agregar_aproximado(2);
+        tokens.agregar_aproximado(2,temp_lim_inf,temp_lim);
     }
     if(req.body.id==1){
         idTemp = temperatura;

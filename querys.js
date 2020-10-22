@@ -1,6 +1,6 @@
 const mySql = require ('mysql');
 const fs = require('fs');
-const { resolve } = require('path');
+const { resolve, parse } = require('path');
 const { rejects } = require('assert');
 const base_de_datos = mySql.createConnection({
     host: 'localhost',
@@ -444,7 +444,7 @@ module.exports = {
 
         })
         
-    },agregar_aproximado: (id) => {
+    },agregar_aproximado: (id,temp_Limt_inf,temp_lim_sup) => {
         let tiempo = new Date();
         let mes= tiempo.getMonth()+1;
         let minuto;
@@ -491,9 +491,54 @@ module.exports = {
                                                 reject(err);
                                             } else {
                                                 if(resultado.length>0){
+                                                    let lugar = "Cámara farmacia"
+                                                    let tempProxima = parseFloat(info[0].Temperatura);
+                                                    let tempProxima2 = parseFloat(resultado[0].Temperatura);
                                                     console.log(`Temperatura a restar: ${resultado[0].Temperatura}`)
-                                                    console.log(`${info[0].Temperatura} - ${resultado[0].Temperatura} = ${ (parseFloat(info[0].Temperatura) - parseFloat(resultado[0].Temperatura)).toPrecision(2) }`);
-                                                    console.log(`INSERT INTO monitoreo.Bitacora (data,hora,minuto) VALUES (${parseFloat(info[0].Temperatura)-parseFloat(resultado[0].Temperatura)},${hora}, ${minutoBusqueda})`)
+                                                    console.log(`${info[0].Temperatura} - ${resultado[0].Temperatura} = ${ (tempProxima+tempProxima2).toPrecision(2) }`);
+                                                    console.log(`INSERT INTO monitoreo.Bitacora (data,hora,minuto) VALUES (${(tempProxima+tempProxima2).toPrecision(2)},${hora}, ${minutoBusqueda})`)
+                                                    let aproxTemp = (parseFloat(info[0].Temperatura) - parseFloat(resultado[0].Temperatura)).toPrecision(2)
+                                                    if( Number.isNaN(aproxTemp)){
+                                                        console.log("No se puede agregar el numero");
+                                                    } else {
+                                                        let dataAgregar = tempProxima + aproxTemp;
+                                                        if(Number.isNaN(dataAgregar)){
+                                                            console.log("El resultado no se agregara ya que no es un numero");
+                                                        } else {
+                                                            if(dataAgregar<temp_Limt_inf){
+                                                                let agrear_temp = temp_Limt_inf+0.5;
+                                                                agrear_temp = parseFloat(agrear_temp).toPrecision(2);
+                                                                base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos} (Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${agrear_temp}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${hora},${minuto},${59},${id},'H. Cardiología S. XXI');`,(err,mas,otro)=>{
+                                                                    if(err){
+                                                                        console.log(err);
+                                                                        reject(err);
+                                                                    } else {
+                                                                        //console.log("Guardado con exito")
+                                                                    }
+                                                                })
+                                                            } else if (dataAgregar>temp_lim_sup){
+                                                                base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos} (Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temp_lim_sup}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${hora},${minuto},${59},${id},'H. Cardiología S. XXI');`,(err,mas,otro)=>{
+                                                                    if(err){
+                                                                        console.log(err);
+                                                                        reject(err);
+                                                                    } else {
+                                                                        //console.log("Guardado con exito")
+                                                                    }
+                                                                })
+
+                                                            } else {
+                                                                base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos} (Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${dataAgregar}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${hora},${minuto},${59},${id},'H. Cardiología S. XXI');`,(err,mas,otro)=>{
+                                                                    if(err){
+                                                                        console.log(err);
+                                                                        reject(err);
+                                                                    } else {
+                                                                        //console.log("Guardado con exito")
+                                                                    }
+                                                                })
+                                                            }
+                                                        }
+                                                    }
+                                                    //base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos}`)
                                                 } else {
                                                     console.log("Wait")
                                                 }   
@@ -531,7 +576,7 @@ module.exports = {
         let tiempo = new Date();
         let mes = tiempo.getMonth() + 1;
         return new Promise( (resolve,reject) => {
-            base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos}(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temperatura}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${ID},'H. Cardiología S. XXI');`), (err,info,otro) =>{
+            base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos} (Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temperatura}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${ID},'H. Cardiología S. XXI');`), (err,info,otro) =>{
                 //console.log("Terminada la busqueda");
                 if(err){
                     console.log(err);

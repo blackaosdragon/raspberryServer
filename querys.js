@@ -451,6 +451,8 @@ module.exports = {
         let hora;
         let minutoBusqueda;
         let minutoBusqueda2;
+        const limite_inferior = 2.89;
+        const limite_superior = 7.88;
         return new Promise( (resolve,reject) => {
             if(parseInt(tiempo.getMinutes())==0){
                 hora = parseInt(tiempo.getHours()) - 1;
@@ -497,19 +499,18 @@ module.exports = {
                                                     let tempProxima2 = parseFloat(resultado[0].Temperatura);
                                                     console.log(`Temperatura a restar: ${resultado[0].Temperatura}`)
                                                     console.log(`${info[0].Temperatura} - ${resultado[0].Temperatura} = ${ (tempProxima+tempProxima2).toPrecision(2) }`);
-                                                    console.log(`INSERT INTO monitoreo.Bitacora (data,hora,minuto) VALUES (${(tempProxima+tempProxima2).toPrecision(2)},${hora}, ${minutoBusqueda})`)
+                                                    //console.log(`INSERT INTO monitoreo.Bitacora (data,hora,minuto) VALUES (${(tempProxima+tempProxima2).toPrecision(2)},${hora}, ${minutoBusqueda})`)
                                                     let aproxTemp = (parseFloat(info[0].Temperatura) - parseFloat(resultado[0].Temperatura)).toPrecision(2)
                                                     if( Number.isNaN(aproxTemp)){
                                                         console.log("No se puede agregar el numero");
                                                     } else {
-                                                        let dataAgregar = tempProxima + aproxTemp;
+                                                        let dataAgregar = parseFloat(tempProxima + aproxTemp).toPrecision(2);
+
                                                         if(Number.isNaN(dataAgregar)){
                                                             console.log("El resultado no se agregara ya que no es un numero");
                                                         } else {
-                                                            if(dataAgregar<temp_Limt_inf){
-                                                                let agrear_temp = temp_Limt_inf+0.5;
-                                                                agrear_temp = parseFloat(agrear_temp).toPrecision(2);
-                                                                base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos} (Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${agrear_temp}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${hora},${minuto},${59},${id},'H. Cardiología S. XXI');`,(err,mas,otro)=>{
+                                                            if(dataAgregar<limite_inferior){
+                                                                base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos} (Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${limite_inferior},${tiempo.getDate()},${mes},${tiempo.getFullYear()},${hora},${minuto},${60},${id},'H. Cardiología S. XXI');`,(err,mas,otro)=>{
                                                                     if(err){
                                                                         console.log(err);
                                                                         reject(err);
@@ -517,8 +518,8 @@ module.exports = {
                                                                         //console.log("Guardado con exito")
                                                                     }
                                                                 })
-                                                            } else if (dataAgregar>temp_lim_sup){
-                                                                base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos} (Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temp_lim_sup}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${hora},${minuto},${59},${id},'H. Cardiología S. XXI');`,(err,mas,otro)=>{
+                                                            } else if (dataAgregar>limite_superior){
+                                                                base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos} (Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${limite_superior}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${hora},${minuto},${60},${id},'H. Cardiología S. XXI');`,(err,mas,otro)=>{
                                                                     if(err){
                                                                         console.log(err);
                                                                         reject(err);
@@ -528,7 +529,7 @@ module.exports = {
                                                                 })
 
                                                             } else {
-                                                                base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos} (Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${dataAgregar}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${hora},${minuto},${59},${id},'H. Cardiología S. XXI');`,(err,mas,otro)=>{
+                                                                base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos} (Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${dataAgregar}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${hora},${minuto},${60},${id},'H. Cardiología S. XXI');`,(err,mas,otro)=>{
                                                                     if(err){
                                                                         console.log(err);
                                                                         reject(err);

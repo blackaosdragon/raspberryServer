@@ -315,6 +315,7 @@ page.use('/.well-known/pki-validation/',express.static('verifi'));
 page.post('/temperatura',(req,res)=>{
     let reloj = new Date();
     console.log(`${req.body.id} ${req.body.temperatura} ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
+
     let temperatura = parseFloat(req.body.temperatura);
     let lugar = asignar.asignar_ubicacion(req.body.id);
     tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
@@ -490,7 +491,10 @@ page.post('/temperatura',(req,res)=>{
                 } else {
                     //console.log('Se agregará el dato');
                     if(req.body.id==2){
-                        let temp = req.body.temperatura - 1;
+                        let temp = req.body.temperatura;
+                        if(temp<2){
+                            temp = 2;
+                        } else {}
                         io.emit('temp',`${req.body.id} ${temp}`);
                         tokens.insertar_valores_2hour(temp,ubicacion,id);
                         tokens.insertar_valores(temp,ubicacion,id);

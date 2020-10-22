@@ -444,6 +444,16 @@ module.exports = {
 
         })
         
+    },agregar_aproximado: (id,) => {
+        let tiempo = new Date();
+        let mes= tiempo.getMonth()+1;
+        return new Promise( (resolve,reject) => {
+            base_de_datos.query(
+                `SELECT Temperatura FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} ORDER BY`
+                ,(err,data,otro)=>{
+
+            })
+        })
     },obtener_ultimo_dato: (id) => {
         let tiempo = new Date();
         let mes = tiempo.getMonth()+1;

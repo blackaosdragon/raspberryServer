@@ -50,7 +50,7 @@ const ajuste = 3.3;
 
 const wsPort = 5001;
 const pagePort = 5000;
-const puerto = 443;
+const puerto = 5002; // antes 5002
 const sensores_en_total = 3;
 let string_ofice_temperature = "";
 let float_ofice_temperature = 0.0;
@@ -109,27 +109,28 @@ page.use('/',express.static(__dirname+'/home'))
 const io = require('socket.io')(httpServer);
 
 page.get('/consulta',(req,res)=>{
-    console.log('Solicitando años');
+    //console.log('Solicitando años');
     //let data = tokens.extraer_años();
     tokens.extraer_datos().then((data=>{
-        console.log(data);
+        //console.log(data);
         res.send(data);
     }))    
 })
 page.post('/mes',(req,res)=>{
-    console.log('Solicitando meses');
+    //console.log('Solicitando meses');
     let data = req.body;
-    console.log(data);
+    //console.log(data);
     tokens.extraer_mes(data.year).then(respuesta => {
         res.send(respuesta);
     })
 })
 page.post('/dia',(req,res)=>{
-    console.log('Solicitando dias');
+    //console.log('Solicitando dias');
     let data = req.body
-    console.log(data.year);
-    console.log(data.mes);
+    //console.log(data.year);
+    //console.log(data.mes);
     tokens.extraer_dia(data.year,data.mes).then(respuesta=>{
+        //console.log(respuesta);
         res.send(respuesta);
     })
 })
@@ -137,33 +138,34 @@ page.post('/days', solocitar_dias = (req, res) => {
     let mes = req.body.mes
     let ubicacion = req.body.ubicacion
     let year = req.body.year
-    console.log(`Mes: ${mes}, ubicacion: ${ubicacion}, año: ${year}`);
+    //console.log(`Mes: ${mes}, ubicacion: ${ubicacion}, año: ${year}`);
     tokens.extraer_dias(mes,year,ubicacion).then( respuesta => {
+        //console.log(respuesta);
         res.send(respuesta);
     })
 })
 page.get('/ubicaciones',(req,res)=>{    
     tokens.extraer_ubicacion().then(respuesta=>{
-        console.log(respuesta);
+        //console.log(respuesta);
         res.send(respuesta);
     })
     //io.emit(`Data Server`);
 })
 page.get('/ubicaciones2',(req,res)=>{
-    console.log('Solicitando ubicaciones');
+    //console.log('Solicitando ubicaciones');
     tokens.extraer_ubicaciones().then( respuesta => {
-        console.log(respuesta);
+        //console.log(respuesta);
         res.send(respuesta);
     })
     //io.emit(`Data Server`);
 })
 page.get('/hospitales', (req,res) =>{
-    console.log("Solicitando Hospitales");
+    //console.log("Solicitando Hospitales");
 })
 
 page.get('/socket', (req,res) => {
     tokens.obtener_ultimo_dato(1).then( respuesta => {
-        console.log(respuesta)
+        //console.log(respuesta)
         return(respuesta);
     }).then( data => {
         tokens.obtener_ultimo_dato(2).then( respuesta => {
@@ -172,7 +174,7 @@ page.get('/socket', (req,res) => {
                 sensor1: data,
                 sensor2: respuesta
             }
-            console.log(payload);
+            //console.log(payload);
             res.send(payload);
         })
     }).catch(err=>{
@@ -215,29 +217,29 @@ page.post('/buscar',(req,res)=>{
     let mes = data.mes;
     let dia = data.dia;
     let lugar = data.lugar;
-    console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
+    //console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
         try{
-            console.log("Intentando borrar anterior");
+            //console.log("Intentando borrar anterior");
             fs.unlink(`${name}`, err => {
                 if(err){
                     console.log("Error: ",err);
                 } else {
-                    console.log("Se borrara un archivo que no se decargo anteriormente");
+                    //console.log("Se borrara un archivo que no se decargo anteriormente");
                 }
             })
         } catch (err){
-            console.log("Error al borrar");
+            console.log("Error al borrar ");
             console.log(err);
         }
-        console.log(`Obteniendo el nombre: ${respuesta}`);
+        //console.log(`Obteniendo el nombre: ${respuesta}`);
         name = respuesta;
         return respuesta;
     }).then(name=>{
-        console.log(`Proporcionando el nombre: ${name} para consultar la case de datos`)
+        //console.log(`Proporcionando el nombre: ${name} para consultar la case de datos`)
         tokens.consultar_base_de_datos(lugar,year,mes,dia,name)
         .then(respuesta=>{
-            console.log(`Despues de llenar el archivo: ${name}`);
+            //console.log(`Despues de llenar el archivo: ${name}`);
             res.send(respuesta);
         });
     })
@@ -262,16 +264,16 @@ page.get('/descarga_consulta', (req,res)=>{
         })
     }
     descarga().then( (payload)=> {
-        console.log(`Descarga del archivo ${name}, realizada!`);
-        console.log(payload);
+        //console.log(`Descarga del archivo ${name}, realizada!`);
+        //console.log(payload);
         return payload;
     }).then(payload => {
-        console.log(payload.descargado)
+        //console.log(payload.descargado)
         if(payload.descargado==1){
-            console.log(`Se va a borrar el archivo ${name}`);
+            //console.log(`Se va a borrar el archivo ${name}`);
             return payload.descargado
         } else {
-            console.log(`No hubo respuesta y no se borrara el archivo`);
+            //console.log(`No hubo respuesta y no se borrara el archivo`);
             return 0;
         }
     }).then( borrar => {
@@ -282,7 +284,7 @@ page.get('/descarga_consulta', (req,res)=>{
                 } else {}
             })
         } else {
-            console.log("EL archivo no se pudo descargar y no se borrara");
+            //console.log("EL archivo no se pudo descargar y no se borrara");
         }
         name = '';
     })
@@ -292,17 +294,17 @@ page.get('/descarga_consulta', (req,res)=>{
 })
 
 page.post('/years', (req,res) => {
-    console.log("Solicitando años")
+    //console.log("Solicitando años")
     let ubicacion = req.body.ubicacion;
-    console.log("Ubicacion fuera de la base: ",ubicacion);
+    //console.log("Ubicacion fuera de la base: ",ubicacion);
     tokens.extraer_años(ubicacion).then( respuesta => {
         res.send(respuesta);
     })
 })
 page.post('/login',(req,res)=>{
-    console.log(req.body);
+    //console.log(req.body);
     tokens.validar_login(req.body.user,req.body.pass).then((logueado)=>{
-        console.log(logueado)
+        //console.log(logueado)
         res.send(logueado);
     })
     //res.send('Recibido');
@@ -311,6 +313,8 @@ page.use('/.well-known/pki-validation/',express.static('verifi'));
 
 
 page.post('/temperatura',(req,res)=>{
+    let reloj = new Date();
+    console.log(`${req.body.id} ${req.body.temperatura} ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
     let temperatura = parseFloat(req.body.temperatura);
     let lugar = asignar.asignar_ubicacion(req.body.id);
     tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
@@ -349,17 +353,17 @@ page.post('/temperatura',(req,res)=>{
     //console.log(req);
     let registro = new Date();
     let horas = parseInt(registro.getHours());
-    console.log(`ID: ${req.body.id} Temperatura: ${temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
+    //console.log(`ID: ${req.body.id} Temperatura: ${temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
     if( parseInt(registro.getHours())==0 && parseInt(registro.getMinutes())==0 && parseInt(registro.getSeconds())<59){
         
-        console.log("Se borraran los datos del dia anterior");
-        //tokens.borrar_data();
+        //console.log("Se borraran los datos del dia anterior");
+        tokens.borrar_data();
     }
     
     //crono 1
     if( (parseFloat(temperatura)>temp_lim || parseFloat(temperatura)<temp_lim_inf) && parseInt(req.body.id)==1 && idContador==0){
         if ( temperatura < medida_de_error ){
-            console.log("Medida de error");
+            //console.log("Medida de error");
         } else {
             idContador++;
             let tiempo = new Date();
@@ -371,18 +375,18 @@ page.post('/temperatura',(req,res)=>{
             //temp1_irregular = true;
         }
     } else if( (parseFloat(temperatura)<=temp_lim && parseFloat(temperatura)>=temp_lim_inf) && parseInt(req.body.id)==1 && idContador>0){
-        console.log(`Temperatura 1 normal se borra la hora: ${horas1Plasmado}:${minutos1Plasmado}`)
+        //console.log(`Temperatura 1 normal se borra la hora: ${horas1Plasmado}:${minutos1Plasmado}`)
         horas1Plasmado=0;
         minutos1Plasmado=0;
         idContador=0;
         temp1_irregular = false;
         contador_de_error = 0;
-        console.log("Contador 1 detenido")
+        //console.log("Contador 1 detenido")
     }
     
     if(parseFloat(req.body.temperatura)>temp_lim && parseInt(req.body.id)==1){
-        console.log(`Hora de temperatura irregular del id 1: ${horas1Plasmado}:${minutos1Plasmado} envio_hecho = ${envio_hecho}`);
-        console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
+        //console.log(`Hora de temperatura irregular del id 1: ${horas1Plasmado}:${minutos1Plasmado} envio_hecho = ${envio_hecho}`);
+       // console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
 
     } else {
         
@@ -409,13 +413,13 @@ page.post('/temperatura',(req,res)=>{
         }
         
     } else if( ( (parseFloat(req.body.temperatura))<=temperatura_limite && (parseFloat(req.body.temperatura))>temp_lim_inf) && parseInt(req.body.id)==2 && idContador2>0){
-        console.log(`Temperatura 2 normal se borra la hora: ${horas2Plasmado}:${minutos2Plasmado}`)
+        //console.log(`Temperatura 2 normal se borra la hora: ${horas2Plasmado}:${minutos2Plasmado}`)
         horas2Plasmado = 0;
         minutos2Plasmado = 0;
         idContador2 = 0;
         temp2_irregular = false;
         contador_de_error = 0;
-        console.log("Contador 2 detenido");
+        //console.log("Contador 2 detenido");
     }
     if(parseFloat(req.body.temperatura)>=temperatura_limite && parseInt(req.body.id)==3 && idContador3<=0){
         idContador3++;
@@ -428,28 +432,28 @@ page.post('/temperatura',(req,res)=>{
         horas3Plasmado = 0;
         minutos3Plasmado = 0;
         temp3_irregular = false;
-        console.log("Contador 3 detenido")
+        //console.log("Contador 3 detenido")
     }
     //console.log(`Resta: ${registro.getMinutes()}-${minutos1Plasmado} = ${parseInt(registro.getMinutes())-minutos1Plasmado}`);
     //console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
 
     if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)==0 && envio_hecho==false && temp1_irregular==true){
         envio_hecho = true;
-        console.log("Se va a enviar una alerta por id 1");
+        //console.log("Se va a enviar una alerta por id 1");
         sendTemp(1);
     } else if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)!=0 && envio_hecho==true){
         envio_hecho = false;
     }
     if(parseInt(((registro.getMinutes())-minutos2Plasmado)%2)==0 && envio2_hecho==false && temp2_irregular==true){
         envio2_hecho = true;
-        console.log("Se va a enviar una alerta por id 2");
+        //console.log("Se va a enviar una alerta por id 2");
         sendTemp(2);
     } else if(parseInt(((registro.getMinutes())-minutos2Plasmado)%2)!=0 && envio2_hecho==true){
         envio2_hecho = false;
     }
     if(parseInt(((registro.getMinutes())-minutos3Plasmado)%2)==0 && envio3_hecho==false && temp3_irregular==true){
         envio3_hecho = true;
-        console.log("Se va a enviar una alerta por id 3");
+        //console.log("Se va a enviar una alerta por id 3");
         sendTemp(3);
     } else if(parseInt(((registro.getMinutes())-minutos2Plasmado)%2)!=0 && envio2_hecho==true){
         envio3_hecho = false;
@@ -457,13 +461,13 @@ page.post('/temperatura',(req,res)=>{
 
 
     if(Number.isNaN(temperatura)){
-        console.log(`El dato: ${req.body.temperatura}, no es un numero`);
+        //console.log(`El dato: ${req.body.temperatura}, no es un numero`);
         let bad = {
             data: 'recibido pero fallo'
         }
         res.send(bad);
     } else if (Number.isNaN(req.body.id)){
-        console.log(`El dato: ${req.body.id}, no es un numero y no se agregara`);
+        //console.log(`El dato: ${req.body.id}, no es un numero y no se agregara`);
         let bad = {
             data: 'recibido pero fallo'
         }
@@ -526,7 +530,7 @@ page.get('/test',(req,res)=>{
 })
 page.get('/descarga_csv',(req,res)=>{
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
-        console.log(`Obteniendo el nombre: ${respuesta}`);
+        //console.log(`Obteniendo el nombre: ${respuesta}`);
         name = respuesta;
         return respuesta;
     })
@@ -534,17 +538,18 @@ page.get('/descarga_csv',(req,res)=>{
     res.send(name);
 })
 page.post('/insertar_token', (req,res) => {
-    console.log("Hizo solicitud de token",req.body.activo);
-    console.log(req.body);
+    //console.log("Hizo solicitud de token",req.body.activo);
+    //console.log(req.body);
     let data = {}
     tokens.insertar_tokens(req.body.token,req.body.activo).then( respuesta => {
         if(respuesta){
-            console.log(respuesta)
+            console.log("Si hay respuesta: ",respuesta)
             res.send(respuesta);
         } else {
             let respuesta = {
                 actualizado: 1
             }
+            console.log("En si no hay respuesta ",respuesta)
             res.send(respuesta)
         }
     }).catch( error => {
@@ -552,6 +557,7 @@ page.post('/insertar_token', (req,res) => {
         data = {
             data: 0
         }
+        console.log("Se respondio: ",data)
         res.send(data);
     })
     //res.send(data);
@@ -574,14 +580,14 @@ page.post('/descarga_archivo_csv', (req,res) => {
     let name = `Consulta_${lugar}_${year}-${mes}.csv`
     tokens.descarga_solicitada(name,1,lugar,year,mes).then( respuesta => {
         if(respuesta){
-            console.log(`Archivo ${respuesta} descargado`);
+            //console.log(`Archivo ${respuesta} descargado`);
             res.download(`${name}`,`${name}`);
             
         } else {
             console.log(`Fallo en el archivo`);
         }
     }).then( ()=> {
-        console.log("Se borrara el archivo");
+        //console.log("Se borrara el archivo");
     }).catch( err => {
         console.log(err);
     })

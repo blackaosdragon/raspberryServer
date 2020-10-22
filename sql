@@ -34,6 +34,12 @@ Mostrar los Permisos de un usuario
 Obtener los tipos de datos en una tabla:
  - DESCRIBE monitoreo.test;
 
+Exportacion de una base de datos
+ - sudo mysqldump -u root -p monitoreo > monitoreoBackup.sql
+
+Importacion de una base de datos
+ - si salta error al importar #1273 por utf8mb4_0900_ai_ci sustituir por => utf8mb4_unicode_ci
+
 
 
 SELECT EXTRACT(year FROM fecha) year FROM monitoreo.Registro;
@@ -86,3 +92,5 @@ SELECT * FROM monitoreo.Bitacora
   PresionReal= (PresionExt*0.183)+(PresionExt);
 
   INSERT INTO monitoreo.Bitacora(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID) VALUES ("Cámara farmacia",6.5, 14,10,2020,10,0,5,1);
+
+

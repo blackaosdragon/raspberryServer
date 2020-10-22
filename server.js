@@ -318,7 +318,11 @@ page.post('/temperatura',(req,res)=>{
 
     let temperatura = parseFloat(req.body.temperatura);
     let lugar = asignar.asignar_ubicacion(req.body.id);
-    tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
+    if (temperatura<3){
+        tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
+    } else {
+        tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
+    }    
     if(req.body.id==1){
         idTemp = temperatura;
     } else if (req.body.id==2){
@@ -357,7 +361,7 @@ page.post('/temperatura',(req,res)=>{
     //console.log(`ID: ${req.body.id} Temperatura: ${temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
     if( parseInt(registro.getHours())==0 && parseInt(registro.getMinutes())==0 && parseInt(registro.getSeconds())<59){
         
-        //console.log("Se borraran los datos del dia anterior");
+        console.log("Se borraran los datos del dia anterior");
         tokens.borrar_data();
     }
     
@@ -492,8 +496,8 @@ page.post('/temperatura',(req,res)=>{
                     //console.log('Se agregará el dato');
                     if(req.body.id==2){
                         let temp = req.body.temperatura;
-                        if(temp<2){
-                            temp = 2;
+                        if(temp<3){
+                            temp = 3;
                         } else {}
                         io.emit('temp',`${req.body.id} ${temp}`);
                         tokens.insertar_valores_2hour(temp,ubicacion,id);

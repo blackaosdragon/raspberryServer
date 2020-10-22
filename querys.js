@@ -444,14 +444,29 @@ module.exports = {
 
         })
         
-    },agregar_aproximado: (id,) => {
+    },agregar_aproximado: (id) => {
         let tiempo = new Date();
         let mes= tiempo.getMonth()+1;
+        let minuto;
+        let hora;
         return new Promise( (resolve,reject) => {
+            if(parseInt(tiempo.getMinutes())==0){
+                hora = parseInt(tiempo.getHours()) - 1;
+                minuto = 59;
+            } else {
+                minuto = parseInt(tiempo.getMinutes()) - 1;
+                hora = parseInt(tiempo.getHours());
+            }
             base_de_datos.query(
-                `SELECT Temperatura FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} ORDER BY`
+                `SELECT Temperatura FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} Hora=${hora} AND Minuto=${minuto} ORDER BY turno LIMIT 1`
                 ,(err,data,otro)=>{
-
+                    if(err){
+                        console.log(err);
+                        reject(err);
+                    } else {
+                        console.log(data);
+                    }
+                    
             })
         })
     },obtener_ultimo_dato: (id) => {

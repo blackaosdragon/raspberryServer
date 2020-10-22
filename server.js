@@ -320,9 +320,11 @@ page.post('/temperatura',(req,res)=>{
     let lugar = asignar.asignar_ubicacion(req.body.id);
     if (temperatura<3){
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
+        tokens.agregar_aproximado(2);
     } else {
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
-    }    
+        tokens.agregar_aproximado(2);
+    }
     if(req.body.id==1){
         idTemp = temperatura;
     } else if (req.body.id==2){

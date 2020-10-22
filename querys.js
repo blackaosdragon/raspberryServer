@@ -463,6 +463,7 @@ module.exports = {
                 minutoBusqueda2 = minutoBusqueda - 1;
                 hora = parseInt(tiempo.getHours());
             }
+            console.log(`Hora: ${hora}`);
             base_de_datos.query(
                 `SELECT Temperatura, Hora, Minuto FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} AND Hora=${hora} AND Minuto=${minuto} ORDER BY turno LIMIT 1;`
                 ,(err,data,otro)=>{

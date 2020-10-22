@@ -459,7 +459,8 @@ module.exports = {
                 minutoBusqueda2 = minutoBusqueda - 1;
             } else {
                 minuto = parseInt(tiempo.getMinutes()) - 1;
-                minutoBusqueda = parseInt(tiempo.getMinutes()) - 2;
+                minutoBusqueda = minuto - 1;
+                minutoBusqueda2 = minutoBusqueda - 1;
                 hora = parseInt(tiempo.getHours());
             }
             base_de_datos.query(

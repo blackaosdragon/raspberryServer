@@ -482,6 +482,7 @@ module.exports = {
                                      reject(err);
                                 } else {
                                     if(info.length>0){
+                                        console.log(`Temperatura más proxima${info.Temperatura}`);
                                         base_de_datos.query(
                                             `SELECT Temperatura, Hora, Minuto FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} AND Hora=${hora} AND Minuto=${minutoBusqueda2} ORDER BY turno LIMIT 1;`
                                             ,(err,resultado,otro) => {
@@ -490,8 +491,8 @@ module.exports = {
                                                 reject(err);
                                             } else {
                                                 if(resultado.length>0){
-                                                    console.log(resultado)
-                                                    console.log(`${info.Temperatura} - ${resultado.temperatura} = ${parseFloat(info.Temperatura)-parseFloat(resultado.temperatura)}`);
+                                                    console.log(`Temperatura a restar: ${resultado.Temperatura}`)
+                                                    //console.log(`${info.Temperatura} - ${resultado.temperatura} = ${parseFloat(info.Temperatura)-parseFloat(resultado.temperatura)}`);
                                                     console.log(`INSERT INTO monitoreo.Bitacora (data,hora,minuto) VALUES (${parseFloat(info.Temperatura)-parseFloat(resultado.temperatura)},${hora}, ${minutoBusqueda})`)
                                                 } else {
                                                     console.log("Wait")

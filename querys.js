@@ -482,9 +482,6 @@ module.exports = {
                                      reject(err);
                                 } else {
                                     if(info.length>0){
-                                        console.log("Al no haber resultado anteriro se comparara el dato:")
-                                        console.log(info);
-                                    } else {
                                         base_de_datos.query(
                                             `SELECT Temperatura, Hora, Minuto FROM ${data_base}.${tabla_de_datos} WHERE id=${id} AND Dia=${tiempo.getDate()} AND Mes=${mes} AND Año=${tiempo.getFullYear()} AND Hora=${hora} AND Minuto=${minutoBusqueda2} ORDER BY turno LIMIT 1;`
                                             ,(err,resultado,otro) => {
@@ -498,10 +495,13 @@ module.exports = {
                                                     console.log(`INSERT INTO monitoreo.Bitacora (data,hora,minuto) VALUES (${parseFloat(info.Temperatura)-parseFloat(resultado.temperatura)},${hora}, ${minutoBusqueda})`)
                                                 } else {
                                                     console.log("Wait")
-                                                }
-                                                
+                                                }   
                                             }
                                         })
+                                        console.log("Al no haber resultado anteriro se comparara el dato:")
+                                        console.log(info);
+                                    } else {
+                                        
                                         console.log("Sin resultado anterior")
                                     }
                                 }

@@ -506,7 +506,7 @@ module.exports = {
                                                     if( Number.isNaN(aproxTemp)){
                                                         console.log("No se puede agregar el numero");
                                                     } else {
-                                                        let dataAgregar = parseFloat(tempProxima + aproxTemp).toPrecision(2);
+                                                        let dataAgregar = parseFloat(tempProxima + aproxTemp).toPrecision(3);
 
                                                         if(Number.isNaN(dataAgregar)){
                                                             console.log("El resultado no se agregara ya que no es un numero");

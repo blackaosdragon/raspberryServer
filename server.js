@@ -317,11 +317,13 @@ page.post('/temperatura',(req,res)=>{
     console.log(`ID: ${req.body.id} Temp: ${req.body.temperatura}°C ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
     let temperatura = parseFloat(req.body.temperatura);
     let lugar = asignar.asignar_ubicacion(req.body.id);
+    
     tokens.confirmar_data().then( data => {
-        console.log(data);
+        console.log(`Temp: ${data[0].Temperatura} ${data[0].Hora}:${data[0].Minutos} hrs`);
     }).catch( err => {
         console.log(err);
     });
+
     if (temperatura<3){
         temperatura=3;
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);

@@ -755,7 +755,7 @@ module.exports = {
                 rej(err);
             } else {
                 if(data.length>0){
-                    console.log(`Temp: ${data[0].Temperatura}C ${data[0].Hora}:${data[0].Minuto} hrs`);
+                    //console.log(`Temp: ${data[0].Temperatura}C ${data[0].Hora}:${data[0].Minuto} hrs`);
                     res(data);
                 } else {
                     res("No hubo respuesta");

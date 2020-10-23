@@ -319,7 +319,7 @@ page.post('/temperatura',(req,res)=>{
     let lugar = asignar.asignar_ubicacion(req.body.id);
     
     tokens.confirmar_data().then( data => {
-        if(data.length>0){
+        if(data.length>1){
             console.log(`Temp: ${data[0].Temperatura} ${data[0].Hora}:${data[0].Minutos} hrs`);
         } else {
             console.log(data);

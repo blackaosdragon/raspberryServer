@@ -319,7 +319,7 @@ page.post('/temperatura',(req,res)=>{
     let lugar = asignar.asignar_ubicacion(req.body.id);
     
     tokens.confirmar_data().then( data => {
-        if(data === undefined){
+        if(data != undefined){
             console.log("No hubo respuesta");
         } else {
             console.log(`Temp: ${data[0].Temperatura} ${data[0].Hora}:${data[0].Minuto} hrs`);

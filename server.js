@@ -327,7 +327,9 @@ page.post('/temperatura',(req,res)=>{
                 if(temp_referencia === undefined){
 
                 } else {
+                    console.log(`El dato de hace 2 minutos es ${temp_referencia}`);
                     tokens.data_hace_3_minutos(3).then( temp_a_comparar => {
+                        console.log(`El dato de hace 2 minutos es ${temp_a_comparar}`);
                         if(temp_a_comparar === undefined){
 
                         } else {

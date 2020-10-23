@@ -748,7 +748,7 @@ module.exports = {
         let hora = reloj.getDate();
         let hace_un_minuto = parseInt(reloj.getMinutes())-1;
         return new Promise( (res,rej) => {
-            base_de_datos.query(`SELECT Temperatura, Hora, Minuto FROM monitoreo.Bitacora WHERE id=${id} AND Hora=${hora} Minuto=${hace_un_minuto} ORDER BY turno DESC;`
+            base_de_datos.query(`SELECT Temperatura, Hora, Minuto FROM monitoreo.Bitacora WHERE id=${id} AND Hora=${hora} AND Minuto=${hace_un_minuto} ORDER BY turno DESC;`
             ,(err,dato,otro)=>{
             if(err){
                 console.log(err);

@@ -320,9 +320,9 @@ page.post('/temperatura',(req,res)=>{
     
     tokens.confirmar_data().then( data => {
         if(data != undefined){
-            console.log(`Temp: ${data[0].Temperatura} ${data[0].Hora}:${data[0].Minuto} hrs`);
+            //console.log(`Temp: ${data[0].Temperatura} ${data[0].Hora}:${data[0].Minuto} hrs`);
         } else {
-            
+            console.log("El dato es undefined");
             tokens.data_hace_2_minuto(2).then( temp_referencia => {
                 if(temp_referencia === undefined){
 

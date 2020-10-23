@@ -319,11 +319,27 @@ page.post('/temperatura',(req,res)=>{
     let lugar = asignar.asignar_ubicacion(req.body.id);
     
     tokens.confirmar_data().then( data => {
-        if(data.length>0){
-            console.log(`Temp: ${data[0].Temperatura} ${data[0].Hora}:${data[0].Minuto} hrs`);
-            //console.log(data);
+        if(data === undefined){
+            console.log("No hubo respuesta");
         } else {
-            console.log(data);
+            console.log(`Temp: ${data[0].Temperatura} ${data[0].Hora}:${data[0].Minuto} hrs`);
+            tokens.data_hace_2_minuto(2).then( temp_referencia => {
+                if(temp_referencia === undefined){
+
+                } else {
+                    tokens.data_hace_3_minutos(3).then( temp_a_comparar => {
+                        if(temp_a_comparar === undefined){
+
+                        } else {
+                            let referencia = parseFloat(temp_referencia[0].Temperatura).toPrecision(2);
+                            let comparar = parseFloat(temp_a_comparar[0].Temperatura).toPrecision(2);
+                            let diferencia = referencia - comparar;
+                            let dato_a_agregar = referencia + diferencia;
+                            console.log(`${referencia}-${comparar}=${diferencia} / ${referencia} + ${dato_a_agregar} = ${dato_a_agregar} - se agregara`);
+                        }
+                    })
+                }
+            })
         }
         
     }).catch( err => {

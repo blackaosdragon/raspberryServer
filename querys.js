@@ -755,13 +755,48 @@ module.exports = {
                 rej(err);
             } else {
                 if(data.length>0){
-                    //console.log(`Temp: ${data[0].Temperatura}C ${data[0].Hora}:${data[0].Minuto} hrs`);
                     res(data);
                 } else {
                     res();
                 }
             }
         })
+        })
+    },data_hace_2_minuto: (id) => {
+        let reloj = new Date();
+        let hora = reloj.getHours();
+        let hace_2_minutos = parseInt(reloj.getMinutes())-2;
+        return new Promise( (res,rej)=> {
+            base_de_datos.query(`SELECT Temperatura, Hora, Minuto FROM monitoreo.Bitacora WHERE id=${id} AND Hora=${hora} AND Minuto=${hace_2_minutos} ORDER BY turno DESC LIMIT 1;`
+            ,(err,data,otro)=>{
+                if(err){
+
+                } else {
+                    if(data.length>0){
+                        res(data);
+                    } else {
+                        res();
+                    }
+                }
+            })
+        })
+    }, data_hace_3_minutos: (id) => {
+        let reloj = new Date();
+        let hora = reloj.getHours();
+        let hace_3_minutos = parseInt(reloj.getMinutes())-3;
+        return new Promise( (res,rej)=> {
+            base_de_datos.query(`SELECT Temperatura, Hora, Minuto FROM monitoreo.Bitacora WHERE id=${id} AND Hora=${hora} AND Minuto=${hace_3_minutos} ORDER BY turno DESC LIMIT 1;`
+            ,(err,data,otro)=>{
+                if(err){
+
+                } else {
+                    if(data.length>0){
+                        res(data);
+                    } else {
+                        res();
+                    }
+                }
+            })
         })
     }
 }

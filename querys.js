@@ -749,13 +749,13 @@ module.exports = {
         let hace_un_minuto = parseInt(reloj.getMinutes())-1;
         return new Promise( (res,rej) => {
             base_de_datos.query(`SELECT Temperatura, Hora, Minuto FROM monitoreo.Bitacora WHERE id=${id} AND Hora=${hora} AND Minuto=${hace_un_minuto} ORDER BY turno DESC;`
-            ,(err,dato,otro)=>{
+            ,(err,data,otro)=>{
             if(err){
                 console.log(err);
                 rej(err);
             } else {
                 if(data.length>0){
-                    console.log(`Temp: ${dato[0].Temperatura}C ${data[0].Hora}:${data[0].Minuto} hrs`);
+                    console.log(`Temp: ${data[0].Temperatura}C ${data[0].Hora}:${data[0].Minuto} hrs`);
                     res(data);
                 } else {
                     res("No hubo respuesta");

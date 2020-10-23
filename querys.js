@@ -742,5 +742,26 @@ module.exports = {
                 })
             }
         })
+    },confirmar_data: () => {
+        let id = 2;
+        let reloj = new Date();
+        let hora = reloj.getDate();
+        let hace_un_minuto = parseInt(reloj.getMinutes())-1;
+        return new Promise( (res,rej) => {
+            base_de_datos.query(`SELECT Temperatura, Hora, Minuto FROM monitoreo.Bitacora WHERE id=${id} AND Hora=${hora} Minuto=${hace_un_minuto} ORDER BY turno DESC;`
+            ,(err,dato,otro)=>{
+            if(err){
+                console.log(err);
+                rej(err);
+            } else {
+                if(data.length>0){
+                    console.log(`Temp: ${dato[0].Temperatura}C ${data[0].Hora}:${data[0].Minuto} hrs`);
+                    res(data);
+                } else {
+                    res("No hubo respuesta");
+                }
+            }
+        })
+        })
     }
 }

@@ -322,9 +322,10 @@ page.post('/temperatura',(req,res)=>{
         if(data != undefined){
             //console.log(`Temp: ${data[0].Temperatura} ${data[0].Hora}:${data[0].Minuto} hrs`);
         } else {
-            console.log("El dato es undefined");
+            console.log("No hay dato en la temperatura anterior");
             tokens.data_hace_2_minuto(2).then( temp_referencia => {
                 if(temp_referencia === undefined){
+                    console.log("Tampoco hay dato hace 2 minutos");
 
                 } else {
                     console.log(`El dato de hace 2 minutos es ${temp_referencia}`);

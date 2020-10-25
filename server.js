@@ -326,13 +326,12 @@ page.post('/temperatura',(req,res)=>{
             tokens.data_hace_2_minuto(2).then( temp_referencia => {
                 if(temp_referencia === undefined){
                     console.log("Tampoco hay dato hace 2 minutos");
-
                 } else {
                     console.log(`El dato de hace 2 minutos es ${temp_referencia}`);
                     tokens.data_hace_3_minutos(3).then( temp_a_comparar => {
                         console.log(`El dato de hace 2 minutos es ${temp_a_comparar}`);
                         if(temp_a_comparar === undefined){
-
+                            console.log("No hay un dato hace 3 minutos")
                         } else {
                             let referencia = parseFloat(temp_referencia[0].Temperatura).toPrecision(2);
                             let comparar = parseFloat(temp_a_comparar[0].Temperatura).toPrecision(2);

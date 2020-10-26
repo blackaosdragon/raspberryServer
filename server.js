@@ -331,7 +331,7 @@ page.post('/temperatura',(req,res)=>{
                     console.log('El dato de hace 2 minutos es ',temp_referencia[0].Temperatura);      
                     tokens.data_hace_3_minutos(2).then( temp_a_comparar => {
                         if(temp_a_comparar === undefined){
-                            //console.log("No hay un dato hace 3 minutos")
+                            console.log("No hay un dato hace 3 minutos")
                         } else {
                             console.log('El dato de hace 3 minutos es ',temp_a_comparar[0].Temperatura);
                             console.log(`${temp_referencia[0].Temperatura} - ${temp_a_comparar[0].Temperatura} = ${temp_referencia[0].Temperatura-temp_a_comparar[0].Temperatura}`)

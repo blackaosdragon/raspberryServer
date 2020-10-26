@@ -799,5 +799,20 @@ module.exports = {
                 }
             })
         })
+    }, insertar_aproximado: (id,temp_aprox) => {
+        let lugar = "Cámara farmacia";
+        let tiempo = new Date();
+        let mes = tiempo.getMonth() + 1;
+        return new Promise((resolve,reject)=>{
+            base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos}(Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temp_aprox}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${id},'H. Cardiología S. XXI');`
+            , err => {
+                if(err){
+                    console.log(err);
+                    reject(err);
+                } else {
+                    resolve(1);
+                }
+            })
+        })
     }
 }

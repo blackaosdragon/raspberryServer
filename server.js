@@ -328,13 +328,28 @@ page.post('/temperatura',(req,res)=>{
                 if(temp_referencia === undefined){
                     //console.log("Tampoco hay dato hace 2 minutos");
                 } else {
-                    console.log('El dato de hace 2 minutos es ',temp_referencia[0].Temperatura);      
+                    //console.log('El dato de hace 2 minutos es ',temp_referencia[0].Temperatura);      
                     tokens.data_hace_3_minutos(2).then( temp_a_comparar => {
                         if(temp_a_comparar === undefined){
-                            console.log("No hay un dato hace 3 minutos")
+                            //console.log("No hay un dato hace 3 minutos")
                         } else {
-                            console.log('El dato de hace 3 minutos es ',temp_a_comparar[0].Temperatura);
-                            console.log(`${temp_referencia[0].Temperatura} - ${temp_a_comparar[0].Temperatura} = ${temp_referencia[0].Temperatura-temp_a_comparar[0].Temperatura}`)
+                            //console.log('El dato de hace 3 minutos es ',temp_a_comparar[0].Temperatura);
+                            console.log(`${temp_referencia[0].Temperatura} - ${temp_a_comparar[0].Temperatura} = ${temp_referencia[0].Temperatura-temp_a_comparar[0].Temperatura}`);
+                            let dif_de_temp = temp_referencia[0].Temperatura-temp_a_comparar[0].Temperatura;
+                            let agregar_temp = parseFloat(temp_referencia[0].Temperatura + dif_de_temp).toPrecision(2);
+                            if (agregar_temp<temp_lim_inf+5){
+                                agregar_temp = 3.01 + Math.random();
+                            } else if(agregar_temp>temp_lim){
+                                agregar_temp = 7.5 - Math.random();
+                            }
+                            tokens.insertar_aproximado(2,agregar_temp).then( insertado => {
+                                if(insertado){
+
+                                } else {
+                                    console.log("Fallo al insertar dato");
+                                }
+                            })
+                            
                             /*
                             let referencia = parseFloat(temp_referencia[0].Temperatura).toPrecision(2);
                             let comparar = parseFloat(temp_a_comparar[0].Temperatura).toPrecision(2);

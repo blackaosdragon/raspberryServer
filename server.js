@@ -338,9 +338,9 @@ page.post('/temperatura',(req,res)=>{
                             let dif_de_temp = temp_referencia[0].Temperatura-temp_a_comparar[0].Temperatura;
                             let agregar_temp = parseFloat(temp_referencia[0].Temperatura + dif_de_temp).toPrecision(2);
                             if (agregar_temp<temp_lim_inf+5){
-                                agregar_temp = 3.01 + Math.random();
+                                agregar_temp = parseFloat(3.01 + Math.random()).toPrecision(2);
                             } else if(agregar_temp>temp_lim){
-                                agregar_temp = 7.5 - Math.random();
+                                agregar_temp = parseFloat(7.5 - Math.random()).toPrecision(2);
                             }
                             tokens.insertar_aproximado(2,agregar_temp).then( insertado => {
                                 if(insertado){

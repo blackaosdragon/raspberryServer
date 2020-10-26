@@ -788,7 +788,8 @@ module.exports = {
             base_de_datos.query(`SELECT Temperatura, Hora, Minuto FROM monitoreo.Bitacora WHERE id=${id} AND Hora=${hora} AND Minuto=${hace_3_minutos} ORDER BY turno DESC LIMIT 1;`
             ,(err,data,otro)=>{
                 if(err){
-
+                    console.log(err);
+                    rej(err);
                 } else {
                     if(data.length>0){
                         res(data);

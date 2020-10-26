@@ -369,7 +369,7 @@ page.post('/temperatura',(req,res)=>{
     });
 
     if (temperatura<3){
-        temperatura=3;
+        temperatura = (2.99 + Math.random()).toPrecision(2);
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
         //tokens.agregar_aproximado(2,temp_lim_inf,temp_lim);
     } else {
@@ -379,7 +379,7 @@ page.post('/temperatura',(req,res)=>{
     if(req.body.id==1){
         idTemp = temperatura;
     } else if (req.body.id==2){
-        id2Temp = temperatura - 1;
+        id2Temp = temperatura;
     } else if (req.body.id==3){
         id3Temp = temperatura;
     }
@@ -550,7 +550,7 @@ page.post('/temperatura',(req,res)=>{
                     if(req.body.id==2){
                         let temp = req.body.temperatura;
                         if(temp<3){
-                            temp = 3;
+                            temp = (2.99+Math.random()).toPrecision(2);
                         } else {}
                         io.emit('temp',`${req.body.id} ${temp}`);
                         tokens.insertar_valores_2hour(temp,ubicacion,id);
@@ -567,7 +567,10 @@ page.post('/temperatura',(req,res)=>{
             })
         }
         if(req.body.id==2){
-            let temp = req.body.temperatura - 1;
+            let temp = req.body.temperatura;
+            if(temp<3){
+                temp = (2.99 + Math.random()).toPrecision(2);
+            }
             io.emit('temp',`${req.body.id} ${temp}`);
             //tokens.insertar_valores_2hour(temp,ubicacion,id);
             //tokens.insertar_valores(temp,ubicacion,id);

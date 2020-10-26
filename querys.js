@@ -732,7 +732,7 @@ module.exports = {
                     }
                 })
             } else  {
-                base_de_datos.query(`DELETE FROM ${data_base}.${tabla_de_datos} WHERE Mes=${mes} AND Dia<${parseInt(reloj.getDate())};`,  err => {
+                base_de_datos.query(`DELETE FROM ${data_base}.${tabla_de_datos} WHERE Mes=${mes} AND Dia<${parseInt(reloj.getDate())} AND Hora<23;`,  err => {
                     if(err){
                         console.log("Error: ",err)
                         reject(err);
@@ -826,7 +826,7 @@ module.exports = {
         let mes = tiempo.getMonth() + 1;
         let minuto = tiempo.getMinutes() - 1;
         let hora = parseInt(tiempo.getHours());
-        
+
         if (parseInt(tiempo.getMinutes())==0){
             minuto = 59;
             hora = hora - 1;

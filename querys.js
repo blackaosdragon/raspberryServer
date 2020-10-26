@@ -747,6 +747,10 @@ module.exports = {
         let reloj = new Date();
         let hora = reloj.getHours();
         let hace_un_minuto = parseInt(reloj.getMinutes())-1;
+        if( parseInt(reloj.getMinutes)==0 ){
+            hora = parseInt(reloj.getHours()-1);
+            hace_un_minuto = 59;
+        }
         return new Promise( (res,rej) => {
             base_de_datos.query(`SELECT Temperatura, Hora, Minuto FROM monitoreo.Bitacora WHERE id=${id} AND Hora=${hora} AND Minuto=${hace_un_minuto} ORDER BY turno DESC LIMIT 1;`
             ,(err,data,otro)=>{
@@ -766,6 +770,13 @@ module.exports = {
         let reloj = new Date();
         let hora = reloj.getHours();
         let hace_2_minutos = parseInt(reloj.getMinutes())-2;
+        if ( parseInt(reloj.getMinutes()) == 0 ){
+            hora = parseInt(reloj.getHours()-1);
+            hace_2_minutos = 58;
+        } else if ( parseInt(reloj.getMinutes()) == 1 ){
+            hora = parseInt(reloj.getHours()-1);
+            hace_2_minutos = 59;
+        }
         return new Promise( (res,rej)=> {
             base_de_datos.query(`SELECT Temperatura, Hora, Minuto FROM monitoreo.Bitacora WHERE id=${id} AND Hora=${hora} AND Minuto=${hace_2_minutos} ORDER BY turno DESC LIMIT 1;`
             ,(err,data,otro)=>{
@@ -784,6 +795,16 @@ module.exports = {
         let reloj = new Date();
         let hora = reloj.getHours();
         let hace_3_minutos = parseInt(reloj.getMinutes())-3;
+        if( parseInt(reloj.getMinutes()) == 0){
+            hora = parseInt(reloj.getHours()) - 1
+            hace_3_minutos = 57;
+        } else if( parseInt(reloj.getMinutes()) == 1){
+            hora = parseInt(reloj.getHours()) - 1
+            hace_3_minutos = 58;
+        } else if (parseInt(reloj.getMinutes()) == 2){
+            hora = parseInt(reloj.getHours()) - 1
+            hace_3_minutos = 59;
+        }
         return new Promise( (res,rej)=> {
             base_de_datos.query(`SELECT Temperatura, Hora, Minuto FROM monitoreo.Bitacora WHERE id=${id} AND Hora=${hora} AND Minuto=${hace_3_minutos} ORDER BY turno DESC LIMIT 1;`
             ,(err,data,otro)=>{

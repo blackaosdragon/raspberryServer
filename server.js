@@ -558,7 +558,7 @@ page.post('/temperatura',(req,res)=>{
                             tokens.insertar_aproximado(2,agregar_temp).then( insertado => {
                                 if(insertado){
                                     console.log(`Se ha insertado y se emitira: '${req.body.id} ${agregar_temp}'`);
-                                    io.emit('temp',`${req.body.id} ${agregar_temp}`);
+                                    io.emit('temp',`${2} ${agregar_temp}`);
 
                                 } else {
                                     console.log("Fallo al insertar dato");

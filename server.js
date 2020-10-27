@@ -317,58 +317,6 @@ page.post('/temperatura',(req,res)=>{
     console.log(`ID: ${req.body.id} Temp: ${req.body.temperatura}°C ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
     let temperatura = parseFloat(req.body.temperatura);
     let lugar = asignar.asignar_ubicacion(req.body.id);
-    
-    tokens.confirmar_data().then( data => {
-        if(data != undefined){
-            //console.log(`Temp: ${data[0].Temperatura} ${data[0].Hora}:${data[0].Minuto} hrs`);
-            console.log("NO falta dato")
-        } else {
-            //console.log("No hay dato en la temperatura anterior");            
-            tokens.data_hace_2_minuto(2).then( temp_referencia => {
-                if(temp_referencia === undefined){
-                    //console.log("Tampoco hay dato hace 2 minutos");
-                } else {
-                    //console.log('El dato de hace 2 minutos es ',temp_referencia[0].Temperatura);      
-                    tokens.data_hace_3_minutos(2).then( temp_a_comparar => {
-                        if(temp_a_comparar === undefined){
-                            //console.log("No hay un dato hace 3 minutos")
-                        } else {
-                            //console.log('El dato de hace 3 minutos es ',temp_a_comparar[0].Temperatura);
-                            console.log(`${temp_referencia[0].Temperatura} - ${temp_a_comparar[0].Temperatura} = ${temp_referencia[0].Temperatura-temp_a_comparar[0].Temperatura}`);
-                            let dif_de_temp = temp_referencia[0].Temperatura-temp_a_comparar[0].Temperatura;
-                            let agregar_temp = parseFloat(temp_referencia[0].Temperatura + dif_de_temp).toPrecision(2);
-                            if (agregar_temp<temp_lim_inf+5){
-                                agregar_temp = parseFloat(3.01 + Math.random()).toPrecision(2);
-                            } else if(agregar_temp>temp_lim){
-                                agregar_temp = parseFloat(7.5 - Math.random()).toPrecision(2);
-                            }
-                            tokens.insertar_aproximado(2,agregar_temp).then( insertado => {
-                                if(insertado){
-                                    io.emit('temp',`${req.body.id} ${agregar_temp}`);
-
-                                } else {
-                                    console.log("Fallo al insertar dato");
-                                }
-                            })
-                            
-                            /*
-                            let referencia = parseFloat(temp_referencia[0].Temperatura).toPrecision(2);
-                            let comparar = parseFloat(temp_a_comparar[0].Temperatura).toPrecision(2);
-                            let diferencia = referencia - comparar;
-                            let dato_a_agregar = referencia + diferencia;
-                            console.log(`${referencia}-${comparar}=${diferencia} / ${referencia} + ${dato_a_agregar} = ${dato_a_agregar} - se agregara`);
-                            */
-                        }
-                    })
-                }
-            })
-            
-        }
-        
-    }).catch( err => {
-        console.log(err);
-    });
-
     if (temperatura<3){
         temperatura = (2.99 + Math.random()).toPrecision(2);
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
@@ -583,6 +531,56 @@ page.post('/temperatura',(req,res)=>{
         io.emit('temp',`${req.body.id} ${req.body.temperatura}`);
         //console.log(`La temperatura ${req.body.temperatura} para el id: ${req.body.id} no es valida`);
     }
+    tokens.confirmar_data().then( data => {
+        if(data != undefined){
+            //console.log(`Temp: ${data[0].Temperatura} ${data[0].Hora}:${data[0].Minuto} hrs`);
+            console.log("NO falta dato")
+        } else {
+            //console.log("No hay dato en la temperatura anterior");            
+            tokens.data_hace_2_minuto(2).then( temp_referencia => {
+                if(temp_referencia === undefined){
+                    //console.log("Tampoco hay dato hace 2 minutos");
+                } else {
+                    //console.log('El dato de hace 2 minutos es ',temp_referencia[0].Temperatura);      
+                    tokens.data_hace_3_minutos(2).then( temp_a_comparar => {
+                        if(temp_a_comparar === undefined){
+                            //console.log("No hay un dato hace 3 minutos")
+                        } else {
+                            //console.log('El dato de hace 3 minutos es ',temp_a_comparar[0].Temperatura);
+                            console.log(`${temp_referencia[0].Temperatura} - ${temp_a_comparar[0].Temperatura} = ${temp_referencia[0].Temperatura-temp_a_comparar[0].Temperatura}`);
+                            let dif_de_temp = temp_referencia[0].Temperatura-temp_a_comparar[0].Temperatura;
+                            let agregar_temp = parseFloat(temp_referencia[0].Temperatura + dif_de_temp).toPrecision(2);
+                            if (agregar_temp<temp_lim_inf+5){
+                                agregar_temp = parseFloat(3.01 + Math.random()).toPrecision(2);
+                            } else if(agregar_temp>temp_lim){
+                                agregar_temp = parseFloat(7.5 - Math.random()).toPrecision(2);
+                            }
+                            tokens.insertar_aproximado(2,agregar_temp).then( insertado => {
+                                if(insertado){
+                                    io.emit('temp',`${req.body.id} ${agregar_temp}`);
+
+                                } else {
+                                    console.log("Fallo al insertar dato");
+                                }
+                            })
+                            
+                            /*
+                            let referencia = parseFloat(temp_referencia[0].Temperatura).toPrecision(2);
+                            let comparar = parseFloat(temp_a_comparar[0].Temperatura).toPrecision(2);
+                            let diferencia = referencia - comparar;
+                            let dato_a_agregar = referencia + diferencia;
+                            console.log(`${referencia}-${comparar}=${diferencia} / ${referencia} + ${dato_a_agregar} = ${dato_a_agregar} - se agregara`);
+                            */
+                        }
+                    })
+                }
+            })
+            
+        }
+        
+    }).catch( err => {
+        console.log(err);
+    });
     
     //console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
 })

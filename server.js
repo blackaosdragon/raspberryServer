@@ -534,7 +534,7 @@ page.post('/temperatura',(req,res)=>{
     tokens.confirmar_data().then( data => {
         if(data != undefined){
             //console.log(`Temp: ${data[0].Temperatura} ${data[0].Hora}:${data[0].Minuto} hrs`);
-            console.log("NO falta dato")
+            //console.log("NO falta dato")
         } else {
             //console.log("No hay dato en la temperatura anterior");            
             tokens.data_hace_2_minuto(2).then( temp_referencia => {
@@ -547,7 +547,7 @@ page.post('/temperatura',(req,res)=>{
                             //console.log("No hay un dato hace 3 minutos")
                         } else {
                             //console.log('El dato de hace 3 minutos es ',temp_a_comparar[0].Temperatura);
-                            console.log(`${temp_referencia[0].Temperatura} - ${temp_a_comparar[0].Temperatura} = ${temp_referencia[0].Temperatura-temp_a_comparar[0].Temperatura}`);
+                            //console.log(`${temp_referencia[0].Temperatura} - ${temp_a_comparar[0].Temperatura} = ${temp_referencia[0].Temperatura-temp_a_comparar[0].Temperatura}`);
                             let dif_de_temp = temp_referencia[0].Temperatura-temp_a_comparar[0].Temperatura;
                             let agregar_temp = parseFloat(temp_referencia[0].Temperatura + dif_de_temp).toPrecision(2);
                             if (agregar_temp<temp_lim_inf+5){
@@ -557,6 +557,7 @@ page.post('/temperatura',(req,res)=>{
                             }
                             tokens.insertar_aproximado(2,agregar_temp).then( insertado => {
                                 if(insertado){
+                                    console.log(`Se ha insertado y se emitira: '${req.body.id} ${agregar_temp}'`);
                                     io.emit('temp',`${req.body.id} ${agregar_temp}`);
 
                                 } else {

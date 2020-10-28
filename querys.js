@@ -754,7 +754,6 @@ module.exports = {
                 hora = parseInt(reloj.getHours()-1);
             }
             hace_un_minuto = 59;
-            
         }
         return new Promise( (res,rej) => {
             base_de_datos.query(`SELECT Temperatura, Hora, Minuto FROM monitoreo.Bitacora WHERE id=${id} AND Hora=${hora} AND Minuto=${hace_un_minuto} ORDER BY turno DESC LIMIT 1;`

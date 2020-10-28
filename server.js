@@ -553,7 +553,7 @@ page.post('/temperatura',(req,res)=>{
                             if (agregar_temp<temp_lim_inf+5){
                                 agregar_temp = parseFloat(3.01 + Math.random()).toPrecision(2);
                             } else if(agregar_temp>temp_lim){
-                                //agregar_temp = parseFloat(7.5 - Math.random()).toPrecision(2);
+                                agregar_temp = parseFloat(7.5 - Math.random()).toPrecision(2);
                             }
                             tokens.insertar_aproximado(2,agregar_temp).then( insertado => {
                                 if(insertado){

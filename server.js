@@ -271,6 +271,17 @@ page.get('/descarga', (req,res) => {
             //res.send(satisfactorio);
         }
     })
+    res.download(`${nombre}`,`${nombre}`, err => {
+        if(err){
+            console.log(err);
+            reject(err);
+        } else {
+            let payload = {
+                descargado: 1
+            }
+            resolve(payload);
+        }
+    })
 })
 page.get('/descarga_consulta', (req,res)=>{
     function descarga(){

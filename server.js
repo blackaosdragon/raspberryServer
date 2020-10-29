@@ -222,9 +222,10 @@ page.post('/buscar',(req,res)=>{
     let lugar = data.lugar;
     //console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
+        let nombre = 'consulta.csv'
         try{
             //console.log("Intentando borrar anterior");
-            let nombre = 'consulta.csv'
+            
             fs.unlink(`${nombre}`, err => {
                 if(err){
                     console.log("Error: ",err);

@@ -276,12 +276,12 @@ page.get('/descarga', (req,res) => {
     res.download(`${nombre}`,`${nombre}`, err => {
         if(err){
             console.log(err);
-            reject(err);
+            //reject(err);
         } else {
             let payload = {
                 descargado: 1
             }
-            resolve(payload);
+            //res.send(payload);
         }
     })
 })

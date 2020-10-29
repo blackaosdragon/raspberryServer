@@ -220,9 +220,11 @@ page.post('/buscar',(req,res)=>{
     let mes = data.mes;
     let dia = data.dia;
     let lugar = data.lugar;
+    let nombre = 'consulta.csv'
+    //asignacion.borrar_archivo(nombre);
     //console.log(` Lugar: ${lugar} ${dia}/${mes}/${year}`);
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
-        let nombre = 'consulta.csv'
+        
         try{
             //console.log("Intentando borrar anterior");
             fs.unlink(`${nombre}`, err => {
@@ -247,7 +249,7 @@ page.post('/buscar',(req,res)=>{
             res.send(respuesta);
         });
     })
-    
+       
     
 })
 page.get('/descarga', (req,res) => {

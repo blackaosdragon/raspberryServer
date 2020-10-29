@@ -192,7 +192,7 @@ page.post('/consulta_mes', (req,res) => {
     let mes = data.mes;
     let lugar = data.lugar;
     let nombre = 'consulta.csv'
-    asignacion.borrar_archivo(name);
+    asignacion.borrar_archivo(nombre);
 
     tokens.obtener_nombre(lugar,year,mes,'').then( response => {
         name = response;
@@ -255,7 +255,7 @@ page.get('/descarga', (req,res) => {
     let nombre = 'consulta.csv'
     fs.unlink(`${nombre}`, err => {
         if(err){
-            console.log(err);
+            console.log("No se borro -> err: ",err);
             let satisfactorio = {
                 nombre: `${nombre}`,
                 error: 1,
@@ -267,6 +267,7 @@ page.get('/descarga', (req,res) => {
                 nombre: `${nombre}`,
                 borrado: 1
             }
+            console.log("Se borro ")
             //res.send(satisfactorio);
         }
     })
@@ -301,6 +302,7 @@ page.get('/descarga_consulta', (req,res)=>{
             return 0;
         }
     }).then( borrar => {
+        console.log("Se esta llendo por donde no debe")
         if(borrar){
             fs.unlink(`${name}`, err => {
                 if(err){

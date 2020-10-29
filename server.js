@@ -253,6 +253,7 @@ page.post('/buscar',(req,res)=>{
 page.get('/descarga', (req,res) => {
     console.log('Se Realizó la solicitud del recurso');
     let nombre = 'consulta.csv'
+    /*
     fs.unlink(`${nombre}`, err => {
         if(err){
             console.log("No se borro -> err: ",err);
@@ -271,6 +272,7 @@ page.get('/descarga', (req,res) => {
             //res.send(satisfactorio);
         }
     })
+    */
     res.download(`${nombre}`,`${nombre}`, err => {
         if(err){
             console.log(err);

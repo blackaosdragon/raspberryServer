@@ -261,13 +261,13 @@ page.get('/descarga', (req,res) => {
                 error: 1,
                 err: err
             }
-            res(satisfactorio);
+            res.send(satisfactorio);
         } else {
             let satisfactorio = {
                 nombre: `${nombre}`,
                 borrado: 1
             }
-            res(satisfactorio);
+            res.send(satisfactorio);
         }
     })
 })

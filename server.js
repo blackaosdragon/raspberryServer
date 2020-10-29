@@ -193,11 +193,13 @@ page.post('/consulta_mes', (req,res) => {
     let lugar = data.lugar;
     let nombre = 'consulta.csv'
     asignacion.borrar_archivo(name);
+
     tokens.obtener_nombre(lugar,year,mes,'').then( response => {
         name = response;
         return response;
     }).then( nombre => {
-        tokens.consulta_por_mes(year,lugar,mes,nombre).then( respuesta => {
+        let name = 'consulta.csv'
+        tokens.consulta_por_mes(year,lugar,mes,name).then( respuesta => {
             res.send(respuesta)
         }).catch( err => {
             console.log(err);
@@ -222,7 +224,8 @@ page.post('/buscar',(req,res)=>{
     tokens.obtener_nombre(lugar,year,mes,dia).then(respuesta=>{
         try{
             //console.log("Intentando borrar anterior");
-            fs.unlink(`${name}`, err => {
+            let nombre = 'consulta.csv'
+            fs.unlink(`${nombre}`, err => {
                 if(err){
                     console.log("Error: ",err);
                 } else {
@@ -235,7 +238,7 @@ page.post('/buscar',(req,res)=>{
         }
         //console.log(`Obteniendo el nombre: ${respuesta}`);
         name = respuesta;
-        return respuesta;
+        return nombre;
     }).then(name=>{
         //console.log(`Proporcionando el nombre: ${name} para consultar la case de datos`)
         tokens.consultar_base_de_datos(lugar,year,mes,dia,name)

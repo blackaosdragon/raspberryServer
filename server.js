@@ -191,6 +191,7 @@ page.post('/consulta_mes', (req,res) => {
     let year = data.year;
     let mes = data.mes;
     let lugar = data.lugar;
+    let nombre = 'consulta.csv'
     asignacion.borrar_archivo(name);
     tokens.obtener_nombre(lugar,year,mes,'').then( response => {
         name = response;
@@ -246,7 +247,27 @@ page.post('/buscar',(req,res)=>{
     
     
 })
-
+page.get('/descarga', (req,res) => {
+    console.log('Se Realizó la solicitud del recurso');
+    let nombre = 'consulta.csv'
+    fs.unlink(`${nombre}`, err => {
+        if(err){
+            console.log(err);
+            let satisfactorio = {
+                nombre: `${nombre}`,
+                error: 1,
+                err: err
+            }
+            res(satisfactorio);
+        } else {
+            let satisfactorio = {
+                nombre: `${nombre}`,
+                borrado: 1
+            }
+            res(satisfactorio);
+        }
+    })
+})
 page.get('/descarga_consulta', (req,res)=>{
     function descarga(){
         return new Promise( (resolve,reject) => {

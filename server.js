@@ -225,12 +225,11 @@ page.post('/buscar',(req,res)=>{
         let nombre = 'consulta.csv'
         try{
             //console.log("Intentando borrar anterior");
-            
             fs.unlink(`${nombre}`, err => {
                 if(err){
                     console.log("Error: ",err);
                 } else {
-                    //console.log("Se borrara un archivo que no se decargo anteriormente");
+                    console.log(`Se borro: ${nombre}`);
                 }
             })
         } catch (err){

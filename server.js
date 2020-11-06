@@ -377,7 +377,6 @@ page.post('/temperatura',(req,res)=>{
         id3Temp = temperatura;
     }
     sendTemp = (id) => {
-        
         let temp;
         let temp2;
         let temp3;
@@ -408,7 +407,7 @@ page.post('/temperatura',(req,res)=>{
     if( parseInt(registro.getHours())==0 && parseInt(registro.getMinutes())==0 && parseInt(registro.getSeconds())<59){
         
         console.log("Se borraran los datos del dia anterior");
-        tokens.borrar_data();
+        //tokens.borrar_data();
     }
     
     //crono 1

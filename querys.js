@@ -322,7 +322,7 @@ module.exports = {
     },
     consulta_por_mes: (year,lugar,mes,name) => {
         return new Promise( (resolve,reject) => {
-            fs.appendFile(`${name}`,`Consulta de ${lugar} del mes/año ${mes}/${year}\nLugar;Temperatura;Dia;Mes;Hora;Minuto;\n`, err => {
+            fs.appendFile(`${name}`,`Consulta de ${lugar} del mes/año ${mes}/${year}\nLugar;Temperatura °C;Dia;Mes;Hora;Minuto;\n`, err => {
                 if(err){
                     console.log(err)
                     reject(err);
@@ -335,7 +335,7 @@ module.exports = {
                 } else {
                     //console.log(data);
                     data.forEach( (element,id) => {
-                        fs.appendFile(`${name}`,`${element.Lugar};${element.Temperatura}°C;${element.Dia};${element.Mes};${element.Hora};${element.Minuto}\n`, err => {
+                        fs.appendFile(`${name}`,`${element.Lugar};${element.Temperatura};${element.Dia};${element.Mes};${element.Hora};${element.Minuto}\n`, err => {
                             if(err){
                                 console.log(err);
                                 reject(err);
@@ -350,7 +350,7 @@ module.exports = {
     descarga_solicitada: (name,tipo_de_consulta,lugar,year,mes) => {
         if(tipo_de_consulta==1){
             return new Promise( (resolve,reject) => {
-                fs.appendFile(`${name}`,`Consulta de ${lugar} del mes/año ${mes}/${year}\nLugar;Temperatura;Dia;Mes;Hora;Minuto;\n`, err => {
+                fs.appendFile(`${name}`,`Consulta de ${lugar} del mes/año ${mes}/${year}\nLugar;Temperatura °C;Dia;Mes;Hora;Minuto;\n`, err => {
                     if(err){
                         console.log(err)
                         reject(err);
@@ -362,7 +362,7 @@ module.exports = {
                         reject(err);                        
                     } else {
                         data.forEach( (element,id) => {
-                            fs.appendFile(`${name}`,`${element.Lugar};${element.Temperatura}°C;${element.Dia};${element.Mes};${element.Hora};${element.Minuto}\n`, err => {
+                            fs.appendFile(`${name}`,`${element.Lugar};${element.Temperatura};${element.Dia};${element.Mes};${element.Hora};${element.Minuto}\n`, err => {
                                 if(err){
                                     console.log(err);
                                     reject(err);
@@ -385,7 +385,7 @@ module.exports = {
             let elementos = [];
             //let name = `Consulta_${ubication}_${year}-${mes}-${dia}.csv`
             //console.log(`SELECT Lugar AS ubicacion,Temperatura AS temperatura, Dia,Mes,Año,Hora,Minuto,Segundo FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`)
-            fs.appendFile(`${name}`,`Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}\nLugar;Temperatura;Hora;Minuto;\n`,function(err){
+            fs.appendFile(`${name}`,`Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}\nLugar;Temperatura °C;Hora;Minuto;\n`,function(err){
                 if(err){
                     throw err;
                 }
@@ -401,7 +401,7 @@ module.exports = {
                     //console.log(`Para cada elemento en el archivo: ${name}`)
                     
                     data.forEach((element,id) => {  
-                        fs.appendFile(`${name}`,`${element.Lugar};${element.Temperatura}°C;${element.Hora};${element.Minuto}\n`, err => {
+                        fs.appendFile(`${name}`,`${element.Lugar};${element.Temperatura};${element.Hora};${element.Minuto}\n`, err => {
                             if(err){
                                 console.log(err);
                                 reject(err);
@@ -678,7 +678,7 @@ module.exports = {
                     reject(new Error());
                 } else {
                     //console.log(`Creando la cabecera del archivo: ${name}`)
-                    fs.appendFile(`${name}`,`Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}\nLugar;Temperatura;Hora;Minuto;\n`,function(err){
+                    fs.appendFile(`${name}`,`Consulta de ${ubication} con fecha de ${dia}/${mes}/${year}\nLugar;Temperatura °C;Hora;Minuto;\n`,function(err){
                         if(err){
                             throw err;
                         }
@@ -688,7 +688,7 @@ module.exports = {
                     //console.log(`Para cada elemento en el archivo: ${name}`)
                     data.forEach((element,i) => {  
                         //console.log(`${element.ubicacion} ${element.temperatura} ${element.fecha}`)                  
-                        fs.appendFile(`${name}`,`${element.ubicacion};${element.temperatura}°C;${element.Hora};${element.Minuto}\n`,function(err){
+                        fs.appendFile(`${name}`,`${element.ubicacion};${element.temperatura};${element.Hora};${element.Minuto}\n`,function(err){
                             if(err){
                                 throw err;
                             }

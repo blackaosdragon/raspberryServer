@@ -377,7 +377,6 @@ page.post('/temperatura',(req,res)=>{
         id3Temp = temperatura;
     }
     sendTemp = (id) => {
-        
         let temp;
         let temp2;
         let temp3;

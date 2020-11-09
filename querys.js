@@ -328,7 +328,7 @@ module.exports = {
                     reject(err);
                 }
             })
-            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${lugar}' AND Año=${year} AND Mes=${mes};`,(err, data, otro) => {
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${lugar}' AND Año=${year} AND Mes=${mes} ORDER BY Dia,Hora;`,(err, data, otro) => {
                 if(err){
                     console.log(err);
                     reject(err);
@@ -391,7 +391,7 @@ module.exports = {
                 }
                 //console.log('Guardado');
             })
-            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ;`,(err,data,otro)=>{
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_temperaturas} WHERE Lugar='${ubication}' AND Dia=${dia} AND Mes=${mes} AND Hora>=0 AND Hora<=24 AND Año=${year} ORDER BY Hora;`,(err,data,otro)=>{
                 if(err){
                     console.log(err);
                     reject(new Error());

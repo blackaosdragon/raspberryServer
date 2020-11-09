@@ -702,7 +702,7 @@ page.post('/descarga_archivo_csv', (req,res) => {
     
 
 })
-page.post("/registro", (req,res)=>{
+page.post('/registro', (req,res)=>{
     console.log(req.body);
     let ok = {
         ok: 1

@@ -174,7 +174,7 @@ module.exports = {
 
         return new Promise( (resolve,reject) => {
             let elementos = [];
-            base_de_datos.query(`SELECT DISTINCT Dia AS dia FROM ${data_base}.${tabla_de_temperaturas} WHERE Año=${year} AND Lugar='${lugar}' AND Mes=${mes};`, (err,data,otro) => {
+            base_de_datos.query(`SELECT DISTINCT Dia AS dia FROM ${data_base}.${tabla_de_temperaturas} WHERE Año=${year} AND Lugar='${lugar}' AND Mes=${mes} ORDER BY dia;`, (err,data,otro) => {
                 if (err){
                     reject(new Error());
                     console.log(err);

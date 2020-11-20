@@ -612,7 +612,9 @@ module.exports = {
                                //console.log(data.data1);
                                //console.log(data.data2);
                                  let success = {
-                                     data: 1
+                                     data: 1,
+                                     level: data[0].level,
+                                     id: data[0].id
                                  }
                                  resolve(success);
                            } else {

@@ -613,7 +613,7 @@ module.exports = {
                                //console.log(data.data2);
                                  let success = {
                                      data: 1,
-                                     level: data[0].level,
+                                     level: data[0].Level,
                                      id: data[0].id
                                  }
                                  console.log(success)

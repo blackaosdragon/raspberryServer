@@ -616,6 +616,7 @@ module.exports = {
                                      level: data[0].level,
                                      id: data[0].id
                                  }
+                                 console.log(success)
                                  resolve(success);
                            } else {
                                if(data[0].data1!=user){

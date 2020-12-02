@@ -16,6 +16,7 @@ const tabla_de_temperaturas = 'dalyData';
 const tabla_de_tokens = 'mensajeria';
 const tabla_de_excepciones = 'exception'
 const tabla_de_usuarios = 'usuarios';
+const tabla_de_equipos = 'equipos';
 let tokens = [];
 
 module.exports = {
@@ -868,5 +869,28 @@ module.exports = {
                 }
             })
         })
+    },consultar_equipos: (llave) => {
+        return new Promise( (res,rej)=>{
+            if(llave==0){
+                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_equipos} `, (err,data,otro)=>{
+                    if(err){
+                        console.log(err);
+                        rej(err);
+                    } else {
+                        res(data);
+                    }
+                })
+            } else {
+                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_equipos} WHERE Identificador=${llave}`, (err,data,otro)=>{
+                    if(err){
+                        console.log(err);
+                        rej(err);
+                    } else {
+                        res(data);
+                    }
+                })
+            }
+        })
+
     }
 }

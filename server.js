@@ -709,6 +709,15 @@ page.post('/registro', (req,res)=>{
     res.send(ok)
 })
 
+page.post('/equipos',(req,res) => {
+    console.log(req.body);
+    let llave = req.body.llave;
+    tokens.consultar_equipos(llave).then( data => {
+        console.log(data)
+        res.send(data);
+    })
+})
+
 
 
 

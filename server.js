@@ -113,7 +113,8 @@ page.use((req,res,next)=>{
 })
 page.use('/',express.static(__dirname+'/home'))
 
-const io = require('socket.io')(httpServer);
+const io = require('socket.io')();
+//const io = require('socket.io')(httpServer);
 
 page.get('/consulta',(req,res)=>{
     //console.log('Solicitando años');

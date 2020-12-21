@@ -81,14 +81,9 @@ httpServer.listen(puerto,()=>{
 })
 */
 
-<<<<<<< HEAD
 page.use('/.well-known/pki-validation/',express.static('verifi'));
 
 /*
-=======
-////////////////
-
->>>>>>> 2bf52c216b63c4f71279b4de85d163e47eeb5582
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/victory/server/raspberryServer/certs/private.key')),
     cert: fs.readFileSync(path.resolve('/home/victory/server/raspberryServer/certs/certificate.crt'))

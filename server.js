@@ -7,7 +7,6 @@ const path = require('path');
 let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
 const asignacion = require('./asignacion.js');
-const { parse } = require('path');
 
 
 let idTemp = 0;
@@ -69,20 +68,9 @@ page.listen(pagePort, () => {
 })
 */
 //
-/*
 
-const httpServer = https.createServer({
-    key: fs.readFileSync(path.resolve('/home/ubuntu/server/certs/private.key')),
-    cert: fs.readFileSync(path.resolve('/home/ubuntu/server/certs/certificate.crt'))
-   
-   },page);
 
-httpServer.listen(puerto,()=>{
-  console.log(`Servidor disponible en el puerto ${puerto}`);
-})
-*/
-
-page.use('/.well-known/pki-validation/',express.static('verifi'));
+//page.use('/.well-known/pki-validation/',express.static('verifi'));
 //carperta verify solo para poner el nuevo archivo para validar
 
 
@@ -116,8 +104,8 @@ page.use((req,res,next)=>{
 })
 page.use('/',express.static(__dirname+'/home'))
 
-const io = require('socket.io')();
-//const io = require('socket.io')(httpServer);
+//const io = require('socket.io')();
+const io = require('socket.io')(httpServer);
 
 page.get('/consulta',(req,res)=>{
     //console.log('Solicitando años');

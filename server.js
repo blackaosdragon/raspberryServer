@@ -87,8 +87,8 @@ page.use('/.well-known/pki-validation/',express.static('verifi'));
 
 
 const httpServer = https.createServer({
-    key: fs.readFileSync(path.resolve('/home/victory/server/raspberryServer/certs/private.key')),
-    cert: fs.readFileSync(path.resolve('/home/victory/server/raspberryServer/certs/certificate.crt'))
+    key: fs.readFileSync(path.resolve('/home/victory/server/gitServer/raspberryServer/certs/private.key')),
+    cert: fs.readFileSync(path.resolve('/home/victory/server/gitServer/raspberryServer/certs/certificate.crt'))
    
    },page);
 

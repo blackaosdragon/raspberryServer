@@ -2,7 +2,7 @@ const tokens = require('./querys.js');
 const admin = require('firebase-admin');
 
 //const serviceAccount = require("/home/ubuntu/home-8bea3-firebase-adminsdk-ilfkz-544a451f7b.json");
-const serviceAccount = require("/home/victory/server/raspberryServer/home-8bea3-firebase-adminsdk-ilfkz-544a451f7b.json");
+const serviceAccount = require("/home/victory/server/gitServer/raspberryServer/home-8bea3-firebase-adminsdk-ilfkz-544a451f7b.json");
 const { response } = require('express');
 
 const url_de_base_de_datos = 'https://home-8bea3.firebaseio.com/'

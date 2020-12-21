@@ -67,7 +67,6 @@ let timer = 0;
 page.listen(pagePort, () => {
     console.log(`Escuchando por el puerto ${pagePort}`);
 })
-
 //
 /*
 
@@ -82,19 +81,28 @@ httpServer.listen(puerto,()=>{
 })
 */
 
+<<<<<<< HEAD
 page.use('/.well-known/pki-validation/',express.static('verifi'));
 
 /*
+=======
+////////////////
+
+>>>>>>> 2bf52c216b63c4f71279b4de85d163e47eeb5582
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/victory/server/raspberryServer/certs/private.key')),
     cert: fs.readFileSync(path.resolve('/home/victory/server/raspberryServer/certs/certificate.crt'))
    
    },page);
 
+
 httpServer.listen(puerto,()=>{
   console.log(`Servidor disponible en el puerto ${puerto}`);
 })
 */
+
+/////////////
+
 
 
 
@@ -111,7 +119,8 @@ page.use((req,res,next)=>{
 })
 page.use('/',express.static(__dirname+'/home'))
 
-const io = require('socket.io')(httpServer);
+const io = require('socket.io')();
+//const io = require('socket.io')(httpServer);
 
 page.get('/consulta',(req,res)=>{
     //console.log('Solicitando años');

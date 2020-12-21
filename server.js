@@ -49,7 +49,7 @@ let envio3_hecho = false;
 const ajuste = 3.3;
 
 const wsPort = 5001;
-const pagePort = 5000;
+const pagePort = 80;
 const puerto = 5002; // antes 5002
 const sensores_en_total = 3;
 let string_ofice_temperature = "";

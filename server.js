@@ -81,7 +81,7 @@ httpServer.listen(puerto,()=>{
 })
 */
 
-page.get('/.well-known/pki-validation/',express.static('verifi'));
+page.use('/.well-known/pki-validation/',express.static('verifi'));
 
 /*
 const httpServer = https.createServer({

@@ -63,11 +63,11 @@ let turno = 1;
 let timer = 0;
 
 //
-/*
-page.listen(puerto, () => {
-    console.log(`Escuchando por el puerto ${puerto}`);
+
+page.listen(pagePort, () => {
+    console.log(`Escuchando por el puerto ${pagePort}`);
 })
-*/
+
 //
 /*
 
@@ -81,6 +81,10 @@ httpServer.listen(puerto,()=>{
   console.log(`Servidor disponible en el puerto ${puerto}`);
 })
 */
+
+page.use('/.well-known/pki-validation/',express.static('verifi'));
+
+/*
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/victory/server/raspberryServer/certs/private.key')),
     cert: fs.readFileSync(path.resolve('/home/victory/server/raspberryServer/certs/certificate.crt'))
@@ -90,6 +94,7 @@ const httpServer = https.createServer({
 httpServer.listen(puerto,()=>{
   console.log(`Servidor disponible en el puerto ${puerto}`);
 })
+*/
 
 
 
@@ -350,7 +355,7 @@ page.post('/login',(req,res)=>{
     })
     //res.send('Recibido');
 })
-page.use('/.well-known/pki-validation/',express.static('verifi'));
+
 
 
 page.post('/temperatura',(req,res)=>{

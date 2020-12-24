@@ -353,30 +353,7 @@ page.post('/login',(req,res)=>{
 
 
 page.post('/temperatura',(req,res)=>{
-    let reloj = new Date();
-    console.log(`ID: ${req.body.id} Temp: ${req.body.temperatura}°C ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
-    let temperatura = parseFloat(req.body.temperatura);
-    let lugar = asignar.asignar_ubicacion(req.body.id);
-    if(temperatura<3.3 || temperatura>7.7){
-        tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
-    }
-    if (temperatura<3){
-        temperatura = (2.99 + Math.random()).toPrecision(2);
-        tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
-        console.log("Enviar alerta");
-        //tokens.agregar_aproximado(2,temp_lim_inf,temp_lim);
 
-    } else {
-        tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
-        //tokens.agregar_aproximado(2,temp_lim_inf,temp_lim);
-    }
-    if(req.body.id==1){
-        idTemp = temperatura;
-    } else if (req.body.id==2){
-        id2Temp = temperatura;
-    } else if (req.body.id==3){
-        id3Temp = temperatura;
-    }
     sendTemp = (id) => {
         let temp;
         let temp2;
@@ -401,6 +378,41 @@ page.post('/temperatura',(req,res)=>{
             //mensajes.notificacion_temperatura(temp3,ubicacion);
         }
     }
+
+    let reloj = new Date();
+    console.log(`ID: ${req.body.id} Temp: ${req.body.temperatura}°C ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
+    let temperatura = parseFloat(req.body.temperatura);
+    let lugar = asignar.asignar_ubicacion(req.body.id);
+    if(temperatura<3.3 || temperatura>7.7){
+        tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
+    }
+    if (temperatura<3){
+        temperatura = (2.99 + Math.random()).toPrecision(2);
+        tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
+        if(Number.isNaN(req.body.id)){
+            console.log("Error al convertir para enviar la alerta")
+        } else {
+            let id = Number.parseInt(req.body.id)
+            console.log("Enviar alerta")
+            sendTemp(id);
+        }
+        //sendTemp()
+        
+        //tokens.agregar_aproximado(2,temp_lim_inf,temp_lim);
+
+    } else {
+        tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
+        //tokens.agregar_aproximado(2,temp_lim_inf,temp_lim);
+    }
+    if(req.body.id==1){
+        idTemp = temperatura;
+    } else if (req.body.id==2){
+        id2Temp = temperatura;
+    } else if (req.body.id==3){
+        id3Temp = temperatura;
+    }
+    
+
     //console.log(req);
     let registro = new Date();
     let horas = parseInt(registro.getHours());

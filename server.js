@@ -363,7 +363,9 @@ page.post('/temperatura',(req,res)=>{
     if (temperatura<3){
         temperatura = (2.99 + Math.random()).toPrecision(2);
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
+        console.log("Enviar alerta");
         //tokens.agregar_aproximado(2,temp_lim_inf,temp_lim);
+
     } else {
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
         //tokens.agregar_aproximado(2,temp_lim_inf,temp_lim);
@@ -485,7 +487,7 @@ page.post('/temperatura',(req,res)=>{
     }
     //console.log(`Resta: ${registro.getMinutes()}-${minutos1Plasmado} = ${parseInt(registro.getMinutes())-minutos1Plasmado}`);
     //console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
-
+    
     if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)==0 && envio_hecho==false && temp1_irregular==true){
         envio_hecho = true;
         //console.log("Se va a enviar una alerta por id 1");

@@ -394,7 +394,7 @@ page.post('/temperatura',(req,res)=>{
         } else {
             let id = Number.parseInt(req.body.id)
             console.log("Enviar alerta")
-            sendTemp(id);
+            //sendTemp(id);
         }
         //sendTemp()
         

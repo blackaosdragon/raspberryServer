@@ -386,6 +386,40 @@ page.post('/temperatura',(req,res)=>{
     if(temperatura<3.3 || temperatura>7.7){
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
+    if (temperatura>5.8){
+        if(Number.isNaN(req.body.id)){
+            console.log("Error al convertir para enviar la alerta")
+        } else {
+            let cronometro = setInterval( ()=> {
+                let contador = new Date();
+                let horas;
+                let minutos;
+                let segundos;
+                let contadorMInutos = 0;
+                let contadorSegundos = 0;
+                if(Number.isNaN(contador.getHours()) && 
+                    Number.isNaN(contador.getMinutes()) && 
+                      Number.isNaN(contador.getSeconds())){
+                          console.log("Un dato de la fecha no es numero")
+                } else {
+                    horas = parseInt(contador.getHours());
+                    minutos = parseInt(contador.getMinutes());
+                    segundos = parseInt(contador.getSeconds());
+                    console.log(`Time: ${horas} : ${minutos} : ${segundos}`);
+                    if(contadorSegundos<60){
+                        contadorSegundos++
+                    } else if(contadorSegundos==60){
+                        contadorMInutos++;
+                        contadorSegundos=0;
+                    }
+                    console.log(`${contadorMInutos} : ${contadorSegundos}`)
+
+                }
+            },1000);
+            let id = parseInt(req.body.id);
+            //sendTemp(id)
+        }
+    }
     if (temperatura<3){
         temperatura = (2.99 + Math.random()).toPrecision(2);
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);

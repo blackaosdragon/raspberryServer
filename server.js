@@ -421,6 +421,8 @@ page.post('/temperatura',(req,res)=>{
             //sendTemp(id)
         }
     }*/
+    /*
+
     let tempAnormal = 0
     if (temperatura>5.8){
         tempAnormal++;
@@ -445,6 +447,7 @@ page.post('/temperatura',(req,res)=>{
             clearInterval(cronometro)
         }
     } 
+    */
     if (temperatura<3){
         temperatura = (2.99 + Math.random()).toPrecision(2);
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);

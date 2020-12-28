@@ -387,7 +387,7 @@ page.post('/temperatura',(req,res)=>{
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
     /*
-    if (temperatura>5.8){
+    if(algo){
         if(Number.isNaN(req.body.id)){
             console.log("Error al convertir para enviar la alerta")
         } else {
@@ -420,8 +420,31 @@ page.post('/temperatura',(req,res)=>{
             let id = parseInt(req.body.id);
             //sendTemp(id)
         }
-       
-    } */
+    }*/
+    let tempAnormal = 0
+    if (temperatura>5.8){
+        tempAnormal++;
+        if(tempAnormal==1){
+            let contadorMinutos = 0;
+            let contadorSegundos = 0;
+            let cronometro = setInterval(()=>{
+                //contadorSegundos++
+                if(contadorSegundos==60){
+                    contadorSegundos=0;
+                    contadorMinutos++;
+                }
+                else if (contadorSegundos<60){
+                    contadorSegundos++;
+                } else {
+                    console.log("Khe? ",contadorSegundos);
+                }
+            },1000)
+        }
+        if(temperatura<4.1){
+            tempAnormal = 0;
+            clearInterval(cronometro)
+        }
+    } 
     if (temperatura<3){
         temperatura = (2.99 + Math.random()).toPrecision(2);
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);

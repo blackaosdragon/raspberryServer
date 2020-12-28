@@ -386,6 +386,7 @@ page.post('/temperatura',(req,res)=>{
     if(temperatura<3.3 || temperatura>7.7){
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
+    /*
     if (temperatura>5.8){
         if(Number.isNaN(req.body.id)){
             console.log("Error al convertir para enviar la alerta")
@@ -419,7 +420,8 @@ page.post('/temperatura',(req,res)=>{
             let id = parseInt(req.body.id);
             //sendTemp(id)
         }
-    }
+       
+    } */
     if (temperatura<3){
         temperatura = (2.99 + Math.random()).toPrecision(2);
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);

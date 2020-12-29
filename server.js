@@ -434,7 +434,7 @@ page.post('/temperatura',(req,res)=>{
             let cronometro = setInterval(()=>{
                 console.log(`Time: ${contadorMinutos}:${contadorSegundos}`);
                 //contadorSegundos++
-                if(contadorSegundos==60){
+                if(contadorSegundos==59){
                     contadorSegundos=0;
                     contadorMinutos++;
                 }

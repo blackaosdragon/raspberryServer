@@ -432,7 +432,7 @@ page.post('/temperatura',(req,res)=>{
             let contadorMinutos = 0;
             let contadorSegundos = 0;
             let cronometro = setInterval(()=>{
-                console.log(`Time: ${contadorMinutos}:${contadorSegundos}`);
+                console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura anormal: ${tempAnormal}`);
                 //contadorSegundos++
                 if(contadorSegundos==59){
                     contadorSegundos=0;
@@ -443,11 +443,13 @@ page.post('/temperatura',(req,res)=>{
                 } else {
                     console.log("Khe? ",contadorSegundos);
                 }
-            },1000)
-        }
-        if(temperatura<4.1){
-            tempAnormal = 0;
-            clearInterval(cronometro)
+            },1000);
+            if(temperatura<5.5){
+                tempAnormal = 0;
+                clearInterval(cronometro)
+            }
+        } else {
+            
         }
     } 
     

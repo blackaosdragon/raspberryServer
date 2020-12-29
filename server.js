@@ -484,7 +484,9 @@ page.post('/temperatura',(req,res)=>{
         } else {
 
         }
-    } 
+    } else {
+        confirmarTemp = req.body.temperatura;
+    }
     
     if (temperatura<3){
         temperatura = (2.99 + Math.random()).toPrecision(2);

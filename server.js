@@ -424,23 +424,32 @@ page.post('/temperatura',(req,res)=>{
     }*/
     
 
-    function contar(){
-        console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura anormal: ${tempAnormal}`);
-        if(contadorSegundos<59){
-            contadorSegundos++;
-        }
-        if(contadorSegundos==59){
-            contadorMinutos++;
-            contadorSegundos=0;
-        }
-    }
+    
     if (temperatura>5.8){
         tempAnormal++;
         //console.log("Temperatura anormal: ",tempAnormal);
         if(tempAnormal==1){
             let contadorMinutos = 0;
             let contadorSegundos = 0;
-            let cronometro = setInterval(contar,1000)
+            var cronometro = setInterval(contar,1000)
+            function contar(){
+                console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura anormal: ${tempAnormal}`);
+                if(contadorSegundos<59){
+                    contadorSegundos++;
+                }
+                if(contadorSegundos==59){
+                    contadorMinutos++;
+                    contadorSegundos=0;
+                }
+                if(contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0){
+                    console.log("Detener el intervalo");
+                    clearInterval(cronometro);
+                }
+            }
+            if(temperatura<5.5){
+                console.log("detener contador")
+                clearInterval(cronometro);
+            }
                 /*
                 console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura anormal: ${tempAnormal}`);
                 //contadorSegundos++

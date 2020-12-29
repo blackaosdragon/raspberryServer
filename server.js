@@ -395,7 +395,13 @@ page.post('/temperatura',(req,res)=>{
         if(tempAnormal==1){
             let contadorMinutos = 0;
             let contadorSegundos = 0;
-            var cronometro = setInterval(()=>contar(req.body.id),1000)
+            let identificador = req.body.id;
+            if(identificador==1){
+                var cronometro = setInterval(()=>contar(req.body.id),1000);
+            } else if(identificador==2){
+                var cronometro = setInterval(()=>contar(req.body.id),1000);
+            }
+            var cronometro = setInterval(()=>contar(req.body.id),1000);
             function contar(id){
                 console.log(`Time: ${contadorMinutos}:${contadorSegundos} / ID: ${id} Temperatura: ${confirmarTemp} Contador: ${tempAnormal}`);
                 if(contadorSegundos<60){

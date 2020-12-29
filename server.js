@@ -388,98 +388,36 @@ page.post('/temperatura',(req,res)=>{
     if(temperatura<3.3 || temperatura>7.7){
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
-    /*
-    if(algo){
-        if(Number.isNaN(req.body.id)){
-            console.log("Error al convertir para enviar la alerta")
-        } else {
-            let cronometro = setInterval( ()=> {
-                let contador = new Date();
-                let horas;
-                let minutos;
-                let segundos;
-                let contadorMInutos = 0;
-                let contadorSegundos = 0;
-                if(Number.isNaN(contador.getHours()) && 
-                    Number.isNaN(contador.getMinutes()) && 
-                      Number.isNaN(contador.getSeconds())){
-                          console.log("Un dato de la fecha no es numero")
-                } else {
-                    horas = parseInt(contador.getHours());
-                    minutos = parseInt(contador.getMinutes());
-                    segundos = parseInt(contador.getSeconds());
-                    console.log(`Time: ${horas} : ${minutos} : ${segundos}`);
-                    if(contadorSegundos<60){
-                        contadorSegundos++
-                    } else if(contadorSegundos==60){
-                        contadorMInutos++;
-                        contadorSegundos=0;
-                    }
-                    console.log(`${contadorMInutos} : ${contadorSegundos}`)
-
-                }
-            },1000);
-            let id = parseInt(req.body.id);
-            //sendTemp(id)
+    ////// onlyfunction
+    function contar(id){
+                
+        console.log(`Time: ${contadorMinutos}:${contadorSegundos} / ID: ${id} Temperatura: ${confirmarTemp} Contador: ${tempAnormal}`);
+        if(contadorSegundos<60){
+            contadorSegundos++;
         }
-    }*/
-    
-
-    
-    if (temperatura>5.8){
+        if(contadorSegundos==60){
+            contadorMinutos++;
+            contadorSegundos=0;
+        }
+        
+        if(confirmarTemp<5.5){
+            console.log("Detener el intervalo");
+            clearInterval(cronometro);
+            tempAnormal=0;
+        } else if( contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0 && confirmarTemp>5.8){
+            console.log("Enviar alerta")
+        }
+        
+    }
+    ////////
+    if (temperatura>6 && temperatura<3){
         tempAnormal++;
         confirmarTemp = req.body.temperatura;
         //console.log("Temperatura anormal: ",tempAnormal);
         if(tempAnormal==1){
             let contadorMinutos = 0;
             let contadorSegundos = 0;
-            var cronometro = setInterval(contar,1000)
-            function contar(){
-                
-                console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura: ${confirmarTemp} Contador: ${tempAnormal}`);
-                if(contadorSegundos<60){
-                    contadorSegundos++;
-                }
-                if(contadorSegundos==60){
-                    contadorMinutos++;
-                    contadorSegundos=0;
-                }
-                
-                if(confirmarTemp<5.5){
-                    console.log("Detener el intervalo");
-                    clearInterval(cronometro);
-                    tempAnormal=0;
-                } else if( contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0 && confirmarTemp>5.8){
-                    console.log("Enviar alerta")
-                }
-                
-            }
-            /*
-            if(temperatura<5.5){
-                console.log("detener contador")
-                clearInterval(cronometro);
-            }
-            */
-                /*
-                console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura anormal: ${tempAnormal}`);
-                //contadorSegundos++
-                if(contadorSegundos==59){
-                    contadorSegundos=0;
-                    contadorMinutos++;
-                }
-                else if (contadorSegundos<59){
-                    contadorSegundos++;
-                } else {
-                    console.log("Khe? ",contadorSegundos);
-                }
-                if(contadorMinutos%2==0 && contadorSegundos%30==0 && contadorMinutos!=0){
-                    console.log("Enviar alerta");
-                }
-                if(temperatura<5.5){
-                    tempAnormal = 0;
-                    clearInterval(cronometro)
-                }
-                */
+            var cronometro = setInterval(contar(req.body.id),1000)
             
         } else {
 

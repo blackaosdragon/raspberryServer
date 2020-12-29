@@ -403,7 +403,7 @@ page.post('/temperatura',(req,res)=>{
             } else if(identificador==2){
                 var cronometro = setInterval(()=>contar(req.body.id),1000);
             }
-            var cronometro = setInterval(()=>contar(req.body.id),1000);
+            //var cronometro = setInterval(()=>contar(req.body.id),1000);
             function contar(id){
                 console.log(`Time: ${contadorMinutos}:${contadorSegundos} / ID: ${id} Temperatura: ${confirmarTemp} Contador: ${tempAnormal}`);
                 if(contadorSegundos<60){

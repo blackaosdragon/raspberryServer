@@ -388,7 +388,7 @@ page.post('/temperatura',(req,res)=>{
     if(temperatura<3.3 || temperatura>7.7){
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
-    if (temperatura>6 && temperatura<3){
+    if (temperatura>6 || temperatura<3){
         tempAnormal++;
         confirmarTemp = req.body.temperatura;
         //console.log("Temperatura anormal: ",tempAnormal);

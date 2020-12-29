@@ -27,6 +27,7 @@ let temp3_irregular=false;
 let medida_de_error = -10; //a partir de -10 las medidas ya son de error ya que las camaras no bajan mas
 let tempAnormal = 0
 let confirmarTemp = 0;
+let identificador=0
 
 let contador_de_error = 0;
 
@@ -391,11 +392,12 @@ page.post('/temperatura',(req,res)=>{
     if (temperatura>6 || temperatura<3){
         tempAnormal++;
         confirmarTemp = req.body.temperatura;
+        identificador = req.body.id;
         //console.log("Temperatura anormal: ",tempAnormal);
         if(tempAnormal==1){
             let contadorMinutos = 0;
             let contadorSegundos = 0;
-            let identificador = req.body.id;
+            
             if(identificador==1){
                 var cronometro = setInterval(()=>contar(req.body.id),1000);
             } else if(identificador==2){

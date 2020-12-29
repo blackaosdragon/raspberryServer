@@ -443,14 +443,15 @@ page.post('/temperatura',(req,res)=>{
                 } else {
                     console.log("Khe? ",contadorSegundos);
                 }
-                if(contadorMinutos%2==0 && contadorSegundos%30){
+                if(contadorMinutos%2==0 && contadorSegundos%30==0){
                     console.log("Enviar alerta");
                 }
+                if(temperatura<5.5){
+                    tempAnormal = 0;
+                    clearInterval(cronometro)
+                }
             },1000);
-            if(temperatura<5.5){
-                tempAnormal = 0;
-                clearInterval(cronometro)
-            }
+            
         } else {
 
         }

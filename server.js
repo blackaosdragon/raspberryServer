@@ -26,6 +26,7 @@ let temp2_irregular=false;
 let temp3_irregular=false;
 let medida_de_error = -10; //a partir de -10 las medidas ya son de error ya que las camaras no bajan mas
 let tempAnormal = 0
+let confirmarTemp = 0;
 
 let contador_de_error = 0;
 
@@ -433,7 +434,7 @@ page.post('/temperatura',(req,res)=>{
             let contadorSegundos = 0;
             var cronometro = setInterval(contar,1000)
             function contar(){
-                let confirmarTemp = req.body.temperatura;
+                confirmarTemp = req.body.temperatura;
                 console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura: ${confirmarTemp} Contador: ${tempAnormal}`);
                 if(contadorSegundos<60){
                     contadorSegundos++;

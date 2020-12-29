@@ -421,7 +421,7 @@ page.post('/temperatura',(req,res)=>{
             //sendTemp(id)
         }
     }*/
-    /*
+    
 
     let tempAnormal = 0
     if (temperatura>5.8){
@@ -430,6 +430,7 @@ page.post('/temperatura',(req,res)=>{
             let contadorMinutos = 0;
             let contadorSegundos = 0;
             let cronometro = setInterval(()=>{
+                console.log(`Time: ${contadorMinutos}:${contadorSegundos}`);
                 //contadorSegundos++
                 if(contadorSegundos==60){
                     contadorSegundos=0;
@@ -447,7 +448,7 @@ page.post('/temperatura',(req,res)=>{
             clearInterval(cronometro)
         }
     } 
-    */
+    
     if (temperatura<3){
         temperatura = (2.99 + Math.random()).toPrecision(2);
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);

@@ -428,13 +428,14 @@ page.post('/temperatura',(req,res)=>{
     
     if (temperatura>5.8){
         tempAnormal++;
+        confirmarTemp = req.body.temperatura;
         //console.log("Temperatura anormal: ",tempAnormal);
         if(tempAnormal==1){
             let contadorMinutos = 0;
             let contadorSegundos = 0;
             var cronometro = setInterval(contar,1000)
             function contar(){
-                confirmarTemp = req.body.temperatura;
+                
                 console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura: ${confirmarTemp} Contador: ${tempAnormal}`);
                 if(contadorSegundos<60){
                     contadorSegundos++;

@@ -425,6 +425,7 @@ page.post('/temperatura',(req,res)=>{
 
     let tempAnormal = 0
     if (temperatura>5.8){
+        console.log("Temperatura anormal: ",tempAnormal);
         tempAnormal++;
         if(tempAnormal==1){
             let contadorMinutos = 0;
@@ -436,7 +437,7 @@ page.post('/temperatura',(req,res)=>{
                     contadorSegundos=0;
                     contadorMinutos++;
                 }
-                else if (contadorSegundos<60){
+                else if (contadorSegundos<59){
                     contadorSegundos++;
                 } else {
                     console.log("Khe? ",contadorSegundos);

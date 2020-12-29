@@ -7,6 +7,7 @@ const path = require('path');
 let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
 const asignacion = require('./asignacion.js');
+const { notificacion_temperatura } = require('./fcmessage.js');
 
 
 let idTemp = 0;
@@ -389,7 +390,7 @@ page.post('/temperatura',(req,res)=>{
     if(temperatura<3.3 || temperatura>7.7){
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
-    if (temperatura>6 || temperatura<3){
+    if (temperatura>9.0 || temperatura<-3){
         tempAnormal++;
         confirmarTemp = req.body.temperatura;
         identificador = req.body.id;
@@ -419,7 +420,8 @@ page.post('/temperatura',(req,res)=>{
                     clearInterval(cronometro);
                     tempAnormal=0;
                 } else if( contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0 && (confirmarTemp>5.8 || confirmarTemp<3)){
-                    console.log("Enviar alerta")
+                    console.log("Enviar alerta");
+                    sendTemp(id);
                 }
                 
             }

@@ -434,10 +434,10 @@ page.post('/temperatura',(req,res)=>{
             var cronometro = setInterval(contar,1000)
             function contar(){
                 console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura anormal: ${tempAnormal}`);
-                if(contadorSegundos<59){
+                if(contadorSegundos<60){
                     contadorSegundos++;
                 }
-                if(contadorSegundos==59){
+                if(contadorSegundos==60){
                     contadorMinutos++;
                     contadorSegundos=0;
                 }

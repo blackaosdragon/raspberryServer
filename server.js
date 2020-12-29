@@ -25,6 +25,7 @@ let temp1_irregular=false;
 let temp2_irregular=false;
 let temp3_irregular=false;
 let medida_de_error = -10; //a partir de -10 las medidas ya son de error ya que las camaras no bajan mas
+let tempAnormal = 0
 
 let contador_de_error = 0;
 
@@ -423,7 +424,7 @@ page.post('/temperatura',(req,res)=>{
     }*/
     
 
-    let tempAnormal = 0
+    
     if (temperatura>5.8){
         tempAnormal++;
         console.log("Temperatura anormal: ",tempAnormal);

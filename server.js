@@ -436,7 +436,7 @@ page.post('/temperatura',(req,res)=>{
             var cronometro = setInterval(contar,1000)
             function contar(){
                 
-                console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura: ${confirmarTemp} - ${req.body.temperatura} Contador: ${tempAnormal}`);
+                console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura: ${confirmarTemp} Contador: ${tempAnormal}`);
                 if(contadorSegundos<60){
                     contadorSegundos++;
                 }
@@ -445,10 +445,12 @@ page.post('/temperatura',(req,res)=>{
                     contadorSegundos=0;
                 }
                 
-                if(contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0){
+                if(confirmarTemp<5.5){
                     console.log("Detener el intervalo");
                     clearInterval(cronometro);
                     tempAnormal=0;
+                } else if( contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0 && confirmarTemp>5.8){
+                    console.log("Enviar alerta")
                 }
                 
             }

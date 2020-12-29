@@ -436,7 +436,7 @@ page.post('/temperatura',(req,res)=>{
             var cronometro = setInterval(contar,1000)
             function contar(){
                 
-                console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura: ${confirmarTemp} Contador: ${tempAnormal}`);
+                console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura: ${confirmarTemp} - ${req.body.temperatura} Contador: ${tempAnormal}`);
                 if(contadorSegundos<60){
                     contadorSegundos++;
                 }

@@ -427,7 +427,7 @@ page.post('/temperatura',(req,res)=>{
     
     if (temperatura>5.8){
         tempAnormal++;
-        console.log("Temperatura anormal: ",tempAnormal);
+        //console.log("Temperatura anormal: ",tempAnormal);
         if(tempAnormal==1){
             let contadorMinutos = 0;
             let contadorSegundos = 0;
@@ -443,13 +443,16 @@ page.post('/temperatura',(req,res)=>{
                 } else {
                     console.log("Khe? ",contadorSegundos);
                 }
+                if(contadorMinutos%2==0 && contadorSegundos%30){
+                    console.log("Enviar alerta");
+                }
             },1000);
             if(temperatura<5.5){
                 tempAnormal = 0;
                 clearInterval(cronometro)
             }
         } else {
-            
+
         }
     } 
     

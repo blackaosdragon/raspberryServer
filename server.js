@@ -388,6 +388,25 @@ page.post('/temperatura',(req,res)=>{
     if(temperatura<3.3 || temperatura>7.7){
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
+    function contar(id){                
+        console.log(`Time: ${contadorMinutos}:${contadorSegundos} / ID: ${id} Temperatura: ${confirmarTemp} Contador: ${tempAnormal}`);
+        if(contadorSegundos<60){
+            contadorSegundos++;
+        }
+        if(contadorSegundos==60){
+            contadorMinutos++;
+            contadorSegundos=0;
+        }
+        
+        if(confirmarTemp<5.5 && confirmarTemp>3.1){
+            console.log("Detener el intervalo");
+            clearInterval(cronometro);
+            tempAnormal=0;
+        } else if( contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0 && (confirmarTemp>5.8 || confirmarTemp<3)){
+            console.log("Enviar alerta")
+        }
+        
+    }
     if (temperatura>6 || temperatura<3){
         tempAnormal++;
         confirmarTemp = req.body.temperatura;
@@ -396,25 +415,7 @@ page.post('/temperatura',(req,res)=>{
             let contadorMinutos = 0;
             let contadorSegundos = 0;
             var cronometro = setInterval(()=>contar(req.body.id),1000)
-            function contar(id){                
-                console.log(`Time: ${contadorMinutos}:${contadorSegundos} / ID: ${id} Temperatura: ${confirmarTemp} Contador: ${tempAnormal}`);
-                if(contadorSegundos<60){
-                    contadorSegundos++;
-                }
-                if(contadorSegundos==60){
-                    contadorMinutos++;
-                    contadorSegundos=0;
-                }
-                
-                if(confirmarTemp<5.5 && confirmarTemp>3.1){
-                    console.log("Detener el intervalo");
-                    clearInterval(cronometro);
-                    tempAnormal=0;
-                } else if( contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0 && (confirmarTemp>5.8 || confirmarTemp<3)){
-                    console.log("Enviar alerta")
-                }
-                
-            }
+            
         } else {
 
         }

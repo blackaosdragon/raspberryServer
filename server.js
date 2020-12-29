@@ -441,18 +441,20 @@ page.post('/temperatura',(req,res)=>{
                     contadorMinutos++;
                     contadorSegundos=0;
                 }
-                /*
+                
                 if(contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0){
                     console.log("Detener el intervalo");
                     clearInterval(cronometro);
                     tempAnormal=0;
                 }
-                */
+                
             }
+            /*
             if(temperatura<5.5){
                 console.log("detener contador")
                 clearInterval(cronometro);
             }
+            */
                 /*
                 console.log(`Time: ${contadorMinutos}:${contadorSegundos} / Temperatura anormal: ${tempAnormal}`);
                 //contadorSegundos++

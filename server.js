@@ -407,7 +407,7 @@ page.post('/temperatura',(req,res)=>{
                     contadorSegundos=0;
                 }
                 
-                if(confirmarTemp<5.5){
+                if(confirmarTemp<5.5 && confirmarTemp>3.1){
                     console.log("Detener el intervalo");
                     clearInterval(cronometro);
                     tempAnormal=0;

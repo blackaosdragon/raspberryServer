@@ -400,9 +400,9 @@ page.post('/temperatura',(req,res)=>{
             let contadorSegundos = 0;
             
             if(identificador==1){
-                var cronometro = setInterval(()=>contar(req.body.id),1000);
+                var cronometro1 = setInterval(()=>contar(req.body.id),1000);
             } else if(identificador==2){
-                var cronometro = setInterval(()=>contar(req.body.id),1000);
+                var cronometro2 = setInterval(()=>contar(req.body.id),1000);
             }
             //var cronometro = setInterval(()=>contar(req.body.id),1000);
             function contar(id){
@@ -415,13 +415,16 @@ page.post('/temperatura',(req,res)=>{
                     contadorSegundos=0;
                 }
                 
-                if(confirmarTemp<=8 && confirmarTemp>=3){
-                    console.log("Detener el intervalo");
-                    clearInterval(cronometro);
+                if(confirmarTemp<=8 && confirmarTemp>=3 && id==1){
+                    console.log("Detener el intervalo de dieto");
+                    clearInterval(cronometro1);
                     tempAnormal=0;
                 } else if( contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0 && (confirmarTemp>8  || confirmarTemp<3)){
                     console.log("Enviar alerta");
                     sendTemp(id);
+                } else if ( confirmarTemp<=8 && confirmarTemp>=3 && id==2){
+                    console.log("Detener contador de farmacia");
+                    clearInterval(cronometro2);
                 }
                 
             }

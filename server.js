@@ -418,7 +418,7 @@ page.post('/temperatura',(req,res)=>{
                     contadorSegundos=0;
                 }
                 
-                if(confirmarTemp<=temp_prueba_limite_superior && confirmarTemp>=temp_prueba_limite_inferior && id==1){
+                if(confirmarTemp<=temp_prueba_limite_superior && confirmarTemp>=temp_prueba_limite_inferior && req.body.id==1){
                     console.log("Detener el intervalo de dieto");
                     console.log(`Contador detenido por: Temperatura: ${confirmarTemp}/${temperatura} id: ${id}`)
                     clearInterval(cronometro1);
@@ -426,7 +426,7 @@ page.post('/temperatura',(req,res)=>{
                 } else if( contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0 && (confirmarTemp>temp_prueba_limite_superior || confirmarTemp<temp_prueba_limite_inferior)){
                     console.log("Enviar alerta");
                     sendTemp(id);
-                } else if ( confirmarTemp<=temp_prueba_limite_superior && confirmarTemp>=temp_prueba_limite_inferior && id==2){
+                } else if ( confirmarTemp<=temp_prueba_limite_superior && confirmarTemp>=temp_prueba_limite_inferior && req.body.id==2){
                     console.log(`Contador detenido por: Temperatura: ${confirmarTemp}/${temperatura} id: ${id}`)
                     console.log("Detener contador de farmacia");
                     clearInterval(cronometro2);
@@ -439,7 +439,7 @@ page.post('/temperatura',(req,res)=>{
         }
     } else {
         confirmarTemp = req.body.temperatura;
-        identificador = req.body.id;
+        //identificador = req.body.id;
     }
     
     if (temperatura<3){

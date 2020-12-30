@@ -403,9 +403,9 @@ page.post('/temperatura',(req,res)=>{
             let contadorSegundos = 0;
             
             if(identificador==1){
-                var cronometro1 = setInterval(()=>contar(req.body.id),1000);
+                var cronometro1 = setInterval(()=>contar(identificador),1000);
             } else if(identificador==2){
-                var cronometro2 = setInterval(()=>contar(req.body.id),1000);
+                var cronometro2 = setInterval(()=>contar(identificador),1000);
             }
             //var cronometro = setInterval(()=>contar(req.body.id),1000);
             function contar(id){

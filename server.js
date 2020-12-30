@@ -394,6 +394,7 @@ page.post('/temperatura',(req,res)=>{
     }
     if (temperatura>=temp_prueba_limite_superior || temperatura<=temp_prueba_limite_inferior){
         tempAnormal++;
+        console.log(` Contador: ${tempAnormal}`)
         confirmarTemp = req.body.temperatura;
         identificador = req.body.id;
         //console.log("Temperatura anormal: ",tempAnormal);
@@ -408,7 +409,7 @@ page.post('/temperatura',(req,res)=>{
             }
             //var cronometro = setInterval(()=>contar(req.body.id),1000);
             function contar(id){
-                console.log(`Time: ${contadorMinutos}:${contadorSegundos} / ID: ${id} Temperatura: ${confirmarTemp} Contador: ${tempAnormal}`);
+                console.log(`Time: ${contadorMinutos}:${contadorSegundos} / ID: ${id} Temperatura: ${confirmarTemp}`);
                 if(contadorSegundos<60){
                     contadorSegundos++;
                 }

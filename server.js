@@ -390,7 +390,7 @@ page.post('/temperatura',(req,res)=>{
     if(temperatura<3.3 || temperatura>7.7){
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
-    if (temperatura>9.0 || temperatura<-3){
+    if (temperatura>=8 || temperatura<=3){
         tempAnormal++;
         confirmarTemp = req.body.temperatura;
         identificador = req.body.id;
@@ -415,11 +415,11 @@ page.post('/temperatura',(req,res)=>{
                     contadorSegundos=0;
                 }
                 
-                if(confirmarTemp<5.5 && confirmarTemp>3.1){
+                if(confirmarTemp<=8 && confirmarTemp>=3){
                     console.log("Detener el intervalo");
                     clearInterval(cronometro);
                     tempAnormal=0;
-                } else if( contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0 && (confirmarTemp>5.8 || confirmarTemp<3)){
+                } else if( contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0 && (confirmarTemp>8  || confirmarTemp<3)){
                     console.log("Enviar alerta");
                     sendTemp(id);
                 }
@@ -430,6 +430,7 @@ page.post('/temperatura',(req,res)=>{
         }
     } else {
         confirmarTemp = req.body.temperatura;
+        identificador = req.body.id;
     }
     
     if (temperatura<3){

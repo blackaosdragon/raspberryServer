@@ -29,8 +29,8 @@ let medida_de_error = -10; //a partir de -10 las medidas ya son de error ya que 
 let tempAnormal = 0
 let confirmarTemp = 0;
 let identificador=0;
-let temp_prueba_limite_superior = 6;
-let temp_prueba_limite_inferior = 4.5;
+let temp_prueba_limite_superior = 8.1;
+let temp_prueba_limite_inferior = 2.9;
 
 let contador_de_error = 0;
 
@@ -384,6 +384,9 @@ page.post('/temperatura',(req,res)=>{
             //mensajes.notificacion_temperatura(temp3,ubicacion);
         }
     }
+    tiempoLimite = (id,temperatura) => {
+
+    }
 
     let reloj = new Date();
     console.log(`ID: ${req.body.id} Temp: ${req.body.temperatura}°C ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
@@ -392,7 +395,22 @@ page.post('/temperatura',(req,res)=>{
     if(temperatura<3.3 || temperatura>7.7){
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
+
+    let identificador = 0
+    if(isNaN(req.body.id)){
+        console.log("El identificador no es válido")
+    } else {
+        identificador = parseInt(req.body.id)
+    }
+    if(identificador==1){
+
+    } else if (identificador==2){
+
+    } else {
+        console.log(`Identificador: ${identificador} Desconocido`)
+    }
     if (temperatura>=temp_prueba_limite_superior || temperatura<=temp_prueba_limite_inferior){
+        
         tempAnormal++;
         //console.log(` Contador: ${tempAnormal}`)
         confirmarTemp = req.body.temperatura;

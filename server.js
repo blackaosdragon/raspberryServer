@@ -29,7 +29,7 @@ let medida_de_error = -10; //a partir de -10 las medidas ya son de error ya que 
 let tempAnormal = 0
 let confirmarTemp = 0;
 let identificador=0;
-let temp_prueba_limite_superior = 6.8;
+let temp_prueba_limite_superior = 6;
 let temp_prueba_limite_inferior = 4.5;
 
 let contador_de_error = 0;
@@ -420,12 +420,14 @@ page.post('/temperatura',(req,res)=>{
                 
                 if(confirmarTemp<=temp_prueba_limite_superior && confirmarTemp>=temp_prueba_limite_inferior && id==1){
                     console.log("Detener el intervalo de dieto");
+                    console.log(`Contador detenido por: Temperatura: ${confirmarTemp}/${temperatura} id: ${id}`)
                     clearInterval(cronometro1);
                     tempAnormal=0;
                 } else if( contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0 && (confirmarTemp>temp_prueba_limite_superior || confirmarTemp<temp_prueba_limite_inferior)){
                     console.log("Enviar alerta");
                     sendTemp(id);
                 } else if ( confirmarTemp<=temp_prueba_limite_superior && confirmarTemp>=temp_prueba_limite_inferior && id==2){
+                    console.log(`Contador detenido por: Temperatura: ${confirmarTemp}/${temperatura} id: ${id}`)
                     console.log("Detener contador de farmacia");
                     clearInterval(cronometro2);
                 }

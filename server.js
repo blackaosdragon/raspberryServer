@@ -385,7 +385,20 @@ page.post('/temperatura',(req,res)=>{
         }
     }
     tiempoLimite = (id,temperatura) => {
-
+        var crono_1 = setInterval(contar,1000)
+        function contar(){
+            if(segundos<60){
+                segundos++
+            } else if (segundos == 60){
+                segundos==0;
+                minutos++;
+            }
+        }
+    }
+    auditor_temperatura = (temperatura) => {
+        if(temperatura<temp_prueba_limite_inferior && temperatura>temp_prueba_limite_superior){
+            tiempoLimite(id,temperatura);
+        }
     }
 
     let reloj = new Date();
@@ -396,15 +409,16 @@ page.post('/temperatura',(req,res)=>{
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
 
-    let identificador = 0
+    let id_identificador = 0
     if(isNaN(req.body.id)){
         console.log("El identificador no es válido")
     } else {
-        identificador = parseInt(req.body.id)
+        id_identificador = parseInt(req.body.id)
     }
-    if(identificador==1){
+    if(id_identificador==1){
+        
 
-    } else if (identificador==2){
+    } else if (id_identificador==2){
 
     } else {
         console.log(`Identificador: ${identificador} Desconocido`)

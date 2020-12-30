@@ -394,7 +394,7 @@ page.post('/temperatura',(req,res)=>{
     }
     if (temperatura>=temp_prueba_limite_superior || temperatura<=temp_prueba_limite_inferior){
         tempAnormal++;
-        console.log(` Contador: ${tempAnormal}`)
+        //console.log(` Contador: ${tempAnormal}`)
         confirmarTemp = req.body.temperatura;
         identificador = req.body.id;
         //console.log("Temperatura anormal: ",tempAnormal);
@@ -430,6 +430,7 @@ page.post('/temperatura',(req,res)=>{
                     console.log(`Contador detenido por: Temperatura: ${confirmarTemp}/${temperatura} id: ${id}`)
                     console.log("Detener contador de farmacia");
                     clearInterval(cronometro2);
+                    tempAnormal=0;
                 }
                 
             }

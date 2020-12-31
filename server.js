@@ -396,9 +396,35 @@ page.post('/temperatura',(req,res)=>{
         }
     }
     auditor_temperatura = (temperatura) => {
-        if(temperatura<temp_prueba_limite_inferior && temperatura>temp_prueba_limite_superior){
-            tiempoLimite(id,temperatura);
+        let temperatura = 0;
+        let id = 0;
+        if (isNaN(req.body.temperatura) || isNaN(req.body.id)){
+            temperatura = parseFloat(req.body.temperatura);
+            id = parseInt(req.body.id);
+            
         }
+        if(temperatura<temp_prueba_limite_inferior && temperatura>temp_prueba_limite_superior){
+            activador++;
+            //tiempoLimite(id,temperatura);
+            if(id == 1){
+                var cronos_A = setInterval(handle_clock,1000)
+            } else if (id == 2){
+                var cronos_B = setInterval(handle_clock,1000);
+            }
+            function handle_clock(){
+                if(contador<60){
+                    segundos++;
+                } else if (contador==60){
+                    segundos=0;
+                    minutos++;
+                }
+                if(segundos==0 && minutos%2==0){
+                    sendTemp()
+                }
+
+
+            }
+        }  
     }
 
     let reloj = new Date();

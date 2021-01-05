@@ -433,7 +433,7 @@ page.post('/temperatura',(req,res)=>{
             minutos_1++;
         }
         if(id==1){
-            if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){
+            if(temperatura>temp_prueba_limite_inferior && temperatura<temp_prueba_limite_superior){
                 clearInterval(crono_1);
                 inicio_1 = 0
 

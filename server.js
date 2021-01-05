@@ -404,7 +404,7 @@ page.post('/temperatura',(req,res)=>{
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
     //auditor_temperatura(temperatura,lugar);
-    console.log(`id: ${id} temp: ${temperatura}`)
+    //console.log(`id: ${id} temp: ${temperatura}`)
     if(id==1){
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
             console.log("Temperatura irregular id: 1")
@@ -424,7 +424,7 @@ page.post('/temperatura',(req,res)=>{
         }
     }
     function contar_1(){
-        console.log(`id: ${id} temp: ${temperatura} ${minutos}:${segundos}`);
+        console.log(`id: ${id} temp: ${temperatura} / ${req.body.temperatura} ${minutos}:${segundos}`);
         if(segundos_1<60){
             segundos_1++
         }
@@ -436,8 +436,6 @@ page.post('/temperatura',(req,res)=>{
             if(temperatura>temp_prueba_limite_inferior && temperatura<temp_prueba_limite_superior){
                 clearInterval(crono_1);
                 inicio_1 = 0
-
-
                 console.log("Intervalo detenido id 1")
             }
 
@@ -446,7 +444,7 @@ page.post('/temperatura',(req,res)=>{
 
     }
     function contar_2(){
-        console.log(`id: ${id} temp: ${temperatura} ${minutos}:${segundos}`);
+        console.log(`id: ${id} temp: ${temperatura}  / ${req.body.temperatura} ${minutos}:${segundos}`);
         if(segundos_2<60){
             segundos_2++
         }

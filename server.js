@@ -401,6 +401,7 @@ page.post('/temperatura',(req,res)=>{
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
     //auditor_temperatura(temperatura,lugar);
+    console.log(`id: ${id} temp: ${temperatura}`)
     if(id==1){
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
             //console.log("Temperatura irregular id: 1")

@@ -825,7 +825,7 @@ page.post('/temperatura',(req,res)=>{
     */
     let actualizar_temp = 0
     function segundero(id,name){
-        actualizar_temp = req.body.temperatura
+        //actualizar_temp = req.body.temperatura
         console.log(`De: ${name} id: ${id} ${minutos}:${segundos} temp: ${temperatura} / ${actualizar_temp}`);
         if(segundos<60){
             segundos++

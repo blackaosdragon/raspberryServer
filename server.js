@@ -46,6 +46,10 @@ let minutos_2 = 0
 let temp_temporal_1;
 let temp_temporal_2; 
 
+let contador_1 = 0
+let contador_2 = 0
+let contador_3 = 0
+
 const page = express();
 
 
@@ -791,17 +795,29 @@ page.post('/temperatura',(req,res)=>{
     //console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
     if(id==1){
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-            var ciclo_id_1 = setInterval(segundero(id,'identificador 1'),1000)
+            contador_1++
+            if(contador_1==1){
+                var ciclo_id_1 = setInterval(()=>segundero(id,'identificador 1'),1000)
+            }
+            
         }
     } else if(id==2){
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-            var ciclo_id_2 = setInterval(segundero(id,'identificador 2'),1000)
+            contador_2++
+            if(contador_2==1){
+                var ciclo_id_1 = setInterval(()=>segundero(id,'identificador 1'),1000)
+            }
+            var ciclo_id_2 = setInterval(()=>segundero(id,'identificador 2'),1000)
         }
     } else {
 
     }
     if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-        var ciclo_conteo = setInterval(segundero(id,'temperaturas'),1000)
+        contador_3++
+            if(contador_3==1){
+                var ciclo_id_1 = setInterval(()=>segundero(id,'identificador 1'),1000)
+            }
+        var ciclo_conteo = setInterval(()=>segundero(id,'temperaturas'),1000)
     } else {
 
     }

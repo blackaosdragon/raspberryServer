@@ -380,15 +380,14 @@ page.post('/temperatura',(req,res)=>{
             //mensajes.notificacion_temperatura(temp3,ubicacion);
         }
     } 
-    let temperatura = 0;  
-    let lugar;
+    let temperatura = parseFloat(req.body.temperatura);  
+    let lugar = asignar.asignar_ubicacion(req.body.id);
     let id = parseFloat(req.body.id);
 
     let reloj = new Date();
     console.log(`ID: ${req.body.id} Temp: ${req.body.temperatura}°C ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
     if(isNaN(req.body.temperatura) && isNaN(req.body.id)){
-        temperatura = parseFloat(req.body.temperatura);
-        lugar = asignar.asignar_ubicacion(req.body.id);
+        console.log("Datos convertidos")
     } else {
         console.log(`Dato no leible`);
     }

@@ -436,12 +436,6 @@ page.post('/temperatura',(req,res)=>{
                 console.log("Intervalo detenido id 1")
             }
 
-        } else if( id == 2){
-            if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){
-                clearInterval(crono_2);
-                inicio_2 = 0
-                console.log("Intervalo detenido id 2")
-            }
         }
         //if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){}
 
@@ -455,14 +449,7 @@ page.post('/temperatura',(req,res)=>{
             segundos=0;
             minutos++;
         }
-        if(id==1){
-            if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){
-                clearInterval(crono_1);
-                inicio_1 = 0                
-                console.log("Intervalo detenido id 1")
-            }
-
-        } else if( id == 2){
+        if( id == 2){
             if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){
                 clearInterval(crono_2);
                 inicio_2 = 0

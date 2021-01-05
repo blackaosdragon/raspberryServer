@@ -850,14 +850,15 @@ page.post('/temperatura',(req,res)=>{
         let actualizar_temperatura_3 = req.body.temperatura;
         //actualizar_temp = req.body.temperatura
         if(id==1){
-        console.log(`De: ${name} id: ${id} ${minutos}:${segundos} temp: ${actualizar_temp_1}`);
-        if(segundos<60){
-            segundos++
-        }
-        if(segundos==60){
-            minutos++
-            segundos=0
-        }
+            console.log(`De: ${name} id: ${id} ${minutos}:${segundos} temp: ${actualizar_temp_1}`);
+            if(segundos<60){
+                segundos++
+            }
+            if(segundos==60){
+                minutos++
+                segundos=0
+            }
+            clearInterval(ciclo_id_1);
         }
         if(id==2){
             console.log(`De: ${name} id: ${id} ${minutos}:${segundos} temp: ${actualizar_temp_2}`);
@@ -867,6 +868,9 @@ page.post('/temperatura',(req,res)=>{
             if(segundos_2==60){
                 minutos_2++
                 segundos_2=0
+            }
+            if(actualizar_temp_2>temp_prueba_limite_inferior && actualizar_temp_2<temp_prueba_limite_superior){
+                clearInterval(ciclo_id_2);
             }
         }
         

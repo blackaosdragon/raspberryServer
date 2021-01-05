@@ -428,7 +428,7 @@ page.post('/temperatura',(req,res)=>{
     }
     function contar_1(){
         temp_temporal_1 = req.body.temperatura;
-        console.log(`Temp 1: ${temperatura} / ${temp_temporal_1} ${minutos_1}:${segundos_1}`);
+        console.log(`Temp 1: ${temperatura} / ${temp_temporal_1} / ${req.body.temperatura} ${minutos_1}:${segundos_1}`);
         if(segundos_1<60){
             segundos_1++
         }
@@ -442,14 +442,13 @@ page.post('/temperatura',(req,res)=>{
                 inicio_1 = 0;
                 console.log("Intervalo detenido id 1")
             }
-
         }
         //if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){}
 
     }
     function contar_2(){
         temp_temporal_2 = req.body.temperatura;
-        console.log(`Temp 2: ${temperatura}  / ${temp_temporal_2} ${minutos_2}:${segundos_2}`);
+        console.log(`Temp 2: ${temperatura}  / ${temp_temporal_2} / ${req.body.temperatura} ${minutos_2}:${segundos_2}`);
         if(segundos_2<60){
             segundos_2++
         }

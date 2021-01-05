@@ -31,9 +31,13 @@ let confirmarTemp = 0;
 let identificador=0;
 let temp_prueba_limite_superior = 6.5;
 let temp_prueba_limite_inferior = 3.5;
+let segundos = 0;
+let minutos = 0
 
 let contador_de_error = 0;
 
+let inicio_1 = 0
+let inicio_2 = 0
 
 
 const page = express();
@@ -382,7 +386,7 @@ page.post('/temperatura',(req,res)=>{
     } 
     let temperatura = 0;  
     let lugar;
-    let id = parseFloat(req.body.id);
+    let id = parseInt(req.body.id);
 
     let reloj = new Date();
     console.log(`ID: ${req.body.id} Temp: ${req.body.temperatura}°C ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
@@ -397,15 +401,47 @@ page.post('/temperatura',(req,res)=>{
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
     //auditor_temperatura(temperatura,lugar);
-    if(id==1.0){
+    if(id==1){
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-            console.log("Temperatura irregular id: 1")
+            //console.log("Temperatura irregular id: 1")
+            if(inicio_1 > 0){
+                var crono_1 = setInterval(contar,1000)
+            }
+            
         }
 
-    } else if (id==2.0){
+    } else if (id==2){
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-            console.log("Temperatura irregular id: 2")
+            //console.log("Temperatura irregular id: 2")
+            if(inicio_2 > 0){
+                var crono_2 = setInterval(contar,1000)
+            }
+            
         }
+    }
+    function contar(){
+        console.log(`id: ${id} temp: ${temperatura} ${minutos}:${segundos}`);
+        if(segundos<60){
+            segundos++
+        }
+        if (segundos==60){
+            segundos=0;
+            minutos++;
+        }
+        if(id==1){
+            if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){
+                clearInterval(crono_1);
+                console.log("Intervalo detenido id 1")
+            }
+
+        } else if( id == 2){
+            if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){
+                clearInterval(crono_2);
+                console.log("Intervalo detenido id 2")
+            }
+        }
+        //if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){}
+
     }
 /*
     let id_identificador = 0

@@ -439,9 +439,10 @@ page.post('/temperatura',(req,res)=>{
 /*
     let reloj = new Date();
     console.log(`ID: ${req.body.id} Temp: ${req.body.temperatura}°C ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
+    */
     let temperatura = parseFloat(req.body.temperatura);
     let lugar = asignar.asignar_ubicacion(req.body.id);
-*/
+
     if(temperatura<3.3 || temperatura>7.7){
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }

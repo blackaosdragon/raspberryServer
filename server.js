@@ -50,6 +50,8 @@ let contador_1 = 0
 let contador_2 = 0
 let contador_3 = 0
 
+let actualizar_temp_2 =0
+
 const page = express();
 
 
@@ -823,10 +825,12 @@ page.post('/temperatura',(req,res)=>{
 
     }
     */
-    let actualizar_temp = 0
+    let actualizar_temp = req.body.temperatura;
+    actualizar_temp_2 = req.body.temperatura;
     function segundero(id,name){
+        let actualizar_temperatura_3 = req.body.temperatura;
         //actualizar_temp = req.body.temperatura
-        console.log(`De: ${name} id: ${id} ${minutos}:${segundos} temp: ${temperatura} / ${actualizar_temp}`);
+        console.log(`De: ${name} id: ${id} ${minutos}:${segundos} temp: ${temperatura} / ${actualizar_temp} /${actualizar_temperatura_2} / ${actualizar_temperatura_3}`);
         if(segundos<60){
             segundos++
         }
@@ -835,7 +839,7 @@ page.post('/temperatura',(req,res)=>{
             segundos=0
         }
     }
-    actualizar_temp = req.body.temperatura
+    //actualizar_temp = 
 })
 let response = {
     data: 'recibido'

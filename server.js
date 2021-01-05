@@ -405,7 +405,7 @@ page.post('/temperatura',(req,res)=>{
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
             //console.log("Temperatura irregular id: 1")
             inicio_1++;
-            if(inicio_1 > 0){
+            if(inicio_1==0){
                 var crono_1 = setInterval(contar,1000)
             }  
         }
@@ -413,7 +413,7 @@ page.post('/temperatura',(req,res)=>{
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
             //console.log("Temperatura irregular id: 2")
             inicio_2++
-            if(inicio_2 > 0){
+            if(inicio_2==1){
                 var crono_2 = setInterval(contar,1000)
             }
             

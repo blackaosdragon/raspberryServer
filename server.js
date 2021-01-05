@@ -789,12 +789,24 @@ page.post('/temperatura',(req,res)=>{
     });
     
     //console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
-    if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-        var ciclo_conteo = setInterval(segundero,1000)
+    if(id==1){
+        if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
+            var ciclo_id_1 = setInterval(segundero(id,'identificador 1'),1000)
+        }
+    } else if(id==2){
+        if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
+            var ciclo_id_2 = setInterval(segundero(id,'identificador 2'),1000)
+        }
     } else {
 
     }
-    function segundero(){
+    if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
+        var ciclo_conteo = setInterval(segundero(id,'temperaturas'),1000)
+    } else {
+
+    }
+    function segundero(id,name){
+        console.log(`de: ${name} id: ${id} ${minutos}:${segundos}`);
         if(segundos<60){
             segundos++
         }

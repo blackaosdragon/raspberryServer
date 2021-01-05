@@ -428,7 +428,7 @@ page.post('/temperatura',(req,res)=>{
     }
     function contar_1(){
         temp_temporal_1 = req.body.temperatura;
-        console.log(`Temp 1: ${temperatura} / ${temp_temporal_1} ${minutos}:${segundos}`);
+        console.log(`Temp 1: ${temperatura} / ${temp_temporal_1} ${minutos_1}:${segundos_1}`);
         if(segundos_1<60){
             segundos_1++
         }
@@ -449,7 +449,7 @@ page.post('/temperatura',(req,res)=>{
     }
     function contar_2(){
         temp_temporal_2 = req.body.temperatura;
-        console.log(`Temp 2: ${temperatura}  / ${temp_temporal_2} ${minutos}:${segundos}`);
+        console.log(`Temp 2: ${temperatura}  / ${temp_temporal_2} ${minutos_2}:${segundos_2}`);
         if(segundos_2<60){
             segundos_2++
         }

@@ -406,7 +406,7 @@ page.post('/temperatura',(req,res)=>{
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
             console.log("Temperatura irregular id: 1")
             inicio_1++;
-            if(inicio_1==0){
+            if(inicio_1==1){
                 var crono_1 = setInterval(contar_1,1000)
             }
         }

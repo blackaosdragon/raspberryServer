@@ -51,6 +51,7 @@ let contador_2 = 0
 let contador_3 = 0
 
 let actualizar_temp_2 =0
+let actualizar_temp_1 =0
 
 const page = express();
 
@@ -800,16 +801,26 @@ page.post('/temperatura',(req,res)=>{
             contador_1++
             if(contador_1==1){
                 var ciclo_id_1 = setInterval(()=>segundero(id,'identificador 1'),1000)
+                actualizar_temp_1 = req.body.temperatura;
+            } else {
+                
             }
             
+        } else {
+            actualizar_temp_1 = req.body.temperatura;
         }
     } else if(id==2){
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
             contador_2++
             if(contador_2==1){
                 var ciclo_id_2 = setInterval(()=>segundero(id,'identificador 2'),1000)
+                actualizar_temp_2 = req.body.temperatura;
+            } else {
+                
             }
             //var ciclo_id_2 = setInterval(()=>segundero(id,'identificador 2'),1000)
+        } else {
+            actualizar_temp_2 = req.body.temperatura;
         }
     } else {
 

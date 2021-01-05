@@ -382,7 +382,7 @@ page.post('/temperatura',(req,res)=>{
     } 
     let temperatura = 0;  
     let lugar;
-    let id = parseFloet(req.body.id);
+    let id = parseFloat(req.body.id);
 
     let reloj = new Date();
     console.log(`ID: ${req.body.id} Temp: ${req.body.temperatura}°C ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);

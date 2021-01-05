@@ -417,6 +417,7 @@ page.post('/temperatura',(req,res)=>{
             minutos = 0;
             console.log(``)
             if(segundos < 60){
+                console.log()
                 segundos++;
             }
             if(segundos==60){
@@ -435,16 +436,17 @@ page.post('/temperatura',(req,res)=>{
 
         }
     }
-
+/*
     let reloj = new Date();
     console.log(`ID: ${req.body.id} Temp: ${req.body.temperatura}°C ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
     let temperatura = parseFloat(req.body.temperatura);
     let lugar = asignar.asignar_ubicacion(req.body.id);
+*/
     if(temperatura<3.3 || temperatura>7.7){
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
     auditor_temperatura(temperatura,lugar);
-
+/*
     let id_identificador = 0
     if(isNaN(req.body.id)){
         console.log("El identificador no es válido")
@@ -509,7 +511,7 @@ page.post('/temperatura',(req,res)=>{
         confirmarTemp = req.body.temperatura;
         //identificador = req.body.id;
     }
-    
+*/    
     if (temperatura<3){
         temperatura = (2.99 + Math.random()).toPrecision(2);
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);

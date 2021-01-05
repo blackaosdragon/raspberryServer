@@ -29,7 +29,7 @@ let medida_de_error = -10; //a partir de -10 las medidas ya son de error ya que 
 let tempAnormal = 0
 let confirmarTemp = 0;
 let identificador=0;
-let temp_prueba_limite_superior = 6.5;
+let temp_prueba_limite_superior = 5.5;
 let temp_prueba_limite_inferior = 3.5;
 let segundos = 0;
 let minutos = 0
@@ -812,6 +812,7 @@ page.post('/temperatura',(req,res)=>{
     } else {
 
     }
+    /*
     if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
         contador_3++
             if(contador_3==1){
@@ -821,10 +822,11 @@ page.post('/temperatura',(req,res)=>{
     } else {
 
     }
+    */
     let actualizar_temp = 0
     function segundero(id,name){
         actualizar_temp = req.body.temperatura
-        console.log(`de: ${name} id: ${id} ${minutos}:${segundos} temp: ${temperatura} / ${actualizar_temp}`);
+        console.log(`De: ${name} id: ${id} ${minutos}:${segundos} temp: ${temperatura} / ${actualizar_temp}`);
         if(segundos<60){
             segundos++
         }

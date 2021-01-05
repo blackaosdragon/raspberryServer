@@ -815,14 +815,16 @@ page.post('/temperatura',(req,res)=>{
     if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
         contador_3++
             if(contador_3==1){
-                var ciclo_id_3 = setInterval(()=>segundero(id,'identificador 1'),1000)
+                var ciclo_id_3 = setInterval(()=>segundero(id,'temperaturas'),1000)
             }
         //var ciclo_conteo = setInterval(()=>segundero(id,'temperaturas'),1000)
     } else {
 
     }
+    let actualizar_temp = 0
     function segundero(id,name){
-        console.log(`de: ${name} id: ${id} ${minutos}:${segundos}`);
+        actualizar_temp = req.body.temperatura
+        console.log(`de: ${name} id: ${id} ${minutos}:${segundos} temp: ${temperatura} / ${actualizar_temp}`);
         if(segundos<60){
             segundos++
         }
@@ -831,6 +833,7 @@ page.post('/temperatura',(req,res)=>{
             segundos=0
         }
     }
+    actualizar_temp = req.body.temperatura
 })
 let response = {
     data: 'recibido'

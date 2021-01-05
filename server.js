@@ -396,8 +396,8 @@ page.post('/temperatura',(req,res)=>{
         }
     }
     auditor_temperatura = (temperatura,id) => {
-        let temperatura = 0;
-        let id = 0;
+        //let temperatura = 0;
+        //let id = 0;
         if (isNaN(req.body.temperatura) || isNaN(req.body.id)){
             temperatura = parseFloat(req.body.temperatura);
             id = parseInt(req.body.id);

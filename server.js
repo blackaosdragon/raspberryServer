@@ -838,7 +838,14 @@ page.post('/temperatura',(req,res)=>{
     }
     */
     let actualizar_temp = req.body.temperatura;
-    actualizar_temp_2 = req.body.temperatura;
+    if(req.body.id==2){
+        actualizar_temp_2 = req.body.temperatura;
+    }
+    if(req.body.id==1){
+        actualizar_temp_1 = req.body.temperatura;        
+    }
+    
+    
     function segundero(id,name){
         let actualizar_temperatura_3 = req.body.temperatura;
         //actualizar_temp = req.body.temperatura

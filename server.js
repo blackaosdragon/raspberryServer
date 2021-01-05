@@ -408,9 +408,11 @@ page.post('/temperatura',(req,res)=>{
     }
     //auditor_temperatura(temperatura,lugar);
     //console.log(`id: ${id} temp: ${temperatura}`)
+    /*
+
     if(id==1){
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-            console.log("Temperatura irregular id: 1")
+            //console.log("Temperatura irregular id: 1")
             inicio_1++;
             if(inicio_1==1){
                 var crono_1 = setInterval(contar_1,1000)
@@ -426,6 +428,7 @@ page.post('/temperatura',(req,res)=>{
             
         }
     }
+    */
     function contar_1(){
         temp_temporal_1 = req.body.temperatura;
         console.log(`Temp 1: ${temperatura} / ${temp_temporal_1} / ${req.body.temperatura} ${minutos_1}:${segundos_1}`);
@@ -786,6 +789,20 @@ page.post('/temperatura',(req,res)=>{
     });
     
     //console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
+    if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
+        var ciclo_conteo = setInterval(segundero,1000)
+    } else {
+
+    }
+    function segundero(){
+        if(segundos<60){
+            segundos++
+        }
+        if(segundos==60){
+            minutos++
+            segundos=0
+        }
+    }
 })
 let response = {
     data: 'recibido'

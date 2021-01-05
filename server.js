@@ -359,13 +359,10 @@ page.post('/login',(req,res)=>{
 
 
 page.post('/temperatura',(req,res)=>{
-
     sendTemp = (id) => {
         let temp;
         let temp2;
         let temp3;
-        //let id ;
-        //let ubicacion = asignar.asignar_ubicacion(id);
         let ubicacion;
         if(id==1){
             temp = idTemp; 
@@ -379,73 +376,37 @@ page.post('/temperatura',(req,res)=>{
             tokens.insertar_excepcion(temp2,ubicacion,id);
         } else if(id==3){
             temp3 = id3Temp
-            //id = parseInt(req.body.id);
             ubicacion = asignar.asignar_ubicacion(id);
             //mensajes.notificacion_temperatura(temp3,ubicacion);
         }
-    }
-    tiempoLimite = (id,temperatura) => {
-        var crono_1 = setInterval(contar,1000)
-        function contar(){
-            if(segundos<60){
-                segundos++
-            } else if (segundos == 60){
-                segundos==0;
-                minutos++;
-            }
-        }
-    }
-    auditor_temperatura = (temperatura,id) => {
-        //let temperatura = 0;
-        //let id = 0;
-        if (isNaN(req.body.temperatura) || isNaN(req.body.id)){
-            //temperatura = parseFloat(req.body.temperatura);
-            //id = parseInt(req.body.id);
-            
-        }
-        if(id==1){
-            if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-                var tiempo_error_1 = setInterval(tiempo_ciclo(temperatura,id),1000);
-            }
-        } else if(id==2){
-            if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-                var tiempo_error_2 = setInterval(tiempo_ciclo(temperatura,id),1000);
-            }
-        }
-        function tiempo_ciclo(temperatura,id){
-            segundos = 0;
-            minutos = 0;
-            console.log(`ID: ${id} °C: ${temperatura} Tiempo:${minutos}:${segundos}`)
-            if(segundos < 60){
-                console.log()
-                segundos++;
-            }
-            if(segundos==60){
-                minutos++;
-                segundos=0;
-            }
-            if(minutos%2==0 && segundos==0){
-                console.log("Alerta activada");
-            }
-            if(id==1){
-                clearInterval(tiempo_error_1);
-            }
-            if(id==2){
-                clearInterval(tiempo_error_2);
-            }
-
-        }
-    }
+    } 
+    let temperatura = 0;  
+    let lugar;
+    let id = parseFloet(req.body.id);
 
     let reloj = new Date();
     console.log(`ID: ${req.body.id} Temp: ${req.body.temperatura}°C ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
-    let temperatura = parseFloat(req.body.temperatura);
-    let lugar = asignar.asignar_ubicacion(req.body.id);
+    if(isNaN(req.body.temperatura) && isNaN(req.body.id)){
+        temperatura = parseFloat(req.body.temperatura);
+        lugar = asignar.asignar_ubicacion(req.body.id);
+    } else {
+        console.log(`Dato no leible`);
+    }
 
     if(temperatura<3.3 || temperatura>7.7){
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
-    auditor_temperatura(temperatura,lugar);
+    //auditor_temperatura(temperatura,lugar);
+    if(id==1.0){
+        if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
+            console.log("Temperatura irregular id: 1")
+        }
+
+    } else if (id==2.0){
+        if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
+            console.log("Temperatura irregular id: 2")
+        }
+    }
 /*
     let id_identificador = 0
     if(isNaN(req.body.id)){

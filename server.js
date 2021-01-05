@@ -38,7 +38,10 @@ let contador_de_error = 0;
 
 let inicio_1 = 0
 let inicio_2 = 0
-
+let segundos_1 = 0
+let segundos_2 = 0
+let minutos_1 = 0
+let minutos_2 = 0
 
 const page = express();
 
@@ -422,17 +425,18 @@ page.post('/temperatura',(req,res)=>{
     }
     function contar_1(){
         console.log(`id: ${id} temp: ${temperatura} ${minutos}:${segundos}`);
-        if(segundos<60){
-            segundos++
+        if(segundos_1<60){
+            segundos_1++
         }
-        if (segundos==60){
-            segundos=0;
-            minutos++;
+        if (segundos_1==60){
+            segundos_1=0;
+            minutos_1++;
         }
         if(id==1){
             if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){
                 clearInterval(crono_1);
                 inicio_1 = 0
+
 
                 console.log("Intervalo detenido id 1")
             }
@@ -443,12 +447,12 @@ page.post('/temperatura',(req,res)=>{
     }
     function contar_2(){
         console.log(`id: ${id} temp: ${temperatura} ${minutos}:${segundos}`);
-        if(segundos<60){
-            segundos++
+        if(segundos_2<60){
+            segundos_2++
         }
-        if (segundos==60){
-            segundos=0;
-            minutos++;
+        if (segundos_2==60){
+            segundos_2=0;
+            minutos_2++;
         }
         if( id == 2){
             if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){

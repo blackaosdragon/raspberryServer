@@ -858,7 +858,10 @@ page.post('/temperatura',(req,res)=>{
                 minutos++
                 segundos=0
             }
-            clearInterval(ciclo_id_1);
+            if(actualizar_temp_2>temp_prueba_limite_inferior && actualizar_temp_2<temp_prueba_limite_superior){
+                clearInterval(ciclo_id_1);
+            }
+            
         }
         if(id==2){
             console.log(`De: ${name} id: ${id} ${minutos}:${segundos} temp: ${actualizar_temp_2}`);

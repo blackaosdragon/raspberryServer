@@ -399,23 +399,23 @@ page.post('/temperatura',(req,res)=>{
         //let temperatura = 0;
         //let id = 0;
         if (isNaN(req.body.temperatura) || isNaN(req.body.id)){
-            temperatura = parseFloat(req.body.temperatura);
-            id = parseInt(req.body.id);
+            //temperatura = parseFloat(req.body.temperatura);
+            //id = parseInt(req.body.id);
             
         }
         if(id==1){
             if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-                var tiempo_error_1 = setInterval(tiempo_ciclo,1000);
+                var tiempo_error_1 = setInterval(tiempo_ciclo(temperatura,id),1000);
             }
         } else if(id==2){
             if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-                var tiempo_error_2 = setInterval(tiempo_ciclo,1000);
+                var tiempo_error_2 = setInterval(tiempo_ciclo(temperatura,id),1000);
             }
         }
-        function tiempo_ciclo(){
+        function tiempo_ciclo(temperatura,id){
             segundos = 0;
             minutos = 0;
-            console.log(``)
+            console.log(`ID: ${id} °C: ${temperatura} Tiempo:${minutos}:${segundos}`)
             if(segundos < 60){
                 console.log()
                 segundos++;

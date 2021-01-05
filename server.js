@@ -797,7 +797,7 @@ page.post('/temperatura',(req,res)=>{
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
             contador_1++
             if(contador_1==1){
-                var ciclo_id_1 = setInterval(()=>segundero(id,'identificador 1'),1000)
+                //var ciclo_id_1 = setInterval(()=>segundero(id,'identificador 1'),1000)
             }
             
         }
@@ -807,7 +807,7 @@ page.post('/temperatura',(req,res)=>{
             if(contador_2==1){
                 var ciclo_id_1 = setInterval(()=>segundero(id,'identificador 1'),1000)
             }
-            var ciclo_id_2 = setInterval(()=>segundero(id,'identificador 2'),1000)
+            //var ciclo_id_2 = setInterval(()=>segundero(id,'identificador 2'),1000)
         }
     } else {
 

@@ -876,7 +876,7 @@ page.post('/temperatura',(req,res)=>{
                 segundos_2=0
             }
             if(actualizar_temp_2>temp_prueba_limite_inferior && actualizar_temp_2<temp_prueba_limite_superior){
-                clearInterval(ciclo_id_2);
+                //clearInterval(ciclo_id_2);
                 contador_2 = 0;
                 minutos_2 = 0;
                 segundos_2 = 0;

@@ -814,8 +814,8 @@ page.post('/temperatura',(req,res)=>{
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
             contador_2++
             if(contador_2==1){
-                var ciclo_id_2 = setInterval(()=>segundero(id,'identificador 2'),1000)
-                //actualizar_temp_2 = req.body.temperatura;
+                //var ciclo_id_2 = setInterval(()=>segundero(id,'identificador 2'),1000)
+                actualizar_temp_2 = req.body.temperatura;
             } else {
                 
             }

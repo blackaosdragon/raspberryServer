@@ -819,7 +819,7 @@ page.post('/temperatura',(req,res)=>{
             } else {
                 
             }
-            var ciclo_id_2 = setInterval(()=>segundero(id,'identificador 2'),1000)
+            //var ciclo_id_2 = setInterval(()=>segundero(id,'identificador 2'),1000)
         } else {
             actualizar_temp_2 = req.body.temperatura;
         }
@@ -860,6 +860,9 @@ page.post('/temperatura',(req,res)=>{
             }
             if(actualizar_temp_2>temp_prueba_limite_inferior && actualizar_temp_2<temp_prueba_limite_superior){
                 clearInterval(ciclo_id_1);
+                contador_1 = 0;
+                minutos = 0;
+                segundos = 0;
             }
             
         }
@@ -874,6 +877,9 @@ page.post('/temperatura',(req,res)=>{
             }
             if(actualizar_temp_2>temp_prueba_limite_inferior && actualizar_temp_2<temp_prueba_limite_superior){
                 clearInterval(ciclo_id_2);
+                contador_2 = 0;
+                minutos_2 = 0;
+                segundos_2 = 0;
             }
         }
         

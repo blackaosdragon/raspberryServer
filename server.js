@@ -801,7 +801,7 @@ page.post('/temperatura',(req,res)=>{
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
             contador_1++
             if(contador_1==1){
-                //var ciclo_id_1 = setInterval(()=>segundero(id,'identificador 1'),1000)
+                var ciclo_id_1 = setInterval(()=>segundero(id,'identificador 1'),1000)
                 actualizar_temp_1 = req.body.temperatura;
             } else {
 

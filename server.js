@@ -805,7 +805,7 @@ page.post('/temperatura',(req,res)=>{
                 var ciclo_id_1 = setInterval(()=>segundero(id,'identificador 1'),1000)
                 actualizar_temp_1 = req.body.temperatura;
             } else {
-                
+                actualizar_temp_1 = req.body.temperatura;
             }
             
         } else {

@@ -815,7 +815,7 @@ page.post('/temperatura',(req,res)=>{
             contador_2++
             if(contador_2==1){
                 var ciclo_id_2 = setInterval(()=>segundero(id,'identificador 2'),1000)
-                actualizar_temp_2 = req.body.temperatura;
+                //actualizar_temp_2 = req.body.temperatura;
             } else {
                 
             }
@@ -876,7 +876,7 @@ page.post('/temperatura',(req,res)=>{
                 segundos_2=0
             }
             if(actualizar_temp_2>temp_prueba_limite_inferior && actualizar_temp_2<temp_prueba_limite_superior){
-                //clearInterval(ciclo_id_2);
+                clearInterval(ciclo_id_2);
                 contador_2 = 0;
                 minutos_2 = 0;
                 segundos_2 = 0;

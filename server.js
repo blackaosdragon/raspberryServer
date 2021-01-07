@@ -865,7 +865,7 @@ page.post('/temperatura',(req,res)=>{
             if(minutos%2==0 && segundos==0 && minutos!=0){
                 sendTemp(id,actualizar_temp_1);
             }
-            if(actualizar_temp_1>temp_prueba_limite_inferior && actualizar_temp_1==temp_prueba_limite_superior){
+            if(actualizar_temp_1>temp_prueba_limite_inferior && actualizar_temp_1<temp_prueba_limite_superior){
                 console.log("Debe de detener el intervalo")
                 clearInterval(ciclo_id_1);
                 contador_1 = 0;

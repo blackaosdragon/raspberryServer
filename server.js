@@ -862,7 +862,7 @@ page.post('/temperatura',(req,res)=>{
                 minutos++
                 segundos=0
             }
-            if(segundos%2==0 && segundos==0 && minutos>0){
+            if(minutos%2==0 && segundos==0 && minutos!=0){
                 sendTemp(id,actualizar_temp_1);
             }
             if(actualizar_temp_1>temp_prueba_limite_inferior && actualizar_temp_1==temp_prueba_limite_superior){

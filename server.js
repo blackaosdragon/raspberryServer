@@ -889,6 +889,9 @@ page.post('/temperatura',(req,res)=>{
                 minutos_2 = 0;
                 segundos_2 = 0;
             }
+            if(minutos%2==0 && segundos==0 && minutos!=0){
+                sendTemp(id,actualizar_temp_2);
+            }
         }
         
     }

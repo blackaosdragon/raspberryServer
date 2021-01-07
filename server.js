@@ -31,8 +31,11 @@ let confirmarTemp = 0;
 let identificador=0;
 let temp_prueba_limite_superior = 5.5;
 let temp_prueba_limite_inferior = 3.5;
+
 let segundos = 0;
-let minutos = 0
+let minutos = 0;
+let segundos_2 = 0;
+let minutos_2 = 0;
 
 
 let contador_de_error = 0;
@@ -40,9 +43,9 @@ let contador_de_error = 0;
 let inicio_1 = 0
 let inicio_2 = 0
 let segundos_1 = 0
-let segundos_2 = 0
+
 let minutos_1 = 0
-let minutos_2 = 0
+
 
 let temp_temporal_1;
 let temp_temporal_2; 
@@ -377,7 +380,7 @@ page.post('/login',(req,res)=>{
 
 
 page.post('/temperatura',(req,res)=>{
-    sendTemp = (id) => {
+    sendTemp = (id,temp_actual) => {
         let temp;
         let temp2;
         let temp3;
@@ -859,6 +862,9 @@ page.post('/temperatura',(req,res)=>{
                 minutos++
                 segundos=0
             }
+            if(segundos%2==0 && segundos==0 && minutos>0){
+                sendTemp(id,actualizar_temp_1);
+            }
             if(actualizar_temp_1>temp_prueba_limite_inferior && actualizar_temp_1==temp_prueba_limite_superior){
                 console.log("Debe de detener el intervalo")
                 clearInterval(ciclo_id_1);
@@ -869,7 +875,7 @@ page.post('/temperatura',(req,res)=>{
             
         }
         if(id==2){
-            console.log(`De: ${name} id: ${id} ${minutos}:${segundos} temp: ${actualizar_temp_2}`);
+            console.log(`De: ${name} id: ${id} ${minutos_2}:${segundos_2} temp: ${actualizar_temp_2}`);
             if(segundos_2<60){
                 segundos_2++
             }

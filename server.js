@@ -30,8 +30,8 @@ let medida_de_error = -10; //a partir de -10 las medidas ya son de error ya que 
 let tempAnormal = 0
 let confirmarTemp = 0;
 let identificador=0;
-let temp_prueba_limite_superior = 5.5;
-let temp_prueba_limite_inferior = 3.0;
+let temp_prueba_limite_superior = 7.5;
+let temp_prueba_limite_inferior = 3.5;
 
 let segundos = 0;
 let minutos = 0;
@@ -89,8 +89,8 @@ let turno = 1;
 
 let timer = 0;
 
-let hora_desactivacion = 14;
-let hora_activacion = 7;
+let hora_desactivacion = 21;
+let hora_activacion = 6;
 let minuto_desactivacion = 59;
 
 //

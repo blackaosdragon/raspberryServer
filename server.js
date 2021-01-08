@@ -88,6 +88,10 @@ let turno = 1;
 
 let timer = 0;
 
+let hora_desactivacion = 12;
+let hora_activacion = 7;
+let minuto_desactivacion = 59;
+
 //
 /*
 page.listen(pagePort, () => {
@@ -419,135 +423,6 @@ page.post('/temperatura',(req,res)=>{
     if(temperatura<3.3 || temperatura>7.7){
         tokens.insertar_excepcion(req.body.temperatura,lugar,req.body.id);
     }
-    //auditor_temperatura(temperatura,lugar);
-    //console.log(`id: ${id} temp: ${temperatura}`)
-    /*
-
-    if(id==1){
-        if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-            //console.log("Temperatura irregular id: 1")
-            inicio_1++;
-            if(inicio_1==1){
-                var crono_1 = setInterval(contar_1,1000)
-            }
-        }
-    } else if (id==2){
-        if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-            //console.log("Temperatura irregular id: 2")
-            inicio_2++;
-            if(inicio_2==1){
-                var crono_2 = setInterval(contar_2,1000)
-            }
-            
-        }
-    }
-    */
-    function contar_1(){
-        temp_temporal_1 = req.body.temperatura;
-        console.log(`Temp 1: ${temperatura} / ${temp_temporal_1} / ${req.body.temperatura} ${minutos_1}:${segundos_1}`);
-        if(segundos_1<60){
-            segundos_1++
-        }
-        if (segundos_1==60){
-            segundos_1=0;
-            minutos_1++;
-        }
-        if(id==1){
-            if(temperatura>temp_prueba_limite_inferior && temperatura<temp_prueba_limite_superior){
-                clearInterval(crono_1);
-                inicio_1 = 0;
-                console.log("Intervalo detenido id 1")
-            }
-        }
-        //if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){}
-
-    }
-    function contar_2(){
-        temp_temporal_2 = req.body.temperatura;
-        console.log(`Temp 2: ${temperatura}  / ${temp_temporal_2} / ${req.body.temperatura} ${minutos_2}:${segundos_2}`);
-        if(segundos_2<60){
-            segundos_2++
-        }
-        if (segundos_2==60){
-            segundos_2=0;
-            minutos_2++;
-        }
-        if( id == 2){
-            if(temperatura>temp_prueba_limite_inferior && temperatura<temp_prueba_limite_superior){
-                clearInterval(crono_2);
-                inicio_2 = 0
-                console.log("Intervalo detenido id 2")
-            }
-        }
-        //if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){}
-
-    }
-/*
-    let id_identificador = 0
-    if(isNaN(req.body.id)){
-        console.log("El identificador no es válido")
-    } else {
-        id_identificador = parseInt(req.body.id)
-    }
-    if(id_identificador==1){
-        
-
-    } else if (id_identificador==2){
-
-    } else {
-        console.log(`Identificador: ${identificador} Desconocido`)
-    }
-    if (temperatura>=temp_prueba_limite_superior || temperatura<=temp_prueba_limite_inferior){
-        
-        tempAnormal++;
-        //console.log(` Contador: ${tempAnormal}`)
-        confirmarTemp = req.body.temperatura;
-        identificador = req.body.id;
-        //console.log("Temperatura anormal: ",tempAnormal);
-        if(tempAnormal==1){
-            let contadorMinutos = 0;
-            let contadorSegundos = 0;
-            
-            if(identificador==1){
-                var cronometro1 = setInterval(()=>contar(identificador),1000);
-            } else if(identificador==2){
-                var cronometro2 = setInterval(()=>contar(identificador),1000);
-            }
-            //var cronometro = setInterval(()=>contar(req.body.id),1000);
-            function contar(id){
-                console.log(`Time: ${contadorMinutos}:${contadorSegundos} / ID: ${id} Temperatura: ${confirmarTemp}`);
-                if(contadorSegundos<60){
-                    contadorSegundos++;
-                }
-                if(contadorSegundos==60){
-                    contadorMinutos++;
-                    contadorSegundos=0;
-                }
-                
-                if(confirmarTemp<=temp_prueba_limite_superior && confirmarTemp>=temp_prueba_limite_inferior && req.body.id==1){
-                    console.log("Detener el intervalo de dieto");
-                    console.log(`Contador detenido por: Temperatura: ${confirmarTemp}/${temperatura} id: ${id}`)
-                    clearInterval(cronometro1);
-                    tempAnormal=0;
-                } else if( contadorMinutos%2==0 && contadorSegundos==0 && contadorMinutos>0 && (confirmarTemp>temp_prueba_limite_superior || confirmarTemp<temp_prueba_limite_inferior)){
-                    console.log("Enviar alerta");
-                    sendTemp(id);
-                } else if ( confirmarTemp<=temp_prueba_limite_superior && confirmarTemp>=temp_prueba_limite_inferior && req.body.id==2){
-                    console.log(`Contador detenido por: Temperatura: ${confirmarTemp}/${temperatura} id: ${id}`)
-                    console.log("Detener contador de farmacia");
-                    clearInterval(cronometro2);
-                    tempAnormal=0;
-                }
-                
-            }
-        } else {
-
-        }
-    } else {
-        confirmarTemp = req.body.temperatura;
-        //identificador = req.body.id;
-    }
-*/    
     if (temperatura<3){
         temperatura = (2.99 + Math.random()).toPrecision(2);
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
@@ -855,9 +730,12 @@ page.post('/temperatura',(req,res)=>{
     
     function segundero(id,name){
         let actualizar_temperatura_3 = req.body.temperatura;
+        let reloj = new Date();
+        let hora_actual=reloj.getHours();
+        let minuto_actual = reloj.getMinutes();
         //actualizar_temp = req.body.temperatura
         if(id==1){
-            console.log(`De: ${name} id: ${id} ${minutos}:${segundos} temp: ${actualizar_temp_1}`);
+            console.log(`De: ${name} id: ${id} ${minutos}:${segundos} temp: ${actualizar_temp_1} Hora: ${hora_actual}:${minuto_actual}`);
             if(segundos<60){
                 segundos++
             }
@@ -866,7 +744,12 @@ page.post('/temperatura',(req,res)=>{
                 segundos=0
             }
             if(minutos%2==0 && segundos==0 && minutos!=0){
-                sendTemp(id,actualizar_temp_1);
+                if(hora_desactivacion<hora_actual || hora_activacion>hora_actual){
+                    console.log("Ya es muy tarde para enviar notificaciones")
+                } else {
+                    sendTemp(id,actualizar_temp_1);
+                }
+                
             }
             if(actualizar_temp_1>temp_prueba_limite_inferior && actualizar_temp_1<temp_prueba_limite_superior){
                 console.log("Debe de detener el intervalo")
@@ -878,7 +761,7 @@ page.post('/temperatura',(req,res)=>{
             
         }
         if(id==2){
-            console.log(`De: ${name} id: ${id} ${minutos_2}:${segundos_2} temp: ${actualizar_temp_2}`);
+            console.log(`De: ${name} id: ${id} ${minutos_2}:${segundos_2} temp: ${actualizar_temp_2} Hora: ${hora_actual}:${minuto_actual}`);
             if(segundos_2<60){
                 segundos_2++
             }
@@ -893,7 +776,12 @@ page.post('/temperatura',(req,res)=>{
                 segundos_2 = 0;
             }
             if(minutos_2%2==0 && segundos_2==0 && minutos_2!=0){
-                sendTemp(id,actualizar_temp_2);
+                if(hora_desactivacion<hora_actual || hora_activacion>hora_actual){
+                    console.log("Ya es muy tarde para enviar notificaciones")
+                } else {
+                    sendTemp(id,actualizar_temp_2);
+                }
+                
             }
         }
         

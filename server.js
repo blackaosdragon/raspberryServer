@@ -744,7 +744,7 @@ page.post('/temperatura',(req,res)=>{
                 segundos=0
             }
             if(minutos%2==0 && segundos==0 && minutos!=0){
-                if(hora_desactivacion<hora_actual || hora_activacion>hora_actual){
+                if(hora_desactivacion<hora_actual && hora_activacion>hora_actual){
                     console.log("Ya es muy tarde para enviar notificaciones")
                 } else {
                     sendTemp(id,actualizar_temp_1);

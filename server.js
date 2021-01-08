@@ -803,7 +803,7 @@ page.post('/temperatura',(req,res)=>{
     
     //console.log(`Hora de temperatura irregular: ${horas1Plasmado}:${minutos1Plasmado}`);
     if(id==1){
-        if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
+        if(temperatura_original>temp_prueba_limite_superior || temperatura_original<temp_prueba_limite_inferior){
             //console.log("Contando ", contador_1)
             contador_1++
             if(contador_1==1){

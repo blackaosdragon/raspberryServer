@@ -776,10 +776,10 @@ page.post('/temperatura',(req,res)=>{
                 segundos_2 = 0;
             }
             if(minutos_2%2==0 && segundos_2==0 && minutos_2!=0){
-                if(hora_desactivacion<hora_actual || hora_activacion>hora_actual){
-                    console.log("Ya es muy tarde para enviar notificaciones")
-                } else {
+                if(hora_activacion<hora_actual && hora_desactivacion>hora_actual){
                     sendTemp(id,actualizar_temp_2);
+                } else {
+                    console.log("Ya es muy tarde para enviar notificaciones")
                 }
                 
             }
@@ -877,6 +877,7 @@ page.post('/equipos',(req,res) => {
         res.send(data);
     })
 })
+
 
 
 

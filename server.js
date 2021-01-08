@@ -401,7 +401,8 @@ page.post('/temperatura',(req,res)=>{
             //mensajes.notificacion_temperatura(temp3,ubicacion);
         }
     } 
-    let temperatura = 0;  
+    let temperatura = 0;
+    let temperatura_original = 0;  
     let lugar;
     let id = parseInt(req.body.id);
 
@@ -817,6 +818,7 @@ page.post('/temperatura',(req,res)=>{
     } else if(id==2){
         if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
             contador_2++
+            console.log("Temperatura 2 por debajo de lo normal")
             if(contador_2==1){
                 var ciclo_id_2 = setInterval(()=>segundero(id,'identificador 2'),1000)
                 actualizar_temp_2 = req.body.temperatura;

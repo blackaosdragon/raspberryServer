@@ -29,7 +29,7 @@ let medida_de_error = -10; //a partir de -10 las medidas ya son de error ya que 
 let tempAnormal = 0
 let confirmarTemp = 0;
 let identificador=0;
-let temp_prueba_limite_superior = 8.0;
+let temp_prueba_limite_superior = 5.5;
 let temp_prueba_limite_inferior = 3.0;
 
 let segundos = 0;

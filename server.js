@@ -29,7 +29,7 @@ let medida_de_error = -10; //a partir de -10 las medidas ya son de error ya que 
 let tempAnormal = 0
 let confirmarTemp = 0;
 let identificador=0;
-let temp_prueba_limite_superior = 5.5;
+let temp_prueba_limite_superior = 8.0;
 let temp_prueba_limite_inferior = 3.0;
 
 let segundos = 0;
@@ -692,7 +692,7 @@ page.post('/temperatura',(req,res)=>{
             actualizar_temp_1 = req.body.temperatura;
         }
     } else if(id==2){
-        if(temperatura_original>temp_prueba_limite_superior || temperatura_original<temp_prueba_limite_inferior){
+        if(temperatura>temp_prueba_limite_superior || temperatura_original<temp_prueba_limite_inferior){
             contador_2++
             console.log("Temperatura 2 por debajo de lo normal")
             if(contador_2==1){

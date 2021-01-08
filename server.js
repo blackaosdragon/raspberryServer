@@ -413,6 +413,7 @@ page.post('/temperatura',(req,res)=>{
     } else {
         temperatura = parseFloat(req.body.temperatura);
         lugar = asignar.asignar_ubicacion(req.body.id);
+        temperatura_original = temperatura;
     }
 
     if(temperatura<3.3 || temperatura>7.7){
@@ -816,7 +817,7 @@ page.post('/temperatura',(req,res)=>{
             actualizar_temp_1 = req.body.temperatura;
         }
     } else if(id==2){
-        if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
+        if(temperatura_original>temp_prueba_limite_superior || temperatura_original<temp_prueba_limite_inferior){
             contador_2++
             console.log("Temperatura 2 por debajo de lo normal")
             if(contador_2==1){

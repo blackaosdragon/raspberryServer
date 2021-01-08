@@ -392,12 +392,12 @@ page.post('/temperatura',(req,res)=>{
         if(id==1){
             temp = idTemp; 
             ubicacion = asignar.asignar_ubicacion(id);
-            mensajes.notificacion_temperatura(temp,ubicacion);
+            mensajes.notificacion_temperatura(temp_actual,ubicacion);
             tokens.insertar_excepcion(temp,ubicacion,id);
         } else if(id==2){
             temp2 = id2Temp
             ubicacion = asignar.asignar_ubicacion(id);
-            mensajes.notificacion_temperatura(temp2,ubicacion);
+            mensajes.notificacion_temperatura(temp_actual,ubicacion);
             tokens.insertar_excepcion(temp2,ubicacion,id);
         } else if(id==3){
             temp3 = id3Temp

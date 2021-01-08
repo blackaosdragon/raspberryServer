@@ -8,6 +8,7 @@ let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
 const asignacion = require('./asignacion.js');
 const { notificacion_temperatura } = require('./fcmessage.js');
+const { Console } = require('console');
 
 
 let idTemp = 0;
@@ -88,7 +89,7 @@ let turno = 1;
 
 let timer = 0;
 
-let hora_desactivacion = 12;
+let hora_desactivacion = 13;
 let hora_activacion = 7;
 let minuto_desactivacion = 59;
 
@@ -776,6 +777,7 @@ page.post('/temperatura',(req,res)=>{
                 segundos_2 = 0;
             }
             if(minutos_2%2==0 && segundos_2==0 && minutos_2!=0){
+                console.log("Preparando para enviar a lerta para ver la hora");
                 if(hora_activacion<hora_actual && hora_desactivacion>hora_actual){
                     sendTemp(id,actualizar_temp_2);
                 } else {

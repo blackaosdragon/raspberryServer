@@ -89,7 +89,7 @@ let turno = 1;
 
 let timer = 0;
 
-let hora_desactivacion = 13;
+let hora_desactivacion = 14;
 let hora_activacion = 7;
 let minuto_desactivacion = 59;
 

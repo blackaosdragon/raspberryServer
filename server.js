@@ -432,12 +432,9 @@ page.post('/temperatura',(req,res)=>{
         } else {
             let id = Number.parseInt(req.body.id)
             console.log("Enviar alerta")
-            //sendTemp(id);
+            
         }
-        //sendTemp()
-        
         //tokens.agregar_aproximado(2,temp_lim_inf,temp_lim);
-
     } else {
         tokens.guardar_todos_los_datos(temperatura,lugar,req.body.id);
         //tokens.agregar_aproximado(2,temp_lim_inf,temp_lim);
@@ -456,111 +453,12 @@ page.post('/temperatura',(req,res)=>{
     let horas = parseInt(registro.getHours());
     //console.log(`ID: ${req.body.id} Temperatura: ${temperatura} Hora: ${registro.getHours()}:${registro.getMinutes()}:${registro.getSeconds()}`);
     if( parseInt(registro.getHours())==0 && parseInt(registro.getMinutes())==0 && parseInt(registro.getSeconds())<59){
-        
         console.log("Se borraran los datos del dia anterior");
         tokens.borrar_data();
-    }
-    
-    //crono 1
-    if( (parseFloat(temperatura)>temp_lim || parseFloat(temperatura)<temp_lim_inf) && parseInt(req.body.id)==1 && idContador==0){
-        if ( temperatura < medida_de_error ){
-            //console.log("Medida de error");
-        } else {
-            idContador++;
-            let tiempo = new Date();
-            horas1Plasmado = parseInt(tiempo.getHours());
-            minutos1Plasmado = parseInt(tiempo.getMinutes());
-            if(contador_de_error>5){
-                temp1_irregular = true;
-            }
-            //temp1_irregular = true;
-        }
-    } else if( (parseFloat(temperatura)<=temp_lim && parseFloat(temperatura)>=temp_lim_inf) && parseInt(req.body.id)==1 && idContador>0){
-        //console.log(`Temperatura 1 normal se borra la hora: ${horas1Plasmado}:${minutos1Plasmado}`)
-        horas1Plasmado=0;
-        minutos1Plasmado=0;
-        idContador=0;
-        temp1_irregular = false;
-        contador_de_error = 0;
-        //console.log("Contador 1 detenido")
-    }
-    
-    if(parseFloat(req.body.temperatura)>temp_lim && parseInt(req.body.id)==1){
-        //console.log(`Hora de temperatura irregular del id 1: ${horas1Plasmado}:${minutos1Plasmado} envio_hecho = ${envio_hecho}`);
-       // console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
-
-    } else {
-        
-    }
-    if(parseFloat(req.body.temperatura)>temperatura_limite && parseInt(req.body.id)==2){
-        //console.log(`Hora de temperatura irregular del id 2: ${horas1Plasmado}:${minutos1Plasmado}`);
-    } else {
-        
-    }
-    //crono 2
-    if( ((parseFloat(req.body.temperatura))>temperatura_limite /*|| (parseFloat(req.body.temperatura)-2)<temp_lim_inf*/) && parseInt(req.body.id)==2 && idContador2<=0){
-        if ( req.body.temperatura == -127){
-            
-        } else {
-            idContador2++;
-            let tiempo = new Date();
-            horas2Plasmado = parseInt(tiempo.getHours());
-            minutos2Plasmado = parseInt(tiempo.getMinutes());
-            contador_de_error++;
-            if(contador_de_error>5){
-                temp2_irregular = true;
-            }
-            //temp2_irregular = true;
-        }
-        
-    } else if( ( (parseFloat(req.body.temperatura))<=temperatura_limite && (parseFloat(req.body.temperatura))>temp_lim_inf) && parseInt(req.body.id)==2 && idContador2>0){
-        //console.log(`Temperatura 2 normal se borra la hora: ${horas2Plasmado}:${minutos2Plasmado}`)
-        horas2Plasmado = 0;
-        minutos2Plasmado = 0;
-        idContador2 = 0;
-        temp2_irregular = false;
-        contador_de_error = 0;
-        //console.log("Contador 2 detenido");
-    }
-    if(parseFloat(req.body.temperatura)>=temperatura_limite && parseInt(req.body.id)==3 && idContador3<=0){
-        idContador3++;
-        let tiempo = new Date();
-        horas3Plasmado = parseInt(tiempo.getHours());
-        minutos3Plasmado = parseInt(tiempo.getMinutes());
-        temp3_irregular = true;               
-    } else if(parseFloat(req.body.temperatura)<temperatura_limite && parseInt(req.body.id)==3 && idContador3>0){
-        idContador3 = 0;
-        horas3Plasmado = 0;
-        minutos3Plasmado = 0;
-        temp3_irregular = false;
-        //console.log("Contador 3 detenido")
     }
     //console.log(`Resta: ${registro.getMinutes()}-${minutos1Plasmado} = ${parseInt(registro.getMinutes())-minutos1Plasmado}`);
     //console.log(`Módulo: ${registro.getMinutes()}-${minutos1Plasmado} % 2 = ${(parseInt(registro.getMinutes())-minutos1Plasmado)%2}`);
     
-    if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)==0 && envio_hecho==false && temp1_irregular==true){
-        envio_hecho = true;
-        //console.log("Se va a enviar una alerta por id 1");
-        sendTemp(1);
-    } else if(parseInt(((registro.getMinutes())-minutos1Plasmado)%2)!=0 && envio_hecho==true){
-        envio_hecho = false;
-    }
-    if(parseInt(((registro.getMinutes())-minutos2Plasmado)%2)==0 && envio2_hecho==false && temp2_irregular==true){
-        envio2_hecho = true;
-        //console.log("Se va a enviar una alerta por id 2");
-        sendTemp(2);
-    } else if(parseInt(((registro.getMinutes())-minutos2Plasmado)%2)!=0 && envio2_hecho==true){
-        envio2_hecho = false;
-    }
-    if(parseInt(((registro.getMinutes())-minutos3Plasmado)%2)==0 && envio3_hecho==false && temp3_irregular==true){
-        envio3_hecho = true;
-        //console.log("Se va a enviar una alerta por id 3");
-        sendTemp(3);
-    } else if(parseInt(((registro.getMinutes())-minutos2Plasmado)%2)!=0 && envio2_hecho==true){
-        envio3_hecho = false;
-    }
-
-
     if(Number.isNaN(temperatura)){
         //console.log(`El dato: ${req.body.temperatura}, no es un numero`);
         let bad = {
@@ -693,7 +591,7 @@ page.post('/temperatura',(req,res)=>{
             actualizar_temp_1 = req.body.temperatura;
         }
     } else if(id==2){
-        if(temperatura>temp_prueba_limite_superior || temperatura_original<temp_prueba_limite_inferior){
+        if(temperatura_original>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
             contador_2++
             console.log("Temperatura 2 por debajo de lo normal")
             if(contador_2==1){
@@ -709,17 +607,6 @@ page.post('/temperatura',(req,res)=>{
     } else {
 
     }
-    /*
-    if(temperatura>temp_prueba_limite_superior || temperatura<temp_prueba_limite_inferior){
-        contador_3++
-            if(contador_3==1){
-                var ciclo_id_3 = setInterval(()=>segundero(id,'temperaturas'),1000)
-            }
-        //var ciclo_conteo = setInterval(()=>segundero(id,'temperaturas'),1000)
-    } else {
-
-    }
-    */
     let actualizar_temp = req.body.temperatura;
     if(req.body.id==2){
         actualizar_temp_2 = req.body.temperatura;

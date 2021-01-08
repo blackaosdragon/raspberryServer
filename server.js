@@ -471,7 +471,7 @@ page.post('/temperatura',(req,res)=>{
             minutos_2++;
         }
         if( id == 2){
-            if(temperatura>temp_prueba_limite_inferior || temperatura<temp_prueba_limite_superior){
+            if(temperatura>temp_prueba_limite_inferior && temperatura<temp_prueba_limite_superior){
                 clearInterval(crono_2);
                 inicio_2 = 0
                 console.log("Intervalo detenido id 2")

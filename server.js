@@ -31,7 +31,7 @@ let tempAnormal = 0
 let confirmarTemp = 0;
 let identificador=0;
 let temp_prueba_limite_superior = 7.5;
-let temp_prueba_limite_inferior = 3.0;
+let temp_prueba_limite_inferior = 3.5;
 
 let segundos = 0;
 let minutos = 0;

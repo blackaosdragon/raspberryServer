@@ -631,7 +631,7 @@ page.post('/temperatura',(req,res)=>{
                 minutos++
                 segundos=0
             }
-            if(minutos%2==0 && segundos==0 && minutos!=0){
+            if(minutos%2==15 && segundos==0 && minutos!=0){
                    hora_activacion<hora_actual && hora_desactivacion>hora_actual
                 if(hora_activacion<hora_actual && hora_desactivacion>hora_actual){
                     sendTemp(id,actualizar_temp_1);
@@ -664,7 +664,7 @@ page.post('/temperatura',(req,res)=>{
                 minutos_2 = 0;
                 segundos_2 = 0;
             }
-            if(minutos_2%2==0 && segundos_2==0 && minutos_2!=0){
+            if(minutos_2%2==15 && segundos_2==0 && minutos_2!=0){
                 console.log("Preparando para enviar a lerta para ver la hora");
                 if(hora_activacion<hora_actual && hora_desactivacion>hora_actual){
                     sendTemp(id,actualizar_temp_2);

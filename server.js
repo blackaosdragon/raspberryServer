@@ -771,6 +771,10 @@ page.post('/raspbi',(req,res) => {
     const { temperatura, id } = req.body
     console.log(req.body)
     console.log(`Respby ->id: ${id} temp:${temperatura}`)
+    let ok = {
+        ok: 1
+    }
+    res.send(ok)
 })
 
 

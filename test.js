@@ -7,7 +7,7 @@ const httpsAgent = new https.Agent({
     rejectUnauthorized: false,
 })
 
-fetch('https://instrumentacionline.ddns.net:5002/test',{
+fetch('https://instrumentacionline.ddns.net:5002/tomardata',{
     method: 'GET',    
     headers:{
       'Content-Type': 'application/json' 

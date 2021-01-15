@@ -776,7 +776,12 @@ page.post('/raspbi',(req,res) => {
     }
     res.send(ok)
 })
-
+page.get('/tomardata',(req,res) => {
+    let ok = {
+        ok: 1
+    }
+    res.send(ok)
+})
 
 
 

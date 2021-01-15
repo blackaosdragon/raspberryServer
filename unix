@@ -29,11 +29,8 @@ Raspberry cambio de ip s estática:
   static domain_name_servers=192.168.x.y 
   where (y = 254 or 1) depends of you gateway
 
-<<<<<<< HEAD
   cat /proc/cpuinfo
 
   sudo lshw -C CPU
   lscpu
-=======
   si salta error al importar #1273 por utf8mb4_0900_ai_ci sustituir por => utf8mb4_unicode_ci
->>>>>>> f60f7adb1aecd41501e2d5b9ab19d40b9336ea76

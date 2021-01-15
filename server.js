@@ -780,6 +780,7 @@ page.get('/tomardata',(req,res) => {
     let ok = {
         ok: 1
     }
+    console.log("Respondiendo al error")
     res.send(ok)
 })
 

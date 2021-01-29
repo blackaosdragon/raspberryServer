@@ -783,6 +783,14 @@ page.get('/tomardata',(req,res) => {
     console.log("Respondiendo al error")
     res.send(ok)
 })
+page.post('/recepcion',(req,res)=>{
+    const {temperatura, id} = req.body
+    console.log(`Temp: ${temperatura}, id: ${id}`);
+    let respuesta = {
+        code: 1
+    }
+    res.send(respuesta);
+})
 
 
 

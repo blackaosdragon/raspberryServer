@@ -34,3 +34,5 @@ Raspberry cambio de ip s estática:
   sudo lshw -C CPU
   lscpu
   si salta error al importar #1273 por utf8mb4_0900_ai_ci sustituir por => utf8mb4_unicode_ci
+
+obter el SO: cat /etc/*-release ó lsb_release -a

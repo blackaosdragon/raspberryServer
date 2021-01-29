@@ -789,7 +789,9 @@ page.post('/recepcion',(req,res)=>{
     let respuesta = {
         code: 1
     }
+    io
     res.send(respuesta);
+    io.emit('temp',`${id} ${temp}`);
 })
 
 

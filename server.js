@@ -784,8 +784,8 @@ page.get('/tomardata',(req,res) => {
     res.send(ok)
 })
 page.post('/recepcion',(req,res)=>{
-    const {temperatura, id} = req.body
-    console.log(`Temp: ${temperatura}, id: ${id}`);
+    const {temp, id} = req.body
+    console.log(`Temp: ${temp}, id: ${id}`);
     let respuesta = {
         code: 1
     }

@@ -795,10 +795,10 @@ page.post('/recepcion',(req,res)=>{
 })
 page.get('/sensores',(req,res) => {
     console.log("consultado")
-    let respuesta = {
-        data: 'holi'
-    }
-    res.send(respuesta);
+    tokens.recursos_sensores().then( (respuesta)=>{
+        res.send(respuesta)
+    })
+    //res.send(respuesta);
 })
 
 

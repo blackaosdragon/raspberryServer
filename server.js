@@ -794,6 +794,7 @@ page.post('/recepcion',(req,res)=>{
     io.emit('temp',`${id} ${temp}`);
 })
 page.get('/sensores',(req,res) => {
+    console.log("consultado")
     res.send('holi');
 })
 

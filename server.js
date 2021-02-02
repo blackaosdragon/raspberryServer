@@ -795,6 +795,9 @@ page.post('/recepcion',(req,res)=>{
 })
 page.get('/sensores',(req,res) => {
     console.log("consultado")
+    let respuesta = {
+        data: 'holi'
+    }
     res.send('holi');
 })
 

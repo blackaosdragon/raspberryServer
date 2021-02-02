@@ -895,7 +895,7 @@ module.exports = {
 
     },recursos_sensores: () => {
         return new Promise ( (resolve, rejected) => {
-            base_de_datos.query(`SELECT DISTICT id, lugar, ubicacion FROM ${data_base}.${tabla_de_recursos};`, (err,data,otro) => {
+            base_de_datos.query(`SELECT DISTINCT id, lugar, ubicacion FROM ${data_base}.${tabla_de_recursos};`, (err,data,otro) => {
                 if(err){
                     console.log(err);
                     rejected(err);

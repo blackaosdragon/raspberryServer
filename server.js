@@ -798,7 +798,7 @@ page.get('/sensores',(req,res) => {
     let respuesta = {
         data: 'holi'
     }
-    res.send('holi');
+    res.send(respuesta);
 })
 
 

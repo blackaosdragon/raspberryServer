@@ -216,6 +216,28 @@ page.get('/socket', (req,res) => {
         res.send(payload);
     })
 })
+page.get('/historial', (req,res) => {
+    tokens.obtener_ultimo_dato(1).then( respuesta => {
+        //console.log(respuesta)
+        return(respuesta);
+    }).then( data => {
+        tokens.obtener_ultimo_dato(2).then( respuesta => {
+            //console.log(respuesta);
+            let payload = {
+                sensor1: data,
+                sensor2: respuesta
+            }
+            //console.log(payload);
+            res.send(payload);
+        })
+    }).catch(err=>{
+        console.log(err);
+        let payload = {
+            data: 0
+        }
+        res.send(payload);
+    })
+})
 
 page.post('/consulta_mes', (req,res) => {
     let data = req.body

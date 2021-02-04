@@ -223,10 +223,8 @@ page.get('/historial', (req,res) => {
     }).then( data => {
         tokens.obtener_ultimo_dato(2).then( respuesta => {
             //console.log(respuesta);
-            let payload = {
-                sensor1: data,
-                sensor2: respuesta
-            }
+            let payload = [data, respuesta]
+            
             //console.log(payload);
             res.send(payload);
         })

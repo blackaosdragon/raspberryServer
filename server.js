@@ -818,7 +818,11 @@ page.get('/sensores',(req,res) => {
     tokens.recursos_sensores().then( (respuesta)=>{
         res.send(respuesta)
     })
-    //res.send(respuesta);
+})
+page.get('/obtener_sensores',(req,res) => {
+    tokens.recursos_sensores().then( (respuesta)=>{
+        res.send(respuesta)
+    })
 })
 
 

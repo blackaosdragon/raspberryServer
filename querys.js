@@ -904,5 +904,20 @@ module.exports = {
                 }
             })
         })
-    }
+    },
+    obtener_sensor_1: () => {
+        let tiempo = new Date();
+        let mes = tiempo.getMonth()+1;
+        return new Promise( (res,rej) => {
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos} WHERE ID=${id} ORDER BY turno DESC LIMIT 1;`, (err,data,otro)=>{
+                if(err){
+                    console.log(err);
+                    rej();
+                } else {
+                    //console.log("Data Solicitada: ");
+                    //console.log(data)
+                    res(data);
+                }
+            })
+        })
 }

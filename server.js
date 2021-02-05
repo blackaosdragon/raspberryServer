@@ -820,8 +820,25 @@ page.get('/sensores',(req,res) => {
     })
 })
 page.get('/obtener_sensores',(req,res) => {
-    tokens.recursos_sensores().then( (respuesta)=>{
-        res.send(respuesta)
+    tokens.obtener_ultimo_dato(1).then( respuesta => {
+        //console.log(respuesta)
+        return(respuesta);
+    }).then( data => {
+        tokens.obtener_ultimo_dato(2).then( respuesta => {
+            //console.log(respuesta);
+            let payload = {
+                sensor1: data,
+                sensor2: respuesta
+            }
+            //console.log(payload);
+            res.send(payload);
+        })
+    }).catch(err=>{
+        console.log(err);
+        let payload = {
+            data: 0
+        }
+        res.send(payload);
     })
 })
 

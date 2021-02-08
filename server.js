@@ -820,7 +820,7 @@ page.get('/sensores',(req,res) => {
     })
 })
 page.post('/obtener_sensores',(req,res) => {
-    let respuesta = []
+    let payload = []
     let respuestas = req.body.map( element => tokens.extraer_temperaturas_recientes(element.id))
         Promise.all(respuestas).then( elemento => {
             console.log("Arreglo:",elemento)

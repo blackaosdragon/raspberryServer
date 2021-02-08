@@ -831,12 +831,13 @@ page.post('/obtener_sensores',(req,res) => {
                     ...payload,
                     respuesta[0]
                 ]
-                console.log("Antes de enviar: ",payload)
+                
             })
         })
         let respuesta = {
             ok: 1
         }
+        console.log("Antes de enviar: ",payload)
         resolve(respuesta)
         res.send(respuesta)
         

@@ -822,6 +822,11 @@ page.get('/sensores',(req,res) => {
 page.post('/obtener_sensores',(req,res) => {
     return new Promise ( (resolve, rejected) => {
         let payload = []
+        Promise.all(req.body.map( async (element) => {
+            console.log("Dentro del promise all",element.id)
+        })).then( result => {
+            console.log(result)
+        })/*
         req.body.map( element =>{
             console.log(element.id)
             tokens.extraer_temperaturas_recientes(element.id)
@@ -831,9 +836,12 @@ page.post('/obtener_sensores',(req,res) => {
                     ...payload,
                     respuesta[0]
                 ]
-                
+                return(payload)
+            }).then( respuesta => {
+                console.log("Payload => ",respuesta)
             })
         })
+        */
         let respuesta = {
             ok: 1
         }

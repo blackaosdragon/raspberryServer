@@ -905,13 +905,15 @@ module.exports = {
             })
         })
     },
-    obtener_sensor_1: () => {
+    extraer_temperaturas_recientes: (id) => {
         return new Promise( (res,rej) => {
+            let payload = []
             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos} WHERE ID=${id} ORDER BY turno DESC LIMIT 1;`, (err,data,otro)=>{
                 if(err){
                     console.log(err);
                     rej();
                 } else {
+                    console.log(data)
                     res(data);
                 }
             })

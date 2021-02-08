@@ -913,7 +913,7 @@ module.exports = {
                     console.log(err);
                     rej();
                 } else {
-                    console.log(data)
+                    //console.log(data)
                     res(data);
                 }
             })

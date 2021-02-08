@@ -819,7 +819,7 @@ page.get('/sensores',(req,res) => {
         res.send(respuesta)
     })
 })
-page.get('/obtener_sensores',(req,res) => {
+page.post('/obtener_sensores',(req,res) => {
     console.log(req.body)
     let respuesta = {
         ok: 1

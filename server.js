@@ -821,20 +821,24 @@ page.get('/sensores',(req,res) => {
 })
 page.post('/obtener_sensores',(req,res) => {
     let payload = []
+    let respuesta = {
+        ok: 1
+    }
     let respuestas = req.body.map( element => tokens.extraer_temperaturas_recientes(element.id))
         Promise.all(respuestas).then( elemento => {
             console.log("Arreglo:",elemento)
             elemento.map(elem=>{
                 console.log("Map dentro de el promise all",elem[0])
-                //respuesta = elem[]
+                payload = [
+                    ...payload,
+                    elem[0]
+                ]
             })
-
+            console.log(payload)
         })
-        let respuesta = {
-            ok: 1
-        }
+        
         //console.log("Antes de enviar: ",respuesta)
-        resolve(respuesta)
+        //resolve(respuesta)
         res.send(respuesta)
     /*
     return new Promise ( (resolve, rejected) => {

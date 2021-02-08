@@ -826,7 +826,12 @@ page.post('/obtener_sensores',(req,res) => {
             console.log(element.id)
             tokens.extraer_temperaturas_recientes(element.id)
             .then( respuesta => {
-                console.log(respuesta)
+                console.log(respuesta[0])
+                payload = [
+                    ...payload,
+                    respuesta[0]
+                ]
+                console.log("Antes de enviar: ",payload)
             })
         })
         let respuesta = {

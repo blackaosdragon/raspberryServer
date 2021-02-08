@@ -834,7 +834,7 @@ page.post('/obtener_sensores',(req,res) => {
                     elem[0]
                 ]
             })
-            console.log(payload)
+            console.log("Payload: ",payload)
         })
         
         //console.log("Antes de enviar: ",respuesta)

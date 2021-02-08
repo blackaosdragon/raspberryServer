@@ -820,13 +820,28 @@ page.get('/sensores',(req,res) => {
     })
 })
 page.post('/obtener_sensores',(req,res) => {
+    let respuestas = req.body.map( element => tokens.extraer_temperaturas_recientes(element.id))
+        Promise.all(respuestas).then( elemento => {
+            console.log(elemento)
+        })
+        let respuesta = {
+            ok: 1
+        }
+        console.log("Antes de enviar: ",payload)
+        resolve(respuesta)
+        res.send(respuesta)
+    /*
     return new Promise ( (resolve, rejected) => {
         let payload = []
+        
+        /*
         Promise.all(req.body.map( async (element) => {
             console.log("Dentro del promise all",element.id)
+            return            
         })).then( result => {
             console.log(result)
-        })/*
+        })
+        /*
         req.body.map( element =>{
             console.log(element.id)
             tokens.extraer_temperaturas_recientes(element.id)
@@ -841,15 +856,11 @@ page.post('/obtener_sensores',(req,res) => {
                 console.log("Payload => ",respuesta)
             })
         })
-        */
-        let respuesta = {
-            ok: 1
-        }
-        console.log("Antes de enviar: ",payload)
-        resolve(respuesta)
-        res.send(respuesta)
+        
+        
         
     })
+    */
     
     //console.log(req.body)
     

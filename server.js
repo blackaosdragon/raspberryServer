@@ -821,9 +821,6 @@ page.get('/sensores',(req,res) => {
 })
 page.post('/obtener_sensores',(req,res) => {
     let payload = []
-    let respuesta = {
-        ok: 1
-    }
     let respuestas = req.body.map( element => tokens.extraer_temperaturas_recientes(element.id))
         Promise.all(respuestas).then( elemento => {
             console.log("Arreglo:",elemento)
@@ -835,67 +832,8 @@ page.post('/obtener_sensores',(req,res) => {
                 ]
             })
             console.log("Payload: ",payload)
+            res.send(payload)
         })
-        
-        //console.log("Antes de enviar: ",respuesta)
-        //resolve(respuesta)
-        res.send(respuesta)
-    /*
-    return new Promise ( (resolve, rejected) => {
-        let payload = []
-        
-        /*
-        Promise.all(req.body.map( async (element) => {
-            console.log("Dentro del promise all",element.id)
-            return            
-        })).then( result => {
-            console.log(result)
-        })
-        /*
-        req.body.map( element =>{
-            console.log(element.id)
-            tokens.extraer_temperaturas_recientes(element.id)
-            .then( respuesta => {
-                console.log(respuesta[0])
-                payload = [
-                    ...payload,
-                    respuesta[0]
-                ]
-                return(payload)
-            }).then( respuesta => {
-                console.log("Payload => ",respuesta)
-            })
-        })
-        
-        
-        
-    })
-    */
-    
-    //console.log(req.body)
-    
-    /*
-    tokens.obtener_ultimo_dato(1).then( respuesta => {
-        //console.log(respuesta)
-        return(respuesta);
-    }).then( data => {
-        tokens.obtener_ultimo_dato(2).then( respuesta => {
-            //console.log(respuesta);
-            let payload = {
-                sensor1: data,
-                sensor2: respuesta
-            }
-            //console.log(payload);
-            res.send(payload);
-        })
-    }).catch(err=>{
-        console.log(err);
-        let payload = {
-            data: 0
-        }
-        res.send(payload);
-    })
-    */
 })
 
 

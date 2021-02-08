@@ -820,11 +820,19 @@ page.get('/sensores',(req,res) => {
     })
 })
 page.post('/obtener_sensores',(req,res) => {
-    console.log(req.body)
-    let respuesta = {
-        ok: 1
-    }
+    return new Promise ( (resolve, rejected) => {
+        req.body.map( element =>{
+            console.log(element.id)
+        })
+        let respuesta = {
+            ok: 1
+        }
+        resolve(respuesta)
+        
+    })
     res.send(respuesta)
+    //console.log(req.body)
+    
     /*
     tokens.obtener_ultimo_dato(1).then( respuesta => {
         //console.log(respuesta)

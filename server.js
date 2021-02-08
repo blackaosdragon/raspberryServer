@@ -823,6 +823,10 @@ page.post('/obtener_sensores',(req,res) => {
     let respuestas = req.body.map( element => tokens.extraer_temperaturas_recientes(element.id))
         Promise.all(respuestas).then( elemento => {
             console.log("Arreglo:",elemento)
+            elemento.map(elem=>{
+                console.log("Map dentro de el promise all",elem)
+            })
+
         })
         let respuesta = {
             ok: 1

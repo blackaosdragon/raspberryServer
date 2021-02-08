@@ -31,7 +31,7 @@ MOstrar todas las tablas de un base de datos
  - SHOW FULL TABLES from base_De_Datos;
 
 Mostrar los Permisos de un usuario
- - SHOW GRANTS FOR 'infoUpdater'@'localhost';
+ - SHOW GRANTS FOR 'infoUpdater'@'localhost'; 
 
 Obtener los tipos de datos en una tabla:
  - DESCRIBE monitoreo.test;

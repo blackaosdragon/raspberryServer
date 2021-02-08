@@ -820,6 +820,12 @@ page.get('/sensores',(req,res) => {
     })
 })
 page.get('/obtener_sensores',(req,res) => {
+    console.log(req.body)
+    let respuesta = {
+        ok: 1
+    }
+    res.send(respuesta)
+    /*
     tokens.obtener_ultimo_dato(1).then( respuesta => {
         //console.log(respuesta)
         return(respuesta);
@@ -840,6 +846,7 @@ page.get('/obtener_sensores',(req,res) => {
         }
         res.send(payload);
     })
+    */
 })
 
 

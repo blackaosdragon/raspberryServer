@@ -816,6 +816,15 @@ page.post('/recepcion',(req,res)=>{
         console.log("Imposible convertir")
     } else {
         console.log("Se puede convertir los numeros")
+        tokens.recursos_sensores().then( response => {
+            return response
+        }).then(data => {
+            console.log(data)
+        }).catch( err => {
+            console.log(err)
+        })
+
+        //tokens.guardar_todos_los_datos(temp,)
     }
 })
 page.get('/sensores',(req,res) => {

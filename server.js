@@ -819,7 +819,10 @@ page.post('/recepcion',(req,res)=>{
         tokens.recursos_sensores().then( response => {
             return response
         }).then(data => {
-            console.log(data)
+            //console.log(data)
+            data.map( element => {
+                console.log(element)
+            })
         }).catch( err => {
             console.log(err)
         })

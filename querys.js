@@ -918,5 +918,21 @@ module.exports = {
                 }
             })
         })
-    }
+    },insertar_registro: (temperatura, lugar,ID,ubicacion) => {
+        let tiempo = new Date();
+        let mes = tiempo.getMonth() + 1;
+        return new Promise( (resolve,reject) => {
+            base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_datos} (Lugar, Temperatura, Dia, Mes, Año, Hora, Minuto, Segundo,ID,Ubicacion) VALUES ("${lugar}",${temperatura}, ${tiempo.getDate()},${mes},${tiempo.getFullYear()},${tiempo.getHours()},${tiempo.getMinutes()},${tiempo.getSeconds()},${ID},'${ubicacion}');`), (err,info,otro) =>{
+                //console.log("Terminada la busqueda");
+                if(err){
+                    console.log(err);
+                    reject(new Error());
+                } else {
+                    //console.log("Dato emitido: ");
+                    //console.log(info);
+                    resolve(info);
+                }
+            }
+        })
+    },
 }

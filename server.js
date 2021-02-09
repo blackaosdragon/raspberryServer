@@ -821,7 +821,10 @@ page.post('/recepcion',(req,res)=>{
         }).then(data => {
             //console.log(data)
             data.map( element => {
-                console.log(element)
+                //console.log(element.id)
+                if(element.id==id){
+                    console.log(`Se va a agregar con la ubicacion ${element.lugar} ya que coincide con el id ${id} `)
+                }
             })
         }).catch( err => {
             console.log(err)

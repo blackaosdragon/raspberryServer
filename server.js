@@ -824,11 +824,11 @@ page.post('/recepcion',(req,res)=>{
                 //console.log(element.id)
                 if(element.id==id){
                     console.log(`Se va a agregar con la ubicacion ${element.lugar} ya que coincide con el id ${id} `)
-                    tokens.guardar_todos_los_datos(temp,element.lugar,id).then( resultado => {
-                        console.log(resultado)
-                    }).catch( err => {
-                        console.log(err)
-                    })
+                    // tokens.guardar_todos_los_datos(temp,element.lugar,id).then( resultado => {
+                    //     console.log(resultado)
+                    // }).catch( err => {
+                    //     console.log(err)
+                    // })
                 }
             })
         }).catch( err => {

@@ -812,6 +812,11 @@ page.post('/recepcion',(req,res)=>{
     io
     res.send(respuesta);
     io.emit('temp',`${id} ${temp}`);
+    if(isNaN(temp)&& isNaN(id)){
+        console.log("Imposible convertir")
+    } else {
+        console.log("Se puede convertir los numeros")
+    }
 })
 page.get('/sensores',(req,res) => {
     console.log("consultado")

@@ -860,6 +860,23 @@ page.post('/obtener_sensores',(req,res) => {
             res.send(payload)
         })
 })
+page.post('/singin', ( req,res )=>{
+    
+    if (req.body){
+        console.log(req.body)
+        let ok = {
+            ok: 1
+        }
+        req.send(ok)
+    } else {
+        let ok = {
+            ok: 0
+        }
+        res.send(ok)
+    }
+    
+
+})
 
 
 

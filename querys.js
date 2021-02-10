@@ -936,7 +936,15 @@ module.exports = {
         })
     },registrar_nuevo_sensor: (id,ubicacion,piso,lugar,equipo,serie,capacidad,especial) => {
         return new Promise( (resolve,reject) => {
-            base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_recursos} (id,ubicacion,piso,lugar,equipo,serie,capacidad,especial) VALUES (${id},'${ubicacion}','${piso}','${lugar}','${equipo}','${serie}','${capacidad}','${especial}');`, (err,data,otro)=>{
+            base_de_datos.query(`SELECT * FROM ${base_de_datos}.${tabla_de_datos} WHERE id=${id}`,(err,coincidencia,otro) => {
+                if(err){
+                    console.log(err)
+                    reject()
+                } else {
+                    console.log(coincidencia)
+                }
+            })
+            /*base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_recursos} (id,ubicacion,piso,lugar,equipo,serie,capacidad,especial) VALUES (${id},'${ubicacion}','${piso}','${lugar}','${equipo}','${serie}','${capacidad}','${especial}');`, (err,data,otro)=>{
                 if(err){
                     console.log(err);
                     reject()
@@ -944,7 +952,7 @@ module.exports = {
                     console.log(data);
                     resolve(data)
                 }
-            })
+            })*/
         })
     }
 }

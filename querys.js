@@ -941,7 +941,8 @@ module.exports = {
                     console.log(err)
                     reject()
                 } else {
-                    console.log(coincidencia)
+                    console.log(coincidencia.length)
+                    //if(coincidencia)
                 }
             })
             /*base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_recursos} (id,ubicacion,piso,lugar,equipo,serie,capacidad,especial) VALUES (${id},'${ubicacion}','${piso}','${lugar}','${equipo}','${serie}','${capacidad}','${especial}');`, (err,data,otro)=>{

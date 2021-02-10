@@ -905,7 +905,7 @@ page.post('/singin', ( req,res )=>{
     
 
 })
-///*
+/*
 
 setInterval(()=>{
     alertas.map( (element,turno,nose) => {
@@ -914,12 +914,22 @@ setInterval(()=>{
         //console.log("Otro: ", nose);
         if(id_arreglo==element.id){
             console.log("coincidencia encontrada ->", element)
+            alertas = [
+                ...alertas,
+                {
+                    id: id_arreglo,
+                    dias: alertas[turno-1].dias,
+                    horas: 0,
+                    minutos: 0,
+                    segundos: 0
+                }
+            ]
         } else {
-            console.log("coincidendcia no encontrada")
+            //console.log("coincidendcia no encontrada")
         }
     })
 },1000)
-//*/
+*/
 
 
 

@@ -93,6 +93,23 @@ let hora_desactivacion = 23;
 let hora_activacion = 8;
 let minuto_desactivacion = 59;
 
+let alertas = [
+    {
+        id: 1,
+        dias: 0,
+        horas: 0,
+        minutos: 0,
+        segundos: 0
+    },
+    {
+        id: 2,
+        dias: 0,
+        horas: 0,
+        minutos: 0,
+        segundos: 0
+    }
+]
+
 //
 /*
 page.listen(pagePort, () => {
@@ -677,6 +694,7 @@ page.post('/temperatura',(req,res)=>{
             if(segundos_2==60){
                 minutos_2++
                 segundos_2=0
+
             }
             if(/*actualizar_temp_2>temp_prueba_limite_inferior&& */actualizar_temp_2<temp_prueba_limite_superior){
                 clearInterval(ciclo_id_2);
@@ -694,6 +712,9 @@ page.post('/temperatura',(req,res)=>{
                 
             }
         }
+        ///////////////////////////////////////////////////////////////
+        
+        ///////////////////////////////////////////////////////////////
         
     }
     //actualizar_temp = 
@@ -869,7 +890,7 @@ page.post('/singin', ( req,res )=>{
             ok: 1
         }
         console.log(`${id}, ${ubicacion}, ${piso}, ${lugar}, ${equipo}, ${serie}, ${capacidad}, ${especial} `)
-        tokens.registrar_nuevo_sensor(id,ubicacion,piso,lugar,equipo,serie,capacidad,especial);
+        tokens.registrar_nuevo_sensor(id,ubicacion,piso,lugar,equipo,serie,capacidad,especial)
         res.send(ok)
     } else {
         let ok = {
@@ -880,6 +901,14 @@ page.post('/singin', ( req,res )=>{
     
 
 })
+setInterval(()=>{
+    alertas.map( (element,turno,nose) => {
+        console.log(element);
+        console.log(turno);
+        console.log(nose);
+        
+    })
+},1000)
 
 
 

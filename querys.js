@@ -941,8 +941,8 @@ module.exports = {
                     console.log(err);
                     reject()
                 } else {
-                    console.log(info);
-                    resolve(info)
+                    console.log(data);
+                    resolve(data)
                 }
             })
         })

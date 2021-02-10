@@ -864,9 +864,11 @@ page.post('/singin', ( req,res )=>{
     
     if (req.body){
         console.log(req.body)
+        const {id,ubicacion,piso,lugar,equipo,serie,capacidad,especial} = req.body
         let ok = {
             ok: 1
         }
+        console.log(`${id}, ${ubicacion}, ${piso}, ${lugar}, ${equipo}, ${serie}, ${capacidad}, ${especial} `)
         res.send(ok)
     } else {
         let ok = {

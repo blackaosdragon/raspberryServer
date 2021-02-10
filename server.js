@@ -912,7 +912,7 @@ setInterval(()=>{
         //console.log("Elemento: ",element);
         //console.log("Lugar del arreglo: ", turno-1);
         //console.log("Otro: ", nose);
-        if(id==element.id){
+        if(id_arreglo==element.id){
             console.log("coincidencia encontrada ->", element)
         }
     })

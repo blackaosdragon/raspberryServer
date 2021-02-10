@@ -934,5 +934,17 @@ module.exports = {
                 }
             }
         })
-    },
+    },registrar_nuevo_sensor: (id,ubicacion,piso,lugar,equipo,serie,capacidad,especial) => {
+        return new Promise( (resolve,reject) => {
+            base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_recursos} (id,ubicacion,piso,lugar,equipo,serie,capacidad,especial) VALUES (${id},'${ubicacion}','${piso}','${lugar}','${equipo}','${serie}','${capacidad}','${especial}');`, (err,data,otro)=>{
+                if(err){
+                    console.log(err);
+                    reject()
+                } else {
+                    console.log(info);
+                    resolve(info)
+                }
+            })
+        })
+    }
 }

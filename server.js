@@ -10,6 +10,8 @@ const asignacion = require('./asignacion.js');
 const { notificacion_temperatura } = require('./fcmessage.js');
 const { Console } = require('console');
 
+let id_arreglo = 0
+
 
 let idTemp = 0;
 let id2Temp = 0;
@@ -447,6 +449,8 @@ page.post('/temperatura',(req,res)=>{
     let temperatura_original = 0;  
     let lugar;
     let id = parseInt(req.body.id);
+    id_arreglo = id;
+
 
     let reloj = new Date();
     console.log(`ID: ${req.body.id} Temp: ${req.body.temperatura}°C ${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`);
@@ -902,12 +906,15 @@ page.post('/singin', ( req,res )=>{
 
 })
 ///*
+
 setInterval(()=>{
     alertas.map( (element,turno,nose) => {
         console.log("Elemento: ",element);
-        console.log("Turno: ", turno);
+        console.log("Lugar del arreglo: ", turno-1);
         console.log("Otro: ", nose);
-
+        if(id==element.id){
+            console.log("coincidencia encontrada")
+        }
     })
 },1000)
 //*/

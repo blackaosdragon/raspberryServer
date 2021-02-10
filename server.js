@@ -914,6 +914,8 @@ setInterval(()=>{
         //console.log("Otro: ", nose);
         if(id_arreglo==element.id){
             console.log("coincidencia encontrada ->", element)
+        } else {
+            console.log("coincidendcia no encontrada")
         }
     })
 },1000)

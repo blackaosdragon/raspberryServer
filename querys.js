@@ -908,7 +908,7 @@ module.exports = {
     extraer_temperaturas_recientes: (id) => {
         return new Promise( (res,rej) => {
             let payload = []
-            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_recursos} WHERE ID=${id} ORDER BY turno DESC LIMIT 1;`, (err,data,otro)=>{
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos} WHERE ID=${id} ORDER BY turno DESC LIMIT 1;`, (err,data,otro)=>{
                 if(err){
                     console.log(err);
                     rej();
@@ -936,7 +936,7 @@ module.exports = {
         })
     },registrar_nuevo_sensor: (id,ubicacion,piso,lugar,equipo,serie,capacidad,especial) => {
         return new Promise( (resolve,reject) => {
-            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_datos} WHERE id=${id}`,(err,coincidencia,otro) => {
+            base_de_datos.query(`SELECT * FROM ${base_de_datos}.${tabla_de_recursos} WHERE id=${id}`,(err,coincidencia,otro) => {
                 if(err){
                     console.log(err)
                     reject()

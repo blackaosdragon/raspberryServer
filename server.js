@@ -867,7 +867,7 @@ page.post('/singin', ( req,res )=>{
         let ok = {
             ok: 1
         }
-        req.send(ok)
+        res.send(ok)
     } else {
         let ok = {
             ok: 0

@@ -942,7 +942,20 @@ module.exports = {
                     reject()
                 } else {
                     console.log(coincidencia.length)
-                    //if(coincidencia)
+                    if(coincidencia.length>0){
+                        console.log("Ya está registrado el dato")
+                    }
+                    else {
+                        base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_recursos} (id,ubicacion,piso,lugar,equipo,serie,capacidad,especial) VALUES (${id},'${ubicacion}','${piso}','${lugar}','${equipo}','${serie}','${capacidad}','${especial}');`, (err,data,otro)=>{
+                            if(err){
+                                console.log(err);
+                                reject()
+                            } else {
+                                console.log(data);
+                                resolve(data)
+                            }
+                        })                        
+                    }
                 }
             })
             /*base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_recursos} (id,ubicacion,piso,lugar,equipo,serie,capacidad,especial) VALUES (${id},'${ubicacion}','${piso}','${lugar}','${equipo}','${serie}','${capacidad}','${especial}');`, (err,data,otro)=>{

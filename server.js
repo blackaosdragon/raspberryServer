@@ -901,14 +901,16 @@ page.post('/singin', ( req,res )=>{
     
 
 })
+///*
 setInterval(()=>{
     alertas.map( (element,turno,nose) => {
-        console.log(element);
-        console.log(turno);
-        console.log(nose);
-        
+        console.log("Elemento: ",element);
+        console.log("Turno: ", turno);
+        console.log("Otro: ", nose);
+
     })
 },1000)
+//*/
 
 
 

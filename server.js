@@ -909,11 +909,11 @@ page.post('/singin', ( req,res )=>{
 
 setInterval(()=>{
     alertas.map( (element,turno,nose) => {
-        console.log("Elemento: ",element);
-        console.log("Lugar del arreglo: ", turno-1);
-        console.log("Otro: ", nose);
+        //console.log("Elemento: ",element);
+        //console.log("Lugar del arreglo: ", turno-1);
+        //console.log("Otro: ", nose);
         if(id==element.id){
-            console.log("coincidencia encontrada")
+            console.log("coincidencia encontrada ->", element)
         }
     })
 },1000)

@@ -2,6 +2,7 @@ const mySql = require ('mysql');
 const fs = require('fs');
 const { resolve, parse } = require('path');
 const { rejects } = require('assert');
+const { response } = require('express');
 const base_de_datos = mySql.createConnection({
     host: 'localhost',
     user: 'infoUpdater',
@@ -944,6 +945,10 @@ module.exports = {
                     console.log(coincidencia.length)
                     if(coincidencia.length>0){
                         console.log("Ya está registrado el dato")
+                        let ok = {
+                            ok: 2
+                        }
+                        resolve(ok)
                     }
                     else {
                         base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_recursos} (id,ubicacion,piso,lugar,equipo,serie,capacidad,especial) VALUES (${id},'${ubicacion}','${piso}','${lugar}','${equipo}','${serie}','${capacidad}','${especial}');`, (err,data,otro)=>{
@@ -958,15 +963,6 @@ module.exports = {
                     }
                 }
             })
-            /*base_de_datos.query(`INSERT INTO ${data_base}.${tabla_de_recursos} (id,ubicacion,piso,lugar,equipo,serie,capacidad,especial) VALUES (${id},'${ubicacion}','${piso}','${lugar}','${equipo}','${serie}','${capacidad}','${especial}');`, (err,data,otro)=>{
-                if(err){
-                    console.log(err);
-                    reject()
-                } else {
-                    console.log(data);
-                    resolve(data)
-                }
-            })*/
         })
     }
 }

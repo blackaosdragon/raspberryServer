@@ -894,7 +894,9 @@ page.post('/singin', ( req,res )=>{
             ok: 1
         }
         console.log(`${id}, ${ubicacion}, ${piso}, ${lugar}, ${equipo}, ${serie}, ${capacidad}, ${especial} `)
-        tokens.registrar_nuevo_sensor(id,ubicacion,piso,lugar,equipo,serie,capacidad,especial)
+        tokens.registrar_nuevo_sensor(id,ubicacion,piso,lugar,equipo,serie,capacidad,especial).then( response => {
+            console.log(response)
+        })
         res.send(ok)
     } else {
         let ok = {

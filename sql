@@ -22,6 +22,8 @@ Crear Tabla nueva
  Insertar Data
  - INSERT INTO `pruebaFechas`(`Lugar`, `Temperatura`, `Dia`, `Mes`, `Año`, `Hora`, `Minuto`, `Segundo`, `Ubicacion`, `Marca`, `Modelo`, `Serie`, `Inventario`) VALUES ("oficina",21.5,25,06,2020,11,10,0,"Plata Baja","Sin marca",NULL,"101010","imss2020pbST1")
  - INSERT INTO monitoreo.equipos (Nombre,Marca,Modelo,Serie,Inventario,Unidad,Abreviado,Ubicacion,Contrato,Identificador) VALUES ('Cámara Farmacia',)
+ INSERT INTO monitoreo.dalyData (Lugar,Temperatura,Dia,Mes,Año,Hora,Minuto,Segundo,ID,Ubicacion) VALUES ()
+ INSERT INTO monitoreo.dalyData (Lugar,Temperatura,Dia,Mes,Año,Hora,Minuto,Segundo,ID,Ubicacion) VALUES ('Cámara farmacia',4.78,27,02,2021,8,60,60,2,'H. Cardiología S. XXI');
 
 
 Otorgar Permisos

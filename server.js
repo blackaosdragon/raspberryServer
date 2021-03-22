@@ -80,6 +80,7 @@ const ajuste = 3.3;
 const wsPort = 5001;
 const pagePort = 80;
 const puerto = 5002; // antes 5002
+const zeroSsl = 5000;
 const sensores_en_total = 3;
 let string_ofice_temperature = "";
 let float_ofice_temperature = 0.0;
@@ -112,19 +113,21 @@ let alertas = [
     }
 ]
 
-//
-/*
-page.listen(pagePort, () => {
+/////////////////////
+
+page.listen(zeroSsl, () => {
     console.log(`Escuchando por el puerto ${pagePort}`);
 })
-*/
-//
+
+//////////////////////
 
 
-//page.use('/.well-known/pki-validation/',express.static('verifi'));
+page.use('/.well-known/pki-validation/',express.static('verifi'));
 //carperta verify solo para poner el nuevo archivo para validar
 
+////////////////////////////
 
+/*
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/victory/server/gitServer/raspberryServer/certs/private.key')),
     cert: fs.readFileSync(path.resolve('/home/victory/server/gitServer/raspberryServer/certs/certificate.crt'))
@@ -136,7 +139,7 @@ httpServer.listen(puerto,()=>{
   console.log(`Servidor disponible en el puerto ${puerto}`);
 })
 
-
+*/
 /////////////
 
 

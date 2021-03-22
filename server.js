@@ -7,8 +7,7 @@ const path = require('path');
 let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
 const asignacion = require('./asignacion.js');
-const { notificacion_temperatura } = require('./fcmessage.js');
-const { Console } = require('console');
+const config = require('./configuration.js');
 
 let id_arreglo = 0
 
@@ -132,8 +131,8 @@ const httpServer = https.createServer({
    },page);
 
 
-httpServer.listen(puerto,()=>{
-  console.log(`Servidor disponible en el puerto ${puerto}`);
+httpServer.listen(config.portServer,()=>{
+  console.log(`Servidor disponible en el puerto ${config.portServer}`);
 })
 
 
@@ -143,6 +142,7 @@ httpServer.listen(puerto,()=>{
 
 
 const wss = new Ws.Server({port: wsPort});
+
 page.use(express.json());
 page.use(express.static(__dirname+'/static', {dotfiles: 'allow'}))
 

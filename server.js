@@ -908,7 +908,8 @@ page.post('/singin', ( req,res )=>{
     
 
 })
-page.use('/api',api);
+
+//page.use('/api',api);
 /*
 
 setInterval(()=>{

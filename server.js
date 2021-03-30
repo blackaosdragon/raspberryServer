@@ -909,7 +909,7 @@ page.post('/singin', ( req,res )=>{
     
 
 })
-api.post('./ginecologia/3a/mesas',servicios.getEquipos);
+page.post('./ginecologia/3a/mesas',servicios.getEquipos);
 /*
 
 setInterval(()=>{

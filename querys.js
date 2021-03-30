@@ -18,7 +18,8 @@ const tabla_de_tokens = 'mensajeria';
 const tabla_de_excepciones = 'exception'
 const tabla_de_usuarios = 'usuarios';
 const tabla_de_equipos = 'equipos';
-const tabla_de_recursos = 'relacion'
+const tabla_de_recursos = 'relacion';
+const tabla_de_camas = 'camas';
 let tokens = [];
 
 module.exports = {
@@ -961,6 +962,17 @@ module.exports = {
                             }
                         })                        
                     }
+                }
+            })
+        })
+    },getEquipos: () => {
+        return new Promise( (resolve,reject) =>{
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas}`,(err,data)=>{
+                if(err){
+                    console.log(err);
+                    reject();
+                } else {
+                    resolve(data)
                 }
             })
         })

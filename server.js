@@ -8,7 +8,8 @@ let asignar = require('./asignacion.js');
 let mensajes = require('./fcmessage.js');
 const asignacion = require('./asignacion.js');
 const config = require('./configuration.js');
-const api = require('./rutas/rutasApi.js')
+const api = require('./rutas/rutasApi.js');
+const servicios = require('./servicios/consulta.js');
 
 let id_arreglo = 0
 
@@ -908,8 +909,7 @@ page.post('/singin', ( req,res )=>{
     
 
 })
-
-page.use('/api',api);
+api.post('./ginecologia/3a/mesas',servicios.getEquipos);
 /*
 
 setInterval(()=>{

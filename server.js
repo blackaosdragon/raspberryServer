@@ -126,7 +126,7 @@ page.use('/.well-known/pki-validation/',express.static('verifi'));
 ////////////////////////////
 */
 
-page.use('/imagenes',express.static('/mesas125'));
+page.use('/imagenes',express.static('mesas125'));
 
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/victory/server/gitServer/raspberryServer/certs/private.key')),

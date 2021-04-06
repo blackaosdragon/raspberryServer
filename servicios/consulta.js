@@ -4,7 +4,7 @@ const {ok,failed} = require('../respuestas.js')
 const getEquipos = (req,res) => {
     console.log(req.body);
     llamada_a_bd.getEquipos().then( data => {
-        console.log(data);
+        //console.log(data);
         let payload = {
             ok: 1,
             data: data,

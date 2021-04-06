@@ -126,6 +126,8 @@ page.use('/.well-known/pki-validation/',express.static('verifi'));
 ////////////////////////////
 */
 
+page.use('/imagenes',express.static('/mesas125'));
+
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/victory/server/gitServer/raspberryServer/certs/private.key')),
     cert: fs.readFileSync(path.resolve('/home/victory/server/gitServer/raspberryServer/certs/certificate.crt'))
@@ -419,6 +421,13 @@ page.post('/login',(req,res)=>{
     tokens.validar_login(req.body.user,req.body.pass).then((logueado)=>{
         //console.log(logueado)
         res.send(logueado);
+    }).catch( err => {
+        console.log(err);
+        let insatisfactorio = {
+            ok: 0,
+            message: "No se pudo loguear"
+        }
+        res.send(insatisfactorio);
     })
     //res.send('Recibido');
 })
@@ -888,7 +897,6 @@ page.post('/obtener_sensores',(req,res) => {
         })
 })
 page.post('/singin', ( req,res )=>{
-    
     if (req.body){
         console.log(req.body)
         const {id,ubicacion,piso,lugar,equipo,serie,capacidad,especial} = req.body

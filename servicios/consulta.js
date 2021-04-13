@@ -26,6 +26,14 @@ const getEquipos = (req,res) => {
     })
     */
 }
+const getMesas = (req,res) => {
+    console.log(req.body)
+    let respuesta = {
+        ok: "respuesta recibida"
+    }
+    res.status(ok).send(respuesta);
+}
 module.exports = {
     getEquipos,
+    getMesas
 }

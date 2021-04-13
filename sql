@@ -44,7 +44,7 @@ Exportacion de una base de datos
 Importacion de una base de datos
  - si salta error al importar #1273 por utf8mb4_0900_ai_ci sustituir por => utf8mb4_unicode_ci
 
-Agregar una nueva columna a un atabla
+Agregar una nueva columna a una tabla
  - ALTER TABLE monitoreo.camas add(`equipo_abrev` varchar(10) null,`unidad_abrev` varchar(15) null);
 
 

@@ -966,7 +966,7 @@ module.exports = {
                 }
             })
         })
-    },getCamas: () => {
+    },getEquipos: () => {
         return new Promise( (resolve,reject) =>{
             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas}`,(err,data)=>{
                 if(err){
@@ -977,7 +977,7 @@ module.exports = {
                 }
             })
         })
-    },getEquipos: (unidad,equipos) => {
+    },getMesas: (unidad,equipos) => {
         return new Promise( (resolve,reject)=>{
             if(unidad==='ALL'){
                 

@@ -27,7 +27,7 @@ const getEquipos = (req,res) => {
 }
 const getMesas = (req,res) => {
     console.log(req.body);
-    console.log(req.body.nombre);
+    console.log(req.body.usuario);
     console.log(req.body.equipos);
     let respuesta = {
         ok: "respuesta recibida"

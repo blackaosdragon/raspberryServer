@@ -977,9 +977,11 @@ module.exports = {
                 }
             })
         })
-    },getEquipos: () => {
+    },getEquipos: (unidad,equipos) => {
         return new Promise( (resolve,reject)=>{
-            
+            if(unidad==='ALL'){
+                
+            }
         })
 
     }

@@ -26,16 +26,26 @@ const getEquipos = (req,res) => {
     */
 }
 const getMesas = (req,res) => {
-    //console.log(req.body);
-    //console.log(req.body.usuario);
-    //console.log(req.body.equipos);
     const {usuario,equipos,unidad} = req.body
-    console.log(`Usuario: ${usuario} Equipo: ${equipos} Unidad: ${unidad}`)
-    //llamada_a_bd.getEquipos()
-    let respuesta = {
-        ok: "respuesta recibida"
-    }
-    res.status(ok).send(respuesta);
+    //console.log(`Usuario: ${usuario} Equipo: ${equipos} Unidad: ${unidad}`)
+    llamada_a_bd.getEquipos(unidad,equipos).then( respuesta => {
+        let payload = {
+            ok: 1,
+            data: respuesta
+        }
+        res.status(ok).send(payload);
+    }).catch( err => {
+        console.log(err);
+        let payload = {
+            ok: 0,
+            message: err
+        }
+        res.status(failed).send(payload);        
+    })
+    // let respuesta = {
+    //     ok: "respuesta recibida"
+    // }
+    // res.status(ok).send(respuesta);
 }
 module.exports = {
     getEquipos,

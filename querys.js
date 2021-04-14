@@ -977,5 +977,12 @@ module.exports = {
                 }
             })
         })
+    },getEquipos: () => {
+        return new Promise( (resolve,reject)=>{
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad='${}'`,(err,data) => {
+
+            })
+        })
+
     }
 }

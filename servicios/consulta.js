@@ -26,9 +26,12 @@ const getEquipos = (req,res) => {
     */
 }
 const getMesas = (req,res) => {
-    console.log(req.body);
-    console.log(req.body.usuario);
-    console.log(req.body.equipos);
+    //console.log(req.body);
+    //console.log(req.body.usuario);
+    //console.log(req.body.equipos);
+    const {usuario,equipos,unidad} = req.body
+    console.log(`Usuario: ${usuario} Equipo: ${equipos} Unidad: ${unidad}`)
+    //llamada_a_bd.getEquipos()
     let respuesta = {
         ok: "respuesta recibida"
     }

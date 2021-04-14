@@ -1,7 +1,7 @@
 'use strict'
 const llamada_a_bd = require('../querys.js')
 const {ok,failed} = require('../respuestas.js')
-const getEquipos = (req,res) => {
+const getCamas = (req,res) => {
     //console.log(req.body);
     llamada_a_bd.getEquipos().then( data => {
         //console.log(data);
@@ -48,6 +48,6 @@ const getMesas = (req,res) => {
     // res.status(ok).send(respuesta);
 }
 module.exports = {
-    getEquipos,
+    getCamas,
     getMesas
 }

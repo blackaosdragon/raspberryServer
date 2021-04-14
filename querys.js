@@ -990,7 +990,7 @@ module.exports = {
 
                 })                
             } else {
-                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE unidad="${unidad}"`, (err,data) => {
+                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}"`, (err,data) => {
                     if(err){
                         console.log(err)
                         reject()

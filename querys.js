@@ -618,7 +618,8 @@ module.exports = {
                                  let success = {
                                      data: 1,
                                      level: data[0].Level,
-                                     id: data[0].id
+                                     id: data[0].id,
+                                     unidad: data[0].codigo_unidad
                                  }
                                  console.log(success)
                                  resolve(success);

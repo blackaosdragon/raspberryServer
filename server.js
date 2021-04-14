@@ -917,7 +917,7 @@ page.post('/singin', ( req,res )=>{
     
 
 })
-page.post('/ginecologia/3a/mesas',servicios.getEquipos);
+page.post('/ginecologia/3a/mesas',servicios.getCamas);
 //page.post('/equipos/mesas',servicios.getMesas);
 /*
 

@@ -2,7 +2,7 @@
 const llamada_a_bd = require('../querys.js')
 const {ok,failed} = require('../respuestas.js')
 const getCamas = (req,res) => {
-    //console.log(req.body);
+    console.log(req.body);
     llamada_a_bd.getMesas().then( data => {
         //console.log(data);
         let payload = {

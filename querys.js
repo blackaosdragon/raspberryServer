@@ -980,7 +980,24 @@ module.exports = {
     },getEquipos: (unidad,equipos) => {
         return new Promise( (resolve,reject)=>{
             if(unidad==='ALL'){
-                
+                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas}`,(err,data)=>{
+                    if(err){
+                        console.log( err )
+                        reject()
+                    } else {
+                        resolve(data)
+                    }
+
+                })                
+            } else {
+                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE unidad="${unidad}"`, (err,data) => {
+                    if(err){
+                        console.log(err)
+                        reject()
+                    } else {
+                        resolve(data);
+                    }
+                })
             }
         })
 

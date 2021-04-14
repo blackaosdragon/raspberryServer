@@ -977,7 +977,7 @@ module.exports = {
                 }
             })
         })
-    },getMesas: (unidad,equipos) => {
+    },getEquipos: (unidad,equipos) => {
         return new Promise( (resolve,reject)=>{
             if(unidad==='ALL'){
                 

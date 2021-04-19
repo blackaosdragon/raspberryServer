@@ -1004,15 +1004,177 @@ module.exports = {
 
     },busqueda: (unidad,payload,nivel) => {
         return new Promise ((resolve,reject)=> {
-            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND inventario LIKE "%${payload}%"`,(err,data) => {
-                if(err){
-                    console.log(err);
-                    reject(err);
-                } else {
-                    console.log(data.length);
-                    resolve(data);
+            if(unidad==='ALL'){
+                {
+                    base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE inventario LIKE "%${payload}%"`,(err,data) => {
+                        if(err){
+                            console.log(err);
+                            reject(err);
+                        } else {
+                            if(data.length<1){
+                                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE equipo LIKE "%${payload}%"`, (err,data2) => {
+                                    if(err){
+                                        console.log(err);
+                                        reject(err);
+                                    } else {
+                                        if(data2.length<1){
+                                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE marca LIKE "%${payload}%"`, (err,data3) => {
+                                                if(err){
+                                                    console.log(err);
+                                                    reject(err);
+                                                } else {
+                                                    if(data3.length<1){
+                                                        base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE serie LIKE "%${payload}%"`,(err,data4)=>{
+                                                            if(err){
+                                                                console.log(err)
+                                                                reject(err)
+                                                            } else {
+                                                                if(data4.length<1){
+                                                                    base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE modelo LIKE "%${payload}%"`,(err,data5) => {
+                                                                        if(err){
+                                                                            console.log(err);
+                                                                            reject(err);
+                                                                        } else {
+                                                                            if(data5.length<1){
+                                                                                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE id=${payload}`,(err,data6)=>{
+                                                                                    if(err){
+                                                                                        reject(err);
+                                                                                        console.log(err)
+                                                                                    } else {
+                                                                                        if(data6.length<1){
+                                                                                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE unidad LIKE "%${payload}%"`,(err,data7) => {
+                                                                                                if(err){
+                                                                                                    reject(err);
+                                                                                                    console.log(err)
+                                                                                                } else {
+                                                                                                    if(data7.length<1){
+                                                                                                        base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad LIKE "%${payload}%"`,(err,data8)=>{
+                                                                                                            if(err){
+                                                                                                                reject(err);
+                                                                                                                console.log(err);
+                                                                                                            } else {
+                                                                                                                if(data8.length<1){
+                                                                                                                    resolve();
+                                                                                                                } else {
+                                                                                                                    resolve(data8)
+                                                                                                                }
+                                                                                                            }
+                                                                                                        })
+                                                                                                    } else {
+                                                                                                        resolve(data7)
+                                                                                                    }
+                                                                                                }
+                                                                                            })
+                                                                                        } else {
+                                                                                            resolve(data6);
+                                                                                        }
+                                                                                    }
+                                                                                })
+                                                                            } else {
+                                                                                resolve(data5)
+                                                                            }
+                                                                        }
+                                                                    })
+    
+                                                                } else {
+                                                                    resolve(data4)
+                                                                }
+                                                            }
+                                                        })
+                                                    } else {
+                                                        resolve(data3);
+                                                    }
+                                                }
+                                            })
+                                        } else {
+                                            resolve(data2);
+                                        }
+                                    }
+                                })
+        
+                            } else {
+                                console.log(data.length);
+                                resolve(data);
+                            }
+                            
+                        }
+                    })
                 }
-            })
+
+            } else {
+                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND inventario LIKE "%${payload}%"`,(err,data) => {
+                    if(err){
+                        console.log(err);
+                        reject(err);
+                    } else {
+                        if(data.length<1){
+                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND equipo LIKE "%${payload}%"`, (err,data2) => {
+                                if(err){
+                                    console.log(err);
+                                    reject(err);
+                                } else {
+                                    if(data2.length<1){
+                                        base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND marca LIKE "%${payload}%"`, (err,data3) => {
+                                            if(err){
+                                                console.log(err);
+                                                reject(err);
+                                            } else {
+                                                if(data3.length<1){
+                                                    base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND serie LIKE "%${payload}%"`,(err,data4)=>{
+                                                        if(err){
+                                                            console.log(err)
+                                                            reject(err)
+                                                        } else {
+                                                            if(data4.length<1){
+                                                                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND modelo LIKE "%${payload}%"`,(err,data5) => {
+                                                                    if(err){
+                                                                        console.log(err);
+                                                                        reject(err);
+                                                                    } else {
+                                                                        if(data5.length<1){
+                                                                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND id=${payload}`,(err,data6)=>{
+                                                                                if(err){
+                                                                                    reject(err);
+                                                                                    console.log(err)
+                                                                                } else {
+                                                                                    if(data6.length<1){
+                                                                                        resolve();
+                                                                                    } else {
+                                                                                        resolve(data6);
+                                                                                    }
+                                                                                }
+                                                                            })
+                                                                        } else {
+                                                                            resolve(data5)
+                                                                        }
+                                                                    }
+                                                                })
+
+                                                            } else {
+                                                                resolve(data4)
+                                                            }
+                                                        }
+                                                    })
+                                                } else {
+                                                    resolve(data3);
+                                                }
+                                            }
+                                        })
+                                    } else {
+                                        resolve(data2);
+                                    }
+                                }
+                            })
+    
+                        } else {
+                            console.log(data.length);
+                            resolve(data);
+                        }
+                        
+                    }
+                })
+            }
+            
         })
         
         

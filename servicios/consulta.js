@@ -50,7 +50,8 @@ const getMesas = (req,res) => {
     // res.status(ok).send(respuesta);
 }
 const obtenerEquipos = (req,res) => {
-    const {payload,unidad,level} = req.body.payload
+    const {payload,unidad,level} = req.body
+    console.log(`payload: ${payload} Unidad: ${unidad}, `)
     llamada_a_bd.busqueda(unidad,payload,level).then( data => {
         console.log(data);
         let payload = {

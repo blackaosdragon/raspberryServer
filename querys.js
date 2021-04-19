@@ -1008,38 +1008,38 @@ module.exports = {
                 {
                     base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE inventario LIKE "%${payload}%"`,(err,data) => {
                         if(err){
-                            console.log(err);
+                            console.log("Error en inventario: ",err);
                             reject(err);
                         } else {
                             if(data.length<1){
                                 base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE equipo LIKE "%${payload}%"`, (err,data2) => {
                                     if(err){
-                                        console.log(err);
+                                        console.log("Error en equipo: ",err);
                                         reject(err);
                                     } else {
                                         if(data2.length<1){
                                             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE marca LIKE "%${payload}%"`, (err,data3) => {
                                                 if(err){
-                                                    console.log(err);
+                                                    console.log("Error en marca: ",err);
                                                     reject(err);
                                                 } else {
                                                     if(data3.length<1){
                                                         base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE serie LIKE "%${payload}%"`,(err,data4)=>{
                                                             if(err){
-                                                                console.log(err)
+                                                                console.log("Error en serie: ",err)
                                                                 reject(err)
                                                             } else {
                                                                 if(data4.length<1){
                                                                     base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE modelo LIKE "%${payload}%"`,(err,data5) => {
                                                                         if(err){
-                                                                            console.log(err);
+                                                                            console.log("Erorr en modelo: ",err);
                                                                             reject(err);
                                                                         } else {
                                                                             if(data5.length<1){
                                                                                 base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE id=${payload}`,(err,data6)=>{
                                                                                     if(err){
                                                                                         reject(err);
-                                                                                        console.log(err)
+                                                                                        console.log("Error id: ",err)
                                                                                     } else {
                                                                                         if(data6.length<1){
                                                                                             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE unidad LIKE "%${payload}%"`,(err,data7) => {

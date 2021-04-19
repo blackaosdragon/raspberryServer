@@ -21,6 +21,7 @@ const tabla_de_equipos = 'equipos';
 const tabla_de_recursos = 'relacion';
 const tabla_de_camas = 'camas';
 let tokens = [];
+const id_length = 3;
 
 module.exports = {
     asignar_tokens: () => {
@@ -1001,5 +1002,19 @@ module.exports = {
             }
         })
 
+    },busqueda: (unidad,payload,nivel) => {
+        return new Promise ((resolve,reject)=> {
+            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND inventario LIKE "%${payload}%"`,(err,data) => {
+                if(err){
+                    console.log(err);
+                    reject(err);
+                } else {
+                    console.log(data.length);
+                    resolve(data);
+                }
+            })
+        })
+        
+        
     }
 }

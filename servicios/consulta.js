@@ -1,6 +1,7 @@
 'use strict'
 const llamada_a_bd = require('../querys.js')
 const {ok,failed} = require('../respuestas.js')
+const id_length = 3;
 const getEquipos = (req,res) => {
     //console.log(req.body);
     llamada_a_bd.getMesas().then( data => {
@@ -48,7 +49,32 @@ const getMesas = (req,res) => {
     // }
     // res.status(ok).send(respuesta);
 }
+const obtenerEquipos = (req,res) => {
+    const {payload,unidad,level} = req.body.payload
+    llamada_a_bd.busqueda(unidad,payload,level).then( data => {
+        console.log(data);
+        let payload = {
+            data: data,
+            status: ok
+        }
+        res.status(ok).send(payload)
+    }).catch ( err => {
+        console.log(err);
+        let fallido = {
+            error: err,
+            status: failed
+        }
+        res.status(failed).send(fallido);
+    })
+    // if(payload.length>id_length){
+    //     llamada_a_bd.busqueda(unidad,payload,level)
+    // } else {
+
+    // }
+
+}
 module.exports = {
     getEquipos,
-    getMesas
+    getMesas,
+    obtenerEquipos
 }

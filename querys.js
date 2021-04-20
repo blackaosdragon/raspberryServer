@@ -1009,7 +1009,7 @@ module.exports = {
                     if(payload.length<4){
                         if(isNaN(payload)){
                             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad LIKE "%${payload}%"`,(err,data) => {
-                                if(errr){
+                                if(err){
                                     console.log(err);
                                     reject(err);
                                 } else {

@@ -1103,7 +1103,27 @@ module.exports = {
 
             } else {
                 console.log(payload.length);
-                
+                if(payload.length<4){
+                    if(isNaN(payload)){
+                    } else {
+                        try{
+                            let id = parseInt(payload);
+                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND id=${payload}`,(err,datos) => {
+                                if(err){
+                                    console.log(err);
+                                    reject(err);
+                                } else {
+                                    if(datos.length>0){
+                                        resolve(datos);
+                                    }                                    
+                                }
+                            })
+                        } catch (err){
+                            console.log(err)
+                            reject(err);
+                        }
+                    }                    
+                }                
                 base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND inventario LIKE "%${payload}%"`,(err,data) => {
                     if(err){
                         console.log(err);

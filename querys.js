@@ -1113,14 +1113,16 @@ module.exports = {
                                                                         } else {
                                                                             if(data5.length<1){
                                                                                 if(isNaN(payload)){
+                                                                                    console.log("khe?");
 
                                                                                 } else {
                                                                                 base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE unidad LIKE "%${payload}%"`,(err,data6)=>{
                                                                                     if(err){
                                                                                         reject(err);
-                                                                                        console.log("Error id: ",err)
+                                                                                        console.log("Error unidad: ",err)
                                                                                     } else {
                                                                                         if(data6.length>0){
+                                                                                            console.log("Resuelto en unidad:");
                                                                                             resolve(data6);
                                                                                         } else {
                                                                                             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE estado LIKE "%${payload}%"`,(err,data)=>{
@@ -1142,6 +1144,7 @@ module.exports = {
                                                                                 })
                                                                             }
                                                                             } else {
+                                                                                console.log("Resuelto en unidad:");
                                                                                 resolve(data5)
                                                                             }
                                                                         }
@@ -1149,16 +1152,19 @@ module.exports = {
                                                                     
     
                                                                 } else {
+                                                                    console.log("Resuelto en modelo:");
                                                                     resolve(data4)
                                                                 }
                                                             }
                                                         })
                                                     } else {
+                                                        console.log("Resuelto en serie:");
                                                         resolve(data3);
                                                     }
                                                 }
                                             })
                                         } else {
+                                            console.log("Resuelto en marca:");
                                             resolve(data2);
                                         }
                                     }
@@ -1166,6 +1172,7 @@ module.exports = {
         
                             } else {
                                 console.log(data.length);
+                                console.log("Resuelto en equipo:");
                                 resolve(data);
                             }
                             

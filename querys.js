@@ -1112,10 +1112,7 @@ module.exports = {
                                                                             reject(err);
                                                                         } else {
                                                                             if(data5.length<1){
-                                                                                if(isNaN(payload)){
-                                                                                    console.log("khe?");
-
-                                                                                } else {
+                                                                                
                                                                                 base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE unidad LIKE "%${payload}%"`,(err,data6)=>{
                                                                                     if(err){
                                                                                         reject(err);
@@ -1142,7 +1139,7 @@ module.exports = {
                                                                                         }
                                                                                     }
                                                                                 })
-                                                                            }
+                                                                            
                                                                             } else {
                                                                                 console.log("Resuelto en unidad:");
                                                                                 resolve(data5)

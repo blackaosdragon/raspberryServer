@@ -1082,6 +1082,7 @@ module.exports = {
                     }
                     
                     base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE inventario LIKE "%${payload}%"`,(err,data) => {
+                        console.log("ejecuto otro statement");
                         if(err){
                             console.log("Error en inventario: ",err);
                             reject(err);

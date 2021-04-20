@@ -1006,6 +1006,63 @@ module.exports = {
         return new Promise ((resolve,reject)=> {
             if(unidad==='ALL'){
                 {
+                    if(payload<4){
+                        if(isNaN(payload)){
+                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad LIKE "%${payload}%"`,(err,data) => {
+                                if(errr){
+                                    console.log(err);
+                                    reject(err);
+                                } else {
+                                    if (data.length>0){
+                                        resolve(data);
+                                    } else {
+                                        base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE inventario LIKE "%${payload}%"`,(err,data) => {
+                                            if(err){
+                                                console.log(err);
+                                                reject(err);
+                                            } else {
+                                                if(data.length>0){
+                                                    resolve(data)
+                                                } else {
+                                                    base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE serie LIKE "%${payload}%"`, (err,data) => {
+                                                        if(err){
+                                                            console.log(err);
+                                                            reject(err);
+                                                        } else {
+                                                            if(data.length>0){
+                                                                resolve(data)
+                                                            } else {
+
+                                                            }
+                                                        }
+                                                    })
+                                                }
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                            
+
+                        } else {
+                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE id=${payload}`,(err,data) => {
+                                if(err){
+                                    console.log(err);
+                                    reject(err);
+                                } else {
+                                    if(data.length<1){
+                                        resolve()
+                                    } else {
+                                        resolve(data);
+                                    }
+                                    
+                                }
+                            })
+                        }
+
+                    } else {
+
+                    }
                     base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE inventario LIKE "%${payload}%"`,(err,data) => {
                         if(err){
                             console.log("Error en inventario: ",err);
@@ -1036,45 +1093,28 @@ module.exports = {
                                                                             reject(err);
                                                                         } else {
                                                                             if(data5.length<1){
-                                                                                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE id=${payload}`,(err,data6)=>{
+                                                                                if(isNaN(payload)){
+
+                                                                                } else {
+                                                                                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE unidad LIKE "%${payload}%"`,(err,data6)=>{
                                                                                     if(err){
                                                                                         reject(err);
                                                                                         console.log("Error id: ",err)
                                                                                     } else {
                                                                                         if(data6.length<1){
-                                                                                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE unidad LIKE "%${payload}%"`,(err,data7) => {
-                                                                                                if(err){
-                                                                                                    reject(err);
-                                                                                                    console.log(err)
-                                                                                                } else {
-                                                                                                    if(data7.length<1){
-                                                                                                        base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad LIKE "%${payload}%"`,(err,data8)=>{
-                                                                                                            if(err){
-                                                                                                                reject(err);
-                                                                                                                console.log(err);
-                                                                                                            } else {
-                                                                                                                if(data8.length<1){
-                                                                                                                    resolve();
-                                                                                                                } else {
-                                                                                                                    resolve(data8)
-                                                                                                                }
-                                                                                                            }
-                                                                                                        })
-                                                                                                    } else {
-                                                                                                        resolve(data7)
-                                                                                                    }
-                                                                                                }
-                                                                                            })
+                                                                                            resolve();
                                                                                         } else {
                                                                                             resolve(data6);
                                                                                         }
                                                                                     }
                                                                                 })
+                                                                            }
                                                                             } else {
                                                                                 resolve(data5)
                                                                             }
                                                                         }
                                                                     })
+                                                                    
     
                                                                 } else {
                                                                     resolve(data4)

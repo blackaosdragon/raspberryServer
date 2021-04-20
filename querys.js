@@ -1009,12 +1009,14 @@ module.exports = {
                     if(payload.length<4){
                         console.log("Fue menor a 4");
                         if(isNaN(payload)){
+                            console.log("No es un numero");
                             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad LIKE "%${payload}%"`,(err,data) => {
                                 if(err){
                                     console.log(err);
                                     reject(err);
                                 } else {
                                     if (data.length>0){
+                                        console.log("resuelto en codigo unidad");
                                         resolve(data);
                                     } else {
                                         base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE inventario LIKE "%${payload}%"`,(err,data) => {
@@ -1058,6 +1060,7 @@ module.exports = {
                             
 
                         } else {
+                            console.log("Si es un numero");
                             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE id=${payload}`,(err,data) => {
                                 if(err){
                                     console.log(err);

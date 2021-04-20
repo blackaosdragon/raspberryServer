@@ -1006,7 +1006,7 @@ module.exports = {
         return new Promise ((resolve,reject)=> {
             if(unidad==='ALL'){
                 {
-                    if(payload<4){
+                    if(payload.length<4){
                         if(isNaN(payload)){
                             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad LIKE "%${payload}%"`,(err,data) => {
                                 if(errr){

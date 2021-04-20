@@ -1102,6 +1102,8 @@ module.exports = {
                 }
 
             } else {
+                console.log(payload.length);
+                
                 base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND inventario LIKE "%${payload}%"`,(err,data) => {
                     if(err){
                         console.log(err);

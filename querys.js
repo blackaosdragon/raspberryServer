@@ -1108,7 +1108,7 @@ module.exports = {
                     } else {
                         try{
                             let id = parseInt(payload);
-                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND id=${payload}`,(err,datos) => {
+                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND id=${id}`,(err,datos) => {
                                 if(err){
                                     console.log(err);
                                     reject(err);

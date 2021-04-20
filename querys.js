@@ -1154,7 +1154,7 @@ module.exports = {
                                                                         reject(err);
                                                                     } else {
                                                                         if(data5.length<1){
-                                                                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND id=${payload}`,(err,data6)=>{
+                                                                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad="${unidad}" AND estado LIKE "%${payload}%"`,(err,data6)=>{
                                                                                 if(err){
                                                                                     reject(err);
                                                                                     console.log(err)

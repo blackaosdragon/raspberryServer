@@ -1007,7 +1007,7 @@ module.exports = {
             if(unidad==='ALL'){
                 {
                     console.log("payload mide: ",payload[0].length)
-                    if(payload.length<4){
+                    if(payload[0].length<4){
                         console.log("Fue menor a 4");
                         if(isNaN(payload)){
                             console.log("No es un numero");

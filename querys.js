@@ -1131,8 +1131,24 @@ module.exports = {
                                                                                                         console.log("Promesa resulta en estado")
                                                                                                         resolve(data)
                                                                                                     } else {
-                                                                                                        console.log("Promesa alcanzada en limite mayor a 4")
-                                                                                                        resolve();
+                                                                                                        base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE unidad_abrev LIKE "%${payload}%"`,(err,data)=>{
+                                                                                                            if(err){
+                                                                                                                console.log(err);
+                                                                                                                console.log("Promesa rechazada en codigo unidad");
+                                                                                                                reject(err);
+                                                                                                            } else {
+                                                                                                                if(data>0){
+                                                                                                                    console.log("Promesa resuelta en codigo unidad");
+                                                                                                                    resolve(data);
+                                                                                                                } else {
+                                                                                                                    console.log("Promesa alcanzada en limite mayor a 4")
+                                                                                                                    resolve();
+                                                                                                                }
+                                                                                                                
+                                                                                                                
+                                                                                                            }
+                                                                                                        })
+                                                                                                        
                                                                                                     }
                                                                                                 }
                                                                                             })

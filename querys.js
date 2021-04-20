@@ -1007,6 +1007,7 @@ module.exports = {
             if(unidad==='ALL'){
                 {
                     if(payload.length<4){
+                        console.log("Fue menor a 4");
                         if(isNaN(payload)){
                             base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE codigo_unidad LIKE "%${payload}%"`,(err,data) => {
                                 if(err){
@@ -1073,8 +1074,10 @@ module.exports = {
                         }
 
                     } else {
+
                         
                     }
+                    console.log("Fue mayor a 4");
                     base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE inventario LIKE "%${payload}%"`,(err,data) => {
                         if(err){
                             console.log("Error en inventario: ",err);

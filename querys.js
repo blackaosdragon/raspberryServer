@@ -1077,10 +1077,9 @@ module.exports = {
                         }
 
                     } else {
-
-                        
+                        console.log("Fue mayor a 4");                        
                     }
-                    console.log("Fue mayor a 4");
+                    
                     base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE inventario LIKE "%${payload}%"`,(err,data) => {
                         if(err){
                             console.log("Error en inventario: ",err);

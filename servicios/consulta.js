@@ -53,7 +53,7 @@ const obtenerEquipos = (req,res) => {
     const {payload,unidad,level} = req.body
     console.log(`payload: ${payload} Unidad: ${unidad}, `)
     llamada_a_bd.busqueda(unidad,payload,level).then( data => {
-        console.log(data);
+        console.log("Promesa resuelta con: ",data);
         let payload = {
             data: data,
             status: ok

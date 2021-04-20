@@ -1062,10 +1062,10 @@ module.exports = {
                                     console.log(err);
                                     reject(err);
                                 } else {
-                                    if(data.length<1){
-                                        resolve()
-                                    } else {
+                                    if(data.length>0){
                                         resolve(data);
+                                    } else {
+                                        
                                     }
                                     
                                 }
@@ -1073,7 +1073,7 @@ module.exports = {
                         }
 
                     } else {
-
+                        
                     }
                     base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE inventario LIKE "%${payload}%"`,(err,data) => {
                         if(err){
@@ -1113,10 +1113,21 @@ module.exports = {
                                                                                         reject(err);
                                                                                         console.log("Error id: ",err)
                                                                                     } else {
-                                                                                        if(data6.length<1){
-                                                                                            resolve();
-                                                                                        } else {
+                                                                                        if(data6.length>0){
                                                                                             resolve(data6);
+                                                                                        } else {
+                                                                                            base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE estado LIKE "%${payload}%"`,(err,data)=>{
+                                                                                                if(err){
+                                                                                                    console.log(err);
+                                                                                                    reject(err);
+                                                                                                } else {
+                                                                                                    if(data.length>0){
+                                                                                                        resolve(data)
+                                                                                                    } else {
+                                                                                                        resolve();
+                                                                                                    }
+                                                                                                }
+                                                                                            })
                                                                                         }
                                                                                     }
                                                                                 })

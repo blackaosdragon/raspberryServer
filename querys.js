@@ -1037,7 +1037,11 @@ module.exports = {
                                                                         console.log(err);
                                                                         reject(err);
                                                                     } else {
-
+                                                                        if(data.length>0){
+                                                                            resolve(data);
+                                                                        } else {
+                                                                            resolve();
+                                                                        }
                                                                     }
                                                                 })
 

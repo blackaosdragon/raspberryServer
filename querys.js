@@ -1032,6 +1032,14 @@ module.exports = {
                                                             if(data.length>0){
                                                                 resolve(data)
                                                             } else {
+                                                                base_de_datos.query(`SELECT * FROM ${data_base}.${tabla_de_camas} WHERE unidad_abrev LIKE "%${payload}%"`,(err,data) => {
+                                                                    if(err){
+                                                                        console.log(err);
+                                                                        reject(err);
+                                                                    } else {
+
+                                                                    }
+                                                                })
 
                                                             }
                                                         }

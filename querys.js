@@ -1006,6 +1006,7 @@ module.exports = {
         return new Promise ((resolve,reject)=> {
             if(unidad==='ALL'){
                 {
+                    console.log("payload mide: ",payload.length)
                     if(payload.length<4){
                         console.log("Fue menor a 4");
                         if(isNaN(payload)){

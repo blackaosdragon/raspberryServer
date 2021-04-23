@@ -1141,7 +1141,7 @@ module.exports = {
                                                                                                                     console.log("Promesa resuelta en codigo unidad");
                                                                                                                     resolve(data);
                                                                                                                 } else {
-                                                                                                                    console.log("Promesa alcanzada en limite mayor a 4"); q 
+                                                                                                                    console.log("Promesa alcanzada en limite mayor a 4");
                                                                                                                     resolve();
                                                                                                                 }
                                                                                                                 

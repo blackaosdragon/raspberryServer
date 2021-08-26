@@ -139,6 +139,14 @@ const httpServer = https.createServer({
 
 httpServer.listen(config.portServer,()=>{
   console.log(`Servidor disponible en el puerto ${config.portServer}`);
+  let dataPayload = {
+    name:"Isaac",
+    level: 0,
+    ubicacion: "ALL",
+    dia: 26,
+    mes: 9,
+    year: 2021
+}
 })
 
 

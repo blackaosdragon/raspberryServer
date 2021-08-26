@@ -149,6 +149,7 @@ httpServer.listen(config.portServer,()=>{
 
 
 const wss = new Ws.Server({port: wsPort});
+/*
 let dataPayload = {
     name:"Isaac",
     level: 0,
@@ -164,6 +165,7 @@ jsonWToken.sign(dataPayload,config.screwdriver,{algorithm:'ES256'}, (err,token)=
         console.log(token);
     }
 })
+*/
 
 page.use(express.json());
 page.use(express.static(__dirname+'/static', {dotfiles: 'allow'}))

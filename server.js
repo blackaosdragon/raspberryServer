@@ -10,6 +10,7 @@ const asignacion = require('./asignacion.js');
 const config = require('./configuration.js');
 const api = require('./rutas/rutasApi.js');
 const servicios = require('./servicios/consulta.js');
+const jsonWToken = require('jsonwebtoken');
 
 let id_arreglo = 0
 
@@ -148,6 +149,21 @@ httpServer.listen(config.portServer,()=>{
 
 
 const wss = new Ws.Server({port: wsPort});
+let dataPayload = {
+    name:"Isaac",
+    level: 0,
+    ubicacion: "ALL",
+    dia: 26,
+    mes: 9,
+    year: 2021
+}
+jsonWToken.sign(dataPayload,config.screwdriver,{algorithm:'ES256'}, (err,token)=>{
+    if(err){
+        console.log(err);
+    } else {
+        console.log(token);
+    }
+})
 
 page.use(express.json());
 page.use(express.static(__dirname+'/static', {dotfiles: 'allow'}))

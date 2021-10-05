@@ -117,13 +117,13 @@ let alertas = [
 
 /////////////////////
 
-
+/*
 page.listen(zeroSsl, () => {
     console.log(`Escuchando por el puerto ${zeroSsl}`);
 })
 page.use('/.well-known/pki-validation/',express.static('verifi'));
 //carperta verify solo para poner el nuevo archivo para validar
-
+*/
 
 ////////////////////////////
 
@@ -131,7 +131,7 @@ page.use('/.well-known/pki-validation/',express.static('verifi'));
 page.use('/imagenes',express.static('mesas125'));
 
 ///////////////////////////
-/*
+
 const httpServer = https.createServer({
     key: fs.readFileSync(path.resolve('/home/victory/server/gitServer/raspberryServer/certs/private.key')),
     cert: fs.readFileSync(path.resolve('/home/victory/server/gitServer/raspberryServer/certs/certificate.crt'))
@@ -151,7 +151,7 @@ httpServer.listen(config.portServer,()=>{
 }
 })
 
-*/
+
 
 /////////////
 
@@ -189,8 +189,8 @@ page.use((req,res,next)=>{
 })
 page.use('/',express.static(__dirname+'/home'))
 
-const io = require('socket.io')();
-//const io = require('socket.io')(httpServer);
+//const io = require('socket.io')();
+const io = require('socket.io')(httpServer);
 
 page.get('/consulta',(req,res)=>{
     //console.log('Solicitando años');

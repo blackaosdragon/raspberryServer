@@ -14,7 +14,7 @@
     "express": "^4.17.1",
     "firebase-admin": "^8.10.0",
     "johnny-five": "^1.4.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mysql": "^2.18.1",
     "node-fetch": "^2.6.0",
     "serialport": "^8.0.8",
